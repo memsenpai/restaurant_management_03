@@ -33,18 +33,18 @@ class Admin::OrderCombosController < ApplicationController
     params_update = order_combo_params
     if @order_combo.update_attributes params_update
       flash[:success] = t "admin_order.success_update"
-      redirect_to admin_order_path @support.load_data[:order]
-      if params_update[:status] != 0
+      if params_update[:status] != "no_need"
         ActionCable.server.broadcast "messages",
           from_role: current_admin.admin_role,
-          combo: @order_combo.combo.name,
-          table: @order_combo.order.table.code
-        head :ok
+          dish: @order_combo.combo.name,
+          table: @order_combo.order.table.code,
+          status: @order_combo.status
       end
+      redirect_to admin_order_path @support.load_data[:order]
     else
       flash[:danger] = t "admin_order.something_wrong"
-      redirect_to edit_admin_order_order_combo_path
     end
+    redirect_to :back
   end
 
   def destroy
@@ -53,11 +53,11 @@ class Admin::OrderCombosController < ApplicationController
       order_combo = order.order_combos
       if order_combo.delete @order_combo
         flash[:success] = t "admin_order.success_delete"
-        redirect_to admin_order_path order
       else
         flash[:danger] = t "admin_order.something_wrong"
       end
     end
+    redirect_to :back
   end
 
   private

@@ -1,0 +1,16 @@
+<% needing_dishes.each do |dish| %>
+  <tr>
+    <td><%= dish.dish.name %></td>
+    <td><%= dish.quantity %></td>
+    <td><%= dish.dish.class%></td>
+    <td>
+      <%= form_for dish, url: admin_order_order_dish_path(dish.order, dish)  do |f| %>
+        <%= f.hidden_field :dish_id, value: dish.id %>
+        <%= f.hidden_field :status,
+          value: :cooking,
+          class: "btn btn-primary" %>
+        <%= f.button t "admin_order.cooking" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
