@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     end
     resources :discount_codes
     resources :users
+    resources :chef
   end
 end

@@ -41,8 +41,9 @@ class Admin::OrderDishesController < ApplicationController
       end
       redirect_to admin_order_path @support.load_data[:order]
     else
-      redirect_to edit_admin_order_order_dish_path
+      flash[:danger] = t "admin_order.something_wrong"
     end
+    redirect_to :back
   end
 
   def destroy

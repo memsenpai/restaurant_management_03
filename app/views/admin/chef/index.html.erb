@@ -1,0 +1,48 @@
+<section class="section admin-site">
+  <br><br>
+  <div class="col-sm-12 col-xs-12">
+    <h1><%= t "admin_role.chef" %></h1>
+    <br>
+    <div class="bloc col-xs-12" id="chef-home-page">
+      <div class="row" id="order-list-in-chef">
+        <div class="col-sm-5">
+          <h3 class="text-center"><%= t "admin.needing" %></h3>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th><%= t "admin.combos.new.name" %></th>
+              <th><%= t "admin_order.quantity" %></th>
+              <th><%= t "admin_order.type" %></th>
+              <th><%= t "admin.orders.order.action" %></th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render "form_dish_needing", needing_dishes: @needing_dishes %>
+              <%= render "form_combo_needing", needing_combos: @needing_combos %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-2 text-center page-header">
+          <i class="fa fa-fw fa-arrow-right fa-3x"></i>
+        </div>
+        <div class="col-sm-5">
+          <h3 class="text-center"><%= t "admin.cooking" %></h3>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th><%= t "admin.combos.new.name" %></th>
+              <th><%= t "admin_order.quantity" %></th>
+              <th><%= t "admin_order.type" %></th>
+              <th><%= t "admin.orders.order.action" %></th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render "form_dish_cooking", cooking_dishes: cooking_dishes %>
+              <%= render "form_combo_cooking", cooking_combos: cooking_combos %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

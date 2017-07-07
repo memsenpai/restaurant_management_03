@@ -81,11 +81,15 @@ en:
       cant_find_order: Can't find any order with this infomation!
       find_order: Found order successfully!
   admin:
+    screen: Screen
     discount: Discount
     combo: Combo
     menu: Menu
+    export: Export
     category: Category
     dish: Dish
+    orderr: Order
+    manage: Manage
     order: Check Order
     bill: Export bill
     profile: Profile
@@ -117,6 +121,8 @@ en:
     change_role: Change roles for employees
     roles: Please chose role
     current_role: Current role
+    needing: Needing
+    cooking: Cooking
     dishes:
       index:
         title: Dishes manager
@@ -541,6 +547,8 @@ en:
     discount_code: Discount Code
     input_code: Input your discount code
     your_code: Your CODE
+    cooked: Cooked
+    cooking: Cooking
   discount:
     reenter: "Please re-enter correct code!"
     used_code: "This code has been used!"
