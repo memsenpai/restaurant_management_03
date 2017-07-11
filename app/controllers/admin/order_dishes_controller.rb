@@ -17,11 +17,15 @@ class Admin::OrderDishesController < ApplicationController
   def create
     order = @support.load_data[:order]
     @order_dish = order.order_dishes.new order_dish_params
-    if order.save
+    if order.save!
       flash[:success] = t "admin_order.success_add"
-      redirect_to admin_order_path order
+      l = "admin/orders/_order_item"
+      respond_to do |f|
+        f.html{render l, layout: false, locals: {order: order}}
+      end
     else
-      redirect_to new_admin_order_order_dish_path
+      flash[:danger] = t "admin_order.something_wrong"
+      redirect_to :back
     end
   end
 
@@ -32,14 +36,6 @@ class Admin::OrderDishesController < ApplicationController
     params_update = order_dish_params
     if @order_dish.update_attributes params_update
       flash[:success] = t "admin_order.success_update"
-      if params_update[:status] != "no_need"
-        ActionCable.server.broadcast "messages",
-          from_role: current_admin.admin_role,
-          dish: @order_dish.dish.name,
-          table: @order_dish.order.table.code,
-          status: @order_dish.status
-      end
-      redirect_to admin_order_path @support.load_data[:order]
     else
       flash[:danger] = t "admin_order.something_wrong"
     end

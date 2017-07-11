@@ -3377,14 +3377,14 @@ a:visited {
 }
 
 .discount-result {
-  animation: fadeInLeft ease-out .5s;
+  animation: fadeInDown ease-out .5s;
   margin-bottom: 0;
   padding: 10px 10px 10px 20px !important;
   text-align: center;
 }
 
 .choose-code-btn {
-  animation: fadeInRight ease-out .5s;
+  animation: fadeInDown ease-out .5s;
   background: $gradient;
   border: 0;
   border-radius: 0;

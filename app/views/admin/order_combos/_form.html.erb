@@ -18,6 +18,18 @@
             <%= f.label :quantity, t("order.quantity"), class: "form-label-2" %>
             <%= f.number_field :quantity, class: "form-control", min: 1 %>
           </div>
+          <p>
+            <%= f.label :status, class: "title" %>
+            <%= f.select :status,
+              [[t("select.no_need"), "no_need"],
+              [t("select.needing"), "needing"],
+              [t("select.cooking"), "cooking"],
+              [t("select.cooked"), "cooked"],
+              [t("select.served"), "served"],
+              [t("select.cancel"), "cancel"]],
+              {include_blank: t("select.choose_status")},
+              class: "btn btn-default" %>
+          </p>
           <div class="col-xs-12 text-center">
             <% if order_combo.new_record? %>
               <%= f.submit t "admin.combos.index.add_combo_button", class: "btn btn-primary"%>

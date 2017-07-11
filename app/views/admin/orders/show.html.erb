@@ -8,51 +8,8 @@
       <br><br>
       <h3 class="title order-item"><%= t "order.order_items" %> <span></span></h3>
       <br><br>
-      <table class="items-table">
-        <%= render "order_item", order: @order %>
-        <tfoot>
-        <tr>
-          <td colspan="2" class="foot">
-            <%= t "admin_order.original_price" %>
-          </td>
-          <td colspan="1" class="head">
-            <%= number_to_currency @order.original_price %>
-          </td>
-          <td colspan="3" class="foot">
-            <%= t "admin_order.total_notdiscount" %>
-          </td>
-          <td class="foot uk-text-left foot" colspan="3">
-            <%= number_to_currency @order.subtotal %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="3" class="foot"></td>
-          <td colspan="2" class="foot">
-            <div class="btn btn-add-dish btn-voucher">
-              <%= t "admin_order.voucher_add" %>
-            </div>
-          </td>
-          <td colspan="1" class="foot">
-            <%= t "admin_order.voucher_discount" %></td>
-          <td class="foot" colspan="3" id="order-discount">
-            <%= @order.discount %>%
-          </td>
-        </tr>
-        <tr>
-          <td class="total-price" colspan="6" align="right">
-            <strong><%= t "admin_order.total" %></strong>
-          </td>
-          <td class="total-price" colspan="3" id="order-total" align="right">
-            <strong>
-              <%= number_to_currency (@order.subtotal * (100 -
-                @order.discount))/100 %>
-            </strong>
-          </td>
-        </tr>
-        </tfoot>
-      </table>
+      <%= render "order_item", order: @order %>
     </div>
   </div>
   <%= render "modal", order: @order, discount: @support %>
-  <%= render "modal_save_order" %>
 </section>

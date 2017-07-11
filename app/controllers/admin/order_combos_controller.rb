@@ -17,12 +17,15 @@ class Admin::OrderCombosController < ApplicationController
   def create
     order = @support.load_data[:order]
     @order_combo = order.order_combos.new order_combo_params
-    if order.save
+    if order.save!
       flash[:success] = t "admin_order.success_add"
-      redirect_to admin_order_path order
+      l = "admin/orders/_order_item"
+      respond_to do |f|
+        f.html{render l, layout: false, locals: {order: order}}
+      end
     else
       flash[:danger] = t "admin_order.something_wrong"
-      redirect_to new_admin_order_order_combo_path
+      redirect_to :back
     end
   end
 
@@ -40,7 +43,6 @@ class Admin::OrderCombosController < ApplicationController
           table: @order_combo.order.table.code,
           status: @order_combo.status
       end
-      redirect_to admin_order_path @support.load_data[:order]
     else
       flash[:danger] = t "admin_order.something_wrong"
     end

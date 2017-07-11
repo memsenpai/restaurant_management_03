@@ -122,12 +122,7 @@
         </p>
         <p class="info-item">Time:
           <span class="table-id">
-            <% if current_order.time_in == 1 %><%= t "select.em" %><% end %>
-            <% if current_order.time_in == 2 %><%= t "select.lm" %><% end %>
-            <% if current_order.time_in == 3 %><%= t "select.ea" %><% end %>
-            <% if current_order.time_in == 4 %><%= t "select.la" %><% end %>
-            <% if current_order.time_in == 5 %><%= t "select.ee" %><% end %>
-            <% if current_order.time_in == 6 %><%= t "select.le" %><% end %>
+            <% current_order.time_in %>
           </span>
         </p>
       </div>

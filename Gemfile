@@ -23,6 +23,7 @@ gem "owlcarousel-rails"
 gem "font-awesome-sass"
 gem "cancancan"
 gem "redis"
+gem "chartkick"
 
 group :development, :test do
   gem "byebug", platform: :mri
