@@ -54,3 +54,32 @@ $(document).on('click','#btn-generate-code', function(){
     });
   }
 });
+
+$(document).on('click','.choose-code-btn', function(){
+  var id = $('.order-id').text();
+  var link ='/admin/orders/' + id;
+  var discount = $('#code-true strong').text();
+  $('.modal').hide();
+  $.ajax({
+    type:'PUT',
+    url: link,
+    data: {
+      order: {
+        discount: discount,
+      }
+    }
+  }).success(function(){
+    $('#order-discount').text(discount + '%');
+    var dis_id = $('#discount-id').text();
+    var link = '/admin/discount_codes/' + dis_id;
+    $.ajax({
+      type:'PUT',
+      url: link,
+      data: {
+        discount_code: {
+          status: 'Used',
+        }
+      }
+    });
+  });
+});

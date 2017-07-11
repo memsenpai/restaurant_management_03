@@ -19,11 +19,9 @@
   <%= f.text_field :day, class: "form-control datepicker" %><br>
 
   <%= f.label :time_in, t(".time_in"), class:"form-label-3" %><br>
-  <%= f.select :time_in,[[t("select.em"), 1], [t("select.lm"), 2],
-    [t("select.ea"), 3], [t("select.la"), 4],
-    [t("select.ee"), 5], [t("select.le"), 6]],
-    {include_blank: t("reserve.time")}, id:"time_field",
-    class: "form-control", required: true %>
+  <%= f.text_field :time_in, class: "form-control form-control2
+    timepicker", placeholder: t("reserve.date"),
+    id:"timepicker", required: true %>
   <br>
 
   <%= f.label :is_confirm, t(".status"), class:"form-label-3" %>

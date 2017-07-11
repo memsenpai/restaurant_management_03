@@ -37,18 +37,7 @@
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap"><b>From</b></td>
     <td class="default_dg_td dg-left">
-      <% if order.time_in == 1 %>
-        <%= t "select.em" %><% end %>
-      <% if order.time_in == 2 %>
-        <%= t "select.lm" %><% end %>
-      <% if order.time_in == 3 %>
-        <%= t "select.ea" %><% end %>
-      <% if order.time_in == 4 %>
-        <%= t "select.la" %><% end %>
-      <% if order.time_in == 5 %>
-        <%= t "select.ee" %><% end %>
-      <% if order.time_in == 6 %>
-        <%= t "select.le" %><% end %>
+      <%= order.time_in %>
     </td>
   </tr>
   <tr class="dg_tr" id="di_row_0">

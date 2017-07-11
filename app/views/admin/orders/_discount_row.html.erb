@@ -5,16 +5,17 @@
         <p class="discount-result">
           <%= t "discount.reenter" %>
         </p>
-      <% elsif find_discount(params[:discount]).status == 2 %>
+      <% elsif find_discount(params[:discount]).status == "Used" %>
         <p class="discount-result">
           <%= t "discount.used_code" %>
         </p>
-      <% elsif find_discount(params[:discount]).status == 1 %>
+      <% elsif find_discount(params[:discount]).status == "Available" %>
         <p class="discount-result" id="code-true">
           <%= t "discount.discount" %>
           <strong><%= find_discount(params[:discount]).discount %></strong>
           <%= t "discount.discount2" %>
         </p>
+        <p class="hide" id="discount-id"><%= find_discount(params[:discount]).id %></p>
         <div id="choose-code" class="choose-code-btn discount-result">
           <p class="text-background">
             <%= t "discount.choose_code" %>

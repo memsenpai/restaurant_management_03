@@ -38,7 +38,7 @@ class Admin
 
     private
     def discount_params
-      params.require(:discount_code).permit :discount, :status
+      params.require(:discount_code).permit :discount, :status, :code
     end
 
     def load_support
