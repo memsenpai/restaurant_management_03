@@ -1,0 +1,21 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: awesomecity_development
+  pool: 5
+  username: root
+  password: **pass**
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: awesomecity_test
+  pool: 5
+  username: root
+  password: **pass**
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: awesomecity_production
+  pool: 5
+  username: root
+  password: **pass**
