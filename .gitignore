@@ -33,3 +33,4 @@ config/environments/*.local.yml
 .framgia-ci-result.temp.yml
 /config/rails_best_practices.yml
 npm-debug.log
+node_modules/*

@@ -10,41 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706061547) do
+ActiveRecord::Schema.define(version: 20170711080635) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "category_dishes", force: :cascade do |t|
+  create_table "category_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "category_id"
     t.integer  "dish_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "combo_dishes", force: :cascade do |t|
+  create_table "combo_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "combo_id"
     t.integer  "dish_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "combos", force: :cascade do |t|
-    t.string   "description"
+  create_table "combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "description", limit: 65535
     t.integer  "discount"
     t.string   "name"
     t.string   "image"
     t.datetime "from"
     t.datetime "to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "discount_codes", force: :cascade do |t|
+  create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "code"
     t.integer  "discount"
     t.string   "status"
@@ -52,17 +52,17 @@ ActiveRecord::Schema.define(version: 20170706061547) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "dishes", force: :cascade do |t|
+  create_table "dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "price"
     t.string   "image"
-    t.string   "description"
+    t.text     "description",  limit: 65535
     t.boolean  "is_available"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  create_table "humen", force: :cascade do |t|
+  create_table "humen", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "role"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170706061547) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "order_combos", force: :cascade do |t|
+  create_table "order_combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "combo_id"
     t.integer  "discount"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20170706061547) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "order_dishes", force: :cascade do |t|
+  create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "dish_id"
     t.integer  "discount"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170706061547) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "guest_id"
     t.integer  "table_id"
     t.string   "code"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20170706061547) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "tables", force: :cascade do |t|
+  create_table "tables", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "capacity"
     t.string   "code"
     t.datetime "created_at", null: false
