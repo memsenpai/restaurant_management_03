@@ -7,8 +7,8 @@ module SessionHelper
     @current_admin ||= Admin.find_by id: session[:admin_id]
   end
 
-  def current_order
-    order_id = session[:order_id]
+  def current_order id = nil
+    order_id = session[:order_id] || id
     if order_id.present?
       Order.find_by id: order_id
     else
