@@ -21,11 +21,11 @@ class OrderCombo < ApplicationRecord
 
   private
   def combo_present
-    errors.add :combo, t("order.not_valid_or_not_active") unless combo
+    errors.add :combo, I18n.t("order.not_valid_or_not_active") unless combo
   end
 
   def order_present
-    errors.add :order, t("order.not_valid_value") unless order
+    errors.add :order, I18n.t("order.not_valid_value") unless order
   end
 
   def finalize

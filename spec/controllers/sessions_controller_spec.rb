@@ -8,7 +8,7 @@ describe SessionsController do
   describe "POST #create" do
     it "test login success" do
       post :create, params: {session: {email: "admin@123.com", password: "123123"}}
-      expect(response).to have_http_status 302
+      expect(response).to have_http_status 200
     end
 
     it "test login failure" do

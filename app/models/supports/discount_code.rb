@@ -1,4 +1,4 @@
-class Supports:: DiscountCode
+class Supports::DiscountCode
   attr_reader :discount_codes
 
   def initialize arg

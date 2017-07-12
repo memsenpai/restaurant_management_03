@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/thoughtbot/shoulda-matchers.git
+  revision: f800d62525a65f9bf001ea984ae4926a92ff5b82
+  branch: rails-5
+  specs:
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -175,6 +183,9 @@ GEM
     multi_json (1.12.1)
     multi_test (0.1.2)
     mysql2 (0.4.8)
+    mysql2 (0.4.8-x64-mingw32)
+    mysql2 (0.4.8-x86-mingw32)
+    mysql2 (0.4.8-x86-mswin32-60)
     nio4r (2.1.0)
     nio4r (2.1.0-java)
     nokogiri (1.8.0)
@@ -296,8 +307,6 @@ GEM
       sass (~> 3.4.20)
     scss_lint_reporter_checkstyle (0.2.0)
     sexp_processor (4.9.0)
-    shoulda-matchers (3.1.1)
-      activesupport (>= 4.0.0)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -395,7 +404,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scss_lint
   scss_lint_reporter_checkstyle
-  shoulda-matchers
+  shoulda-matchers!
   simplecov
   social-share-button
   spring

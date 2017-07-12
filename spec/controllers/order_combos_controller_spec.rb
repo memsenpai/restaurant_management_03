@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe OrderCombosController do
+  FactoryGirl.create :combo
   before :each do
     @request.host = "localhost:3000"
   end
