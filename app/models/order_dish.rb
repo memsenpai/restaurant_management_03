@@ -17,11 +17,11 @@ class OrderDish < ApplicationRecord
 
   private
   def dish_present
-    errors.add :dish, t("order.not_valid_or_not_active") unless dish
+    errors.add :dish, I18n.t("order.not_valid_or_not_active") unless dish
   end
 
   def order_present
-    errors.add :order, t("order.not_valid_value") unless order
+    errors.add :order, I18n.t("order.not_valid_value") unless order
   end
 
   def finalize

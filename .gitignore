@@ -34,3 +34,5 @@ config/environments/*.local.yml
 /config/rails_best_practices.yml
 npm-debug.log
 node_modules/*
+coverage
+config/settings.yml

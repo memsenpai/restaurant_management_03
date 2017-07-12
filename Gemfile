@@ -45,7 +45,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :test do
   gem "rspec-collection_matchers"
-  gem "shoulda-matchers"
+  gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git", branch: "rails-5"
   gem "database_cleaner"
   gem "rubocop", require: false
   gem "rubocop-checkstyle_formatter", require: false
