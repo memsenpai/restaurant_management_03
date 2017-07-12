@@ -16,6 +16,8 @@ require "rspec/rails"
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
+
+require "capybara/rspec"
 #
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
@@ -56,18 +58,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
-
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    # with.test_framework :minitest
-    # with.test_framework :minitest_4
-    # with.test_framework :test_unit
-    with.library :active_record
-    with.library :active_model
-    with.library :action_controller
-    # Or, choose the following (which implies all of the above):
-    with.library :rails
-  end
 end
