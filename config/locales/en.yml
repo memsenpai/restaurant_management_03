@@ -2,6 +2,11 @@ en:
   hello: "Hello world"
   res: Restaurant
   brand: "Awesomecity"
+  pages:
+    book_table_online:
+      book_table: "Book table"
+    slogan:
+      view_menu: "View menu"
   home:
     home: Home
     menu: Menu
