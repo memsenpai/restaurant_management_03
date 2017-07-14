@@ -34,7 +34,7 @@
 <div class="col-sm-12">
   <% dishes_support.dishes_search.each do |dish| %>
     <div class="items col-xs-12 col-sm-4">
-      <div class="item-inner">
+      <div class="item-inner" data-id="<%= dish.id %>">
         <div class="item">
           <%= image_tag dish.image, class: "img-responsive",
             onerror: "this.src='https://getawayoutdoors.com.au/UploadFiles/noimage.jpg';" %>
@@ -42,8 +42,11 @@
           <div class="button"><%= link_to t(".view"), dish_path(dish) %></div>
         </div>
         <h4><%= link_to dish.name, dish_path(dish) %></h4>
-        <h2><i class="fa fa-usd"></i><%= dish.price %></h2>
+        <div class="dishes-item">
+          <span class="dishes-item-price"><i class="fa fa-usd"></i><%= dish.price %></span>
+        </div>
         <br>
+        <div class="dishes-item-add-to-cart"><i class="fa fa-cart-plus"></i></div>
       </div>
     </div>
   <% end %>

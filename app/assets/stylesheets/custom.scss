@@ -2,137 +2,7 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
-$orangered: #ff4500;
-$navbar-right: #110606;
-$spectra: #2f4f4f;
-$caribbean-green: #05a793;
-$light-green: #0ac986;
-$bitter: #8f8f81;
-$alabaster: #f9f9f9;
-$white: #fff;
-$geyser: #c9dadd;
-$dove-gray: #666;
-$meadow: #22be5c;
-$shamrock: #32c6a1;
-$pink: #dd7e89;
-$red: #f00;
-$salem: #0ba73e;
-$jellybean: #2a8797;
-$black: #000;
-$hippie-green: #468847;
-$dark-red: #8b0000;
-$blue: #00f;
-$cerulean: #0a93cc;
-$silver: #bdbdbd;
-$tundora: #4c4a4a;
-$gallery: #eaeaea;
-$alto: #dadada;
-$light-grey: #f0f0f0;
-$grey: #ededed;
-$silver-chalice: #afaeae;
-$light-blue: #98bcdf;
-$gray-dark: #444;
-$mexican-red: #a41f35;
-$scorpion: #5f5b5b;
-$alabaster: #fafafa;
-$mystic: #e1e8ed;
-$abbey: #595a5d;
-$sushi: #82b440;
-$dark-sushi: #6f9a37;
-$green-sushi: #7aa93c;
-$boulder: #787878;
-$emperor: #545454;
-$bondi-blue: #0084b4;
-$dark-salem: #0a6f42;
-$cornflower-blue: #6495ed;
-$wild-sand: #f4f4f4;
-$cucumber: #89b556;
-$gray-light: #eee;
-$mercury: #e3e3e3;
-$light-alabaster: #fcfcfc;
-$gray: #919191;
-$carrot: #f9993e;
-$dark-blue: #24297f;
-$grape: #4a1951;
-$east-bay: #4d508e;
-$cardinal: #d11f25;
-$jelly-blue: #2d97a7;
-$yellow: #ff0;
-$golden: #e6c600;
-$golden-dark: #b89d00;
-$alto: #ddd;
-$dark-silver: #aaa;
-$dark-white: rgba(246, 229, 209, .3);
-$martini: rgba(180, 160, 160, .3);
-$black-opacity: rgba(0, 0, 0, .2);
-$gray-opacity: rgba(84, 84, 84, .89);
-$gray-darked: rgba(100, 96, 99, 0);
-$gray-darked2: rgba(100, 96, 99, .85);
-$white-light: rgba(251, 251, 255, .86);
-$blossom: rgba(255, 134, 147, .65);
-$dark-blossom: rgba(188, 114, 113, .66);
-$brick: rgba(155, 34, 45, .93);
-$spring-green: rgba(36, 255, 109, .75);
-$bermuda: rgba(137, 222, 200, .76);
-$pelorous: rgba(54, 178, 194, .71);
-$pelorous-opacity: rgba(54, 178, 194, .91);
-$black-light: rgba(0, 0, 0, .25);
-$grey-opacity: rgba(119, 119, 119, .58);
-$blue-opacity: rgba(44, 76, 134, .68);
-$grey-black: rgba(0, 0, 0, 0);
-$black-like: rgba(0, 0, 0, .6);
-$black-haft: rgba(0, 0, 0, .5);
-$black-dark: rgba(0, 0, 0, .8);
-$fiord: rgba(70, 75, 110, .247059);
-$admin-background: rgba(185, 176, 176, .2);
-$slide-link: #07a6f5;
-$form-background: rgba(253, 255, 255, .7);
-$btn-color1: #41deb6;
-$form-control-color: #23ffd0;
-$outside-ground: rgba(168, 129, 110, .82);
-$inside-ground: rgba(199, 194, 155, .93);
-$modal-start: #ffafbd;
-$modal-end: #ffc3a0;
-$modal: linear-gradient(to right, $modal-start, $modal-end);
-$modal-border: #888;
-$modal-background: rgba(0, 0, 0, .4);
-$menu-grid: #5a2149;
-$royalblue: #4169e1;
-$black-light2: #252525;
-$text-block-color: #383838;
-$text-block-color2: #666;
-$btn-all-color: rgba(237, 237, 237, 1);
-$btn-all-color2: rgba(246, 246, 246, 1);
-$btn-all-color3: rgba(255, 255, 255, 1);
-$order-color: #63a8c9;
-$cornflowerblue: #6495ed;
-$pj-button: #b5b7b9;
-$pj-button2: #dedede;
-$pj-button3: #363434;
-$greenyellow: #adff2f;
-$label-red: #b94a48;
-$label-green: #468847;
-$btn-green: #0a922d;
-$black-overlay: rgba(0, 0, 0, .3);
-$flash-shadow: rgba(34, 34, 34, .68);
-$input: rgba(228, 223, 222, .6);
-$gradient1: #cf7f62;
-$gradient2: #f46058;
-$gradient3: #f3114b;
-$gradient4: #ff7e5f;
-$gradient5: #feb47b;
-$gradient-hover: linear-gradient(141deg, $gradient1 0%,
-  $gradient2 25%, $gradient3 75%);
-$gradient: linear-gradient(to right, $gradient4, $gradient5);
-$table-color-1: rgba(196, 102, 0, .6);
-$table-color-2: rgba(155, 89, 182, .6);
-$table-color-3: rgba(0, 0, 0, .4);
-$ccc: #ccc;
-$input-table: #2c3e50;
-$table-button: #27ae60;
-$mau6: #666;
-$mau3: #333;
+@import "color";
 
 body {
   overflow-x: hidden;
@@ -718,6 +588,7 @@ body {
   border: 2px solid $grey;
   box-shadow: 0 1px 2px $grey-opacity;
   box-sizing: border-box;
+  position: relative;
 }
 
 .item-inner:hover {
@@ -3670,4 +3541,37 @@ a:visited {
   clear: both;
   float: right;
   padding: 5px;
+}
+
+.dishes-item {
+  font-family: "Khand";
+  font-size: 35px;
+  text-align: center;
+
+  &-price {
+    color: $color-red;
+  }
+
+  &-add-to-cart {
+    border: 1px solid $color-f0ad4e;
+    bottom: 4px;
+    color: $color-f0ad4e;
+    cursor: pointer;
+    font-size: 33px;
+    height: 53px;
+    position: absolute;
+    right: 4px;
+    text-align: center;
+    width: 80px;
+
+    &:hover {
+      background: $color-f0ad4e;
+      color: $white;
+      transition: all 300ms;
+    }
+  }
+}
+
+.button-style {
+  padding: 14px 10px;
 }
