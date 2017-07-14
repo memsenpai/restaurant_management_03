@@ -1,7 +1,7 @@
 class Admin
   class DishesController < ApplicationController
     before_action :logged_in_admin
-    before_action :find_dish, except: %i(index new)
+    before_action :find_dish, except: %i(index new create)
     before_action :load_category, only: %i(new edit)
 
     load_and_authorize_resource
@@ -18,9 +18,9 @@ class Admin
 
     def create
       @dish = Dish.new dish_params
-      if @dish.save
+      if dish.save
         flash[:success] = t "flash.dish.create_success"
-        redirect_to admin_dish_path @dish
+        redirect_to admin_dish_path dish
       else
         load_category
         render :new
@@ -30,27 +30,28 @@ class Admin
     def edit; end
 
     def update
-      if @dish.update_attributes dish_params
+      if dish.update_attributes dish_params
         flash[:success] = t "flash.dish.update_success"
-        redirect_to admin_dish_path @dish
+        redirect_to admin_dish_path dish
       else
+        load_category
         render :edit
       end
     end
 
     def destroy
-      if @dish.destroy
+      if dish.destroy
         flash[:success] = t "flash.dish.destroy"
       else
         flash[:danger] = t "flash.dish.destroy_fail"
       end
-      respond_to do |format|
-        format.html{redirect_to :back}
-        format.json{head :no_content}
-      end
+      redirect_to :back
     end
 
     private
+
+    attr_reader :dish
+
     def dish_params
       params.require(:dish).permit :name, :price, :description, :image,
         :is_available, category_ids: []
@@ -58,8 +59,7 @@ class Admin
 
     def find_dish
       @dish = Dish.find_by id: params[:id]
-
-      return if @dish
+      return if dish
       flash[:danger] = t "flash.dish.find_fail"
       redirect_to admin_dishes_path
     end

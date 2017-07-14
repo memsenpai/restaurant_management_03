@@ -14,9 +14,9 @@ class Admin
 
     def create
       @combo = Combo.new combo_params
-      if @combo.save
+      if combo.save
         flash[:success] = t "flash.combo.create_success"
-        redirect_to admin_combo_path @combo
+        redirect_to admin_combo_path combo
       else
         load_dishes
         render :new
@@ -28,31 +28,31 @@ class Admin
       @categories = Category.all
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
-      if @combo.update_attributes combo_params
+      if combo.update_attributes combo_params
         flash[:success] = t "flash.combo.update_success"
-        redirect_to admin_combo_path @combo
+        redirect_to admin_combo_path combo
       else
-        redirect_to edit_admin_combo_path
+        load_dishes
+        render :edit
       end
     end
 
     def destroy
-      if @combo.destroy
+      if combo.destroy
         flash[:success] = t "flash.combo.destroy_success"
       else
         flash[:danger] = t "flash.combo.destroy_fail"
       end
-      respond_to do |format|
-        format.html{redirect_to :back}
-        format.json{head :no_content}
-      end
+      redirect_to :back
     end
 
     private
+
+    attr_reader :combo
+
     def combo_params
       params.require(:combo).permit :name, :discount,
         :description, :image, dish_ids: []
@@ -60,10 +60,9 @@ class Admin
 
     def find_combo
       @combo = Combo.find_by id: params[:id]
-      unless @combo
-        flash[:danger] = t "flash.combo.find_fail"
-        redirect_to admin_combos_path
-      end
+      return if combo
+      flash[:danger] = t "flash.combo.find_fail"
+      redirect_to admin_combos_path
     end
 
     def load_dishes
