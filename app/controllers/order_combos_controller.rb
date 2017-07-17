@@ -1,7 +1,7 @@
 class OrderCombosController < ApplicationController
   include LoadOrder
-  before_action :load_order, only: [:create, :update, :destroy]
-  before_action :find_combo, only: [:update, :destroy]
+  before_action :load_order, only: %i(create update destroy)
+  before_action :find_combo, only: %i(update destroy)
 
   def create
     @order_combo = @order.order_combos.new order_combo_params

@@ -81,6 +81,7 @@ en:
       cant_find_order: Can't find any order with this infomation!
       find_order: Found order successfully!
   admin:
+    promo: Promo
     screen: Screen
     discount: Discount
     combo: Combo
@@ -569,3 +570,22 @@ en:
     receptionist: Receptionist
   admin_users:
     new_admin: Create new admin
+  promo:
+    create:
+      success: Add successfully
+      notice: Something wrong
+    update:
+      success: Update successfully
+      notice: Something wrong
+    destroy:
+      success: Destroy successfully
+      notice: Something wrong
+    input_keyword: Search for promo dish
+    search: Search
+    promo: Promo
+    title: Promo
+    time: Time
+    name: Name Dish
+    description: Description Dish
+    time2: "%{start} to %{end}"
+    edit_promo_button: Edit Promo Button

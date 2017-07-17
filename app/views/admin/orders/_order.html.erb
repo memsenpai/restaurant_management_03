@@ -115,14 +115,7 @@
               <td><%= link_to order.code, admin_order_path(order) %></td>
               <td><%= order.day.in_time_zone(
                 Settings.time_zone).strftime('%b %d %Y') %></td>
-              <td>
-                <% if order.time_in == 1 %><%= t "select.em" %><% end %>
-                <% if order.time_in == 2 %><%= t "select.lm" %><% end %>
-                <% if order.time_in == 3 %><%= t "select.ea" %><% end %>
-                <% if order.time_in == 4 %><%= t "select.la" %><% end %>
-                <% if order.time_in == 5 %><%= t "select.ee" %><% end %>
-                <% if order.time_in == 6 %><%= t "select.la" %><% end %>
-              </td>
+              <td><%= order.time_in %></td>
               <td><%= order.guest.name %></td>
               <td class="text-center"><%= order.table_id %></td>
               <td class="text-center"><%= order.capacity %></td>
