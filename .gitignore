@@ -35,4 +35,3 @@ config/environments/*.local.yml
 npm-debug.log
 node_modules/*
 coverage
-config/settings.yml
