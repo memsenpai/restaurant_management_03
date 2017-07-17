@@ -1,8 +1,8 @@
 class Admin
   class CategoriesController < ApplicationController
     before_action :logged_in_admin
-    before_action :find_category, only: [:edit, :update]
-    before_action :load_dishes, only: [:new, :edit]
+    before_action :find_category, only: %i(edit update)
+    before_action :load_dishes, only: %i(new edit)
 
     def index
       @categories = Supports::Category.new categories: Category.all,
@@ -19,6 +19,7 @@ class Admin
         flash[:success] = t "flash.category.create_success"
         redirect_to admin_category_path @category
       else
+        load_dishes
         render :new
       end
     end

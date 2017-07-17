@@ -1,8 +1,8 @@
 class Admin
   class DishesController < ApplicationController
     before_action :logged_in_admin
-    before_action :find_dish, except: [:index, :new]
-    before_action :load_category, only: [:new, :edit]
+    before_action :find_dish, except: %i(index new)
+    before_action :load_category, only: %i(new edit)
 
     load_and_authorize_resource
 
@@ -22,6 +22,7 @@ class Admin
         flash[:success] = t "flash.dish.create_success"
         redirect_to admin_dish_path @dish
       else
+        load_category
         render :new
       end
     end

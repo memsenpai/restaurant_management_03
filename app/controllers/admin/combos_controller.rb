@@ -1,8 +1,8 @@
 class Admin
   class CombosController < ApplicationController
     before_action :logged_in_admin
-    before_action :find_combo, except: [:index, :new, :create]
-    before_action :load_dishes, only: [:new, :edit]
+    before_action :find_combo, except: %i(index new create)
+    before_action :load_dishes, only: %i(new edit)
 
     def index
       @combos = Supports::Combo.new combo: Combo.all, param: params
@@ -18,6 +18,7 @@ class Admin
         flash[:success] = t "flash.combo.create_success"
         redirect_to admin_combo_path @combo
       else
+        load_dishes
         render :new
       end
     end
