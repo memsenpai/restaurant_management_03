@@ -3,21 +3,20 @@ class Ability
 
   def initialize user
     user ||= Admin.new
-    alias_action :new, :edit, :create, :update, :destroy, to: :modify
-    alias_action :new, :create, to: :add
+    alias_action :edit, :update, to: :modify
     alias_action :index, :show, :edit, to: :view
 
-    can :view, :all
-
-    can :read, :all
+    can :manage, [Admin]
 
     case user.admin_role
     when "administrator"
       can :manage, :all
-    when "waiter"
-      can :modify, [Order, OrderDish, OrderCombo]
     when "receptionist"
-      can :modify, [Order, OrderDish, OrderCombo, Guest]
+      can :manage, [Order, OrderDish, OrderCombo,
+        Combo, Dish, DiscountCode, Category, :categories]
+    when "chef"
+      can :view, :chef
+      can :modify, [Order, OrderDish, OrderCombo]
     end
   end
 end

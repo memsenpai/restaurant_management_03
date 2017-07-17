@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :back, flash: {danger: exception.message}
+    redirect_to admin_path, flash: {danger: exception.message}
   end
 
   private

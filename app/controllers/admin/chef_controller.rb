@@ -1,6 +1,8 @@
 class Admin::ChefController < ApplicationController
   before_action :logged_in_admin
 
+  authorize_resource class: :chef
+
   def index
     @needing_dishes = OrderDish.needing
     @needing_combos = OrderCombo.needing

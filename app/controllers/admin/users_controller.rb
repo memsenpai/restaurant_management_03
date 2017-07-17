@@ -3,6 +3,8 @@ class Admin
     before_action :logged_in_admin
     before_action :find_user, only: %i(edit update destroy)
 
+    authorize_resource class: :admin
+
     def index
       @list_admin = Admin.all.page(params[:page]).per_page Settings.max_result
     end

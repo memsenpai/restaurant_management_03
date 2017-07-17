@@ -88,6 +88,11 @@ en:
   admin:
     promo: Promo
     error_not_administrator: "You are not Administrator"
+    cooking: "Cooking"
+    cookingstt: "Cooking status"
+    chef: "Chef"
+    waiter: "Waiter"
+    receptionist: "Receptionist"
     screen: Screen
     discount: Discount
     combo: Combo
@@ -431,6 +436,7 @@ en:
     your_email: "Your email"
     your_order_code: "Your order code"
     submit: "Submit"
+    export_bill: "Export bill"
   helpers:
     submit:
       dish:

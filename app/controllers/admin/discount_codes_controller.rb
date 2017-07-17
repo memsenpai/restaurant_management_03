@@ -2,8 +2,7 @@ class Admin
   class DiscountCodesController < ApplicationController
     before_action :load_support
 
-    def index
-    end
+    def index; end
 
     def create
       quantity = params[:quantity].to_i
