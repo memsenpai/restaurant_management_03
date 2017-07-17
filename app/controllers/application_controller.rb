@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def logged_in_admin
-    unless logged_in?
-      flash[:danger] = t "admin.error_log"
-      redirect_to login_url
-    end
+    return if logged_in?
+    flash[:danger] = t "admin.error_log"
+    redirect_to login_url
   end
 end

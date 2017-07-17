@@ -87,6 +87,7 @@ en:
       find_order: Found order successfully!
   admin:
     promo: Promo
+    error_not_administrator: "You are not Administrator"
     screen: Screen
     discount: Discount
     combo: Combo

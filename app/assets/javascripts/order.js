@@ -125,3 +125,20 @@ $(document).on('click', '.add-combo-to-cart', function() {
     $('#cart-text').load(document.URL + ' #order-card-text');
   });
 });
+
+$(document).on('click', '.dishes-item-add-to-cart', function() {
+  var dish_id = $(this).parent().data("id");
+  var url = '/order_dishes';
+  $.ajax({
+    type:'POST',
+    url: url,
+    data: {
+      order_dish: {
+        quantity: 1,
+        dish_id: dish_id
+      }
+    }
+  }).success(function(){
+    $('#cart-text').load(document.URL + ' #order-card-text');
+  });
+});
