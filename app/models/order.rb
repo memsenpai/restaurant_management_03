@@ -14,9 +14,9 @@ class Order < ApplicationRecord
 
   def subtotal
     total_dishes_price = order_dishes.map{|order_dish| order_dish.valid? ?
-      (order_dish.quantity * order_dish.price) : 0}.sum
+      (order_dish.total_price) : 0}.sum
     total_combos_price = order_combos.map{|order_combo| order_combo.valid? ?
-      (order_combo.quantity * order_combo.price) : 0}.sum
+      (order_combo.total_price) : 0}.sum
     total_dishes_price + total_combos_price
   end
 

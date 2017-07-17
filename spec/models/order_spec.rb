@@ -2,8 +2,11 @@ require "rails_helper"
 
 RSpec.describe Order, type: :model do
   order = FactoryGirl.create :order
-  FactoryGirl.create :order_dish, order_id: order.id
+  order_dish = FactoryGirl.create :order_dish, order_id: order.id
   FactoryGirl.create :order_combo, order_id: order.id
+  FactoryGirl.create :promo, dish_id: order_dish.dish_id,
+    end_day: Faker::Time.forward, end_time: Faker::Time.forward
+
   describe "associations" do
     it{should belong_to :guest}
     it{should belong_to(:table).inverse_of :orders}

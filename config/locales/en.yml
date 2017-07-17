@@ -590,7 +590,24 @@ en:
     promo: Promo
     title: Promo
     time: Time
+    day: Day
     name: Name Dish
     description: Description Dish
     time2: "%{start} to %{end}"
+    day2: "%{start} to %{end}"
     edit_promo_button: Edit Promo Button
+    dish_id: Dish ID
+    discount: Discount
+    start_day: Start Day
+    end_day: End Day
+    start_time: Start Time
+    end_time: End Time
+    not_found: Promo not found
+  time_default: "%H:%M:%S"
+  day_default: "%Y/%m/%d"
+  discount: Discount
+  opition: Opition
+  available: Available
+  running: Running
+  stoped: Stoped
+  no_content: No content

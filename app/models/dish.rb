@@ -4,6 +4,7 @@ class Dish < ApplicationRecord
   has_many :combo_dishes
   has_many :combos, through: :combo_dishes, dependent: :destroy
   has_many :order_dishes
+  has_many :promos, dependent: :destroy
 
   validates :name, presence: true
   validates :price, presence: true, numericality: true
