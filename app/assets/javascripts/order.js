@@ -127,7 +127,7 @@ $(document).on('click', '.add-combo-to-cart', function() {
 });
 
 $(document).on('click', '.dishes-item-add-to-cart', function() {
-  var dish_id = $(this).parent().data("id");
+  var dish_id = $(this).parent().data('id');
   var url = '/order_dishes';
   $.ajax({
     type:'POST',

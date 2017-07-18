@@ -11,6 +11,8 @@ class OrderCombo < ApplicationRecord
 
   before_save :finalize
 
+  after_update_commit {MessageBroadcastJob.perform_now describe}
+
   def original_price
     combo.subtotal
   end
@@ -31,5 +33,9 @@ class OrderCombo < ApplicationRecord
   def finalize
     self[:price] = combo.price
     self[:total_price] = quantity * self[:price]
+  end
+
+  def describe
+    data = {combo: combo.name, table: order.table.code, status: status}
   end
 end

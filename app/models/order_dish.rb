@@ -11,6 +11,9 @@ class OrderDish < ApplicationRecord
 
   before_save :finalize
 
+  after_update_commit {MessageBroadcastJob.perform_now describe}
+
+
   def find_discount
     DiscountDish.new(self).discount
   end
@@ -31,5 +34,9 @@ class OrderDish < ApplicationRecord
   def finalize
     self[:price] = dish.price
     self[:total_price] = quantity * self[:price]
+  end
+
+  def describe
+    data = {dish: dish.name, table: order.table.code, status: status}
   end
 end

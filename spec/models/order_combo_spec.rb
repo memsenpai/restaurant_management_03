@@ -1,9 +1,10 @@
 require "rails_helper"
 
 RSpec.describe OrderCombo, type: :model do
-
-  FactoryGirl.create_list(:combo, 10)
-  FactoryGirl.create_list(:order, 10)
+  tables = FactoryGirl.create_list :table, 10
+  FactoryGirl.create_list :combo, 10
+  tables.map{|table| FactoryGirl.create :order, table_id: table.id}
+  FactoryGirl.create_list :order, 10
   order_c = FactoryGirl.create :order_combo
 
   describe "enum" do
@@ -42,5 +43,9 @@ RSpec.describe OrderCombo, type: :model do
   context "test finalize" do
     it{expect(order_c.price).to eq order_c.combo.price}
     it{expect(order_c.total_price).to eq order_c.quantity * order_c.price}
+  end
+
+  describe "after_update_commit" do
+    it{expect(order_c.update_attributes quantity: 1).to eq true}
   end
 end

@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe OrderDish, type: :model do
+  tables = FactoryGirl.create_list :table, 10
   FactoryGirl.create_list :dish, 10
-  FactoryGirl.create_list :order, 10
+  tables.map{|table| FactoryGirl.create :order, table_id: table.id}
   od = FactoryGirl.create :order_dish
   FactoryGirl.create :promo, dish_id: od.dish_id,
     end_day: Faker::Time.forward, end_time: Faker::Time.forward
@@ -37,5 +38,9 @@ RSpec.describe OrderDish, type: :model do
   describe "validate custom" do
     it{expect(od.errors.messages[:dish]).to eq []}
     it{expect(od.errors.messages[:order]).to eq []}
+  end
+
+  describe "after_update_commit" do
+    it{expect(od.update_attributes quantity: 1).to eq true}
   end
 end

@@ -1,6 +1,7 @@
 module SessionHelper
   def log_in admin
     session[:admin_id] = admin.id
+    cookies.signed[:admin_id] = admin.id
   end
 
   def current_admin
