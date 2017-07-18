@@ -11,8 +11,12 @@ class OrderDish < ApplicationRecord
 
   before_save :finalize
 
+  def find_discount
+    DiscountDish.new(self).discount
+  end
+
   def total_price
-    price * quantity
+    price * quantity * (100 - find_discount)/100
   end
 
   private

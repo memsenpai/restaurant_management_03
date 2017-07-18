@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :index, :create]
   get "/cart", to: "orders#show"
   resources :order_dishes, only: [:create, :update, :destroy]
-  resources :tables
-  resources :guests
+  resources :tables, only: [:index]
+  resources :guests, only: [:new, :create, :index]
   resources :order_combos, only: [:create, :update, :destroy]
   resources :combos, only: [:index, :show]
   namespace :admin do
@@ -23,11 +23,12 @@ Rails.application.routes.draw do
       resources :dishes
     end
     resources :orders do
-      resources :order_dishes
-      resources :order_combos
+      resources :order_dishes, except: [:show, :index]
+      resources :order_combos, except: [:show, :index]
     end
     resources :discount_codes
-    resources :users
+    resources :users, except: [:show]
+    resources :promos
     resources :chef
   end
 end
