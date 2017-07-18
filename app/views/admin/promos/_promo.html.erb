@@ -1,0 +1,75 @@
+<%= search_form_for [:admin, promos.search], remote: true, method: :get do |f| %>
+  <div class="input-group input-group-lg col-sm-12">
+    <div class="col-sm-2 add">
+      <%= link_to t("admin.dishes.dish.add_dish_button"), new_admin_promo_path,
+        class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :dish_id, class: "pj-form-field w180",
+        placeholder: t("promo.input_keyword"), id: "searchinput" %>
+      <span id="searchclear" class="form-control-clear glyphicon
+        glyphicon-remove form-control-feedback">
+      </span>
+      <%= f.submit t("promo.search"), class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div id="pagination" class="apple-pagination">
+    <%= paginate promos.promos_search, remote: true %>
+  </div>
+  <table class="default-dg-table">
+    <tbody>
+    <tr class="dg_tr" id="di_row_">
+      <th class="default_dg_th dg-left dg-nowrap dg1">
+        <%= sort_link promos.search, :id,
+          t("promo.promo"), {}, {remote: true, method: :get} %>
+      </th>
+      <th class="default_dg_th dg-center dg-nowrap dg2">
+        <%= t "name" %>
+      </th>
+      <th class="default_dg_th dg-center dg-nowrap dg3">
+        <%= t "discount" %>
+      </th>
+      <th class="default_dg_th dg-center dg-nowrap dg4">
+        <%= t "available" %>
+      </th>
+      <th class="default_dg_th dg-center dg-nowrap dg5" colspan="2">
+        <%= t "opition" %>
+      </th>
+    </tr>
+    <% if promos.promos_search.any? %>
+      <% promos.promos_search.each do |promo| %>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap dg1">
+            <%= promo.id %>
+          </td>
+          <td class="default_dg_td dg-center dg-nowrap dg2">
+            <%= link_to promo.dish_name,
+              admin_promo_path(promo) %>
+          </td>
+          <td class="default_dg_td dg-center dg-nowrap dg3">
+            <%= promo.discount %>%
+          </td>
+          <td class="default_dg_td dg-center dg-nowrap dg4 table-order">
+            <% if promo.is_available? %>
+              <span class="label-green"><%= t "running" %></span>
+            <% else %>
+              <span class="label-red"><%= t "stoped" %></span>
+            <% end %>
+          </td>
+          <td class="default_dg_td dg-right dg-nowrap dg5">
+            <%= link_to edit_admin_promo_path(promo) do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <% end %>
+          </td>
+          <td class="default_dg_td dg-left dg-nowrap img dg5">
+            <%= link_to admin_promo_path(promo), method: :delete,
+              data: {confirm: t("button.delete_warning")} do %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

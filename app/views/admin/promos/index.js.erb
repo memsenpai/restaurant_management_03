@@ -1,0 +1,3 @@
+$('#promo').html('<%= j render "promo", promos: @promos %>');
+$('#pagination').html('<%= j paginate(@promos.promos_search,
+  remote: true) %>');
