@@ -1,0 +1,36 @@
+<%= form_for [:admin, promo] do |f| %>
+
+  <% unless promo.new_record? %>
+    <%= image_tag promo.dish_image, size: 80,
+      class: "image-dish-select" %>
+  <% end %>
+
+  <%= f.label :dish_id, t("promo.dish_id"), class: "pull-left form-label" %>
+  <%= f.number_field :dish_id, class: "form-control", disabled: true %>
+  <%= f.hidden_field :dish_id, class: "hidden-field-dish-id" %>
+
+  <%= f.label :discount, t("promo.discount"), class: "pull-left form-label" %>
+  <%= f.number_field :discount, class: "form-control" %>
+
+  <%= f.label :start_day, t("promo.start_day"),
+    class: "pull-left form-label" %>
+  <%= f.date_field :start_day, class: "form-control" %>
+
+  <%= f.label :end_day, t("promo.end_day"), class: "pull-left form-label" %>
+  <%= f.date_field :end_day, class: "form-control" %>
+
+  <%= f.label :start_day, t("promo.start_time"),
+    class:"pull-left form-label" %>
+  <%= f.time_field :start_time, class: "form-control" %>
+
+  <%= f.label :end_time, t("promo.end_time"), class: "pull-left form-label" %>
+  <%= f.time_field :end_time, class: "form-control" %>
+
+  <%= render "dishes", dishes: dishes %>
+
+  <div class="col-xs-12 text-center">
+    <%= f.submit class: "btn btn-success" %>
+    <%= f.submit t("button.clear"), type: :reset,
+      class: "btn btn-danger" %>
+  </div>
+<% end %>

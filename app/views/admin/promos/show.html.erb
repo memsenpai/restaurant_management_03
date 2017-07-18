@@ -1,0 +1,65 @@
+<section class="section admin-site">
+  <br><br>
+  <h1><%= t "promo.title" %></h1>
+  <br>
+  <br>
+  <div class="col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="bloc">
+      <table dir="ltr" class="default-dg-table">
+        <tbody>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap"><b><%= t "promo.name" %>
+            </b>
+          </td>
+          <td class="default_dg_td dg-left"><%= @promo.dish_name %></td>
+        </tr>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t "promo.description" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= @promo.dish_description %>
+          </td>
+        </tr>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t "promo.discount" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= @promo.discount %>%
+          </td>
+        </tr>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t "promo.day" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= t "promo.day2",
+              start: @promo.start_day.strftime(t "day_default"),
+              end: @promo.end_day.strftime(t "day_default") %>
+          </td>
+        </tr>
+        <tr class="dg_tr" id="di_row_0">
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t "promo.time" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= t "promo.time2",
+              start: @promo.start_time.strftime(t "time_default"),
+              end: @promo.end_time.strftime(t "time_default") %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <br>
+      <br><br>
+      <div class="row">
+        <%= link_to t("promo.edit_promo_button"),
+          edit_admin_promo_path(@promo),
+          class: "btn btn-primary col-md-2 col-md-offset-5" %>
+        <%= link_to t("button.cancel"), admin_promos_path,
+          class: "btn btn-link btn-lg pull-right" %>
+      </div>
+    </div>
+  </div>
+</section>
