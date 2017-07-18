@@ -1,0 +1,66 @@
+<section class="section admin-site">
+  <br><br>
+  <div class="col-sm-12 col-md-offset-3 col-md-6 col-md-offset-1">
+    <h1><%= t ".title" %></h1>
+    <div class="bloc col-xs-12">
+      <div class="bills col-md-12">
+        <div class="bills-header col-md-12">
+          <div class="bills-header-left col-md-6">
+            <span style="font-size: 35px;font-family: Khand">#<%= @bill.id %></span>
+          </div>
+          <div class="bills-header-right col-md-6">
+            <span class="bills-header-right-created-at"><%= @bill.created_at %></span>
+          </div>
+          <div class="bills-header-guest-info">
+            <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
+              <%= t "admin.bills.guest_code" %>:
+            </b>
+            <span> #<%= @bill.guest.code %></span> <br />
+            <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
+              <%= t "admin.bills.guest_name" %>: <%= @bill.guest.name %>
+            </b>
+            <span><%= @bill.guest.name %></span> <br />
+            <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
+              <%= t "admin.bills.phone" %>:
+            </b>
+            <span><%= @bill.guest.phone_num %></span>
+          </div>
+        </div>
+        <div class="bills-content">
+          <table class="default-dg-table">
+            <tr class="">
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.item_type" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.name_item" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.quantity" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.price" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.discount" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">$$$$</th>
+            </tr>
+            <% total = 0 %>
+            <% if @bill.bill_details.any? %>
+              <% @bill.bill_details.each do |item| %>
+                <% total += item.total_price %>
+                <tr>
+                  <td class="default_dg_th dg-left dg-nowrap dg1"><span class="bills-type-<%= item.type_name.downcase %>"><%= item.type_name %></span></td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1"><%= item.item.name %></td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1"><%= item.quantity %></td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1">$<%= item.price %></td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1">-<%= item.discount %>%</td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1"><%= item.total_price %> $</td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+        <div class="bills-footer">
+          <p class="bills-footer-voucher"><span><%= t "admin.bills.voucher" %>: </span> -<%= @bill.discount %>%</p>
+          <p class="bills-footer-membership"><span><%= t "admin.bills.membership" %>: </span> -0%</p>
+          <p class="bills-total-price"><span><%= t "admin.bills.total" %>: </span> $<%= @bill.total %></p>
+          <div class="bills-footer-action">
+            <%= link_to t("admin.bills.export_exel"), admin_xml_path(@bill.id, format: "xls"), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

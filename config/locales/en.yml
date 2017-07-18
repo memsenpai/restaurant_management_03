@@ -135,6 +135,13 @@ en:
     current_role: Current role
     needing: Needing
     cooking: Cooking
+    bills:
+      bill_code: "Bill code"
+      guest_code: "Guest code"
+      guest_name: "Guest code"
+      time_created: "Time created"
+      action: "Action"
+      details: "Details"
     dishes:
       index:
         title: Dishes manager
@@ -437,6 +444,7 @@ en:
     your_order_code: "Your order code"
     submit: "Submit"
     export_bill: "Export bill"
+    payment: "Check bill"
   helpers:
     submit:
       dish:
@@ -563,6 +571,7 @@ en:
     cooked: Cooked
     cooking: Cooking
   discount:
+    input: "Code"
     reenter: "Please re-enter correct code!"
     used_code: "This code has been used!"
     discount: "This voucher has"

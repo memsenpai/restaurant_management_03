@@ -30,5 +30,8 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
     resources :promos
     resources :chef
+    resources :bills
+    resources :bill_details
+    resources :xml
   end
 end

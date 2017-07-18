@@ -5,14 +5,16 @@
     <td class="default_dg_td dg-left dg-nowrap">
       <b><%= t "admin.orders.order.code" %></b>
     </td>
-    <td class="default_dg_td dg-left"><%= order.code %></td>
-    <div class="hidden order-id"><%= order.id %></div>
+    <td class="default_dg_td dg-left order-id" data-order-id="<%= order.id %>"><%= order.code %></td>
+    <div class="hidden order-id" data-order-id="<%= order.id %>"><%= order.id %></div>
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
       <b><%= t "admin.orders.form.guest_name" %></b>
     </td>
-    <td class="default_dg_td dg-left"><%= order.guest.name %></td>
+    <td class="default_dg_td dg-left guest-id" data-guest-id="<%= order.guest.id %>">
+      <%= order.guest.name %>
+    </td>
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
@@ -60,7 +62,7 @@
     <td class="default_dg_td dg-left dg-nowrap">
       <b><%= t "admin.orders.order.discount" %></b>
     </td>
-    <td class="default_dg_td dg-left dg-nowrap">
+    <td class="default_dg_td dg-left dg-nowrap guest-discount" data-guest-discount="<%= order.discount %>">
       <%= order.discount %>%<br>
     </td>
   </tr>

@@ -1,19 +1,19 @@
 <tbody>
 <% order.order_dishes.each do |order_dish| %>
-  <tr>
-    <td class="total">
+  <tr class="order_item">
+    <td class="total item-id" data-id="<%= order_dish.dish_id %>">
       <strong><%= link_to order_dish.dish.name,
         dish_path(order_dish.dish_id) %></strong>
     </td>
-    <td class="total"><%= t "dishes.show.name" %></td>
-    <td class="total">
+    <td class="total item-type" data-type="1"><%= t "dishes.show.name" %></td>
+    <td class="total item-price" data-price="<%= order_dish.dish.price %>">
       <%= number_to_currency order_dish.dish.price %>
     </td>
-    <td class="total">
+    <td class="total item-quantity" data-quantity="<%= order_dish.quantity %>">
       <%= order_dish.quantity %>
     </td>
-    <td class="total">
-      <%= number_to_percentage order_dish.find_discount, precision: 0 %>
+    <td class="total item-discount" data-discount="<%= order_dish.find_discount %>">
+      <%= number_to_percentage order_dish.find_discount, precision: 0 %>%
     </td>
     <td class="total">
       <%= number_to_currency order_dish.total_price %>
@@ -36,19 +36,19 @@
 </tbody>
 <tbody>
 <% order.order_combos.each do |order_combo| %>
-  <tr>
-    <td class="total">
+  <tr class="order_item">
+    <td class="total item-id" data-id="<%= order_combo.combo_id %>">
       <strong><%= link_to order_combo.combo.name,
         combo_path(order_combo.combo_id) %></strong>
     </td>
-    <td class="total"><%= t "home.combo" %></td>
-    <td class="total">
+    <td class="total item-type" data-type="2"><%= t "home.combo" %></td>
+    <td class="total item-price" data-price="<%= order_combo.combo.subtotal %>">
       <%= number_to_currency order_combo.combo.subtotal %>
     </td>
-    <td class="total">
+    <td class="total item-quantity" data-quantity="<%= order_combo.quantity %>">
       <%= order_combo.quantity %>
     </td>
-    <td class="total">
+    <td class="total item-discount" data-discount="<%= order_combo.combo.discount %>">
       <%= order_combo.combo.discount %>%
     </td>
     <td class="total">

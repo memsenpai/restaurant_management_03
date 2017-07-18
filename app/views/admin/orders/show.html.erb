@@ -10,9 +10,8 @@
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
-        <button type="button" class="btn btn-info right">
-          <%= t "order.export_bill" %>
-        </button>
+      <div class="payment">
+        <button class="btn payment-btn"><%= t "order.payment" %></button>
       </div>
     </div>
   </div>
