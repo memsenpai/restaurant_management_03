@@ -36,13 +36,6 @@ class Admin::OrderCombosController < ApplicationController
     params_update = order_combo_params
     if @order_combo.update_attributes params_update
       flash[:success] = t "admin_order.success_update"
-      if params_update[:status] != "no_need"
-        ActionCable.server.broadcast "messages",
-          from_role: current_admin.admin_role,
-          dish: @order_combo.combo.name,
-          table: @order_combo.order.table.code,
-          status: @order_combo.status
-      end
     else
       flash[:danger] = t "admin_order.something_wrong"
     end

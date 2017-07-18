@@ -1,10 +1,10 @@
-<div class="col-xs-12">
-  <% dishes.each do |dish| %>
-    <div class="col-xs-6 col-sm-4 choose">
-      <%= label_tag "dish_id_#{dish.id}" do %>
-        <%= radio_button_tag :dish_id, dish.id %>
-        <%= dish.name %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  <div class="col-xs-12">
+    <% dishes.each do |dish| %>
+      <div class="col-xs-6 col-sm-4 choose">
+        <%= label_tag "dish_id_#{dish.id}" do %>
+          <%= radio_button_tag :dish_id, dish.id %>
+          <%= dish.name %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
