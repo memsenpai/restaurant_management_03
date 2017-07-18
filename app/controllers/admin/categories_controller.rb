@@ -4,6 +4,8 @@ class Admin
     before_action :find_category, except: %i(index new create)
     before_action :load_dishes, only: %i(new edit)
 
+    authorize_resource class: :categories
+
     def index
       @categories = Supports::Category.new categories: Category.all,
         param: params

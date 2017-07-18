@@ -6,9 +6,14 @@
       <br>
       <%= render "order_info", order: @order %>
       <br><br>
-      <h3 class="title order-item"><%= t "order.order_items" %> <span></span></h3>
+      <h3 class="title order-item"><%= t "order.order_items" %><span></span></h3>
       <br><br>
       <%= render "order_item", order: @order %>
+      <div class="text-right">
+        <button type="button" class="btn btn-info right">
+          <%= t "order.export_bill" %>
+        </button>
+      </div>
     </div>
   </div>
   <%= render "modal", order: @order, discount: @support %>

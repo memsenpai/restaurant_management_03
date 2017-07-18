@@ -7,7 +7,14 @@ class SessionsController < ApplicationController
     admin = Admin.find_by email: session_params[:email].downcase
     if admin && admin.authenticate(session_params[:password])
       log_in admin
-      redirect_to admin
+      case admin.role
+      when "Administrator"
+        redirect_to admin
+      when "Chef"
+        redirect_to admin_chef_index_path
+      when "Receptionist"
+        redirect_to admin_orders_path
+      end
     else
       flash.now[:danger] = t "admin.error_wrongpass"
       render :new
@@ -16,7 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+    redirect_to login_path
   end
 
   private
