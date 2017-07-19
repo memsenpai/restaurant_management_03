@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(version: 20170717131943) do
   create_table "combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "description", limit: 65535
     t.integer  "discount"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "name"
     t.string   "image"
     t.datetime "from"
     t.datetime "to"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -73,71 +73,71 @@ ActiveRecord::Schema.define(version: 20170717131943) do
 
   create_table "dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "price"
-    t.string   "image"
     t.text     "description",  limit: 65535
     t.boolean  "is_available"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.float    "price",        limit: 24
+    t.string   "image"
   end
 
   create_table "humen", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "role"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "phone_num"
     t.string   "password_digest"
     t.integer  "admin_role"
-    t.string   "code"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "code"
   end
 
   create_table "order_combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "combo_id"
+    t.integer  "status",                 default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "discount"
     t.integer  "quantity"
-    t.integer  "price"
-    t.integer  "total_price"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.float    "price",       limit: 24
+    t.float    "total_price", limit: 24
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "dish_id"
+    t.integer  "status",                 default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "discount"
     t.integer  "quantity"
-    t.integer  "price"
-    t.integer  "total_price"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.float    "price",       limit: 24
+    t.float    "total_price", limit: 24
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "guest_id"
     t.integer  "table_id"
-    t.string   "code"
-    t.date     "day"
     t.string   "time_in"
-    t.boolean  "is_confirm", default: false
-    t.integer  "discount",   default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.date     "day"
+    t.boolean  "is_confirm", default: false
+    t.integer  "discount",   default: 0
+    t.string   "code"
   end
 
   create_table "promos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "dish_id"
     t.integer  "discount",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.datetime "start_day"
     t.datetime "end_day"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "tables", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

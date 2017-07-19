@@ -1,10 +1,10 @@
 class CreateTables < ActiveRecord::Migration[5.0]
   def change
-    create_table :tables do |t|
-      t.integer :capacity
-      t.string :code
+    create_table :tables do |table|
+      table.integer :capacity
+      table.string :code
 
-      t.timestamps
+      table.timestamps
     end
   end
 end

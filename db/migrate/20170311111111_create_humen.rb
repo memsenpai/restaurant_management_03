@@ -1,15 +1,11 @@
 class CreateHumen < ActiveRecord::Migration[5.0]
   def change
-    create_table :humen do |t|
-      t.string :name
-      t.string :email
-      t.string :role
-      t.string :phone_num
-      t.string :password_digest
-      t.integer :admin_role
-      t.string :code
+    create_table :humen do |table|
+      table.string :name
+      table.string :email
+      table.string :role
 
-      t.timestamps
+      table.timestamps
     end
   end
 end
