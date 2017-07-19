@@ -6,10 +6,9 @@ class OrderDishesController < ApplicationController
   def create
     order_dishes
     if order_dish
-      order_dish.update_attributes quantity:
-        order_dish.quantity + params[:order_dish][:quantity].to_i
+      update_order
     else
-      @order_dish = order_dish.new order_dish_params
+      @order_dish = order.order_dishes.new order_dish_params
       order.save
       session[:order_id] = order.id
     end
@@ -36,5 +35,10 @@ class OrderDishesController < ApplicationController
 
   def order_dish_params
     params.require(:order_dish).permit :quantity, :dish_id
+  end
+
+  def update_order
+    order_dish.update_attributes quantity:
+      order_dish.quantity + params[:order_dish][:quantity].to_i
   end
 end
