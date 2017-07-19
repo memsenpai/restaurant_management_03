@@ -1,20 +1,17 @@
-class Supports::Category
-  attr_reader :categories
+class Supports:: Category
+  attr_reader :categories, :param
 
   def initialize arg
-    @argument = arg
-  end
-
-  def categories
-    @argument[:categories]
+    @categories = arg[:categories]
+    @param = arg[:param]
   end
 
   def categories_search
-    search.result.page(@argument[:param][:page]).per_page Settings.limit
+    search.result.page(param[:page]).per_page Settings.limit
   end
 
   def search
-    search = Category.ransack @argument[:param][:q]
+    search = Category.ransack param[:q]
     search.sorts = %w(created_at desc name) if search.sorts.empty?
     search
   end

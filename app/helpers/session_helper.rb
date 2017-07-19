@@ -1,11 +1,11 @@
 module SessionHelper
   def log_in admin
-    session[:admin_id] = admin.id
-    cookies.signed[:admin_id] = admin.id
+    session[:administrator_id] = admin.id
+    cookies.signed[:administrator_id] = session[:administrator_id]
   end
 
   def current_admin
-    @current_admin ||= Admin.find_by id: session[:admin_id]
+    @current_admin ||= Administrator.find_by id: session[:administrator_id]
   end
 
   def current_order id = nil
@@ -26,7 +26,7 @@ module SessionHelper
   end
 
   def log_out
-    session.delete :admin_id
+    session.delete :administrator_id
     @current_admin = nil
   end
 end

@@ -3,6 +3,5 @@ class MessagesChannel < ApplicationCable::Channel
     stream_from "messages"
   end
 
-  def unsubscribed
-  end
+  def unsubscribed; end
 end

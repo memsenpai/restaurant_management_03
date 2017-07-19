@@ -16,12 +16,12 @@ class OrderCombosController < ApplicationController
 
   def update
     order_combo.update_attributes order_combo_params
-    GetOrderDetails.new(order).perform
+    OrderDetails.new(order).perform
   end
 
   def destroy
     order_combo.destroy
-    GetOrderDetails.new(order).perform
+    OrderDetails.new(order).perform
   end
 
   private

@@ -1,6 +1,7 @@
-module Admin::OrderHelper
-  def find_discount param
-    if param
+module Admin
+  module OrderHelper
+    def find_discount param
+      return unless param
       discount = DiscountCode.find_by code: param
 
       return discount if discount

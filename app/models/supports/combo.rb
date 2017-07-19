@@ -1,20 +1,17 @@
 class Supports::Combo
-  attr_reader :combos
+  attr_reader :combos, :param
 
   def initialize arg
-    @combos = arg
-  end
-
-  def combos
-    @combos[:combo]
+    @combos = arg[:combo]
+    @param = arg[:param]
   end
 
   def combos_search
-    search.result.page(@combos[:param][:page]).per_page Settings.limit
+    search.result.page(param[:page]).per_page Settings.limit
   end
 
   def search
-    search = Combo.ransack @combos[:param][:q]
+    search = Combo.ransack param[:q]
     search.sorts = %w(created_at desc name discount) if search.sorts.empty?
     search
   end

@@ -21,6 +21,8 @@ class Order < ApplicationRecord
     original_combos_map.sum + original_dishes_map.sum
   end
 
+  private
+
   def original_combos_map
     order_combos.map do |order_combo|
       order_combo.valid? ? order_combo.quantity * order_combo.original_price : 0

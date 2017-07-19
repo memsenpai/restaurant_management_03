@@ -1,4 +1,4 @@
-class Admin
+module Admin
   class UsersController < ApplicationController
     before_action :logged_in_admin
     before_action :find_user, only: %i(edit update destroy)
@@ -6,15 +6,16 @@ class Admin
     authorize_resource class: :admin
 
     def index
-      @list_admin = Admin.all.page(params[:page]).per_page Settings.max_result
+      @list_admin =
+        Administrator.all.page(params[:page]).per_page Settings.max_result
     end
 
     def new
-      @admin = Admin.new
+      @admin = Administrator.new
     end
 
     def create
-      @user = Admin.new new_params
+      @user = Administrator.new new_params
       if user.save
         flash[:success] = t "admin.success"
         redirect_to admin_users_path
@@ -50,7 +51,7 @@ class Admin
     attr_reader :user
 
     def find_user
-      @user = Admin.find_by id: params[:id]
+      @user = Administrator.find_by id: params[:id]
 
       return if user
       flash[:danger] = t "admin.not_exist"
@@ -58,12 +59,12 @@ class Admin
     end
 
     def new_params
-      params.require(:admin).permit :email, :password, :password_confirmation,
-        :name, :admin_role
+      params.require(:administrator).permit :email,
+        :password, :password_confirmation, :name, :admin_role
     end
 
     def update_params
-      params.require(:admin).permit :admin_role
+      params.require(:administrator).permit :admin_role
     end
   end
 end

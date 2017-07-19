@@ -1,4 +1,4 @@
-class Admin
+module Admin
   class DiscountCodesController < ApplicationController
     before_action :load_support
 
@@ -9,10 +9,7 @@ class Admin
       quantity.times do
         DiscountCode.new.update_attributes discount_params
       end
-      link = "_item_discount_code"
-      respond_to do |f|
-        f.html{render link, layout: false, locals: {support: @support}}
-      end
+      respond_html "_item_discount_code"
     end
 
     def update
@@ -20,10 +17,7 @@ class Admin
       unless discount.update_attributes discount_params
         flash[:danger] = t "admin_order.something_wrong"
       end
-      link = "_item_discount_code"
-      respond_to do |f|
-        f.html{render link, layout: false, locals: {support: @support}}
-      end
+      respond_html "_item_discount_code"
     end
 
     def destroy
@@ -36,6 +30,9 @@ class Admin
     end
 
     private
+
+    attr_reader :support
+
     def discount_params
       params.require(:discount_code).permit :discount, :status, :code
     end
@@ -51,6 +48,12 @@ class Admin
         discount
       else
         flash[:danger] = t "admin_order.something_wrong"
+      end
+    end
+
+    def respond_html link
+      respond_to do |format|
+        format.html{render link, layout: false, locals: {support: support}}
       end
     end
   end

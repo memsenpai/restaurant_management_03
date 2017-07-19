@@ -1,5 +1,5 @@
 class OrderDish < ApplicationRecord
-  enum status: [:no_need, :needing, :cooking, :cooked, :served, :cancel]
+  enum status: %i(no_need needing cooking cooked served cancel)
 
   belongs_to :order
   belongs_to :dish
@@ -11,18 +11,18 @@ class OrderDish < ApplicationRecord
 
   before_save :finalize
 
-  after_update_commit {MessageBroadcastJob.perform_now describe}
-
+  after_update_commit{MessageBroadcastJob.perform_now describe}
 
   def find_discount
     DiscountDish.new(self).discount
   end
 
   def total_price
-    price * quantity * (100 - find_discount)/100
+    price * quantity * (100 - find_discount) / 100
   end
 
   private
+
   def dish_present
     errors.add :dish, I18n.t("order.not_valid_or_not_active") unless dish
   end
@@ -37,6 +37,7 @@ class OrderDish < ApplicationRecord
   end
 
   def describe
-    data = {dish: dish.name, table: order.table.code, status: status}
+    table = order.table
+    {dish: dish.name, table: table.code, status: status}
   end
 end

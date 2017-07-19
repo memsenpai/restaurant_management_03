@@ -6,3 +6,7 @@ FeatureEnvy:
 
 UtilityFunction:
   enabled: false
+
+ControlParameter:
+  exclude:
+   - "Ability#initialize"

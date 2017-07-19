@@ -1,4 +1,4 @@
-class Admin
+module Admin
   class DishesController < ApplicationController
     before_action :logged_in_admin
     before_action :find_dish, except: %i(index new create)

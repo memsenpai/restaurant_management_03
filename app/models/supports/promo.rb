@@ -7,7 +7,7 @@ class Supports::Promo
   end
 
   def dishes
-    promos.map &:dish
+    promos.map(&:dish)
   end
 
   def promos_search

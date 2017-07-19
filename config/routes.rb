@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  resource :admin, only: [:show, :edit, :update]
+  resource :administrator, only: [:show, :edit, :update]
   resources :dishes
   resources :orders, only: [:show, :index, :create]
   get "/cart", to: "orders#show"

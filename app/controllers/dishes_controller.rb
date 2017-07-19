@@ -10,8 +10,11 @@ class DishesController < ApplicationController
   end
 
   private
+
+  attr_reader :dish
+
   def find_dish
     @dish = Dish.find_by id: params[:id]
-    flash[:danger] = t "flash.dish.find_fail" unless @dish
+    flash[:danger] = t "flash.dish.find_fail" unless dish
   end
 end

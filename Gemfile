@@ -60,3 +60,8 @@ group :test do
   gem "rspec-activemodel-mocks"
   gem "cucumber-rails", require: false
 end
+
+group :production do
+  gem "pg"
+  gem "rails_12factor", "0.0.2"
+end

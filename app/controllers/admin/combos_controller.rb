@@ -1,4 +1,4 @@
-class Admin
+module Admin
   class CombosController < ApplicationController
     before_action :logged_in_admin
     before_action :find_combo, except: %i(index new create)

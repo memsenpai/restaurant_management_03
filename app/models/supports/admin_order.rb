@@ -6,6 +6,6 @@ class Supports::AdminOrder
   end
 
   def load_data
-    @data
+    data
   end
 end

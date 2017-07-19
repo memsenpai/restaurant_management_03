@@ -1,20 +1,17 @@
 class Supports::Order
-  attr_reader :orders
+  attr_reader :orders, :param
 
   def initialize arg
-    @orders = arg
-  end
-
-  def orders
-    @orders[:order]
+    @orders = arg[:order]
+    @param = arg[:param]
   end
 
   def orders_search
-    search.result.page(@orders[:param][:page]).per_page Settings.max_result
+    search.result.page(param[:page]).per_page Settings.max_result
   end
 
   def search
-    search = Order.ransack @orders[:param][:q]
+    search = Order.ransack param[:q]
     search.sorts = %w(code) if search.sorts.empty?
     search
   end

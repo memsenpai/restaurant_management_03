@@ -25,7 +25,11 @@
           class: "smoothScroll animated fadeInLeft wow",
           "data-wow-delay": "0.1s", method: :get %>
         </li>
-        <li><%= link_to t("admin.dish"), "#dish",
+        <li><%= link_to t("admin.dish"), admin_dishes_path,
+          class: "smoothScroll animated fadeInLeft wow",
+          "data-wow-delay": "0.1s", method: :get %>
+        </li>
+        <li><%= link_to t("admin.promo"), admin_promos_path,
           class: "smoothScroll animated fadeInLeft wow",
           "data-wow-delay": "0.1s", method: :get %>
         </li>
@@ -58,11 +62,11 @@
     </li>
   <% end %>
   <li class="dpdwn">
-    <%= link_to t("admin.profile"), admin_path,
+    <%= link_to t("admin.profile"), administrator_path,
       class: "smoothScroll animated fadeInLeft wow",
       "data-wow-delay": "0.1s", method: :get %>
     <ul class="nav">
-      <li><%= link_to t("admin.setting"), edit_admin_path,
+      <li><%= link_to t("admin.setting"), edit_administrator_path,
         class: "smoothScroll animated fadeInRight wow",
         "data-wow-delay": ".1s", method: :get %></li>
       <li><%= link_to t("admin.logout"), logout_path,

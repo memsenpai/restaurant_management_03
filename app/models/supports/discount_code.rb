@@ -1,20 +1,17 @@
 class Supports::DiscountCode
-  attr_reader :discount_codes
+  attr_reader :discounts, :param
 
   def initialize arg
-    @discounts = arg
-  end
-
-  def discounts
-    @discounts[:discount]
+    @discounts = arg[:discount]
+    @param = arg[:param]
   end
 
   def discounts_search
-    search.result.page(@discounts[:param][:page]).per_page Settings.discount
+    search.result.page(param[:page]).per_page Settings.discount
   end
 
   def search
-    search = DiscountCode.ransack @discounts[:param][:q]
+    search = DiscountCode.ransack param[:q]
     search.sorts = %w(code discount status) if search.sorts.empty?
     search
   end

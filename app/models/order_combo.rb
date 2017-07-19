@@ -1,5 +1,5 @@
 class OrderCombo < ApplicationRecord
-  enum status: [:no_need, :needing, :cooking, :cooked, :served, :cancel]
+  enum status: %i(no_need needing cooking cooked served cancel)
 
   belongs_to :order
   belongs_to :combo
@@ -11,7 +11,7 @@ class OrderCombo < ApplicationRecord
 
   before_save :finalize
 
-  after_update_commit {MessageBroadcastJob.perform_now describe}
+  after_update_commit{MessageBroadcastJob.perform_now describe}
 
   def original_price
     combo.subtotal
@@ -22,6 +22,7 @@ class OrderCombo < ApplicationRecord
   end
 
   private
+
   def combo_present
     errors.add :combo, I18n.t("order.not_valid_or_not_active") unless combo
   end
@@ -36,6 +37,7 @@ class OrderCombo < ApplicationRecord
   end
 
   def describe
-    data = {combo: combo.name, table: order.table.code, status: status}
+    table = order.table
+    {dish: combo.name, table: table.code, status: status}
   end
 end

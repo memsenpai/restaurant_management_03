@@ -23,7 +23,7 @@ RemoveEmptyHelpersCheck: { }
 RemoveTrailingWhitespaceCheck: { }
 RemoveUnusedMethodsInControllersCheck: {
   except_methods: [],
-  ignored_files: ['app/controllers/admins_controller.rb',
+  ignored_files: ['app/controllers/**',
   'app/controllers/sessions_controller.rb',
   'app/controllers/pages_controller.rb',
   'app/controllers/application_controller.rb'

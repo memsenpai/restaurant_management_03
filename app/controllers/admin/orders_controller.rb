@@ -47,6 +47,7 @@ class Admin
       else
         flash[:danger] = t "flash.order.delete_fail"
       end
+      respond_html_json
       redirect_to :back
     end
 
@@ -55,8 +56,8 @@ class Admin
     attr_reader :order
 
     def order_params
-      params.require(:order).permit :code, :discount,
-        :day, :time_in, :is_confirm,
+      params.require(:order).permit :code,
+        :discount, :day, :time_in, :is_confirm,
         guest_attributes: %i(id name), table_attributes: %i(id capacity)
     end
 
@@ -66,8 +67,13 @@ class Admin
 
     def find_order
       @order = Order.find_by id: params[:id]
-
       redirect_to admin_orders_path unless order
+    end
+
+    def respond_html_json
+      respond_to do |format|
+      format.html{redirect_to :back}
+      format.json{head :no_content}
     end
   end
 end

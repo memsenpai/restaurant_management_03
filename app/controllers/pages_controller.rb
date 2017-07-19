@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def show
+    current_ability
     if valid_page?
       @combos = Combo.popular_combos
       @dishes = Dish.popular_dishes
@@ -10,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   private
+
   def valid_page?
     File.exist? Pathname.new(Rails.root +
       "app/views/pages/#{params[:page]}.html.erb")
