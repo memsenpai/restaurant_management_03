@@ -2,6 +2,8 @@ require "rails_helper"
 
 feature "filter combos" do
   before :each do
+    Combo.all.destroy_all
+
     Combo.create!(name: "Combo set 1", description: "About this food",
       image: "combo-image.jpg", discount: 10,
       from: "2017-04-07 00:00:00", to: "2017-04-14 00:00:00")

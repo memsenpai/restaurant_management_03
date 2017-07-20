@@ -1,16 +1,19 @@
 require "rails_helper"
 
 feature "Admin::Combos" do
+  admin = FactoryGirl.create :admin
+  combo = FactoryGirl.create :combo
+
   before :each do
     visit login_path
-    fill_in :session_email, with: "admin@123.com"
-    fill_in :session_password, with: "123123"
+    fill_in :session_email, with: admin.email
+    fill_in :session_password, with: "123456"
     click_button "Login"
     visit admin_combos_path
   end
 
   scenario "visit to combos" do
-    expect(page).to have_content "Awesomecity Screen Chef Manage Combo"
+    expect(page).to have_content "Manage Combo"
   end
 
   scenario "check list combos" do
@@ -40,7 +43,6 @@ feature "Admin::Combos" do
   end
 
   scenario "Edit a combo (failure)" do
-    combo = Combo.first
     visit edit_admin_combo_path combo
     fill_in :combo_name, with: nil
     click_button "Save changes to Combo"
@@ -48,7 +50,6 @@ feature "Admin::Combos" do
   end
 
   scenario "Edit a combo (success)" do
-    combo = Combo.first
     visit edit_admin_combo_path combo
     click_button "Save changes to Combo"
     expect(page).not_to have_button "Save changes to Combo"
