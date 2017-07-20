@@ -28,9 +28,11 @@
         <span class="deal-new-deal"></span>
         <div class="valid">
           <p><%= t ".valid_from" %>
-            <%= combo.from.in_time_zone(Settings.time_zone).strftime("%b %d %Y") %>
+            <%= combo.from.in_time_zone(Settings.time_zone)
+              .strftime t("date_default") %>
             <%= t ".valid_to" %>
-            <%= combo.to.in_time_zone(Settings.time_zone).strftime("%b %d %Y") %>
+            <%= combo.to.in_time_zone(Settings.time_zone)
+              .strftime t("date_default") %>
           </p>
         </div>
         <div class="description">
@@ -57,9 +59,15 @@
             </span>
             <%= t ".off" %>
           </li>
+          <li class="pull-right" combo-id="<%= combo.id %>">
+            <button class="btn btn-success btn-add-to-cart-combo">
+              <i class="fa fa-cart-plus"></i>
+            </button>
+          </li>
         </ul>
         <div class="btn-red">
-          <%= link_to t(".deal"), combo_path(combo), title: combo.name, target:"_blank" %>
+          <%= link_to t(".deal"),
+            combo_path(combo), title: combo.name, target:"_blank" %>
         </div>
       </div>
     <% end %>

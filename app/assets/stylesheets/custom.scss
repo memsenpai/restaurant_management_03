@@ -1226,10 +1226,6 @@ body {
   width: 96%;
 }
 
-.combos {
-  background: $wild-sand;
-}
-
 .deal-container {
   font-family: "Libre Baskerville";
   padding: 5px 0;
@@ -1506,6 +1502,7 @@ body {
 
 .admin-site {
   background: $admin-background;
+  padding-top: 20px;
 
   h1 {
     font-family: "Oswald";
@@ -3687,4 +3684,109 @@ a:visited {
       font-size: 25px;
     }
   }
+}
+
+.combos {
+  background: $wild-sand;
+
+  &-wrapper {
+    padding: 20px 2px;
+  }
+
+  &-header {
+    border-bottom: 1px solid $color-c5c5c5;
+    font-family: Khand;
+    padding-bottom: 15px;
+
+    &-info {
+      background: $color-e5e5e5;
+      border-bottom: 1px solid $color-c5c5c5;
+      color: $color-7b0d0d;
+      font-size: 17px;
+      padding: 8px 6px;
+
+      &-p {
+        margin: 0;
+      }
+    }
+
+    &-title {
+      color: $color-ff4b00;
+      font-size: 25px;
+      font-weight: bold;
+      padding: 2px 5px;
+    }
+
+    &-description {
+      border-bottom: 2px solid $color-d4b82f;
+      padding: 2px 6px;
+    }
+
+    &-avatar {
+      border: 1px solid $ccc;
+      padding: 3px;
+
+      &-style {
+        height: 200px;
+        width: 100%;
+      }
+    }
+  }
+
+  &-content {
+    margin-top: 10px;
+
+    &-item {
+      margin-bottom: 20px;
+
+      &-icon {
+        height: 50px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+
+        &-img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      &-avatar {
+        position: relative;
+
+        &-style {
+          border: 1px solid $color-ffe670;
+          height: 260px;
+          padding: 3px;
+          width: 100%;
+        }
+      }
+
+      &-title {
+        background: $color-fe9e00;
+        bottom: 0;
+        color: $white;
+        padding: 4px 9px;
+        position: absolute;
+        width: 100%;
+
+        &:hover a {
+          color: $white;
+        }
+
+        &-a {
+          color: $white;
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.input-style {
+  border: 0;
+  padding: 5px 7px;
 }

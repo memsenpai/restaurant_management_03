@@ -142,3 +142,20 @@ $(document).on('click', '.dishes-item-add-to-cart', function() {
     $('#cart-text').load(document.URL + ' #order-card-text');
   });
 });
+
+$(document).on('click', '.btn-add-to-cart-combo', function() {
+  var combo = $(this).parent().attr('combo-id')
+  var url = '/order_combos';
+  $.ajax({
+    type:'POST',
+    url: url,
+    data: {
+      order_combo: {
+        quantity: 1,
+        combo_id: combo
+      }
+    }
+  }).success(function(){
+    $('#cart-text').load(document.URL + ' #order-card-text');
+  });
+});

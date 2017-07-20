@@ -1,85 +1,69 @@
 <section class="section user-site">
   <br><br><br><br>
-  <div class="col-sm-10 col-sm-offset-1 menu block">
-    <div class="col-xs-12">
-      <div class="text-center">
-        <div class="combo-title-style"><%= @combo.name %></div>
-        <%= image_tag @combo.image, class: "cover" %>
-      </div><br>
-      <div class="col-sm-6 col-sm-offset-3">
-        <%= form_for :order_combo, remote: true do |f| %>
-          <div class="input-group">
-            <%= f.number_field :quantity, value: 1, class: "form-control",
-              id: "quantity-combo-order-#{@combo.id}", min: 1 %>
-            <div class="input-group-btn">
-              <%= f.hidden_field :combo_id, value: @combo.id, class: "combo-id" %>
-              <div class="btn btn-primary button-style add-combo-to-cart">
-                <%= t ".add_to_cart" %>
-              </div>
+  <div class="col-sm-10 col-sm-offset-1 menu block combos-wrapper">
+    <div class="col-md-12 combos-header">
+      <div class="col-md-3 combos-header-avatar">
+        <%= image_tag @combo.image,
+          class: "combos-header-avatar-style" %>
+      </div>
+      <div class="col-md-9">
+        <div class="combos-header-title">
+          <%= @combo.name %>
+        </div>
+        <div class="combos-header-description">
+          <%= @combo.description %>
+        </div>
+        <div class="combos-header-info">
+          <p class="combos-header-info-p">
+            <i class="fa fa-check-square-o"></i>
+            <%= t ".discount" %>
+            <span class="red"><%= @combo.discount %></span>
+            <i class="fa fa-percent"></i>
+            <%= t ".bill" %>
+          </p>
+        </div>
+        <div class="combos-header-info">
+          <p class="combos-header-info-p">
+            <i class="fa fa-check-square-o"></i>
+            <%= t ".valid" %>
+            <span class="red">
+              <%= @combo.from.in_time_zone(Settings.time_zone)
+                .strftime t("date_default") %>
+            </span>
+            <%= t ".to" %>
+            <span class="red">
+              <%= @combo.to.in_time_zone(Settings.time_zone)
+                .strftime t("date_default") %>
+            </span>
+          </p>
+        </div>
+        <div class="combos-header-info">
+          <%= form_for :order_combo, remote: true do |f| %>
+            <%= f.number_field :quantity, value: 1,
+              id: "quantity-combo-order-#{@combo.id}",
+              min: 1, class: "input-style" %>
+            <%= f.hidden_field :combo_id,
+              value: @combo.id, class: "combo-id" %>
+            <div class="btn btn-primary add-combo-to-cart">
+              <%= t ".add_to_cart" %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-      <div class="col-sm-12">
-        <p class="menu-desc text-center">
-          <i class="small-description"><%= @combo.description %></i>
-        </p>
-        <br>
-      </div>
-      <div class="col-sm-12 text-center term">
-        <h3 class="text-center"><b><%= t ".condition" %></b></h3>
-        <li>
-          <%= t ".discount" %>
-          <span class="red"><%= @combo.discount %></span>
-          <i class="fa fa-percent"></i>
-          <%= t ".bill" %>
-        </li>
-        <li>
-          <%= t ".valid" %>
-          <span class="red">
-          <%= @combo.from.in_time_zone(Settings.time_zone).strftime("%b %d %Y") %>
-        </span>
-          <%= t ".to" %>
-          <span class="red">
-          <%= @combo.to.in_time_zone(Settings.time_zone).strftime("%b %d %Y") %>
-        </span>
-        </li>
-      </div>
-      <br>
-      <h3 class="menu-desc text-center"><br><b class="combo-include">
-        <%= t ".include" %></b>
-      </h3>
+    </div>
+    <div class="col-md-12 combos-content">
       <% @combo.dishes.each do |dish| %>
-        <div class="col-xs-12 col-sm-6 dish">
-          <div class="menu-entry">
-            <div class="menu-entry-head">
-              <div class="menu-entry-title">
-                <span class="tag">
-                  <%= link_to dish.name, dish_path(dish) %>
-                </span>
-              </div>
-              <p class="menu-entry-price view" tabindex="1">
-                <i class="fa fa-lg fa-camera"></i>
-              </p>
-              <div class="fancybox">
-                <div class="fancybox-overlay fancybox-overlay-fixed">
-                  <div class="fancybox-wrap fancybox-opened">
-                    <div class="fancybox-skin" style="left: -60%">
-                      <div class="fancybox-outer">
-                        <div class="fancybox-inner">
-                          <%= image_tag dish.image, class: "fancybox-image",
-                            alt: "img" %>
-                          <p title="<%= t ".close" %>" class="fancybox-item fancybox-close"
-                            onclick="$('#fancybox').toggle();"></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div class="col-md-4 combos-content-item">
+          <div class="combos-content-item-avatar">
+            <%= image_tag dish.image,
+              class: "combos-content-item-avatar-style" %>
+            <div class="combos-content-item-title">
+              <%= link_to dish.name, dish_path(dish),
+                class: "combos-content-item-title-a" %>
             </div>
-            <div class="menu-entry-desc">
-              <span class="more"><%= dish.description %></span>
+            <div class="combos-content-item-icon">
+              <%= image_tag "http://happytrees.vn/wp-content/themes/giaydantuong/images/hot2.png",
+                class: "combos-content-item-icon" %>
             </div>
           </div>
         </div>
