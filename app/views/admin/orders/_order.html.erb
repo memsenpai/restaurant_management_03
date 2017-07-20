@@ -122,11 +122,9 @@
               <td class="text-center"><%= order.discount %>
                 <i class="fa fa-percent"></i></td>
               <td class="text-center">
-                <% if order.is_confirm? %>
-                  <span class="label-green"><%= t ".approved" %></span>
-                <% else %>
-                  <span class="label-red"><%= t ".canceled" %></span>
-                <% end %>
+                <span class="label-green">
+                  <%= order.status.humanize %>
+                </span>
               </td>
               <td class="width-20">
                 <%= link_to edit_admin_order_path(order) do %>

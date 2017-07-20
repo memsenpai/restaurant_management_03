@@ -16,5 +16,9 @@ module Supports
       search.sorts = %w(code) if search.sorts.empty?
       search
     end
+
+    def statuses
+       Order.statuses.map {|key, value| [key.humanize, key]}
+    end
   end
 end
