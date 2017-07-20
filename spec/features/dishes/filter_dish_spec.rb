@@ -2,6 +2,8 @@ require "rails_helper"
 
 feature "filter food" do
   before :each do
+    Dish.all.destroy_all
+
     Dish.create!(name: "Food with apple", description: "About this food",
       image: "google.com", price: 1, is_available: false)
     Dish.create!(name: "Apple in this food", description: "About this food",
@@ -125,19 +127,4 @@ feature "filter food" do
 
   end
 
-  # haven't code yet
-  # scenario "change status Available" do
-  #   visit dishes_path
-  #   find("#q_is_available_true").select("Available")
-  #
-  #   expect(page).not_to have_content("Food with apple")
-  #   expect(page).not_to have_content("Not have key word")
-  #   expect(page).not_to have_content("Sample food 4")
-  #   expect(page).not_to have_content("Sample A food 5")
-  #   expect(page).to have_content("Apple in this food")
-  #   expect(page).to have_content("Sample food 4")
-  #   expect(page).to have_content("Sample food 6")
-  #   expect(page).to have_content("Sample food 8")
-  #
-  # end
 end

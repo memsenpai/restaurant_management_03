@@ -1,16 +1,19 @@
 require "rails_helper"
 
 feature "Admin::Categories" do
+  admin = FactoryGirl.create :admin
+  category = FactoryGirl.create :category
+
   before :each do
     visit login_path
-    fill_in :session_email, with: "admin@123.com"
-    fill_in :session_password, with: "123123"
+    fill_in :session_email, with: admin.email
+    fill_in :session_password, with: "123456"
     click_button "Login"
     visit admin_categories_path
   end
 
   scenario "visit to Categories" do
-    expect(page).to have_content "Awesomecity Screen Chef Manage Combo Category"
+    expect(page).to have_content "Combo Category"
   end
 
   scenario "click to button Add" do
@@ -34,7 +37,6 @@ feature "Admin::Categories" do
   end
 
   scenario "Edit a category (success)" do
-    category = Category.first
     visit edit_admin_category_path category
     fill_in :category_name, with: "CategoryName"
     fill_in :category_description, with: "CategoryDesciption"
@@ -44,7 +46,6 @@ feature "Admin::Categories" do
   end
 
   scenario "Edit a category (failure)" do
-    category = Category.first
     visit edit_admin_category_path category
     fill_in :category_name, with: ""
     fill_in :category_description, with: ""

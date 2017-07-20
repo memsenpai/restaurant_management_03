@@ -1,10 +1,12 @@
 require "rails_helper"
 
 feature "Admin::Users" do
+  admin = FactoryGirl.create :admin
+
   before :each do
     visit login_path
-    fill_in :session_email, with: "admin@123.com"
-    fill_in :session_password, with: "123123"
+    fill_in :session_email, with: admin.email
+    fill_in :session_password, with: "123456"
     click_button "Login"
     visit admin_users_path
   end

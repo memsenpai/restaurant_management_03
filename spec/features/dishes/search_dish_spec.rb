@@ -2,6 +2,8 @@ require "rails_helper"
 
 feature "Seach for food" do
   before :each do
+    Dish.all.destroy_all
+
     Dish.create!(name: "Food with apple", description: "About this food",
       image: "abc.jpg", price: 10, is_available: false)
     Dish.create!(name: "Apple in this food", description: "About this food",
@@ -36,5 +38,4 @@ feature "Seach for food" do
     click_button "Search"
     expect(page).to have_content "No entries found"
   end
-
 end
