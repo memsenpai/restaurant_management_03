@@ -12,8 +12,9 @@ class DiscountDish
   attr_reader :discount_dish
 
   def find_discount
-    promos = Promo.find_discount discount_dish.dish_id, discount_dish.created_at,
-      discount_dish.created_at
-    discount = promos.empty? ? 0 : promos.first.discount
+    time = discount_dish.created_at
+    promos = Promo.find_discount discount_dish.dish_id,
+      time, time
+    promos.empty? ? 0 : promos.first.discount
   end
 end

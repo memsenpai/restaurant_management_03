@@ -610,8 +610,8 @@ en:
     your_code: Your CODE
     cooked: Cooked
     cooking: Cooking
-  discount:
-    input: "Code"
+  discounts:
+    input_code: "Code"
     reenter: "Please re-enter correct code!"
     used_code: "This code has been used!"
     discount: "This voucher has"

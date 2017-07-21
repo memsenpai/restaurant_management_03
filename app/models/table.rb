@@ -1,11 +1,14 @@
 class Table < ApplicationRecord
   has_many :orders, dependent: :destroy
-  scope :get_table, ->a, b, c, d{
+
+  find_table = lambda do |capacity, day, hour_end, hour_start|
     where(
-      "capacity >= ? AND id NOT IN (?)", a, Order.where(
+      "capacity >= ? AND id NOT IN (?)", capacity, Order.where(
         "day = ? AND time(time_in) < time(?)
-        AND time(time_in) > time(?)", b, c, d
+        AND time(time_in) > time(?)", day, hour_end, hour_start
       ).select("table_id")
     )
-  }
+  end
+
+  scope :find_table, find_table
 end
