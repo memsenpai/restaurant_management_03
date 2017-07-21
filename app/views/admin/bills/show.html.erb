@@ -29,11 +29,16 @@
         <div class="bills-content">
           <table class="default-dg-table">
             <tr class="">
-              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.item_type" %></th>
-              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.name_item" %></th>
-              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.quantity" %></th>
-              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.price" %></th>
-              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1"><%= t "admin.bills.discount" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">
+              <%= t "admin.bills.item_type" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">
+              <%= t "admin.bills.name_item" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">
+              <%= t "admin.bills.quantity" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">
+              <%= t "admin.bills.price" %></th>
+              <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">
+              <%= t "admin.bills.discount" %></th>
               <th class="bills-show-table-head-th default_dg_th dg-left dg-nowrap dg1">$$$$</th>
             </tr>
             <% total = 0 %>
@@ -41,7 +46,9 @@
               <% @bill.bill_details.each do |item| %>
                 <% total += item.total_price %>
                 <tr>
-                  <td class="default_dg_th dg-left dg-nowrap dg1"><span class="bills-type-<%= item.type_name.downcase %>"><%= item.type_name %></span></td>
+                  <td class="default_dg_th dg-left dg-nowrap dg1">
+                    <span class="bills-type-<%= item.type_name.downcase %>"><%= item.type_name %></span>
+                  </td>
                   <td class="default_dg_th dg-left dg-nowrap dg1"><%= item.item.name %></td>
                   <td class="default_dg_th dg-left dg-nowrap dg1"><%= item.quantity %></td>
                   <td class="default_dg_th dg-left dg-nowrap dg1">$<%= item.price %></td>
@@ -53,11 +60,22 @@
           </table>
         </div>
         <div class="bills-footer">
-          <p class="bills-footer-voucher"><span><%= t "admin.bills.voucher" %>: </span> -<%= @bill.discount %>%</p>
-          <p class="bills-footer-membership"><span><%= t "admin.bills.membership" %>: </span> -0%</p>
-          <p class="bills-total-price"><span><%= t "admin.bills.total" %>: </span> $<%= @bill.total %></p>
+          <p class="bills-footer-voucher">
+            <span><%= t "admin.bills.voucher" %>: </span> -<%= @bill.discount %>%
+          </p>
+          <p class="bills-footer-membership">
+            <span><%= t "admin.bills.membership" %>: </span> -0%
+          </p>
+          <p class="bills-total-price">
+           <span><%= t "admin.bills.total" %>: </span> $<%= @bill.total %>
+          </p>
           <div class="bills-footer-action">
-            <%= link_to t("admin.bills.export_exel"), admin_xml_path(@bill.id, format: "xls"), class: "btn btn-primary" %>
+            <%= link_to t("admin.bills.export_exel"),
+              admin_xml_path(@bill.id, format: "xls"),
+              class: "btn btn-primary" %>
+            <%= link_to t("admin.bills.export_pdf"),
+              admin_bill_path(@bill.id, format: "pdf"),
+              class: "btn btn-primary" %>
           </div>
         </div>
       </div>

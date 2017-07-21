@@ -16,7 +16,17 @@ module Admin
       render_bill
     end
 
-    def show; end
+    def show
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = Pdf.new bill
+          send_data pdf.render,
+            filename: "bill-#{Time.zone.today}.pdf",
+            type: "application/pdf"
+        end
+      end
+    end
 
     private
 
