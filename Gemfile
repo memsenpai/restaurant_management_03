@@ -24,6 +24,8 @@ gem "font-awesome-sass"
 gem "cancancan"
 gem "redis"
 gem "chartkick"
+gem "devise"
+gem "devise_custom_authenticatable"
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -59,4 +61,9 @@ group :test do
   gem "simplecov", require: false
   gem "rspec-activemodel-mocks"
   gem "cucumber-rails", require: false
+end
+
+group :production do
+  gem "pg"
+  gem "rails_12factor", "0.0.2"
 end

@@ -1,4 +1,16 @@
 en:
+  time_in_email: "Time"
+  name_promo: "Name"
+  id: ID
+  phone_num: Phone Number
+  time_default: "%H:%M:%S"
+  day_default: "%Y/%m/%d"
+  opition: Opition
+  available: Available
+  running: Running
+  stoped: Stoped
+  no_content: No content
+  discount: Discount
   hello: "Hello world"
   res: Restaurant
   brand: "Awesomecity"
@@ -13,7 +25,7 @@ en:
     combo: Combo
     book: Booking
     contact: Check order
-    admin: Admin Only
+    staff: Staff Only
     great_food: Great food. Tastes good.
     host_combo: "__ HOTTEST COMBO __"
     discount: "Discount: "
@@ -108,12 +120,12 @@ en:
     setting: Setting
     logout: Log out
     login: Login
-    login2: (only for Admin)
+    login2: (only for Staff)
     error_log: Please log in
     error_wrongpass: Wrong password or email
     email: Input email
     pass: Input password
-    admin: Admin
+    staff: Staff
     not_exist: This account is not exist.
     success: Success update info
     fail: Failed update info
@@ -129,19 +141,31 @@ en:
     email: Email
     date_created: Date create
     role: Role
-    admin_management: Admin account management
+    staff_management: Staff account management
     change_role: Change roles for employees
     roles: Please chose role
     current_role: Current role
     needing: Needing
     cooking: Cooking
     bills:
+      phone: Phone
+      item_type: Item type
+      name_item: Name item
+      quantity: Quantity
+      price: Price
+      discount: Discount
+      voucher: Voucher
+      membership: Membership
+      total: Total
+      export_exel: Export Excel
       bill_code: "Bill code"
-      guest_code: "Guest code"
-      guest_name: "Guest code"
+      customer_code: "Customer code"
+      customer_name: "Customer name"
       time_created: "Time created"
       action: "Action"
       details: "Details"
+      show:
+        title: BILL
     dishes:
       index:
         title: Dishes manager
@@ -236,6 +260,21 @@ en:
         delete_warning: Are you sure?
         dishes: View dishes
         add_combo: + Add combo
+    discount_codes:
+      index:
+        discount: Discount
+        quantity: Quantity
+        generate: Genarate
+        code_status: Code Status
+      item_discount_code:
+        order: Order
+        code: Code
+        discount: Discount
+        status: Status
+        option: Option
+      modal_edit:
+        edit_discount: Edit Discount
+        save: Save
     categories:
       index:
         title: Categories manager
@@ -286,7 +325,7 @@ en:
       form:
         code: Order code
         discount: Discount
-        guest_name: Guest name
+        customer_name: Customer name
         capacity: Capacity
         pickdate: Pick a date
         date: Date
@@ -298,7 +337,7 @@ en:
         canceled: Pending
       order:
         search: Search
-        input_keyword: Search for order code or guest name
+        input_keyword: Search for order code or customer name
         choose: "--- Choose ---"
         date: "Date:"
         check: "Status:"
@@ -306,7 +345,6 @@ en:
         discount: Discount
         table: Table
         capacity: Capacity
-        guest_name: Guest name
         phone: Phone
         date: Date
         from: From
@@ -321,6 +359,7 @@ en:
         thank: Thanks for order and have a great day!
         order_info: Order information
         code: Code
+        customer_name: Customer Name
   button:
     view: Details
     add: Add
@@ -418,6 +457,7 @@ en:
     not_valid_or_not_active: "is not valid or is not active."
     not_valid_value: "is not a valid order."
     not_valid: "not valid."
+    customer_code: "Customer code:"
     order_code: "Order code:"
     approver: "APPROVED"
     your_order_has_approved: "Your order has approved. Welcome to Awesomecity"
@@ -432,7 +472,7 @@ en:
     name: "Name: "
     email: "Email: "
     phone: "Phone: "
-    guest_id: "Guest ID: "
+    customer_id: "Customer ID: "
     order_infomations: "Order infomations"
     table_number: "Table number: "
     date: "Date: "
@@ -532,12 +572,12 @@ en:
     tab15: 15
     tab16: 16
     tab17: 17
-  guest:
+  customer:
     fail_create: "Create Guest Failed!!"
     success_create: "Create Guest Success"
     guest_id: "Guest ID: "
     not_found: "Find not found!"
-  admin_order:
+  staff_order:
     edit_dish_of_order: Edit dish of order
     add_dish_to_order: Add dish to order
     search_by_code: Search by code
@@ -580,17 +620,18 @@ en:
     all: "All discount"
     input: "Input code"
     generate: "Generate new code"
+  discount: Discount
   order_detail:
     new_dish: Choose a dish
     new_combo: Choose a combo
     save: Save
-  admin_role:
+  staff_role:
     administrator: Administrator
     chef: Chef
     waiter: Waiter
     receptionist: Receptionist
-  admin_users:
-    new_admin: Create new admin
+  staff_users:
+    new_staff: Create new staff
   promo:
     create:
       success: Add successfully
@@ -605,9 +646,8 @@ en:
     search: Search
     promo: Promo
     title: Promo
-    time: Time
     day: Day
-    name: Name Dish
+    name_dish: Name Dish
     description: Description Dish
     time2: "%{start} to %{end}"
     day2: "%{start} to %{end}"
@@ -619,11 +659,3 @@ en:
     start_time: Start Time
     end_time: End Time
     not_found: Promo not found
-  time_default: "%H:%M:%S"
-  day_default: "%Y/%m/%d"
-  discount: Discount
-  opition: Opition
-  available: Available
-  running: Running
-  stoped: Stoped
-  no_content: No content
