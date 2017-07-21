@@ -2,7 +2,7 @@ class CombosController < ApplicationController
   before_action :find_combo, only: :show
 
   def index
-    @combo_support = Supports::Combo.new combo: Combo.all, param: params
+    @combo_support = Supports::ComboSupport.new combo: Combo.all, param: params
   end
 
   def show
@@ -10,11 +10,14 @@ class CombosController < ApplicationController
   end
 
   private
+
+  attr_reader :combo
+
   def find_combo
-    @combo = Combo.find_by id: params[:id]
-    unless @combo
-      flash[:danger] = t "flash.combo.find_fail"
-      redirect_to combos_path
-    end
+    combo = Combo.find_by id: params[:id]
+
+    return if combo
+    flash[:danger] = t "flash.combo.find_fail"
+    redirect_to combos_path
   end
 end

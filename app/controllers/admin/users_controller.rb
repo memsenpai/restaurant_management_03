@@ -1,25 +1,26 @@
-class Admin
+module Admin
   class UsersController < ApplicationController
-    before_action :logged_in_admin
-    before_action :find_user, only: %i(edit update destroy)
+    before_action :authenticate_staff!
+    before_action :find_user, only: %i(edit update destroy).freeze
 
     authorize_resource class: :admin
 
     def index
-      @list_admin = Admin.all.page(params[:page]).per_page Settings.max_result
+      @list_staff =
+        Staff.all.page(params[:page]).per_page Settings.max_result
     end
 
     def new
-      @admin = Admin.new
+      @admin = Staff.new
     end
 
     def create
-      @user = Admin.new new_params
+      @user = Staff.new new_params
       if user.save
         flash[:success] = t "admin.success"
         redirect_to admin_users_path
       else
-        flash[:danger] = t "admin_order.something_wrong"
+        flash[:danger] = t "staff_order.something_wrong"
         redirect_to :back
       end
     end
@@ -31,16 +32,16 @@ class Admin
         flash[:success] = t "admin.success"
         redirect_to admin_users_path
       else
-        flash[:danger] = t "admin_order.something_wrong"
+        flash[:danger] = t "staff_order.something_wrong"
         redirect_to edit_admin_user_path user
       end
     end
 
     def destroy
-      if user.id != current_admin.id && user.destroy
+      if user.id != current_staff.id && user.destroy
         flash[:success] = t "admin.success"
       else
-        flash[:danger] = t "admin_order.something_wrong"
+        flash[:danger] = t "staff_order.something_wrong"
       end
       redirect_to admin_users_path
     end
@@ -50,7 +51,7 @@ class Admin
     attr_reader :user
 
     def find_user
-      @user = Admin.find_by id: params[:id]
+      @user = Staff.find_by id: params[:id]
 
       return if user
       flash[:danger] = t "admin.not_exist"
@@ -58,12 +59,12 @@ class Admin
     end
 
     def new_params
-      params.require(:admin).permit :email, :password, :password_confirmation,
-        :name, :admin_role
+      params.require(:staff).permit :email,
+        :password, :password_confirmation, :name, :staff_role
     end
 
     def update_params
-      params.require(:admin).permit :admin_role
+      params.require(:staff).permit :staff_role
     end
   end
 end

@@ -1,17 +1,16 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('body').on('click', '.payment-btn', function() {
     var order_id = $('.order-id').data('order-id');
-    var guest_id = $('.guest-id').data('guest-id');
-    var guest_discount = $('.guest-discount').data('guest-discount');
-    alert(guest_discount);
+    var customer_id = $('.customer-id').data('customer-id');
+    var customer_discount = $('.customer-discount').data('customer-discount');
     $.ajax({
       type:'POST',
       url: '/admin/bills',
       data: {
         bill: {
-          guest_id: guest_id,
+          customer_id: customer_id,
           order_id: order_id,
-          discount: guest_discount
+          discount: customer_discount
         }
       }
     }).done(function(data) {

@@ -6,7 +6,7 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
       notice = respond.dish;
     else
       notice = respond.combo;
-    notice += " " + respond.status;
+    notice += ' ' + respond.status;
     $('#chef-home-page').load(document.URL + ' #order-list-in-chef');
     $('.flash-push.success').remove();
     $('<div><div class="flash-push success">' + notice + '</div></div>')

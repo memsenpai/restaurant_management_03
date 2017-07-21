@@ -1,13 +1,13 @@
-class Admin
+module Admin
   class CategoriesController < ApplicationController
-    before_action :logged_in_admin
-    before_action :find_category, except: %i(index new create)
-    before_action :load_dishes, only: %i(new edit)
+    before_action :authenticate_staff!
+    before_action :find_category, except: %i(index new create).freeze
+    before_action :load_dishes, only: %i(new edit).freeze
 
     authorize_resource class: :categories
 
     def index
-      @categories = Supports::Category.new categories: Category.all,
+      @categories = Supports::CategorySupport.new categories: Category.all,
         param: params
     end
 

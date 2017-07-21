@@ -1,18 +1,19 @@
-class Admin
+module Admin
   class OrdersController < ApplicationController
-    before_action :logged_in_admin
+    before_action :authenticate_staff!
     before_action :check_for_cancel
-    before_action :find_order, only: %i(edit update destroy)
+    before_action :find_order, only: %i(edit update destroy)%i(index new create).freeze
 
     load_and_authorize_resource
 
     def index
-      @orders_support = Supports::Order.new order: Order.all, param: params
+      @orders_support = Supports::OrderSupport.new order: Order.all,
+        param: params
       @tables = Table.all
     end
 
     def show
-      @support = Supports::Order.new discount: params[:discount]
+      @support = Supports::DiscountCodeSupport.new discount: params[:discount]
     end
 
     def new
@@ -47,6 +48,7 @@ class Admin
       else
         flash[:danger] = t "flash.order.delete_fail"
       end
+      respond_html_json
       redirect_to :back
     end
 
@@ -55,9 +57,9 @@ class Admin
     attr_reader :order
 
     def order_params
-      params.require(:order).permit :code, :discount,
-        :day, :time_in, :is_confirm,
-        guest_attributes: %i(id name), table_attributes: %i(id capacity)
+      params.require(:order).permit :discount, :day, :time_in, :is_confirm,
+        customer_attributes: %i(id name).freeze,
+        table_attributes: %i(id capacity).freeze
     end
 
     def check_for_cancel
@@ -66,8 +68,14 @@ class Admin
 
     def find_order
       @order = Order.find_by id: params[:id]
-
       redirect_to admin_orders_path unless order
+    end
+
+    def respond_html_json
+      respond_to do |format|
+        format.html{redirect_to :back}
+        format.json{head :no_content}
+      end
     end
   end
 end

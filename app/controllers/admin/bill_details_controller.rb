@@ -1,5 +1,7 @@
-class Admin
+module Admin
   class BillDetailsController < ApplicationController
+    before_action :authenticate_staff!
+
     def create
       @bill_detail = BillDetail.new bill_detail_params
 

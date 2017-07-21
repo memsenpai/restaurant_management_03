@@ -1,16 +1,15 @@
-class Admin
+module Admin
   class DishesController < ApplicationController
-    before_action :logged_in_admin
-    before_action :find_dish, except: %i(index new create)
-    before_action :load_category, only: %i(new edit)
+    before_action :authenticate_staff!
+    before_action :find_dish, except: %i(index new create).freeze
+    before_action :load_category, only: %i(new edit).freeze
 
     load_and_authorize_resource
 
     def index
-      @dishes_support = Supports::AdminDish.new dish: Dish.all, param: params
+      @dishes_support = Supports::AdminDishSupport.new dish: Dish.all,
+        param: params
     end
-
-    def show; end
 
     def new
       @dish = Dish.new
@@ -26,6 +25,8 @@ class Admin
         render :new
       end
     end
+
+    def show; end
 
     def edit; end
 
