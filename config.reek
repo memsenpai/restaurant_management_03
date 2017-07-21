@@ -1,3 +1,6 @@
+exclude_paths:
+  - db/migrate/
+
 IrresponsibleModule:
   enabled: false
 
@@ -6,3 +9,7 @@ FeatureEnvy:
 
 UtilityFunction:
   enabled: false
+
+ControlParameter:
+  exclude:
+   - "Ability#initialize"
