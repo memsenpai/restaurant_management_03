@@ -1,5 +1,6 @@
-class Admin
+module Admin
   class BillsController < ApplicationController
+    before_action :authenticate_staff!
     before_action :find_bill, only: :show
 
     def index
@@ -22,7 +23,7 @@ class Admin
     attr_reader :bill
 
     def bill_params
-      params.require(:bill).permit :guest_id, :order_id, :discount
+      params.require(:bill).permit :customer_id, :order_id, :discount
     end
 
     def find_bill

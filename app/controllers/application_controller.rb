@@ -3,18 +3,10 @@ class ApplicationController < ActionController::Base
   include SessionHelper
 
   def current_ability
-    @current_ability ||= Ability.new current_admin
+    @current_ability ||= Ability.new current_staff
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to admin_path, flash: {danger: exception.message}
-  end
-
-  private
-
-  def logged_in_admin
-    return if logged_in?
-    flash[:danger] = t "admin.error_log"
-    redirect_to login_url
+    redirect_to staffs_path, flash: {danger: exception.message}
   end
 end

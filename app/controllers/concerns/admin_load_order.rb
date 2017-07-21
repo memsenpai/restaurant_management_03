@@ -1,10 +1,12 @@
 module AdminLoadOrder
   def load_support_combos
-    @support = Supports::AdminOrder.new order: find_order, combo: load_combo
+    @support = Supports::AdminOrderSupport.new order: find_order,
+      combo: load_combo
   end
 
   def load_support_dishes
-    @support = Supports::AdminOrder.new order: find_order, dish: load_dish
+    @support = Supports::AdminOrderSupport.new order: find_order,
+      dish: load_dish
   end
 
   def find_order
@@ -23,7 +25,7 @@ module AdminLoadOrder
   end
 
   def load_combo
-    Combo.all.map{|p| [p.name, p.id]}
+    Combo.all.map{|combo| [combo.name, combo.id]}
   end
 
   def find_order_dish
@@ -37,6 +39,6 @@ module AdminLoadOrder
   end
 
   def load_dish
-    Dish.all.map{|p| [p.name, p.id]}
+    Dish.all.map{|dish| [dish.name, dish.id]}
   end
 end

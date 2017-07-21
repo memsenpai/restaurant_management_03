@@ -204,14 +204,14 @@ $(document).ready(function(){
       }
     }
     else if(step == 4){
-      var guest_code = $('#code-guest').val();
+      var customer_code = $('#code-customer').val();
       $.ajax({
         type:'GET',
-        url: '/guests',
+        url: '/customers',
         dataType: 'json',
         data: {
-          guest: {
-            code: guest_code,
+          customer: {
+            code: customer_code,
           }
         }
       }).success(function(){
@@ -219,15 +219,15 @@ $(document).ready(function(){
       });
     }
     else if(step == 5){
-      var val_name = $('#name-guest').val();
-      var val_phone = $('#phone-guest').val();
-      var val_email = $('#email-guest').val();
+      var val_name = $('#name-customer').val();
+      var val_phone = $('#phone-customer').val();
+      var val_email = $('#email-customer').val();
       $.ajax({
         type:'POST',
-        url: '/guests',
+        url: '/customers',
         dataType: 'json',
         data: {
-          guest: {
+          customer: {
             name: val_name,
             email: val_email,
             phone_num: val_phone,

@@ -1,13 +1,13 @@
-class Admin
+module Admin
   class PromosController < ApplicationController
-    before_action :logged_in_admin
-    before_action :find_promo, except: %i(index new create)
-    before_action :load_dishes, except: %i(index update destroy)
+    before_action :authenticate_staff!
+    before_action :find_promo, except: %i(index new create).freeze
+    before_action :load_dishes, except: %i(index update destroy).freeze
 
     authorize_resource
 
     def index
-      @promos = Supports::Promo.new promos: Promo.all, param: params
+      @promos = Supports::PromoSupport.new promos: Promo.all, param: params
     end
 
     def new

@@ -1,5 +1,7 @@
-class Admin
+module Admin
   class XmlController < ApplicationController
+    before_action :authenticate_staff!
+
     def show
       @bill = Bill.find_by id: params[:id]
 

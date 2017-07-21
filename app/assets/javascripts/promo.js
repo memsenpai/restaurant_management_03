@@ -1,4 +1,4 @@
-$(document).on('change', function(){
+$(document).on('turbolinks:load', function(){
   $('input[type = "radio"]').on('click', function() {
     $('#promo_dish_id').attr('value',
       document.querySelector('input[type = "radio"]:checked').value);
