@@ -1,10 +1,10 @@
 <%= form_for [:admin, order] do |f| %>
   <%= f.label :code, t(".code"), class:"form-label-3" %>
-  <%= f.text_field :code, class: "form-control" %>
+  <%= f.text_field :code, class: "form-control", disabled: true %>
 
-  <%= f.fields_for :guest do |guest| %>
-    <%= guest.label :name, t(".guest_name"), class:"form-label-3" %>
-    <%= guest.text_field :name, class: "form-control" %>
+  <%= f.fields_for :customer do |customer| %>
+    <%= customer.label :name, t(".customer_name"), class:"form-label-3" %>
+    <%= customer.text_field :name, class: "form-control" %>
   <% end %>
 
   <%= f.fields_for :table do |table| %>

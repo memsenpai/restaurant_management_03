@@ -13,17 +13,17 @@
           </div>
           <div class="bills-header-guest-info">
             <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
-              <%= t "admin.bills.guest_code" %>:
+              <%= t "admin.bills.customer_code" %>:
             </b>
-            <span> #<%= @bill.guest.code %></span> <br />
+            <span> #<%= @bill.customer.code %></span> <br />
             <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
-              <%= t "admin.bills.guest_name" %>: <%= @bill.guest.name %>
+              <%= t "admin.bills.customer_name" %>: <%= @bill.customer.name %>
             </b>
-            <span><%= @bill.guest.name %></span> <br />
+            <span><%= @bill.customer.name %></span> <br />
             <b style="color:#d86161;width: 110px; display: -webkit-inline-box;">
               <%= t "admin.bills.phone" %>:
             </b>
-            <span><%= @bill.guest.phone_num %></span>
+            <span><%= @bill.customer.phone_num %></span>
           </div>
         </div>
         <div class="bills-content">

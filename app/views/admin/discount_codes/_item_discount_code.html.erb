@@ -3,7 +3,7 @@
     <tbody>
     <tr class="dg_tr" id="di_row_">
       <th class="default_dg_th dg-left dg-nowrap dg1">
-        <%= sort_link support.search, :id, t(".order"), {},
+        <%= sort_link support.search, :id, t("id"), {},
           {remote: true, method: :get} %>
       </th>
       <th class="default_dg_th dg-center dg-nowrap dg2">
@@ -32,7 +32,9 @@
           <td class="default_dg_td dg-center dg-nowrap dg2
             discount-code<%= discount.id %>"><%= discount.code %></td>
           <td class="default_dg_td dg-center dg-nowrap dg3
-            discount<%= discount.id %>"><%= discount.discount %></td>
+            discount<%= discount.id %>">
+            <%= number_to_percentage discount.discount, precision: 0 %>
+          </td>
           <td class="default_dg_td dg-center dg-nowrap dg3
             discount-status<%= discount.id %>"><%= discount.status %></td>
           <td class="default_dg_td dg-right dg-nowrap">

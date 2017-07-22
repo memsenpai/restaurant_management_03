@@ -19,7 +19,7 @@
             </div>
             <div class="col-sm-12">
               <%= f.label :role, class: "form-label" %>
-              <%= f.select :admin_role, Admin.roles_select,
+              <%= f.select :staff_role, Staff.roles_select,
                 {include_blank: t("admin.roles")}, id:"role_field",
                 class: "form-control", required: true %>
             </div>

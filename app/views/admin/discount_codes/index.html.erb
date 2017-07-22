@@ -4,14 +4,14 @@
       <div class="view-part col-sm-7">
         <br>
         <div class="row">
-          <h3 class="col-sm-3"><%= t "discount.all" %></h3>
+          <h3 class="col-sm-3"><%= t "discounts.all" %></h3>
           <div class="col-sm-9 text-small">
             <%= search_form_for @support.search, url: admin_discount_codes_path,
               remote: true do |f| %>
               <div class="dp-inline">
                 <%= f.text_field :code_cont,
                   class: "search-discount dp-inline",
-                  placeholder: t("discount.input"), id: "searchinput" %>
+                  placeholder: t("discounts.input_code"), id: "searchinput" %>
                 <span id="searchclear" class="glyphicon
                   glyphicon-remove-circle dp-inline close-circle-button"></span>
                 <span class="input-group-btn dp-inline">
@@ -39,7 +39,7 @@
       </div>
       <div class="view-part col-sm-4 half-view">
         <br>
-        <h3 class="col-sm-12"><%= t "discount.generate" %></h3>
+        <h3 class="col-sm-12"><%= t "discounts.generate" %></h3>
         <div class="row">
           <table class="generate-code dp-inline">
             <thead>
