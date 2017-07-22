@@ -1,7 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_user, only: %i(edit update destroy).freeze
+    before_action :find_user, only: %i(edit update destroy)
 
     authorize_resource class: :admin
 

@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   def show
-    current_ability
     if valid_page?
       @combos = Combo.popular_combos
       @dishes = Dish.popular_dishes

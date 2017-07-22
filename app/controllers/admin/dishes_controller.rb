@@ -1,8 +1,8 @@
 module Admin
   class DishesController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_dish, except: %i(index new create).freeze
-    before_action :load_category, only: %i(new edit).freeze
+    before_action :find_dish, except: %i(index new create)
+    before_action :load_category, only: %i(new edit)
 
     load_and_authorize_resource
 

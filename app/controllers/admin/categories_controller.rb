@@ -1,8 +1,8 @@
 module Admin
   class CategoriesController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_category, except: %i(index new create).freeze
-    before_action :load_dishes, only: %i(new edit).freeze
+    before_action :find_category, except: %i(index new create)
+    before_action :load_dishes, only: %i(new edit)
 
     authorize_resource class: :categories
 

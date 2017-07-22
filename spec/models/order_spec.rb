@@ -8,13 +8,13 @@ RSpec.describe Order, type: :model do
     end_day: Faker::Time.forward, end_time: Faker::Time.forward
 
   describe "associations" do
-    it{should belong_to :guest}
+    it{should belong_to :customer}
     it{should belong_to(:table).inverse_of :orders}
 
     it{should have_many :order_dishes}
     it{should have_many :order_combos}
 
-    it{should accept_nested_attributes_for :guest}
+    it{should accept_nested_attributes_for :customer}
     it{should accept_nested_attributes_for :table}
   end
 

@@ -1,7 +1,7 @@
 class OrderDishesController < ApplicationController
   include LoadOrder
-  before_action :load_order, only: %i(create update destroy).freeze
-  before_action :find_dish, only: %i(update destroy).freeze
+  before_action :load_order, only: %i(create update destroy)
+  before_action :find_dish, only: %i(update destroy)
 
   def create
     order_dishes

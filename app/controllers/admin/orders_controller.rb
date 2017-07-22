@@ -2,7 +2,7 @@ module Admin
   class OrdersController < ApplicationController
     before_action :authenticate_staff!
     before_action :check_for_cancel
-    before_action :find_order, only: %i(edit update destroy)%i(index new create).freeze
+    before_action :find_order, only: %i(edit update destroy)
 
     load_and_authorize_resource
 
