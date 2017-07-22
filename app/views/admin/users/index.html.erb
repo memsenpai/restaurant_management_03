@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @list_admin.each do |user| %>
+        <% @list_staff.each do |user| %>
           <tr>
             <td><%= user.email %></td>
             <td><%= user.created_at %></td>
@@ -34,7 +34,7 @@
         <% end %>
         </tbody>
       </table>
-      <%= paginate @list_admin %>
+      <%= paginate @list_staff %>
     </div>
   </div>
 </section>

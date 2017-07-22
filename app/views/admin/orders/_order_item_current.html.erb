@@ -13,7 +13,7 @@
       <%= order_dish.quantity %>
     </td>
     <td class="total item-discount" data-discount="<%= order_dish.find_discount %>">
-      <%= number_to_percentage order_dish.find_discount, precision: 0 %>%
+      <%= number_to_percentage order_dish.find_discount, precision: 0 %>
     </td>
     <td class="total">
       <%= number_to_currency order_dish.total_price %>

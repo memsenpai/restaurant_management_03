@@ -9,7 +9,7 @@
         <span class="badge"><%= @user.role %></span>
       </h4>
       <%= form_for @user, url: admin_user_path(@user), method: :put do |f| %>
-        <%= f.select :admin_role, Admin.roles_select,
+        <%= f.select :staff_role, Staff.roles_select,
           {include_blank: t("admin.roles")}, id:"role_field",
           class: "form-control", required: true %>
         <hr>

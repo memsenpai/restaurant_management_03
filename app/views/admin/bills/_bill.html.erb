@@ -6,10 +6,10 @@
           <%= t "admin.bills.bill_code" %>
         </th>
         <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= t "admin.bills.guest_name" %>
+          <%= t "admin.bills.customer_name" %>
         </th>
         <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= t "admin.bills.guest_code" %>
+          <%= t "admin.bills.customer_code" %>
         </th>
         <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
           <%= t "admin.bills.voucher" %>
@@ -30,10 +30,10 @@
             <span class="bills-type-combo">#<%= bill.id%></span>
           </td>
           <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
-            <%= bill.guest.name %>
+            <%= bill.customer.name %>
           </td>
           <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
-            #<%= bill.guest.code %>
+            #<%= bill.customer.code %>
           </td>
           <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
             -<%= bill.discount %>%

@@ -5,11 +5,11 @@
   <br>
   <div class="b10">
     <%= f.text_field :code_cont, class:"pj-form-field pj-form-field-search w350",
-      placeholder: t("admin_order.search_by_code") %>
+      placeholder: t("staff_order.search_by_code") %>
     <div class="float_right t5">
       <%= link_to t(".all"), {q: nil, remote: true},
         class:"pj-button btn-all"%>
-      <%= link_to t("admin_order.confirmed"), {q: {is_confirm_eq: true}, remote: true},
+      <%= link_to t("staff_order.confirmed"), {q: {is_confirm_eq: true}, remote: true},
         class:"pj-button btn-all" %>
       <%= link_to t("admin.orders.form.canceled"), {q: {is_confirm_eq: false}, remote: true},
         class:"pj-button btn-all" %>
@@ -42,14 +42,14 @@
         <p>
           <%= f.label :name, class: "title" %>
           <span class="inline-block">
-            <%= f.text_field :guest_name_cont,
+            <%= f.text_field :customer_name_cont,
               class: "pj-form-field w180" %>
           </span>
         </p>
         <p>
           <label class="title">&nbsp;</label>
           <%= f.submit  t(".search"), class: "pj-button" %>
-          <%= link_to t("admin_order.cancel"), {remote: true}, class: "pj-button",
+          <%= link_to t("staff_order.cancel"), {remote: true}, class: "pj-button",
             id: "clear" %>
         </p>
       </div>
@@ -57,14 +57,14 @@
         <p>
           <%= f.label :phone, class: "title" %>
           <span class="inline-block">
-            <%= f.text_field :guest_phone_num_cont,
+            <%= f.text_field :customer_phone_num_cont,
               class: "pj-form-field w180" %>
           </span>
         </p>
         <p>
           <%= f.label :email, class: "title" %>
           <span class="inline-block">
-            <%= f.text_field :guest_email_cont,
+            <%= f.text_field :customer_email_cont,
               class: "pj-form-field w180" %>
           </span>
         </p>
@@ -89,7 +89,7 @@
         </th>
         <th class="left width-110"><%= t "admin.orders.form.time" %></th>
         <th class="left width-170">
-          <%= sort_link order.search, :guest_name, t(".guest_name"), {},
+          <%= sort_link order.search, :customer_name, t(".customer_name"), {},
             {remote: true, method: :get} %>
         </th>
         <th class="text-center width-90"><%= t ".table" %></th>
@@ -116,7 +116,7 @@
               <td><%= order.day.in_time_zone(
                 Settings.time_zone).strftime('%b %d %Y') %></td>
               <td><%= order.time_in %></td>
-              <td><%= order.guest.name %></td>
+              <td><%= order.customer.name %></td>
               <td class="text-center"><%= order.table_id %></td>
               <td class="text-center"><%= order.capacity %></td>
               <td class="text-center"><%= order.discount %>

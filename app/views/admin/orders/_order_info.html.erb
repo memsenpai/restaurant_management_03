@@ -1,4 +1,4 @@
-<h3 class="title"><%= t "admin_order.order_confirm" %></h3>
+<h3 class="title"><%= t "staff_order.order_confirm" %></h3>
 <table dir="ltr" class="default-dg-table">
   <tbody id="combo_dish">
   <tr class="dg_tr" id="di_row_0">
@@ -10,23 +10,23 @@
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.form.guest_name" %></b>
+      <b><%= t "admin.orders.form.customer_name" %></b>
     </td>
-    <td class="default_dg_td dg-left guest-id" data-guest-id="<%= order.guest.id %>">
-      <%= order.guest.name %>
+    <td class="default_dg_td dg-left customer-id" data-customer-id="<%= order.customer.id %>">
+      <%= order.customer.name %>
     </td>
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin_order.phone_num" %></b>
+      <b><%= t "staff_order.phone_num" %></b>
     </td>
-    <td class="default_dg_td dg-left"><%= order.guest.phone_num %></td>
+    <td class="default_dg_td dg-left"><%= order.customer.phone_num %></td>
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin_order.email" %></b>
+      <b><%= t "staff_order.email" %></b>
     </td>
-    <td class="default_dg_td dg-left"><%= order.guest.email %></td>
+    <td class="default_dg_td dg-left"><%= order.customer.email %></td>
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
@@ -44,7 +44,7 @@
   </tr>
   <tr class="dg_tr" id="di_row_0">
     <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin_order.table_id" %></b>
+      <b><%= t "staff_order.table_id" %></b>
     </td>
     <td class="default_dg_td dg-left">
       <%= order.table_id %>
@@ -62,7 +62,7 @@
     <td class="default_dg_td dg-left dg-nowrap">
       <b><%= t "admin.orders.order.discount" %></b>
     </td>
-    <td class="default_dg_td dg-left dg-nowrap guest-discount" data-guest-discount="<%= order.discount %>">
+    <td class="default_dg_td dg-left dg-nowrap customer-discount" data-customer-discount="<%= order.discount %>">
       <%= order.discount %>%<br>
     </td>
   </tr>
