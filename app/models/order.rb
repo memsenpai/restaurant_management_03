@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   include Encode
-  belongs_to :guest
+  belongs_to :customer
   belongs_to :table, inverse_of: :orders
   delegate :capacity, to: :table
 
@@ -8,9 +8,11 @@ class Order < ApplicationRecord
   has_many :order_combos
   has_one :bill, foreign_key: "code"
 
+  delegate :code, to: :customer, prefix: :customer
+
   after_save :generate_code
 
-  accepts_nested_attributes_for :guest
+  accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
 
   def subtotal
@@ -20,6 +22,8 @@ class Order < ApplicationRecord
   def original_price
     original_combos_map.sum + original_dishes_map.sum
   end
+
+  private
 
   def original_combos_map
     order_combos.map do |order_combo|

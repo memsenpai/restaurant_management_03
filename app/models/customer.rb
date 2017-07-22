@@ -7,5 +7,5 @@ class Customer < ApplicationRecord
   validates :email, presence: true, length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
-  after_save ->{generate_code(id.to_s + created_at.to_s)}
+  after_save :generate_code
 end

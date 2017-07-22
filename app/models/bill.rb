@@ -1,10 +1,10 @@
 class Bill < ApplicationRecord
   has_many :bill_details
 
-  belongs_to :guest
+  belongs_to :customer
   belongs_to :order
 
-  validates :guest, presence: true
+  validates :customer, presence: true
   validates :order, presence: true
   validates :discount, presence: true, numericality: {only_integer: true}
 

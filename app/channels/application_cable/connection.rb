@@ -7,12 +7,11 @@ module ApplicationCable
     end
 
     protected
+
     def find_verified_user
-      if current_user ||= Admin.find_by(id: cookies.signed[:admin_id])
-        current_user
-      else
-        reject_unauthorized_connection
-      end
+      current_user ||=
+        Staff.find_by id: cookies[:staff_id]
+      reject_unauthorized_connection unless current_user
     end
   end
 end
