@@ -2,14 +2,14 @@
   <div class="login-form">
     <h1 class="stylish-heading h2style"><%= t "admin.login" %></h1>
     <h3 class="stylish-heading h3style"><%= t "admin.login2" %></h3>
-    <%= form_for :session, url: login_path do |f| %>
+    <%= form_for :staff, url: login_path, authenticity_token: true do |f| %>
       <%= f.label :email, class: "form-label" %>
       <%= f.email_field :email, class: "form-control form-group",
         placeholder: t("admin.email") %>
       <%= f.label :password, class: "form-label" %>
       <%= f.password_field :password, class: "form-control form-group",
         placeholder: t("admin.pass") %>
-      <%= link_to t("form.lost_pass"), "#", class: "link" %>
+      <%= f.hidden_field :remember_me, value: 1 %>
       <br>
       <%= f.submit t("form.button"), class: "log-btn" %>
     <% end %>

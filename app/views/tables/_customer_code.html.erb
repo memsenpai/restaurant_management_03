@@ -10,10 +10,10 @@
 <div id="collapseOne" class="panel-collapse collapse in"
   role="tabpanel" aria-labelledby="headingOne">
   <div class="panel-body">
-    <%= form_for :guest, url: guests_path, remote: true do |f| %>
-      <div id="hide-after-guest-info">
-        <%= f.label :phone_num, t("guest.guest_id"), class: "form-label" %>
-        <%= f.text_field :code, id: "code-guest",
+    <%= form_for :customer, url: customers_path, remote: true do |f| %>
+      <div id="hide-after-customer-info">
+        <%= f.label :phone_num, t("customer.customer_id"), class: "form-label" %>
+        <%= f.text_field :code, id: "code-customer",
           class: "form-control form-group", required: true %>
       </div>
     <% end %>

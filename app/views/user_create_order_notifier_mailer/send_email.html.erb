@@ -1,29 +1,35 @@
-<h1><%= @order.guest.email %>: <%= t "admin.orders.order.success" %> #<%= @order.code %></h1>
+<h1><%= @order.customer.email %>:
+  <%= t "admin.orders.order.success" %> #<%= @order.code %>
+</h1>
 <h2><%= t "admin.orders.order.order_info" %></h2>
 <table>
   <tbody>
+    <tr>
+      <td><%= t "order.customer_code" %></td>
+      <td><%= @order.customer_code %></td>
+    </tr>
     <tr>
       <td><%= t "order.order_code" %></td>
       <td><%= @order.code %></td>
     </tr>
     <tr>
-      <td><%= t "admin.orders.order.guest_name" %></td>
-      <td><%= @order.guest.name %></td>
+      <td><%= t "admin.orders.order.customer_name" %></td>
+      <td><%= @order.customer.name %></td>
     </tr>
     <tr>
       <td><%= t "order.your_email" %></td>
-      <td><%= @order.guest.email %></td>
+      <td><%= @order.customer.email %></td>
     </tr>
     <tr>
-      <td><%= t "admin_order.phone_num" %></td>
-      <td><%= @order.guest.phone_num %></td>
+      <td><%= t "phone_num" %></td>
+      <td><%= @order.customer.phone_num %></td>
     </tr>
     <tr>
       <td><%= t "admin.orders.order.capacity" %></td>
       <td><%= @order.capacity %></td>
     </tr>
     <tr>
-      <td><%= t "reserve.time" %></td>
+      <td><%= t "time_in_email" %></td>
       <td><%= @order.day %> <%= @order.time_in %></td>
     </tr>
     <tr>

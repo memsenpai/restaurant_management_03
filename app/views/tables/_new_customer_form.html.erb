@@ -10,29 +10,29 @@
 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
      aria-labelledby="headingTwo">
   <div class="panel-body">
-    <%= form_for guest, url: guests_path, remote: true do |f| %>
-      <div id="hide-after-guest-info">
+    <%= form_for customer, url: customers_path, remote: true do |f| %>
+      <div id="hide-after-customer-info">
         <div class="row">
           <div class="col-sm-4">
             <%= f.label :name, class: "form-label" %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :name, id: "name-guest",
+            <%= f.text_field :name, id: "name-customer",
               class: "form-control form-group", required: true %>
           </div>
           <div class="col-sm-4">
             <%= f.label :email, class: "form-label" %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :email, id: "email-guest",
+            <%= f.text_field :email, id: "email-customer",
               class: "form-control form-group", required: true %>
           </div>
           <div class="col-sm-4">
-            <%= f.label :phone_num, t("admin_order.phone_num"),
+            <%= f.label :phone_num, t("staff_order.phone_num"),
               class: "form-label" %>
           </div>
           <div class="col-sm-8">
-            <%= f.text_field :phone_num, id: "phone-guest",
+            <%= f.number_field :phone_num, id: "phone-customer",
             class: "form-control form-group", required: true %>
           </div>
         </div>
