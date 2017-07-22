@@ -1,8 +1,8 @@
 module Admin
   class PromosController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_promo, except: %i(index new create).freeze
-    before_action :load_dishes, except: %i(index update destroy).freeze
+    before_action :find_promo, except: %i(index new create)
+    before_action :load_dishes, except: %i(index update destroy)
 
     authorize_resource
 

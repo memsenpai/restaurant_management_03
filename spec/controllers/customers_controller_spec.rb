@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe GuestsController do
+describe CustomersController do
   before :each do
     @request.host = "localhost:3000"
   end

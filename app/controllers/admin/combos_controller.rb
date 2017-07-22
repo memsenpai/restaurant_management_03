@@ -1,8 +1,8 @@
 module Admin
   class CombosController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_combo, except: %i(index new create).freeze
-    before_action :load_dishes, only: %i(new edit).freeze
+    before_action :find_combo, except: %i(index new create)
+    before_action :load_dishes, only: %i(new edit)
 
     def index
       @combos = Supports::ComboSupport.new combo: Combo.all, param: params

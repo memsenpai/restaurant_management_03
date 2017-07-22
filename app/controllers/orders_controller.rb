@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   def index
-    @info = params
+    input = params[:order]
 
-    return unless info
-    check_order Order.find_by code: info[:order][:code]
+    return unless input || input[:email]
+    check_order Order.find_by code: input[:code]
   end
 
   def create
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
   private
 
-  attr_reader :order, :order_dishes, :info
+  attr_reader :order, :order_dishes
 
   def order_params
     params.permit :table_id, :day, :time_in, :customer_id
@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
   end
 
   def check_order order
-    if order && order.customer.email == info[:email]
+    if order && order.customer.email == params[:email]
       session[:order_id] = order.id
       flash[:success] = t "flash.order.find_order"
       redirect_to cart_path
