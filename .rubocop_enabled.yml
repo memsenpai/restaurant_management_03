@@ -165,10 +165,6 @@ Layout/EmptyLinesAroundModuleBody:
   Description: "Keeps track of empty lines around expression modules."
   Enabled: true
 
-Style/EmptyLiteral:
-  Description: "Prefer literals to Array.new/Hash.new/String.new."
-  Enabled: true
-
 Style/Encoding:
   Description: "Use UTF-8 as the source file encoding."
   Enabled: true

@@ -112,3 +112,7 @@ Style/StringMethods:
 Style/SingleLineBlockParams:
   Description: 'Enforces the names of some block params.'
   Enabled: false
+
+Style/EmptyLiteral:
+  Description: "Prefer literals to Array.new/Hash.new/String.new."
+  Enabled: false

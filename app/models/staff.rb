@@ -4,6 +4,8 @@ class Staff < ApplicationRecord
 
   after_initialize :set_default_staff_role, if: :new_record?
 
+  acts_as_token_authenticatable
+
   class << self
     def roles_select
       staff_roles.map do |role, _|
@@ -21,6 +23,11 @@ class Staff < ApplicationRecord
 
   def role
     I18n.t "staff_role.#{staff_role}"
+  end
+
+  def generate_new_token
+    token = Staff.generate_unique_secure_token
+    update_attributes authentication_token: token
   end
 
   private

@@ -27,6 +27,8 @@ gem "chartkick"
 gem "devise"
 gem "devise_custom_authenticatable"
 gem "i18n-js"
+gem "simple_token_authentication"
+gem "active_model_serializers"
 
 group :development, :test do
   gem "byebug", platform: :mri
