@@ -8,29 +8,31 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
   root "pages#show", page: "home"
   get "/pages/:page" => "pages#show"
-  resource :staffs, only: [:show, :edit, :update]
+  resource :staffs, only: %i(show edit update)
   resources :dishes
-  resources :orders, only: [:show, :index, :create]
+  resources :orders, only: %i(show index create)
   get "/cart", to: "orders#show"
-  resources :order_dishes, only: [:create, :update, :destroy]
-  resources :tables, only: [:index]
-  resources :customers, only: [:new, :create, :index]
-  resources :order_combos, only: [:create, :update, :destroy]
-  resources :combos, only: [:index, :show]
+  resources :order_dishes, only: %i(create update destroy)
+  resources :tables, only: %i(index)
+  resources :customers, only: %i(new create index)
+  resources :order_combos, only: %i(create update destroy)
+  resources :combos, only: %i(index show)
   namespace :admin do
     resources :categories do
       resources :dishes
+      resources :category_dishes, only: %i(destroy)
     end
     resources :dishes
     resources :combos do
       resources :dishes
+      resources :combo_dishes, only: %i(destroy)
     end
     resources :orders do
-      resources :order_dishes, except: [:show, :index]
-      resources :order_combos, except: [:show, :index]
+      resources :order_dishes, except: %i(show index)
+      resources :order_combos, except: %i(show index)
     end
     resources :discount_codes
-    resources :users, except: [:show]
+    resources :users, except: %i(show)
     resources :promos
     resources :chef
     resources :bills

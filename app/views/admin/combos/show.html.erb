@@ -7,12 +7,18 @@
       <table dir="ltr" class="default-dg-table">
         <tbody>
         <tr class="dg_tr" id="di_row_0">
-          <td class="default_dg_td dg-left dg-nowrap"><b><%= t ".name" %></b></td>
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t ".name" %></b>
+          </td>
           <td class="default_dg_td dg-left"><%= @combo.name %></td>
         </tr>
         <tr class="dg_tr" id="di_row_0">
-          <td class="default_dg_td dg-left dg-nowrap"><b><%= t ".description" %></b></td>
-          <td class="default_dg_td dg-left" colspan="2"><%= @combo.description %></td>
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t ".description" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= @combo.description %>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -46,7 +52,8 @@
               <% @categories.each do |category| %>
                 <% if f.categories.include? category %>
                   <% if category != f.categories.last %>
-                    <%= link_to category.name, admin_category_path(category) %>,
+                    <%= link_to category.name,
+                      admin_category_path(category) %>,
                   <% else %>
                     <%= link_to category.name, admin_category_path(category) %>
                   <% end %>
@@ -55,7 +62,7 @@
             </td>
             <td class="default_dg_td dg-center dg-nowrap">
               <%= link_to t("button.delete"),
-                admin_combo_dish_path(@combo.id, f.id),
+                admin_combo_combo_dish_path(@combo.id, f.id),
                 method: :delete, data: {confirm: t("button.delete_warning")} %>
             </td>
           </tr>

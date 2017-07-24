@@ -8,12 +8,18 @@
       <table dir="ltr" class="default-dg-table">
         <tbody>
         <tr class="dg_tr" id="di_row_0">
-          <td class="default_dg_td dg-left dg-nowrap"><b><%= t ".name" %></b></td>
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t ".name" %></b>
+          </td>
           <td class="default_dg_td dg-left"><%= @category.name %></td>
         </tr>
         <tr class="dg_tr" id="di_row_0">
-          <td class="default_dg_td dg-left dg-nowrap"><b><%= t ".description" %></b></td>
-          <td class="default_dg_td dg-left" colspan="2"><%= @category.description %></td>
+          <td class="default_dg_td dg-left dg-nowrap">
+            <b><%= t ".description" %></b>
+          </td>
+          <td class="default_dg_td dg-left" colspan="2">
+            <%= @category.description %>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -25,7 +31,9 @@
           <th class="default_dg_th dg-center dg-nowrap">
             <%= t ".no" %>
           </th>
-          <th class="default_dg_th dg-left dg-nowrap" colspan="3"><%= t ".dish" %></th>
+          <th class="default_dg_th dg-left dg-nowrap" colspan="3">
+            <%= t ".dish" %>
+          </th>
           <th class="default_dg_th dg-center dg-nowrap">
             <%= t ".opition" %>
           </th>
@@ -34,11 +42,11 @@
           <tr class="dg_tr" id="di_row_0">
             <td class="default_dg_td dg-center dg-nowrap"><%= f.id %></td>
             <td class="default_dg_td dg-left dg-nowrap" colspan="3">
-              <%= link_to f.dish.name, admin_dish_path(f) %>
+              <%= link_to f.dish.name, admin_dish_path(f.dish_id) %>
             </td>
             <td class="default_dg_td dg-center dg-nowrap">
               <%= link_to t("button.delete"),
-                admin_category_dish_path(@category.id, f.id),
+                admin_category_category_dish_path(@category.id, f.dish_id),
                 method: :delete, data: {confirm: t("button.delete_warning")} %>
             </td>
           </tr>
@@ -47,7 +55,8 @@
       </table>
       <br><br>
       <div class="row">
-        <%= link_to t(".edit_category_button"), edit_admin_category_path(@category),
+        <%= link_to t(".edit_category_button"),
+          edit_admin_category_path(@category),
           class: "btn btn-primary col-md-2 col-md-offset-5" %>
         <%= link_to t("button.cancel"), admin_categories_path,
           class: "btn btn-link btn-lg pull-right" %>
