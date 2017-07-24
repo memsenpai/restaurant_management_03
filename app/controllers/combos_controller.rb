@@ -14,7 +14,7 @@ class CombosController < ApplicationController
   attr_reader :combo
 
   def find_combo
-    combo = Combo.find_by id: params[:id]
+    @combo = Combo.find_by id: params[:id]
 
     return if combo
     flash[:danger] = t "flash.combo.find_fail"

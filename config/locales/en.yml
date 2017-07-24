@@ -5,6 +5,7 @@ en:
   phone_num: Phone Number
   time_default: "%H:%M:%S"
   day_default: "%Y/%m/%d"
+  date_default: "%b %d %Y"
   opition: Opition
   available: Available
   running: Running
@@ -423,6 +424,7 @@ en:
       valid: Valid from
       to: "to "
       close: Close
+      add_to_cart: Add to cart
     combo:
       money: $
       view: View detail
