@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   def index
     input = params[:order]
 
-    return unless input || input[:email]
-    check_order Order.find_by code: input[:code]
+    return unless input
+    check_order Order.find_by(code: input[:code]), input
   end
 
   def create
@@ -49,8 +49,8 @@ class OrdersController < ApplicationController
     render json: {path: cart_path}
   end
 
-  def check_order order
-    if order && order.customer.email == params[:email]
+  def check_order order, input
+    if order && order.customer.email == input[:email]
       session[:order_id] = order.id
       flash[:success] = t "flash.order.find_order"
       redirect_to cart_path
