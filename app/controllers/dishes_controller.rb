@@ -15,6 +15,9 @@ class DishesController < ApplicationController
 
   def find_dish
     @dish = Dish.find_by id: params[:id]
-    flash[:danger] = t "flash.dish.find_fail" unless dish
+
+    return if dish
+    redirect_to dishes_path
+    flash[:danger] = t "flash.dish.find_fail"
   end
 end

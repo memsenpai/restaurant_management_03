@@ -10,37 +10,51 @@
       </ul>
     </li>
   <% end  %>
-  <% if can? :view, Order, OrderDish, OrderCombo, Combo, Dish,
-    DiscountCode, Category, :categories %>
+  <% if can? :view, :combos, :dish, :promo, :discounts_code, :categories %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.manage" %>
         <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><%= link_to t("admin.combo"), admin_combos_path,
-          class: "smoothScroll animated fadeInLeft wow",
-          "data-wow-delay": "0.1s", method: :get %>
+        <% if can? :view, :combos %>
+          <li>
+            <%= link_to t("admin.combo"), admin_combos_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
+        <% end %>
+        <% if can? :view, :categories %>
+        <li>
+          <%= link_to t("admin.category"), admin_categories_path,
+            class: "smoothScroll animated fadeInLeft wow",
+            "data-wow-delay": "0.1s", method: :get %>
         </li>
-        <li><%= link_to t("admin.category"), admin_categories_path,
-          class: "smoothScroll animated fadeInLeft wow",
-          "data-wow-delay": "0.1s", method: :get %>
+        <% end %>
+        <% if can? :view, :dish %>
+        <li>
+          <%= link_to t("admin.dish"), admin_dishes_path,
+            class: "smoothScroll animated fadeInLeft wow",
+            "data-wow-delay": "0.1s", method: :get %>
         </li>
-        <li><%= link_to t("admin.dish"), admin_dishes_path,
-          class: "smoothScroll animated fadeInLeft wow",
-          "data-wow-delay": "0.1s", method: :get %>
+        <% end %>
+        <% if can? :view, :promo %>
+        <li>
+          <%= link_to t("admin.promo"), admin_promos_path,
+            class: "smoothScroll animated fadeInLeft wow",
+            "data-wow-delay": "0.1s", method: :get %>
         </li>
-        <li><%= link_to t("admin.promo"), admin_promos_path,
-          class: "smoothScroll animated fadeInLeft wow",
-          "data-wow-delay": "0.1s", method: :get %>
+        <% end %>
+        <% if can? :view, :discounts_code %>
+        <li>
+          <%= link_to t("admin.discount"), admin_discount_codes_path,
+            class: "smoothScroll animated fadeInLeft wow",
+            "data-wow-delay": "0.1s", method: :get %>
         </li>
-        <li><%= link_to t("admin.discount"), admin_discount_codes_path,
-          class: "smoothScroll animated fadeInLeft wow",
-          "data-wow-delay": "0.1s", method: :get %>
-        </li>
+        <% end %>
       </ul>
     </li>
   <% end  %>
-  <% if can? :view, Order, OrderDish, OrderCombo %>
+  <% if can? :update, :order %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.orderr" %>

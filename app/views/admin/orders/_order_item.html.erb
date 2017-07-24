@@ -7,7 +7,8 @@
     <th><%= t "staff_order.quantity" %></th>
     <th><%= t "admin.combos.combo.discount" %></th>
     <th><%= t "staff_order.subtotal" %></th>
-    <th colspan="2" class="text-center"><%= t "admin.orders.order.action" %></th>
+    <th colspan="2" class="text-center"><%= t "admin.orders.order.action" %>
+    </th>
   </tr>
   </thead>
   <%= render "admin/orders/order_item_current", order: order %>
@@ -16,21 +17,23 @@
   <tbody>
     <tr>
       <td class="btn-add-dish-row">
-        <h4 class="dp-inline">
-          <div class="btn btn-add-dish" id="btn-add-dish">
-            <%= t "staff_order.add_dish" %></div>
-         </h4>
-        <h4 class="dp-inline">
-          <div class="btn btn-add-dish" id="btn-add-combo">
-            <%= t "staff_order.add_combo" %></div>
-        </h4>
-        <td colspan="6"></td>
-        <td>
+        <% if can? :manage, :order %>
           <h4 class="dp-inline">
-            <div class="btn btn-add-dish" id="btn-save-order">
-              <%= t "order_detail.save" %></div>
+            <div class="btn btn-add-dish" id="btn-add-dish">
+              <%= t "staff_order.add_dish" %></div>
           </h4>
-        </td>
+          <h4 class="dp-inline">
+            <div class="btn btn-add-dish" id="btn-add-combo">
+              <%= t "staff_order.add_combo" %></div>
+          </h4>
+          <td colspan="6"></td>
+          <td>
+            <h4 class="dp-inline">
+              <div class="btn btn-add-dish" id="btn-save-order">
+                <%= t "order_detail.save" %></div>
+            </h4>
+          </td>
+        <% end %>
       </td>
     </tr>
   </tbody>
