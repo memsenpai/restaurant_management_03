@@ -29,6 +29,15 @@ RSpec.describe Order, type: :model do
   context "method" do
     it{expect(order.subtotal).to_not eq 0}
     it{expect(order.original_price).to_not eq 0}
+    it{expect(order.total_item).to_not eq 0}
+    it do
+      order.status = "uncheck"
+      expect(order.change_status).to_not eq nil
+      order.status = "approved"
+      expect(order.change_status).to_not eq nil
+      order.status = "serving"
+      expect(order.change_status).to_not eq nil
+    end
   end
 
 end

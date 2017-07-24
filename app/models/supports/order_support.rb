@@ -11,9 +11,13 @@ module Supports
       search.result.page(param[:page]).per_page Settings.max_result
     end
 
+    def tables
+      Table.all
+    end
+
     def search
       search = Order.ransack param[:q]
-      search.sorts = %w(code) if search.sorts.empty?
+      search.sorts = %w(status) if search.sorts.empty?
       search
     end
 

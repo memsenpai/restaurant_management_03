@@ -13,8 +13,7 @@ class Table < ApplicationRecord
 
   scope :find_table, find_table
 
-  def is_available?
-    now = Time.current
+  def is_available? now = Time.current
     time_length = 2.hours
     time_in_before = (now + time_length).strftime("%H:%M")
     time_in_after = (now - time_length).strftime("%H:%M")

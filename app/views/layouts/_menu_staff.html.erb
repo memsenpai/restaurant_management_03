@@ -10,41 +10,41 @@
       </ul>
     </li>
   <% end  %>
-  <% if can? :view, :combos, :dish, :promo, :discounts_code, :categories %>
+  <% if can? :view, Combo, Dish, Promo, DiscountCode, Category %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.manage" %>
         <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <% if can? :view, :combos %>
+        <% if can? :view, Combo %>
           <li>
             <%= link_to t("admin.combo"), admin_combos_path,
               class: "smoothScroll animated fadeInLeft wow",
               "data-wow-delay": "0.1s", method: :get %>
           </li>
         <% end %>
-        <% if can? :view, :categories %>
+        <% if can? :view, Category %>
         <li>
           <%= link_to t("admin.category"), admin_categories_path,
             class: "smoothScroll animated fadeInLeft wow",
             "data-wow-delay": "0.1s", method: :get %>
         </li>
         <% end %>
-        <% if can? :view, :dish %>
+        <% if can? :view, Dish %>
         <li>
           <%= link_to t("admin.dish"), admin_dishes_path,
             class: "smoothScroll animated fadeInLeft wow",
             "data-wow-delay": "0.1s", method: :get %>
         </li>
         <% end %>
-        <% if can? :view, :promo %>
+        <% if can? :view, Promo %>
         <li>
           <%= link_to t("admin.promo"), admin_promos_path,
             class: "smoothScroll animated fadeInLeft wow",
             "data-wow-delay": "0.1s", method: :get %>
         </li>
         <% end %>
-        <% if can? :view, :discounts_code %>
+        <% if can? :view, DiscountCode %>
         <li>
           <%= link_to t("admin.discount"), admin_discount_codes_path,
             class: "smoothScroll animated fadeInLeft wow",
@@ -54,7 +54,7 @@
       </ul>
     </li>
   <% end  %>
-  <% if can? :update, :order %>
+  <% if can? :update, Order %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.orderr" %>

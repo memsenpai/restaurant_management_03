@@ -132,7 +132,8 @@
           <%= t "order.want_to_book" %>
         </h4>
         <%= form_for :order, url: orders_path, method: :post do |f| %>
-          <%= f.submit t("order.create_new_order"), class: "btn btn-info inline" %>
+          <%= f.submit t("order.create_new_order"),
+            class: "btn btn-info inline" %>
         <% end %>
       </div>
     <% end %>
@@ -144,7 +145,8 @@
     </div>
     <div class="main-content col-sm-12" id="cart-content">
       <div class="shopping-cart" id="cart-content-list">
-        <%= render "ordering_cart", order_dishes: @order_dishes, order_combos: @order_combos %>
+        <%= render "ordering_cart", order_dishes: @order_dishes,
+          order_combos: @order_combos %>
       </div>
     </div>
   </div>

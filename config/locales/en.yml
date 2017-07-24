@@ -1,5 +1,5 @@
 en:
-  new_order: New Order
+  new_order: "Has something change"
   time_in_email: "Time"
   name_promo: "Name"
   id: ID
@@ -92,6 +92,7 @@ en:
       delete_fail: Failed. Something's wrong.
     order:
       find_fail: Order not found.
+      create_fail: Check again!
       check_your_order: Check your order!
       create_success: Created order successfully!
       update_success: Updated order successfully!
@@ -336,7 +337,10 @@ en:
         time: Time
         status: "Status:"
         approved: Approved
-        canceled: Pending
+        uncheck: Uncheck
+        declined: Declined
+        serving: Serving
+        done: Done
       order:
         search: Search
         input_keyword: Search for order code or customer name
