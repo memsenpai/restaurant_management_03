@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721015913) do
+ActiveRecord::Schema.define(version: 20170721050323) do
 
   create_table "bill_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "id_item"
@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(version: 20170721015913) do
     t.string   "code"
     t.date     "day"
     t.string   "time_in"
-    t.boolean  "is_confirm",  default: false
     t.integer  "discount",    default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "status",      default: 0
   end
 
   create_table "promos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -11,7 +11,7 @@
       <p class="status">
         <%= t "order.order_status" %>
         <% if current_order.code %>
-          <% if current_order.is_confirm? %>
+          <% if current_order.approved? %>
             <span>
               <%= t "order.approver" %>
             </span>
@@ -20,7 +20,7 @@
             </p>
           <% else %>
             <span>
-              <%= t "order.order_completed" %>
+              <%= t "status.#{current_order.status}" %>
             </span>
             <p>
               <%= t "order.thank_for_order" %>
@@ -73,7 +73,7 @@
                 <%= t "order.awesomecity_approved" %>
               </p>
             </div>
-            <% if current_order.is_confirm? %>
+            <% if current_order.approved? %>
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>

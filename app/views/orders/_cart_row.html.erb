@@ -25,7 +25,7 @@
             <%= f.hidden_field :id, value: order_dish.id %>
           </div>
           <div class="col-xs-8 text-left">
-            <% unless current_order.is_confirm? %>
+            <% if current_order.uncheck? %>
               <div class="btn-group">
                 <div class="btn btn-primary button-style update-dish-quantity-in-cart"
                   data-id="<%= order_dish.id %>">

@@ -31,7 +31,12 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      @orders_support = Supports::OrderSupport.new (
+        order: Order.all,
+        param: params
+      )
+    end
 
     def update
       if order.update_attributes order_params
@@ -57,7 +62,7 @@ module Admin
     attr_reader :order
 
     def order_params
-      params.require(:order).permit :discount, :day, :time_in, :is_confirm,
+      params.require(:order).permit :discount, :day, :time_in, :status,
         customer_attributes: %i(id name).freeze,
         table_attributes: %i(id capacity).freeze
     end

@@ -1,5 +1,8 @@
 class Order < ApplicationRecord
   include Encode
+
+  enum status: %i(uncheck approved declined serving done).freeze
+
   belongs_to :customer
   belongs_to :table, inverse_of: :orders
   delegate :capacity, to: :table

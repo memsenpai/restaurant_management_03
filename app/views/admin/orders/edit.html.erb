@@ -4,7 +4,7 @@
     <h1><%= t ".title" %></h1><br>
     <div class="bloc col-xs-12">
       <div class="form-dish form-order">
-        <%= render "form", order: @order %>
+        <%= render "form", order: @order, statuses: @orders_support.statuses %>
       </div>
     </div>
   </div>

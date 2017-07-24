@@ -448,6 +448,7 @@ en:
       search: Search
       input_keyword: Search for combo name or description
   order:
+    status: "Select a status"
     empty_item: "There are no items in your shopping cart.  Please go menu and add some items to your cart."
     delete: Delete
     delete_alert: ! "Are you sure you wish to delete the product %{product_name} from your cart?"
@@ -627,6 +628,12 @@ en:
     new_dish: Choose a dish
     new_combo: Choose a combo
     save: Save
+  status:
+    uncheck: "Uncheck"
+    approved: "Approved"
+    declined: "Declined"
+    serving: "Serving"
+    done: "Done"
   staff_role:
     administrator: Administrator
     chef: Chef

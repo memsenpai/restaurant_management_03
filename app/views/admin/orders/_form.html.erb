@@ -25,8 +25,9 @@
   <br>
 
   <%= f.label :is_confirm, t(".status"), class:"form-label-3" %>
-  <%= f.radio_button :is_confirm, "true", checked: true %> <%= t(".approved") %>
-  <%= f.radio_button :is_confirm, "false" %> <%= t(".canceled") %>
+  <%= f.select :status, statuses,
+    {include_blank: t("order.status")}, id: "status_field",
+    class: "form-control", required: true %>
 
   <br><br><br>
   <%= f.submit t("button.clear"), type: :reset,
