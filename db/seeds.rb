@@ -920,11 +920,11 @@ ComboDish.create!([
 ])
 
 Staff.create! name: "admin", email: "admin1@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 1
+  password: "123123", staff_role: 1
 Staff.create! name: "admin2", email: "admin2@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 2
+  password: "123123", staff_role: 2
 Staff.create! name: "admin3", email: "admin3@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 3
+  password: "123123", staff_role: 3
 Customer.create! name: "guest", email: "guest@123.com",
   phone_num: "01213218307"
 Customer.create! name: "Foo", email: "guest2@123.com",

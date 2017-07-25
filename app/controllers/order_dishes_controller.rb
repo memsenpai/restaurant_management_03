@@ -16,12 +16,12 @@ class OrderDishesController < ApplicationController
 
   def update
     order_dish.update_attributes order_dish_params
-    GetOrderDetails.new(order).perform
+    OrderDetails.new(order).perform
   end
 
   def destroy
     order_dish.destroy
-    GetOrderDetails.new(order).perform
+    OrderDetails.new(order).perform
   end
 
   private

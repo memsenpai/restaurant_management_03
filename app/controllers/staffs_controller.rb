@@ -1,11 +1,7 @@
 class StaffsController < ApplicationController
   before_action :authenticate_staff!
 
-  def show
-    return if current_staff
-    flash[:danger] = t "admin.error_log"
-    redirect_to root_url
-  end
+  def show; end
 
   def edit; end
 
@@ -21,8 +17,6 @@ class StaffsController < ApplicationController
 
   private
 
-  attr_reader :staff
-
   def staff_params
     params.require(:staff).permit :name,
       :email, :old_password, :password, :password_confirmation
@@ -33,7 +27,7 @@ class StaffsController < ApplicationController
       case staff_params[:password]
       when ""
         %i(name email).freeze
-      when admin_params[:password_confirmation]
+      when staff_params[:password_confirmation]
         %i(name email password).freeze
       end
     params.require(:staff).permit selected_params
