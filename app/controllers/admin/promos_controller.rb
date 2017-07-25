@@ -1,10 +1,10 @@
 module Admin
   class PromosController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_promo, except: %i(index new create)
     before_action :load_dishes, except: %i(index update destroy)
 
-    authorize_resource
+    load_and_authorize_resource
+    skip_load_resource only: %i(index new create)
 
     def index
       @promos = Supports::PromoSupport.new promos: Promo.all, param: params
@@ -52,14 +52,6 @@ module Admin
     private
 
     attr_reader :promo
-
-    def find_promo
-      @promo = Promo.find_by id: params[:id]
-
-      return if promo
-      flash[:danger] = t "promo.not_found"
-      redirect_to admin_promo_path
-    end
 
     def promo_params
       params.require(:promo).permit Promo::PERMIT_ATTR

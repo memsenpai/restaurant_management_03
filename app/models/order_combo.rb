@@ -38,6 +38,8 @@ class OrderCombo < ApplicationRecord
 
   def describe
     table = order.table
+
+    return unless table
     {dish: combo.name, table: table.code, status: status}
   end
 end

@@ -1,8 +1,10 @@
 module Admin
   class CombosController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_combo, except: %i(index new create)
     before_action :load_dishes, only: %i(new edit)
+
+    load_and_authorize_resource
+    skip_load_resource only: %i(index new create)
 
     def index
       @combos = Supports::ComboSupport.new combo: Combo.all, param: params
@@ -56,13 +58,6 @@ module Admin
     def combo_params
       params.require(:combo).permit :name, :discount,
         :description, :image, dish_ids: []
-    end
-
-    def find_combo
-      @combo = Combo.find_by id: params[:id]
-      return if combo
-      flash[:danger] = t "flash.combo.find_fail"
-      redirect_to admin_combos_path
     end
 
     def load_dishes

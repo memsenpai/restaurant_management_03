@@ -1,10 +1,10 @@
 module Admin
   class DishesController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_dish, except: %i(index new create)
     before_action :load_category, only: %i(new edit)
 
     load_and_authorize_resource
+    skip_load_resource only: %i(index new create)
 
     def index
       @dishes_support = Supports::AdminDishSupport.new dish: Dish.all,
@@ -56,13 +56,6 @@ module Admin
     def dish_params
       params.require(:dish).permit :name, :price, :description, :image,
         :is_available, category_ids: []
-    end
-
-    def find_dish
-      @dish = Dish.find_by id: params[:id]
-      return if dish
-      flash[:danger] = t "flash.dish.find_fail"
-      redirect_to admin_dishes_path
     end
 
     def load_category

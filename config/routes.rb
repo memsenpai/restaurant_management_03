@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resources :order_combos, except: %i(show index)
     end
     resources :discount_codes
-    resources :users, except: %i(show)
+    resources :staffs, except: %i(show)
     resources :promos
     resources :chef
     resources :bills

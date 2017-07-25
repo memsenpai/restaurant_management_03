@@ -2,7 +2,7 @@ module Admin
   class ChefController < ApplicationController
     before_action :authenticate_staff!
 
-    authorize_resource class: :chef
+    load_and_authorize_resource class: :chef
 
     def index
       @needing_dishes = OrderDish.needing

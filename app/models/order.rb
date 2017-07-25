@@ -7,8 +7,8 @@ class Order < ApplicationRecord
   belongs_to :table, inverse_of: :orders
   delegate :capacity, to: :table
 
-  has_many :order_dishes
-  has_many :order_combos
+  has_many :order_dishes, dependent: :destroy
+  has_many :order_combos, dependent: :destroy
   has_one :bill, foreign_key: "code"
 
   delegate :code, to: :customer, prefix: :customer
@@ -18,12 +18,19 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
 
+  after_update_commit{MessageBroadcastJob.perform_now self}
+
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum
   end
 
   def original_price
     original_combos_map.sum + original_dishes_map.sum
+  end
+
+  def total_item
+    order_combos.map(&:quantity).sum +
+      order_dishes.map(&:quantity).sum
   end
 
   private

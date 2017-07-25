@@ -18,7 +18,7 @@ module Supports
     end
 
     def statuses
-       Order.statuses.map {|key, value| [key.humanize, key]}
+      Order.statuses.map{|key, _| [key.humanize, key]}
     end
   end
 end

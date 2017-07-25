@@ -2,9 +2,9 @@ module Admin
   class OrdersController < ApplicationController
     before_action :authenticate_staff!
     before_action :check_for_cancel
-    before_action :find_order, only: %i(edit update destroy)
 
     load_and_authorize_resource
+    skip_load_resource except: %i(edit update destroy)
 
     def index
       @orders_support = Supports::OrderSupport.new order: Order.all,
@@ -32,10 +32,8 @@ module Admin
     end
 
     def edit
-      @orders_support = Supports::OrderSupport.new (
-        order: Order.all,
+      @orders_support = Supports::OrderSupport.new order: Order.all,
         param: params
-      )
     end
 
     def update
@@ -54,7 +52,6 @@ module Admin
         flash[:danger] = t "flash.order.delete_fail"
       end
       respond_html_json
-      redirect_to :back
     end
 
     private
@@ -69,11 +66,6 @@ module Admin
 
     def check_for_cancel
       redirect_to admin_orders_path if params[:commit] == %w(Cancel)
-    end
-
-    def find_order
-      @order = Order.find_by id: params[:id]
-      redirect_to admin_orders_path unless order
     end
 
     def respond_html_json
