@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe "pages/home", :type => :view do
   before(:each) do
-    @dish = Dish.create(id: 1,
-      name: "Food name", description: "About this food", image: "food.jpg")
+    @dish = Dish.create!(name: "Food with apple", description: "About this food",
+      image: "google.com", price: 1, is_available: false)
     @dishes = Array.new(5, @dish)
-    @combo = Combo.create(id: 2, name: "Combo name",
+    @combo = Combo.create(name: "Combo name",
       description: "About this combo",
       image: "combo.jpg", discount: 10)
     @combos = Array.new(3, @combo)
@@ -14,8 +14,8 @@ RSpec.describe "pages/home", :type => :view do
   it "have right view" do
     render
     expect(rendered).to have_content "Awesomecity"
-    expect(rendered).to have_content "Food name"
-    expect(rendered).to have_content "Combo name"
+    expect(rendered).to have_content "Great food"
+    expect(rendered).to have_content "Tastes good"
     expect(rendered).to have_link "View menu", href: dishes_path
     expect(rendered).to have_link "Book table", href: tables_path
   end

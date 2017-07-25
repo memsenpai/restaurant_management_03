@@ -1,13 +1,13 @@
 require "rails_helper"
 
 feature "Admin::Categories" do
-  admin = FactoryGirl.create :admin
+  staff = FactoryGirl.create :staff
   category = FactoryGirl.create :category
 
   before :each do
     visit login_path
-    fill_in :session_email, with: admin.email
-    fill_in :session_password, with: "123456"
+    fill_in :staff_email, with: staff.email
+    fill_in :staff_password, with: "123456"
     click_button "Login"
     visit admin_categories_path
   end
