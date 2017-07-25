@@ -56,7 +56,7 @@
     </li>
   <% end %>
   <% if can? :manage, :all %>
-    <li><%= link_to t("admin.user"), admin_users_path,
+    <li><%= link_to t("admin.user"), admin_staffs_path,
       class: "smoothScroll animated fadeInLeft wow",
       "data-wow-delay": "0.1s", method: :get %>
     </li>

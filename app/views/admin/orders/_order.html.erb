@@ -76,7 +76,7 @@
     <%= paginate order.orders_search, remote: true %>
   </div>
   <br>
-  <table class="table-order table">
+  <table class="table-order table list-order">
     <thead>
       <tr>
         <th class="left width-90">
@@ -107,7 +107,7 @@
         <th class="actions" colspan="2"><%= t ".action" %></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="list-orders">
       <% if order.orders_search.any? %>
         <% order.orders_search.each do |order| %>
           <% if order.day %>

@@ -4,11 +4,11 @@
     <h1><%= t "admin.admin_management" %></h1>
     <br>
     <div class="bloc col-xs-6 col-xs-offset-3">
-      <h4><%= t "admin.change_role" %>: <%= @user.email %></h4>
+      <h4><%= t "admin.change_role" %>: <%= @staff.email %></h4>
       <h4><%= t "admin.current_role" %>:
-        <span class="badge"><%= @user.role %></span>
+        <span class="badge"><%= @staff.role %></span>
       </h4>
-      <%= form_for @user, url: admin_user_path(@user), method: :put do |f| %>
+      <%= form_for @staff, url: admin_staff_path(@staff), method: :put do |f| %>
         <%= f.select :staff_role, Staff.roles_select,
           {include_blank: t("admin.roles")}, id:"role_field",
           class: "form-control", required: true %>

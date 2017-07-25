@@ -144,7 +144,7 @@ $(document).on('click', '.dishes-item-add-to-cart', function() {
 });
 
 $(document).on('click', '.btn-add-to-cart-combo', function() {
-  var combo = $(this).parent().attr('combo-id')
+  var combo = $(this).parent().attr('combo-id');
   var url = '/order_combos';
   $.ajax({
     type:'POST',
