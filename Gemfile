@@ -26,6 +26,7 @@ gem "redis"
 gem "chartkick"
 gem "devise"
 gem "devise_custom_authenticatable"
+gem "i18n-js"
 
 group :development, :test do
   gem "byebug", platform: :mri
