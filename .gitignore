@@ -36,3 +36,6 @@ npm-debug.log
 node_modules/*
 coverage
 public/assets/*
+/public/javascripts/translations.js
+public/javascripts/en.js
+public/javascripts/i18n.js

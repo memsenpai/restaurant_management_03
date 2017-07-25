@@ -8,7 +8,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-
+  config.middleware.use I18n::JS::Middleware
   # Show full error reports.
   config.consider_all_requests_local = true
 
