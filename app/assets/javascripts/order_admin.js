@@ -1,12 +1,12 @@
 $(document).on('click','#btn-add-dish',function(){
-  var order_id = $('.order-id').text();
+  var order_id = $('.order-id').attr('data-order-id');
   $.get('/admin/orders/'+ order_id +'/order_dishes/new', function(data){
     $('#new-dish-row').append(data);
   });
 });
 
 $(document).on('click','#btn-add-combo',function(){
-  var order_id = $('.order-id').text();
+  var order_id = $('.order-id').attr('data-order-id');
   $.get('/admin/orders/'+ order_id +'/order_combos/new', function(data){
     $('#new-dish-row').append(data);
   });
@@ -35,7 +35,7 @@ function addCombo(index, length) {
     var element = $('#new-dish-row .new-combo-row')[index];
     var combo_id = $(element).find('#new_order_combo :selected').val();
     var combo_quantity = $(element).find('#new_order_combo_quantity').val();
-    var order_id = $('.order-id').text();
+    var order_id = $('.order-id').attr('data-order-id');
     var link_create_order_combo = '/admin/orders/'+ order_id +'/order_combos';
     $.ajax({
       type:'POST',
@@ -62,7 +62,7 @@ function addDish(index, length) {
     var element = $('#new-dish-row .new-dish-row')[index];
     var dish_id = $(element).find('#new_order_dish :selected').val();
     var dish_quantity = $(element).find('#new_order_dish_quantity').val();
-    var order_id = $('.order-id').text();
+    var order_id = $('.order-id').attr('data-order-id');
     var link_create_order_dish = '/admin/orders/'+ order_id +'/order_dishes';
     $.ajax({
       type:'POST',

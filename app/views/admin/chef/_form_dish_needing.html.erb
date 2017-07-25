@@ -4,8 +4,9 @@
     <td><%= dish.quantity %></td>
     <td><%= dish.dish.class%></td>
     <td>
-      <%= form_for dish, url: admin_order_order_dish_path(dish.order, dish)  do |f| %>
-        <%= f.hidden_field :dish_id, value: dish.id %>
+      <%= form_for dish,
+        url: admin_order_order_dish_path(dish.order_id, dish) do |f| %>
+        <%= f.hidden_field :dish_id, value: dish.dish_id %>
         <%= f.hidden_field :status,
           value: :cooking,
           class: "btn btn-primary" %>

@@ -10,7 +10,7 @@ module ApplicationCable
 
     def find_verified_user
       current_user ||=
-        Staff.find_by id: cookies[:staff_id]
+        Staff.find_by id: cookies.signed[:staff_id]
       reject_unauthorized_connection unless current_user
     end
   end
