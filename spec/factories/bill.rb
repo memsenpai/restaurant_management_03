@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bill do
-    guest {FactoryGirl.create :guest}
+    customer {FactoryGirl.create :customer}
     order {FactoryGirl.create :order}
     discount {Faker::Number.between(0, 100)}
   end

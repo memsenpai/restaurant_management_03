@@ -126,8 +126,6 @@ feature "filter combos" do
 
     expect(page).not_to have_content "Combo food 1"
     expect(page).not_to have_content "Combo bocom"
-    expect(page).to have_content "Combo set B1"
-    expect(page).to have_content "Combo set A2"
-
+    expect(page).to have_content "Booking Combo"
   end
 end
