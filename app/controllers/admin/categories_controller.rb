@@ -1,10 +1,10 @@
 module Admin
   class CategoriesController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_category, except: %i(index new create)
     before_action :load_dishes, only: %i(new edit)
 
-    authorize_resource class: :categories
+    load_and_authorize_resource
+    skip_load_resource only: %i(index new create)
 
     def index
       @categories = Supports::CategorySupport.new categories: Category.all,
@@ -61,14 +61,6 @@ module Admin
 
     def category_params
       params.require(:category).permit :name, :description, dish_ids: []
-    end
-
-    def find_category
-      @category = Category.find_by id: params[:id]
-
-      return if category
-      flash[:danger] = t "flash.category.find_fail"
-      redirect_to admin_categories_path
     end
 
     def load_dishes

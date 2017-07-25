@@ -1,9 +1,9 @@
 module Admin
-  class UsersController < ApplicationController
+  class StaffsController < ApplicationController
     before_action :authenticate_staff!
-    before_action :find_user, only: %i(edit update destroy)
 
-    authorize_resource class: :admin
+    load_and_authorize_resource
+    skip_load_resource except: %i(edit update destroy)
 
     def index
       @list_staff =
@@ -15,10 +15,10 @@ module Admin
     end
 
     def create
-      @user = Staff.new new_params
-      if user.save
+      @staff = Staff.new new_params
+      if staff.save
         flash[:success] = t "admin.success"
-        redirect_to admin_users_path
+        redirect_to admin_staffs_path
       else
         flash[:danger] = t "staff_order.something_wrong"
         redirect_to :back
@@ -28,35 +28,27 @@ module Admin
     def edit; end
 
     def update
-      if user.update_attributes update_params
+      if staff.update_attributes update_params
         flash[:success] = t "admin.success"
-        redirect_to admin_users_path
+        redirect_to admin_staffs_path
       else
         flash[:danger] = t "staff_order.something_wrong"
-        redirect_to edit_admin_user_path user
+        redirect_to edit_admin_staff_path staff
       end
     end
 
     def destroy
-      if user.id != current_staff.id && user.destroy
+      if staff.id != current_staff.id && staff.destroy
         flash[:success] = t "admin.success"
       else
         flash[:danger] = t "staff_order.something_wrong"
       end
-      redirect_to admin_users_path
+      redirect_to admin_staffs_path
     end
 
     private
 
-    attr_reader :user
-
-    def find_user
-      @user = Staff.find_by id: params[:id]
-
-      return if user
-      flash[:danger] = t "admin.not_exist"
-      redirect_to admin_users_path
-    end
+    attr_reader :staff
 
     def new_params
       params.require(:staff).permit :email,

@@ -27,7 +27,7 @@ module Admin
       params_update = order_dish_params
       if order_dish.update_attributes params_update
         flash[:success] = t "staff_order.success_update"
-        redirect_to admin_order_path support.load_data[:order]
+        redirect_to :back
       else
         redirect_to edit_admin_order_order_dish_path
       end

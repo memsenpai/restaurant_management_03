@@ -16,7 +16,7 @@ module Admin
     end
 
     def create
-      order = support.load_data[:order]
+      @order = support.load_data[:order]
       order.order_combos.new order_combo_params
       save_order
     end
@@ -47,7 +47,7 @@ module Admin
 
     private
 
-    attr_reader :order_combo, :support
+    attr_reader :order_combo, :support, :order
 
     def order_combo_params
       params.require(:order_combo).permit :combo_id, :quantity, :status

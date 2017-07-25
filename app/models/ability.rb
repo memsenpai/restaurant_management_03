@@ -2,8 +2,9 @@ class Ability
   include CanCan::Ability
   def initialize arg
     @user = arg || Staff.new
-    alias_action :edit, :update, to: :modify
-    alias_action :index, :show, :edit, to: :view
+    alias_action :index, :show, :edit, :update, to: :modify
+    alias_action :index, :show, to: :view
+    alias_action :update, to: :change
 
     can :manage, [Staff]
     can :manage, [Order]
@@ -15,21 +16,15 @@ class Ability
 
   attr_reader :user
 
-  def list_receptionist
-    [
-      Order, OrderDish, OrderCombo,
-      Combo, Dish, DiscountCode, Category, :categories
-    ]
-  end
-
   def case_role
     case user.staff_role
     when "administrator"
       can :manage, :all
     when "receptionist"
-      can :manage, list_receptionist
+      can :change, [Order, OrderDish, OrderCombo]
+      can :view, [Combo, Dish, DiscountCode, Category, Promo]
     when "chef"
-      can :view, :chef
+      can :view, Chef
       can :modify, [Order, OrderDish, OrderCombo]
     end
   end

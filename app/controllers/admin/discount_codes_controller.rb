@@ -3,6 +3,9 @@ module Admin
     before_action :load_support
     before_action :authenticate_staff!
 
+    load_and_authorize_resource
+    skip_load_resource only: :create
+
     def index; end
 
     def create
@@ -14,16 +17,14 @@ module Admin
     end
 
     def update
-      discount = find_discount_by_id
-      unless discount.update_attributes discount_params
+      unless discount_code.update_attributes discount_params
         flash[:danger] = t "staff_order.something_wrong"
       end
       respond_html "_item_discount_code"
     end
 
     def destroy
-      discount = find_discount_by_id
-      if discount && discount.destroy
+      if discount_code && discount_code.destroy
         redirect_to :back
       else
         flash[:danger] = t "staff_order.something_wrong"
@@ -32,7 +33,7 @@ module Admin
 
     private
 
-    attr_reader :support
+    attr_reader :support, :discount_code
 
     def discount_params
       params.require(:discount_code).permit :discount, :status, :code
@@ -41,15 +42,6 @@ module Admin
     def load_support
       @support = Supports::DiscountCodeSupport.new discount: DiscountCode.all,
         param: params
-    end
-
-    def find_discount_by_id
-      discount = DiscountCode.find_by id: params[:id]
-      if discount
-        discount
-      else
-        flash[:danger] = t "staff_order.something_wrong"
-      end
     end
 
     def respond_html link
