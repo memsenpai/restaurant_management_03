@@ -10,7 +10,7 @@ describe CustomersController do
       post :new, params:
         {guest: {name: "A", email: "a@a.xxx", phone_num: "0977903921"}},
         format: :json
-      expect(response).to have_http_status 204
+      expect(response).to have_http_status :no_content
     end
   end
 end

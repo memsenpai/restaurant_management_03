@@ -8,7 +8,7 @@ describe CombosController do
   describe "GET #index" do
     it "index" do
       get :index
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
   end
 
@@ -16,7 +16,7 @@ describe CombosController do
     Combo.limit(10).each do |combo|
       it "show combo: #{combo.name}" do
         get :show, params: {id: combo.id}
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
     end
   end
