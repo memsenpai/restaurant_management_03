@@ -32,6 +32,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.6)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
     activejob (5.0.4)
       activesupport (= 5.0.4)
       globalid (>= 0.3.6)
@@ -81,6 +86,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    case_transform (0.2)
+      activesupport
     chartkick (2.2.4)
     code_analyzer (0.4.7)
       sexp_processor
@@ -165,6 +172,7 @@ GEM
       railties (>= 3.2.16)
     json (2.1.0)
     json (2.1.0-java)
+    jsonapi-renderer (0.1.3)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -329,6 +337,10 @@ GEM
       sass (~> 3.4.20)
     scss_lint_reporter_checkstyle (0.2.0)
     sexp_processor (4.9.0)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -391,6 +403,7 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  active_model_serializers
   bcrypt
   bootstrap-kaminari-views
   bootstrap-sass (= 3.3.6)
@@ -434,6 +447,7 @@ DEPENDENCIES
   scss_lint
   scss_lint_reporter_checkstyle
   shoulda-matchers!
+  simple_token_authentication
   simplecov
   social-share-button
   spring

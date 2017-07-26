@@ -1,6 +1,6 @@
 Staff.delete_all
 Staff.create! name: "admin", email: "admin@123.com",
-  password: "123123"
+  password: "123123", authentication_token: "supersecrettoken1"
 
 Category.create! ([
   {name: "Main",
@@ -920,13 +920,16 @@ ComboDish.create!([
 ])
 
 Staff.create! name: "admin", email: "admin1@123.com",
-  password: "123123", staff_role: 1
+  password: "123123", encrypted_password: "123123", staff_role: 1,
+  authentication_token: "supersecrettoken2"
 Staff.create! name: "admin2", email: "admin2@123.com",
-  password: "123123", staff_role: 2
+  password: "123123", encrypted_password: "123123", staff_role: 2,
+  authentication_token: "supersecrettoken3"
 Staff.create! name: "admin3", email: "admin3@123.com",
-  password: "123123", staff_role: 3
+  password: "123123", encrypted_password: "123123", staff_role: 3,
+  authentication_token: "supersecrettoken4"
 Customer.create! name: "guest", email: "guest@123.com",
-  phone_num: "01213218307"
+  phone_num: "01213218307", code: "guest1231"
 Customer.create! name: "Foo", email: "guest2@123.com",
   phone_num: "01213218307"
 Customer.create! name: "Hien", email: "hienvu@123.com",

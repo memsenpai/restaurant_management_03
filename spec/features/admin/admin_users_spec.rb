@@ -8,7 +8,7 @@ feature "Admin::Users" do
     fill_in :staff_email, with: staff.email
     fill_in :staff_password, with: "123456"
     click_button "Login"
-    visit admin_users_path
+    visit admin_staffs_path
   end
 
   scenario "visit to Users" do
