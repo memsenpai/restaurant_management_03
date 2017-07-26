@@ -72,10 +72,8 @@ class Order < ApplicationRecord
     end
   end
 
-  private
-
   def validate_table
-    datetime = DateTime.parse(day.to_s<< " " << time_in.to_s).in_time_zone.utc
+    datetime = DateTime.parse(day.to_s << " " << time_in.to_s).in_time_zone.utc
     errors.add :table unless Table.find_by(id: table_id).is_available? datetime
   end
 end

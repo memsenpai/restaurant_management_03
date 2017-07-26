@@ -1,0 +1,4 @@
+en:
+  api:
+    missing_params: "Missing params"
+    invalid_token: "Invalid token, email, or combination"

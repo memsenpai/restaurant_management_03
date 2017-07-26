@@ -15,4 +15,17 @@ RSpec.describe Staff, type: :model do
   describe "valid custom" do
     it{expect(staff.valid_for_custom_authentication? "123456").to eq true}
   end
+
+  it "auto generate auth token" do
+    staff.save
+    expect(staff.authentication_token).to_not be_empty
+  end
+
+  it "generate new auth token" do
+    staff.save
+    old_token = staff.authentication_token
+    staff.generate_new_token
+    new_token = staff.authentication_token
+    expect(old_token).to_not eq(new_token)
+  end
 end
