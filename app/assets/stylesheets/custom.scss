@@ -1764,9 +1764,9 @@ body {
   }
 
   .label-green,
-  .label-red {
+  .label-red,
+  .label-blue {
     border-radius: 9px;
-    color: $white;
     display: inline-block;
     font-weight: normal;
     line-height: 15px;
@@ -1783,6 +1783,38 @@ body {
 
   .label-red {
     background-color: $label-red;
+  }
+
+  .label-blue {
+    background-color: $label-blue;
+  }
+
+  .animated {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .bounce {
+    animation-name: bounce;
+  }
+
+  hr {
+    left: -300px;
+    position: relative;
+    top: 92px;
+    width: 200px;
   }
 
   a {

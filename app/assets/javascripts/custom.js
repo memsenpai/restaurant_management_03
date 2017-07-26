@@ -1,5 +1,5 @@
 /*global WOW:true*/
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   $('.datepicker2').datepicker({
     dateFormat: 'yy-mm-dd',
     defaultDate: 0,

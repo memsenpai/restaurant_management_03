@@ -16,8 +16,7 @@ class TablesController < ApplicationController
 
   def load_info_table
     timein =
-      DateTime.parse(table_params[:orders_time_in_eq]).in_time_zone -
-        7.hours
+      DateTime.parse(table_params[:orders_time_in_eq]).in_time_zone.utc
     hour = 2.hours
     {
       time_in_before: (timein + hour).strftime("%H:%M"),

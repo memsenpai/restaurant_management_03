@@ -7,8 +7,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    params[:customer_id] = session[:customer]["id"]
-    check_already_order
+    session_customer = session[:customer]
+    return unless session_customer
+    params[:customer_id] = session_customer["id"]
+    renew_order
   end
 
   def show
@@ -30,23 +32,22 @@ class OrdersController < ApplicationController
     params.permit :table_id, :day, :time_in, :customer_id
   end
 
-  def check_already_order
-    if current_order.table_id
-      session.delete :order_id if current_order.code.present?
-      redirect_to cart_path
-    else
-      @order = current_order
-      order.save
-      save_order
-    end
+  def renew_order
+    session.delete :order_id if current_order.code.present?
+    @order = Order.new order_params
+    save_order
   end
 
   def save_order
-    session[:order_id] = order.id
-    order.update_attributes order_params
-    flash[:success] = t "flash.order.create_success"
-    UserCreateOrderNotifierMailer.send_email(order).deliver
-    render json: {path: cart_path}
+    if order.save
+      session[:order_id] = order.id
+      flash[:success] = t "flash.order.create_success"
+      UserCreateOrderNotifierMailer.send_email(order).deliver
+      render json: {path: cart_path}
+    else
+      flash[:danger] = t "flash.order.create_fail"
+      render "tables/index"
+    end
   end
 
   def check_order order, input

@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   include Encode
 
-  enum status: %i(uncheck approved declined serving done).freeze
+  enum status: %i(uncheck approved serving done declined).freeze
 
   belongs_to :customer
   belongs_to :table, inverse_of: :orders
@@ -12,6 +12,8 @@ class Order < ApplicationRecord
   has_one :bill, foreign_key: "code"
 
   delegate :code, to: :customer, prefix: :customer
+
+  validate :validate_table
 
   after_save :generate_code
 
@@ -31,6 +33,17 @@ class Order < ApplicationRecord
   def total_item
     order_combos.map(&:quantity).sum +
       order_dishes.map(&:quantity).sum
+  end
+
+  def change_status
+    case status
+    when "uncheck", "declined"
+      "approved"
+    when "approved"
+      "serving"
+    when "serving"
+      "done"
+    end
   end
 
   private
@@ -57,5 +70,12 @@ class Order < ApplicationRecord
     order_dishes.map do |order_dish|
       order_dish.valid? ? order_dish.total_price : 0
     end
+  end
+
+  private
+
+  def validate_table
+    datetime = DateTime.parse(day.to_s<< " " << time_in.to_s).in_time_zone.utc
+    errors.add :table unless Table.find_by(id: table_id).is_available? datetime
   end
 end

@@ -5,7 +5,8 @@
     <br>
     <div class="bloc col-xs-12" id="show-order">
       <div id="orders-index" class="search-form col-xs-12">
-        <%= render "order", order: @orders_support, tables: @tables %>
+        <%= render "order", order: @orders_support,
+          tables: @orders_support.tables %>
       </div>
     </div>
   </div>

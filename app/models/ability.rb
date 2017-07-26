@@ -24,7 +24,7 @@ class Ability
       can :change, [Order, OrderDish, OrderCombo]
       can :view, [Combo, Dish, DiscountCode, Category, Promo]
     when "chef"
-      can :view, Chef
+      can :view, :chef
       can :modify, [Order, OrderDish, OrderCombo]
     end
   end
