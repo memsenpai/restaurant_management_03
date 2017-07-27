@@ -16,5 +16,11 @@ module Supports
       search.sorts = %w(name price) if search.sorts.empty?
       search
     end
+
+    def dishes_data
+      OrderDish
+        .select("dish_id, sum(quantity) as total_quantity")
+        .group(:dish_id).order("total_quantity DESC").limit Settings.limit
+    end
   end
 end

@@ -1,10 +1,18 @@
 <section class="table-section">
+
+<ol class="progress progress-medium" id="progress-order">
+  <li id="booking-step-1" class="is-active" data-step="1">
+    <span class="text-color-white"><%= t "table.pick_time" %></span>
+  </li>
+  <li id="booking-step-2" data-step="2">
+    <span class="text-color-white"><%= t "table.book_table" %></span>
+  </li>
+  <li id="booking-step-3" data-step="3" class="progress-last">
+    <span class="text-color-white"><%= t "table.confirm" %></span>
+  </li>
+</ol>
+
   <div class="container-fluid vertical-center">
-    <ul id="progressbar">
-      <li class="active"><%= t "table.pick_time" %></li>
-      <li><%= t "table.book_table" %></li>
-      <li><%= t "table.confirm" %></li>
-    </ul>
     <div class="row block reservation" id="block-0">
       <div class="col-sm-12">
         <h2 class="stylish-heading h1style font-mont heading-small">
