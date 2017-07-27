@@ -8,6 +8,7 @@ module Admin
     def index
       @list_staff =
         Staff.all.page(params[:page]).per_page Settings.max_result
+      @roles_select = Staff.roles_select
     end
 
     def new

@@ -19,17 +19,22 @@
           </tr>
         </thead>
         <tbody>
-        <% @list_staff.each do |user| %>
+        <% @list_staff.each do |staff| %>
           <tr>
-            <td><%= user.email %></td>
-            <td><%= user.created_at %></td>
-            <td><%= user.role %></td>
+            <td><%= staff.email %></td>
+            <td><%= staff.created_at %></td>
             <td>
-              <%= link_to t("button.edit"), edit_admin_staff_path(user) %> |
-              <%= link_to t("button.delete"), admin_staff_path(user),
+            <%= select_tag :staff_role_update,
+              options_for_select(@roles_select, staff.staff_role),
+              id: staff.id, class: "staff_role_update" %>
+            </td>
+            <td>
+              <button class="btn-update-user"><%= t("button.update") %></button>
+              <%= link_to t("button.delete"), admin_staff_path(staff),
                 method: :delete, data: {confirm: t("button.delete_warning")},
                 class: "text-danger" %>
             </td>
+            <td></td>
           </tr>
         <% end %>
         </tbody>

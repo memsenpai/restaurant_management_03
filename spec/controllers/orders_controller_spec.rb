@@ -8,7 +8,7 @@ describe OrdersController do
   describe "GET #index" do
     it "show index order" do
       get :index
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
   end
 end

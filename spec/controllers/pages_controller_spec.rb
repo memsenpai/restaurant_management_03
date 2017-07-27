@@ -8,7 +8,7 @@ describe PagesController do
   describe "GET #show" do
     it "show home page" do
       get :show, params: {page: :home}
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
   end
 end

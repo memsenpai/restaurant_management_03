@@ -8,7 +8,7 @@ describe DishesController do
   describe "GET #index" do
     it "index" do
       get :index
-      expect(response).to have_http_status 200
+      expect(response).to have_http_status :ok
     end
   end
 
@@ -16,7 +16,7 @@ describe DishesController do
     Dish.limit(10).each do |dish|
       it "show combo: #{dish.name}" do
         get :show, params: {id: dish.id}
-        expect(response).to have_http_status 200
+        expect(response).to have_http_status :ok
       end
     end
   end

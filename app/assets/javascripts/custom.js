@@ -273,3 +273,25 @@ $(document).ready(function(){
     interval: 15
   });
 });
+
+$(document).on('turbolinks:load', function(){
+  $('body').on('click', '.btn-update-user', function() {
+    var staff_id = $(this).parent().parent().find('.staff_role_update').attr('id');
+    var staff_role = $(this).parent().parent().find('.staff_role_update').val();
+    var html = $(this).html();
+    $(this).html(html + '...');
+    $(this).attr('disabled', 'disabled');
+    $.ajax({
+      type:'PUT',
+      url: '/admin/staffs/' + staff_id,
+      data: {
+        staff: {
+          staff_role: staff_role
+        }
+      }
+    }).success(function() {
+      $(this).removeAttr('disabled');
+      $(this).html(html);
+    });
+  });
+});
