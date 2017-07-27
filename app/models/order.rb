@@ -14,7 +14,7 @@ class Order < ApplicationRecord
 
   has_many :order_dishes, dependent: :destroy
   has_many :order_combos, dependent: :destroy
-  has_one :bill, foreign_key: "code"
+  has_one :bill
 
   delegate :code, to: :customer, prefix: :customer
 
@@ -49,6 +49,11 @@ class Order < ApplicationRecord
     when "serving"
       "done"
     end
+  end
+
+  def price_final
+    (subtotal * (100 - discount -
+      customer.membership_discount)) / 100
   end
 
   private

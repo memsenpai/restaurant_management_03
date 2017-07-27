@@ -3,6 +3,7 @@ module Admin
     before_action :authenticate_staff!
     before_action :check_for_cancel
     before_action :load_require, only: %i(index edit update)
+    before_action :find_order, only: :show
 
     load_and_authorize_resource
     skip_load_resource only: %i(index)
@@ -10,6 +11,9 @@ module Admin
     def index; end
 
     def show
+      @membership_coupons = Supports::MembershipCouponSupport
+        .new(membership_coupons: MembershipCoupon.all, param: params)
+        .filter_active
       @support = Supports::DiscountCodeSupport.new discount: params[:discount]
     end
 
@@ -62,6 +66,11 @@ module Admin
     def load_require
       @orders_support = Supports::OrderSupport.new order: check_params,
         param: params
+    end
+
+    def find_order
+      @order = Order.find_by id: params[:id]
+      redirect_to admin_orders_path unless order
     end
 
     def order_params

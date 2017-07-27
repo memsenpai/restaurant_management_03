@@ -9,7 +9,7 @@ class Bill < ApplicationRecord
   validates :discount, presence: true, numericality: {only_integer: true}
 
   def total
-    total_price_bill_details * (100 - discount) / 100
+    total_price_bill_details * (100 - discount - membership_discount) / 100
   end
 
   def total_price_bill_details

@@ -6,13 +6,11 @@ class BillDetail < ApplicationRecord
   validates :quantity, presence: true, numericality: {only_integer: true}
   validates :item_type, presence: true
 
-  add_column_export = lambda do |csv, billdetails, bill_code|
+  add_column_export = lambda do |csv, bill|
     csv << %w(BillCode TimeCreated)
-    csv << %W(#{bill_code} #{billdetails.first.bill.created_at})
+    csv << %W(#{bill.id} #{bill.created_at})
     csv << %w(Id Type Name Quantity Price Discount Total)
-    total_price = 0
-    billdetails.each do |billdetail|
-      total_price += billdetail.total_price
+    bill.bill_details.each do |billdetail|
       attributes = %W(#{billdetail.id} #{billdetail.type_name})
       attributes << billdetail.item.name
       attributes << billdetail.quantity
@@ -21,6 +19,10 @@ class BillDetail < ApplicationRecord
       attributes << "$#{billdetail.total_price}"
       csv << attributes
     end
+    csv << %w(Membership Voucher TotalPrice)
+    attributes = %W(#{bill.membership_discount}% #{bill.discount}%)
+    attributes << "$#{bill.total}"
+    csv << attributes
   end
 
   scope :add_column_export, add_column_export
@@ -39,9 +41,9 @@ class BillDetail < ApplicationRecord
     return I18n.t "admin.combo" if item_type == 2
   end
 
-  def self.to_xls billdetails, bill_code
+  def self.to_xls bill
     CSV.generate(headers: true) do |csv|
-      add_column_export csv, billdetails, bill_code
+      add_column_export csv, bill
     end
   end
 end
