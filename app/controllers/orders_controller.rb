@@ -28,6 +28,13 @@ class OrdersController < ApplicationController
 
   attr_reader :order, :order_dishes
 
+  def order_save_success
+    session[:order_id] = order.id
+    flash[:success] = t "flash.order.create_success"
+    UserCreateOrderNotifierMailer.send_email(order).deliver
+    render json: {path: cart_path}
+  end
+
   def order_params
     params.permit :table_id, :day, :time_in, :customer_id
   end
@@ -40,10 +47,7 @@ class OrdersController < ApplicationController
 
   def save_order
     if order.save
-      session[:order_id] = order.id
-      flash[:success] = t "flash.order.create_success"
-      UserCreateOrderNotifierMailer.send_email(order).deliver
-      render json: {path: cart_path}
+      order_save_success
     else
       flash[:danger] = t "flash.order.create_fail"
       render "tables/index"
