@@ -1,75 +1,141 @@
-<h3 class="title"><%= t "staff_order.order_confirm" %></h3>
-<table dir="ltr" class="default-dg-table">
-  <tbody id="combo_dish">
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.order.code" %></b>
-    </td>
-    <td class="default_dg_td dg-left order-id" data-order-id="<%= order.id %>"><%= order.code %></td>
-    <div class="hidden order-id" data-order-id="<%= order.id %>"><%= order.id %></div>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.form.customer_name" %></b>
-    </td>
-    <td class="default_dg_td dg-left customer-id" data-customer-id="<%= order.customer.id %>">
-      <%= order.customer.name %>
-    </td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "staff_order.phone_num" %></b>
-    </td>
-    <td class="default_dg_td dg-left"><%= order.customer.phone_num %></td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "staff_order.email" %></b>
-    </td>
-    <td class="default_dg_td dg-left"><%= order.customer.email %></td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.form.date" %></b>
-    </td>
-    <td class="default_dg_td dg-left">
-      <%= order.day.in_time_zone(Settings.time_zone).strftime('%b %d %Y') %>
-    </td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap"><b>From</b></td>
-    <td class="default_dg_td dg-left">
-      <%= order.time_in %>
-    </td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "staff_order.table_id" %></b>
-    </td>
-    <td class="default_dg_td dg-left">
-      <%= order.table_id %>
-    </td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.form.capacity" %></b>
-    </td>
-    <td class="default_dg_td dg-left">
-      <%= order.capacity %>
-    </td>
-  </tr>
-  <tr class="dg_tr" id="di_row_0">
-    <td class="default_dg_td dg-left dg-nowrap">
-      <b><%= t "admin.orders.order.discount" %></b>
-    </td>
-    <td class="default_dg_td dg-left dg-nowrap customer-discount" data-customer-discount="<%= order.discount %>">
-      <%= order.discount %>%<br>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<br>
-<div class="col-xs-12 text-center">
-  <%= link_to t("admin.orders.edit.title"), edit_admin_order_path(order),
-    class:"pj-button" %>
+<div class="col-md-12">
+  <div class="col-md-4 orders-info orders-info-customer">
+    <div class="orders-header">
+      <div class="orders-header-title">
+        <i class="fa fa-info-circle"></i>
+        <%= t "admin.bills.customer_infomation" %>
+      </div>
+    </div>
+    <div class="orders-content">
+      <div class="orders-content-list-info">
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-id-card"></i>
+            <%= t "admin.bills.customer_code" %>:
+          </b>
+          <span> <%= order.customer.code %></span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-user"></i>
+            <%= t "admin.bills.customer_name" %>:
+          </b>
+          <span class="customer-id"
+            data-customer-id="<%= order.customer.id %>">
+            <%= order.customer.name %>
+          </span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-mobile"></i> <%= t "admin.bills.phone" %>:
+          </b>
+          <span> <%= order.customer.phone_num %></span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-envelope"></i> <%= t "admin.email" %>:
+          </b>
+          <span> <%= order.customer.email %></span>
+       </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 orders-info orders-info-order">
+    <div class="orders-header">
+      <div class="orders-header-title">
+        <i class="fa fa-info-circle"></i>
+        <%= t "admin.bills.order_infomation" %>
+        <%= link_to t("admin.orders.edit.title"),
+          edit_admin_order_path(order),
+          class: "pull-right orders-header-btn-edit" %>
+      </div>
+    </div>
+    <div class="orders-content">
+      <div class="orders-content-list-info">
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-id-card"></i>
+            <%= t "admin.orders.order.code" %>:
+          </b>
+          <span class="order-id"
+            data-order-id="<%= order.id %>"><%= order.code %></span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-table"></i>
+            <%= t "admin.orders.order.table" %>
+          </b>
+          <span>
+            <%= order.capacity %>
+          </span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-users"></i>
+            <%= t "admin.orders.order.time_in" %>:
+          </b>
+          <span> <%= order.time_in %></span>
+        </div>
+        <div class="orders-content-info">
+          <b class="orders-content-info-title">
+            <i class="fa fa-location-arrow"></i>
+            <%= t "admin.orders.order.discount" %>:
+          </b>
+          <span class="customer-discount"
+            data-customer-discount="<%= order.discount %>">
+            <%= order.discount %>%
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 orders-info orders-info-membership pull-right">
+    <div class="orders-header">
+      <div class="orders-header-title">
+        <i class="fa fa-info-circle"></i>
+        <%= t "admin.bills.membership" %>
+      </div>
+    </div>
+    <% if membership_coupons.any? %>
+      <div class="orders-content">
+        <div class="orders-content-list-info">
+          <% membership_coupons.each do |membership_coupon| %>
+            <% if membership_coupon.money_paid < order
+              .customer.membership_money_paid %>
+              <div class="orders-content-info
+                select-membership-voucher-actived">
+                <b>
+                  <i class="fa fa-diamond"></i>
+                    <%= number_to_currency membership_coupon.money_paid %>
+                  <span>(-<%= membership_coupon.discount %>%)</span>
+                </b>
+              </div>
+            <% elsif membership_coupon == order.customer.membership_current %>
+              <div class="orders-content-info select-membership-voucher">
+                <b>
+                  <i class="fa fa-diamond"></i>
+                    <%= number_to_currency membership_coupon.money_paid %>
+                  <span>(-<%= membership_coupon.discount %>%)</span>
+                </b>
+                <span class="pull-right">
+                  <i class="fa fa-check"></i>
+                </span>
+              </div>
+            <% else %>
+              <div class="orders-content-info
+                elect-membership-voucher-disabled">
+                <b>
+                  <s>
+                    <i class="fa fa-diamond"></i>
+                      <%= number_to_currency membership_coupon.money_paid %>
+                    <span>(-<%= membership_coupon.discount %>%)</span>
+                  </s>
+                </b>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -51,6 +51,13 @@
             "data-wow-delay": "0.1s", method: :get %>
         </li>
         <% end %>
+        <% if can? :manage, :all %>
+        <li>
+          <%= link_to t("admin.membership"), admin_membership_coupons_path,
+            class: "smoothScroll animated fadeInLeft wow",
+            "data-wow-delay": "0.1s", method: :get %>
+        </li>
+        <% end %>
       </ul>
     </li>
   <% end  %>
@@ -63,8 +70,8 @@
         <li><%= link_to t("admin.order"), admin_orders_path,
           class: "smoothScroll animated wow",
           "data-wow-delay": "0.1s", method: :get %></li>
-        <li><%= link_to t("admin.bill"), "#bill",
-          class: "smoothScroll animated wow",
+        <li><%= link_to t("admin.bill"), admin_bills_path,
+          class: "smoothScroll animated fadeInLeft wow",
           "data-wow-delay": "0.1s", method: :get %></li>
       </ul>
     </li>

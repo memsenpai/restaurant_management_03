@@ -1,5 +1,5 @@
 class MembershipCoupon < ApplicationRecord
-  enum status: %i(active notactive).freeze
+  enum status: %i(notactive active).freeze
 
   has_many :membership_coupon_histories
 

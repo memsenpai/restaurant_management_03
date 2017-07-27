@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726083828) do
+ActiveRecord::Schema.define(version: 20170803023951) do
 
   create_table "average_caches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rater_id"
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(version: 20170726083828) do
   create_table "bills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "customer_id"
     t.integer  "order_id"
-    t.integer  "discount", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "discount",            default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "membership_discount", default: 0
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "description", limit: 65535
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "category_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,8 +67,6 @@ ActiveRecord::Schema.define(version: 20170726083828) do
     t.integer  "discount"
     t.string   "name"
     t.string   "image"
-    t.datetime "from"
-    t.datetime "to"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -78,9 +76,10 @@ ActiveRecord::Schema.define(version: 20170726083828) do
     t.string   "email"
     t.string   "phone_num"
     t.string   "code"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "money_paid", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "warning_times", default: 0
+    t.integer  "money_paid",    default: 0
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,9 +104,9 @@ ActiveRecord::Schema.define(version: 20170726083828) do
     t.integer  "money_paid", default: 0
     t.string   "name"
     t.integer  "discount"
-    t.boolean  "status",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "order_combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

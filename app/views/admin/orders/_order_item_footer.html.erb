@@ -23,7 +23,17 @@
   <td colspan="1" class="foot">
     <%= t "staff_order.voucher_discount" %></td>
   <td class="foot" colspan="3" id="order-discount">
-    <%= order.discount %>%
+    - <%= order.discount %>%
+  </td>
+</tr>
+<tr>
+  <td colspan="3" class="foot"></td>
+  <td colspan="2" class="foot"></td>
+  <td colspan="1" class="foot">
+    <%= t "staff_order.membership_coupon" %></td>
+  <td class="foot" colspan="3" id="membership-discount"
+    data-membership-discount="<%= order.customer.membership_discount %>">
+    - <%= order.customer.membership_discount %>%
   </td>
 </tr>
 <tr>
@@ -32,8 +42,7 @@
   </td>
   <td class="total-price" colspan="3" id="order-total" align="right">
     <strong>
-      <%= number_to_currency (order.subtotal * (100 -
-        order.discount))/100 %>
+      <%= number_to_currency order.price_final %>
     </strong>
   </td>
 </tr>
