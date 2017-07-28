@@ -151,6 +151,10 @@ en:
     needing: Needing
     cooking: Cooking
     bills:
+      customer_info: Customer Info
+      bill_info: Bill Info
+      email: Email
+      mobile: Mobile
       phone: Phone
       item_type: Item type
       name_item: Name item
@@ -160,6 +164,7 @@ en:
       voucher: Voucher
       membership: Membership
       total: Total
+      total_price: Total price
       export_exel: Export Excel
       bill_code: "Bill code"
       customer_code: "Customer code"
