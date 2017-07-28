@@ -1,0 +1,66 @@
+<div class="modal modal-item show-info-customer-<%= customer.id %>">
+  <div class="modal-content modal-lg">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+        <div class="text-center">
+          <div>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.orders.order.code" %></b>
+            </span>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.orders.order.day" %></b>
+            </span>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.orders.order.time_in" %></b>
+            </span>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.orders.order.table" %></b>
+            </span>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.membership_coupons.status" %></b>
+            </span>
+            <span class="col-sm-2 list-group-item">
+              <b><%= t "admin.bills.action" %></b>
+            </span>
+          </div>
+          <% if customer.orders.any? %>
+            <% customer.orders.order(day: :desc).each do |order| %>
+              <div>
+                <span class="col-sm-2 list-group-item">
+                  <%= order.code %>
+                </span>
+                <span class="col-sm-2 list-group-item">
+                  <%= order.day %>
+                </span>
+                <span class="col-sm-2 list-group-item">
+                  <%= order.time_in %>
+                </span>
+                <span class="col-sm-2 list-group-item">
+                  <%= order.table.code %>
+                </span>
+                <span class="col-sm-2 list-group-item">
+                  <%= order.status %>
+                </span>
+                <span class="col-sm-2 list-group-item">
+                  <%= link_to t("button.detail"),
+                  admin_order_path(order), class: "btn btn-default" %>
+                </span>
+              </div>
+            <% end %>
+          <% else %>
+          <div>
+            <span class="col-sm-12 list-group-item">
+              <%= t "not_exist_items" %>
+            </span>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

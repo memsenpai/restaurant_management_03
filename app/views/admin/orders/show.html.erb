@@ -11,20 +11,21 @@
         <%= t "order.order_items" %>
         <span></span>
       </h3>
-      <i class="fa fa-lg fa-ban pull-right">
+      <button class="btn btn-default pull-right">
+        <i class="fa fa-lg fa-ban"></i>
         <%= t "button_cancel_show_order" %>
-      </i>
-      <i class="fa fa-lg fa-times pull-right">
+      </button><br />
+      <button class="btn btn-default pull-right">
+        <i class="fa fa-times"></i>
         <%= t "button_delete_show_order" %>
-      </i>
+      </button><br />
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
-      <% if @order.done? %>
+      <% if @order.done? && @order.bill.present? %>
         <div class="payment">
-          <button class="btn payment-btn">
-            <%= t "order.payment" %>
-          </button>
+          <%= link_to t("order.payment"), admin_bill_path(@order.bill),
+          class:"btn payment-btn-style" %>
         </div>
       <% end %>
     </div>

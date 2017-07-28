@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 15:26:11'
+    t.datetime "cooking_time", default: '2017-08-04 16:38:46'
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 15:26:08'
+    t.datetime "cooking_time", default: '2017-08-04 16:38:45'
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

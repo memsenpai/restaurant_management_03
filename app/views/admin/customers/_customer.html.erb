@@ -89,17 +89,17 @@
           <tr class="dg_tr" id="di_row_">
             <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
               id="customer-id" data-id="<%= customer.id %>">
-                <% if customer.membership_current %>
-                  <span class="color-red">
-                    <b>
-                      <i class="fa fa-diamond" aria-hidden="true"></i>
-                      <%= customer.membership_current.name %>
-                      (-<%= customer.membership_current.discount %>%)
-                    </b>
-                  </span>
-                <% else %>
-                  <i class="fa fa-diamond" aria-hidden="true"></i> (0)
-                <% end %>
+              <% if customer.membership_current %>
+                <span class="color-c1810c">
+                  <b>
+                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                    <%= customer.membership_current.name %>
+                    (-<%= customer.membership_current.discount %>%)
+                  </b>
+                </span>
+              <% else %>
+                <i class="fa fa-diamond" aria-hidden="true"></i> (0)
+              <% end %>
             </td>
             <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
               id="customer-name" data-name="<%= customer.name %>">
@@ -121,15 +121,20 @@
               id="customer-blacklist"
               data-blacklist="<%= customer.warning_times %>">
               <% if customer.is_blacklist? %>
-                <span class="is-black-list"><%= t "yes" %></span>
+                <span class="is-black-list"><%= t "confirm.txt_yes" %></span>
               <% else %>
-                <span class="not-is-black-list"><%= t "no" %></span>
+                <span class="not-is-black-list">
+                  <%= t "confirm.txt_no" %>
+                </span>
               <% end %>
             </td>
             <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
               <b><%= t "currency" %><%= customer.money_paid %></b>
             </td>
             <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+              <button class="btn btn-default btn-show-customer">
+                <%= t "button.detail" %>
+              </button>
               <button class="btn btn-success btn-edit-customer">
                 <%= t "button.edit" %>
               </button>
@@ -138,6 +143,7 @@
               </button>
             </td>
           </tr>
+          <%= render "modal_customer", customer: customer %>
         <% end %>
       <% end %>
     </table>

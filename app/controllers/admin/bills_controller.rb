@@ -4,7 +4,7 @@ module Admin
     before_action :find_bill, only: :show
 
     def index
-      @bills = Bill.all
+      @bills = Supports::AdminBillSupport.new bills: Bill.all, params: params
     end
 
     def create

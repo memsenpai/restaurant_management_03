@@ -17,6 +17,9 @@
       <td class="total">
         <%= number_to_currency order_dish.total_price %>
       </td>
+      <td class="total">
+        <%= order_dish.status %>
+      </td>
       <td class="total width-10 text-center">
         <%= link_to admin_order_order_dish_path(order, order_dish,
           order_dish: {quantity: order_dish.quantity, status: "cancel"}),
@@ -27,7 +30,7 @@
       </td>
       <td class="total width-10 text-center cancel-dish-order"
         data-id="<%= order_dish.id.to_s + "_" + order_dish.order_id.to_s %>">
-        <% unless order_dish.cancel? %>
+        <% unless order_dish.cancel? || order_dish.served? %>
           <i class="fa fa-lg fa-ban"></i>
         <% end %>
       </td>
@@ -51,6 +54,9 @@
       </td>
       <td class="total">
         <%= number_to_currency order_combo.total_price %>
+      </td>
+      <td class="total">
+        <%= order_combo.status %>
       </td>
       <td class="total width-10 text-center">
         <%= link_to admin_order_order_combo_path(order, order_combo,

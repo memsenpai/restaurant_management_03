@@ -1,0 +1,64 @@
+<table class="default-dg-table">
+  <tr class="dg_tr bills-tr-head-style" id="di_row_">
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= sort_link bills.search, :id,
+        t("admin.bills.bill_code"), {}, {remote: true, method: :get} %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= t "admin.bills.customer_name" %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= sort_link bills.search, :customer_id,
+        t("admin.bills.customer_code"), {}, {remote: true, method: :get} %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= sort_link bills.search, :discount,
+        t("admin.bills.voucher"), {}, {remote: true, method: :get} %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= t "admin.bills.total_price" %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= sort_link bills.search, :created_at,
+        t("admin.bills.time_created"), {}, {remote: true, method: :get} %>
+    </th>
+    <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+      <%= t "admin.bills.action" %>
+    </th>
+  </tr>
+  <% if bills.bills_search.any? %>
+    <% bills.bills_search.each do |bill| %>
+      <tr class="dg_tr" id="di_row_">
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <span class="bills-type-combo">#<%= bill.id%></span>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <%= bill.customer.name %>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          #<%= bill.customer.code %>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          -<%= bill.discount %>%
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <%= number_to_currency bill.total %>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <%= bill.created_at %>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <%= link_to t("admin.bills.details"), admin_bill_url(bill),
+            class: "btn-sm btn-success bills-button-detail" %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="dg_tr" id="di_row_">
+      <td colspan="7" class="bills-td-style
+        default_dg_th dg-left dg-nowrap dg1">
+        <span><%= t "errors.not_exists_bill" %></span>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -206,7 +206,9 @@ en:
       details: "Details"
       btn_apply: "Apply"
       show:
-        title: BILL
+        title: Bill detail
+      index:
+        title: Bills Manager
     dishes:
       index:
         title: Dishes manager
@@ -798,3 +800,10 @@ en:
     tableisavailable: is available table
     tableisunavailable: is unavailable table
     tableischoosed: is the table you choosed
+  not_exist_items: "There are currently no orders"
+  confirm:
+    txt_yes: "YES"
+    txt_no: "NO"
+  txt_in: "IN"
+  txt_to: "TO"
+  txt_from: "FROM"

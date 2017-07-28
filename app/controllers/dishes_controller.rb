@@ -23,11 +23,7 @@ class DishesController < ApplicationController
   end
 
   def attach_respond
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: Dish.where_like(params[:name])
-      end
-    end
+    return unless params[:type] == "search"
+    render json: Dish.where_like(params[:name])
   end
 end

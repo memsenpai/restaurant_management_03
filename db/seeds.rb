@@ -961,3 +961,12 @@ Order.all.map do |order|
     order.save
   end
 end
+
+MembershipCoupon.create! name: "Level1", money_paid: "100",
+  discount: 3, status: 1
+MembershipCoupon.create! name: "Level2", money_paid: "200",
+  discount: 4, status: 1
+MembershipCoupon.create! name: "Level3", money_paid: "1000",
+  discount: 5, status: 1
+MembershipCoupon.create! name: "Level4", money_paid: "5000",
+  discount: 6, status: 1

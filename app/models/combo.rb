@@ -26,4 +26,8 @@ class Combo < ApplicationRecord
   def price
     (subtotal * (100 - discount)) / 100
   end
+
+  def find_discount
+    discount
+  end
 end

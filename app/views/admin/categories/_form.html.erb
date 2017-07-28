@@ -7,7 +7,17 @@
   <%= label_tag :q, "Search", class: "pull-left form-label" %>
   <%= text_field_tag :name, "", class: "form-control txt-search-category" %>
 
-  <div class="col-md-12 item-selected"></div>
+  <div class="col-md-12 item-selected">
+    <% if category.dishes.any? %>
+      <% category.dishes.each do |dish| %>
+        <span>
+          <%= check_box_tag "category[dish_ids][]", dish.id,
+            dish, class: "add-category" %>
+          <%= label_tag :dish_ids, dish.name %>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
 
   <%= f.label :dishes, t("Dishes"), class:"form-label" %> <br>
   <div class="col-xs-12 contain-item">
