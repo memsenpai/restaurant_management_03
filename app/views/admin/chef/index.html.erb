@@ -16,7 +16,7 @@
               <th><%= t "admin.orders.order.action" %></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="body-1">
               <%= render "form_dish_needing", needing_dishes: @needing_dishes %>
               <%= render "form_combo_needing", needing_combos: @needing_combos %>
             </tbody>
@@ -36,7 +36,7 @@
               <th><%= t "admin.orders.order.action" %></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="body-2">
               <%= render "form_dish_cooking", cooking_dishes: cooking_dishes %>
               <%= render "form_combo_cooking", cooking_combos: cooking_combos %>
             </tbody>

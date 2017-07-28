@@ -72,7 +72,7 @@
               </td>
             <% end %>
             <td class="width-20">
-            <% if order.status != "done" && order.status != "declined" %>
+            <% if order.uncheck? || order.approved? %>
               <%= link_to admin_order_path(order,
                 order: {status: "declined"}), remote:true,
                 method: :patch do %>

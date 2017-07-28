@@ -63,8 +63,13 @@ module Admin
         param: params
     end
 
+    def params_define
+      list_param = %w(discount day time_in)
+      list_param.push %w(status) if disable_status order
+    end
+
     def order_params
-      params.require(:order).permit :discount, :day, :time_in, :status,
+      params.require(:order).permit *params_define,
         customer_attributes: %i(id name).freeze,
         table_attributes: %i(id capacity).freeze
     end

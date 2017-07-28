@@ -11,6 +11,7 @@
           <%= @combo.name %>
         </div>
         <div class="combos-header-description">
+          <%= render "orders/rate",id: @combo.id, type: "Combo" %>
           <%= @combo.description %>
         </div>
         <div class="combos-header-info">

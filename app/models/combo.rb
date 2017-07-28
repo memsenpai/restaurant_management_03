@@ -1,4 +1,5 @@
 class Combo < ApplicationRecord
+  ratyrate_rateable "nice"
   has_many :combo_dishes
   has_many :dishes, through: :combo_dishes, dependent: :destroy
   has_many :order_combos

@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
 
-  after_update_commit{MessageBroadcastJob.perform_now self}
+  after_commit{MessageBroadcastJob.perform_now self}
 
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum

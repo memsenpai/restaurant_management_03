@@ -4,6 +4,7 @@ module Admin
     before_action :authenticate_staff!
     before_action :load_support_dishes
     before_action :find_order_dish
+    after_action :change_status, only: :update
 
     load_and_authorize_resource
 
@@ -63,6 +64,18 @@ module Admin
         flash[:danger] = t "staff_order.something_wrong"
         redirect_to :back
       end
+    end
+
+    def change_status
+      order = Order.find_by id: order_dish.order_id
+      check = order.order_dishes.map do |item|
+        case item.status
+        when "no_need", "needing", "cooking", "cooked"
+          break false
+        end
+      end
+      return unless check
+      order.update_attributes status: "done"
     end
 
     def delete_order_dish

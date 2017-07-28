@@ -20,6 +20,11 @@ module SessionHelper
     true
   end
 
+  def disable_status order
+    return false if order.done? || order.declined? || order.serving?
+    true
+  end
+
   def current_user
     Customer.find_by id: session[:customer_id]
   end
