@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   include Encode
 
-  enum status: %i(uncheck approved serving done declined).freeze
+  enum status: %i(uncheck declined approved serving done).freeze
 
   belongs_to :customer
   belongs_to :table, inverse_of: :orders
@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
   delegate :code, to: :customer, prefix: :customer
 
-  validate :validate_table
+  validate :validate_table, on: :create
 
   after_save :generate_code
 

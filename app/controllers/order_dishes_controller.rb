@@ -1,44 +1,80 @@
 class OrderDishesController < ApplicationController
-  include LoadOrder
-  before_action :load_order, only: %i(create update destroy)
-  before_action :find_dish, only: %i(update destroy)
-
   def create
-    order_dishes
-    if order_dish
-      update_order
+    if session[:order_dishes]
+      init_order_dish unless update_order_dish
     else
-      @order_dish = order.order_dishes.new order_dish_params
-      order.save
-      session[:order_id] = order.id
+      init_order_dishes
     end
   end
 
   def update
-    order_dish.update_attributes order_dish_params
-    OrderDetails.new(order).perform
+    change_quantity_order_dish
+    update_in_db
   end
 
   def destroy
-    order_dish.destroy
-    OrderDetails.new(order).perform
+    session[:order_dishes].delete_if do |order_dish|
+      params[:id] == order_dish["dish_id"].to_s
+    end
+    destroy_in_db
   end
 
   private
 
-  attr_reader :order_dish, :order
+  def init_order_dish
+    session[:order_dishes].push order_dish_params
+    update_in_db
+  end
 
-  def order_dishes
-    @order_dish = order.order_dishes.find_by dish_id:
-      params[:order_dish][:dish_id]
+  def init_order_dishes
+    session[:order_dishes] = [order_dish_params]
+    update_in_db
+  end
+
+  def change_quantity order_dish
+    order_dishes = session[:order_dishes]
+    order_dishes[order_dishes.index(order_dish)]["quantity"] =
+      quantity =
+        order_dish["quantity"].to_i + order_dish_params[:quantity].to_i
+    update_in_db quantity
+    true
+  end
+
+  def update_order_dish
+    order_dishes = session[:order_dishes]
+    order_dish = order_dishes
+      .find{|dish| dish["dish_id"] == order_dish_params[:dish_id]}
+
+    return unless order_dish
+    change_quantity order_dish
+  end
+
+  def change_quantity_order_dish
+    session[:order_dishes].map do |order_dish|
+      next unless order_dish_params[:combo_id] == order_dish["combo_id"]
+      order_dish["quantity"] = order_dish_params[:quantity]
+      break
+    end
+  end
+
+  def update_in_db quantity = nil
+    return unless order_save?
+    quantity ||= order_dish_params[:quantity]
+    dish_id = order_dish_params[:dish_id]
+    dish_order =
+      OrderDish.find_or_initialize_by order_id: session[:order_id],
+        dish_id: dish_id
+    dish_order.update_attributes dish_id: dish_id,
+      quantity: quantity
+  end
+
+  def destroy_in_db
+    return unless order_save?
+    dish_order = OrderDish.find_by dish_id: params[:order_dish][:id]
+    dish_order.destroy if dish_order
   end
 
   def order_dish_params
     params.require(:order_dish).permit :quantity, :dish_id
-  end
-
-  def update_order
-    order_dish.update_attributes quantity:
-      order_dish.quantity + params[:order_dish][:quantity].to_i
   end
 end

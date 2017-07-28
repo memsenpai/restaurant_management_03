@@ -10,17 +10,16 @@ class OrdersController < ApplicationController
     session_customer = session[:customer]
     return unless session_customer
     params[:customer_id] = session_customer["id"]
-    renew_order
+    save_order
+  end
+
+  def new
+    session.clear if current_order.code.present?
+    redirect_to :back
   end
 
   def show
-    dishes_order = current_order.order_dishes
-    @order_dishes =
-      if dishes_order.blank?
-        nil
-      else
-        dishes_order
-      end
+    @order_dishes = current_order.order_dishes
     @order_combos = current_order.order_combos
   end
 
@@ -28,8 +27,23 @@ class OrdersController < ApplicationController
 
   attr_reader :order, :order_dishes
 
+  def create_items items
+    items_in_session = session[items.to_sym]
+
+    return unless items_in_session
+    items_in_session.map do |item|
+      order.send(items).new item
+    end
+  end
+
+  def create_order_item
+    session[:customer_id] = order.customer_id
+    create_items "order_combos"
+    create_items "order_dishes"
+  end
+
   def order_save_success
-    session[:order_id] = order.id
+    order = current_order
     flash[:success] = t "flash.order.create_success"
     UserCreateOrderNotifierMailer.send_email(order).deliver
     render json: {path: cart_path}
@@ -39,14 +53,18 @@ class OrdersController < ApplicationController
     params.permit :table_id, :day, :time_in, :customer_id
   end
 
-  def renew_order
-    session.delete :order_id if current_order.code.present?
+  def already_order_id
+    order_id = session[:order_id]
+
+    return Order.update order_id, order_params if order_id
     @order = Order.new order_params
-    save_order
+    create_order_item
+    order.save
   end
 
   def save_order
-    if order.save
+    if already_order_id
+      session[:order_id] ||= order.id
       order_save_success
     else
       flash[:danger] = t "flash.order.create_fail"
@@ -54,11 +72,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def fill_order_to_session
+    order_id = session[:order_id]
+    session[:order_dishes] = OrderDish.load_order_dishes order_id
+    session[:order_combos] = OrderCombo.load_order_combos order_id
+  end
+
+  def check_order_success order
+    session[:order_id] = order.id
+    session[:customer_id] = order.customer_id
+    fill_order_to_session
+    flash[:success] = t "flash.order.find_order"
+    redirect_to cart_path
+  end
+
   def check_order order, input
     if order && order.customer.email == input[:email]
-      session[:order_id] = order.id
-      flash[:success] = t "flash.order.find_order"
-      redirect_to cart_path
+      check_order_success order
     else
       flash[:danger] = t "flash.order.cant_find_order"
       redirect_to orders_path

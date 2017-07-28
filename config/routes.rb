@@ -5,6 +5,7 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  post "/rate", to: "rater#create", as: "rate"
   devise_for :staffs, skip: :sessions, controller: {sessions: "sessions"}
   draw :api
   devise_scope :staff do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   get "/pages/:page" => "pages#show"
   resource :staffs, only: %i(show edit update)
   resources :dishes
-  resources :orders, only: %i(show index create)
+  resources :orders, except: %i(edit update destroy)
   get "/cart", to: "orders#show"
   resources :order_dishes, only: %i(create update destroy)
   resources :tables, only: %i(index)

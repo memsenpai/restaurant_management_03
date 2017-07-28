@@ -1,44 +1,79 @@
 class OrderCombosController < ApplicationController
-  include LoadOrder
-  before_action :load_order, only: %i(create update destroy)
-  before_action :find_combo, only: %i(update destroy)
-
   def create
-    load_order_combo
-    if order_combo
-      order_combo_update
+    if session[:order_combos]
+      init_order_combo unless update_order_combo
     else
-      order.order_combos.new order_combo_params
-      flash[:danger] = t "flash.combo.search_fail" unless order.save
-      session[:order_id] = order.id
+      init_order_combos
     end
   end
 
   def update
-    order_combo.update_attributes order_combo_params
-    OrderDetails.new(order).perform
+    change_quantity_order_combo
+    update_in_db
   end
 
   def destroy
-    order_combo.destroy
-    OrderDetails.new(order).perform
+    session[:order_combos].delete_if do |order_combo|
+      params[:id] == order_combo["combo_id"].to_s
+    end
+    destroy_in_db
   end
 
   private
 
-  attr_reader :order, :order_combo
+  def init_order_combo
+    session[:order_combos].push order_combo_params
+    update_in_db
+  end
+
+  def init_order_combos
+    session[:order_combos] = [order_combo_params]
+    update_in_db
+  end
+
+  def change_quantity order_combo
+    order_combos = session[:order_combos]
+    order_combos[order_combos.index(order_combo)]["quantity"] =
+      quantity =
+        order_combo["quantity"].to_i + order_combo_params[:quantity].to_i
+    update_in_db quantity
+    true
+  end
+
+  def update_order_combo
+    order_combos = session[:order_combos]
+    order_combo = order_combos
+      .find{|combo| combo["combo_id"] == order_combo_params[:combo_id]}
+
+    return unless order_combo
+    change_quantity order_combo
+  end
+
+  def change_quantity_order_combo
+    session[:order_combos].map do |order_combo|
+      next unless order_combo_params[:combo_id] == order_combo["combo_id"]
+      order_combo["quantity"] = order_combo_params[:quantity]
+      break
+    end
+  end
+
+  def update_in_db quantity = nil
+    return unless order_save?
+    quantity ||= order_combo_params[:quantity]
+    combo_id = order_combo_params[:combo_id]
+    combo_order =
+      OrderCombo.find_or_initialize_by order_id: session[:order_id],
+        combo_id: combo_id
+    combo_order.update_attributes combo_id: combo_id,
+      quantity: quantity
+  end
+
+  def destroy_in_db
+    combo_order = OrderCombo.find_by combo_id: params[:order_combo][:id]
+    combo_order.destroy if combo_order
+  end
 
   def order_combo_params
     params.require(:order_combo).permit :quantity, :combo_id, :status
-  end
-
-  def load_order_combo
-    @order_combo = order.order_combos.find_by combo_id:
-      params[:order_combo][:combo_id]
-  end
-
-  def order_combo_update
-    order_combo.update_attributes quantity:
-      order_combo.quantity + params[:order_combo][:quantity].to_i
   end
 end
