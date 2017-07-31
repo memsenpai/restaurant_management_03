@@ -73,8 +73,10 @@ module Admin
     def change_status
       order = Order.find_by id: order_combo.order_id
       check = order.order_combos.map do |item|
-        return unless item.served? || item.cancel?
+        next if item.served? || item.cancel?
+        break false
       end
+      return unless check
       order.done!
     end
   end

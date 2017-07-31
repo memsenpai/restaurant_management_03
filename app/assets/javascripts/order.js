@@ -25,7 +25,7 @@ $(document).on('click', '.update-combo-quantity-in-cart', function() {
     data: {
       order_combo: {
         quantity: quantity,
-        id: order_combo
+        combo_id: order_combo
       }
     }
   }).success(function(){
@@ -63,7 +63,7 @@ $(document).on('click', '.update-dish-quantity-in-cart', function() {
     data: {
       order_dish: {
         quantity: quantity,
-        id: order_dish
+        dish_id: order_dish
       }
     }
   }).success(function(){

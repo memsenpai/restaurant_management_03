@@ -69,8 +69,10 @@ module Admin
     def change_status
       order = Order.find_by id: order_dish.order_id
       check = order.order_dishes.map do |item|
-        return unless item.served? || item.cancel?
+        next if item.served? || item.cancel?
+        break false
       end
+      return unless check
       order.done!
     end
 

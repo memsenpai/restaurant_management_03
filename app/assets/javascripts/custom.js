@@ -11,6 +11,15 @@ $(document).on('turbolinks:load', function(){
   $('.btn-table').click(function(){
     $('.btn-table').removeClass('btn-choose');
     $(this).addClass('btn-choose');
+    if($(this).hasClass('btn-batsu')){
+      $('.next').attr('disabled', 'true');
+      $('.alert-2').addClass('show');
+      setTimeout(function () {
+        $('.alert-2').removeClass('show');
+      }, 2500);
+    }else{
+      $('.next').removeAttr('disabled');
+    }
   });
 
   $(document).on('click','.close', function(){

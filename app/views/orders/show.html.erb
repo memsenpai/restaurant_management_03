@@ -37,7 +37,7 @@
         </p>
         <br>
         <div class="row bs-wizard">
-          <div class="col-lg-4 col-sm-4 bs-wizard-step complete">
+          <div class="col-lg-3 col-sm-4 bs-wizard-step complete">
             <div class="text-center bs-wizard-stepnum">
               <p>
                 <%= t "order.ready_to_order" %>
@@ -48,7 +48,7 @@
             </div>
             <span class="bs-wizard-dot"></span>
           </div>
-          <div class="col-lg-4 col-sm-4 bs-wizard-step complete">
+          <div class="col-lg-3 col-sm-4 bs-wizard-step complete">
             <div class="text-center bs-wizard-stepnum">
               <p>
                 <%= t "order.table_booked" %>
@@ -67,13 +67,32 @@
               <i class="fa fa-times" aria-hidden="true"></i></span>
             <% end %>
           </div>
-          <div class="col-lg-4 col-sm-4 bs-wizard-step complete">
+          <div class="col-lg-3 col-sm-4 bs-wizard-step complete">
             <div class="text-center bs-wizard-stepnum">
               <p>
                 <%= t "order.awesomecity_approved" %>
               </p>
             </div>
-            <% if current_order.approved? %>
+            <% if current_order_checked? && session[:order_id] %>
+              <div class="progress">
+                <div class="progress-bar"></div>
+              </div>
+              <span class="bs-wizard-dot"></span>
+            <% else %>
+              <div class="progress">
+                <div class="progress-bar2"></div>
+              </div>
+              <span class="bs-wizard-dot bs-wizard-cross">
+              <i class="fa fa-times" aria-hidden="true"></i></span>
+            <% end %>
+          </div>
+          <div class="col-lg-3 col-sm-4 bs-wizard-step complete">
+            <div class="text-center bs-wizard-stepnum">
+              <p>
+                <%= t "order.awesomecity_done" %>
+              </p>
+            </div>
+            <% if current_order.done? %>
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
@@ -87,7 +106,7 @@
             <% end %>
           </div>
         </div>
-        </div>
+      </div>
     <br>
     <% if current_order.table.present? %>
       <div class="text-center user-info">
@@ -131,8 +150,8 @@
         <h4 class="inline">
           <%= t "order.want_to_book" %>
         </h4>
-        <%= form_for :order, url: orders_path, method: :post do |f| %>
-          <%= f.submit t("order.create_new_order"),
+        <%= form_tag({controller: "orders", action: "new"}, method: :get) do %>
+          <%= submit_tag t("order.create_new_order"),
             class: "btn btn-info inline" %>
         <% end %>
       </div>
