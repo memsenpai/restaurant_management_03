@@ -3,11 +3,16 @@ max_result: 15
 time_zone: "Hanoi"
 max_length: 100
 email: "no-reply@awesomecity.com"
+warning_times: 2
 discount: 10
 validates:
   greater_than: 0
+  blacklist:
+    greater_than: -1
   name:
     maximum: 50
+  email:
+    maximum: 255
 mailer:
   username: "apikey"
   password: "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"

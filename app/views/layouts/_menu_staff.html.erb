@@ -24,32 +24,39 @@
           </li>
         <% end %>
         <% if can? :view, Category %>
-        <li>
-          <%= link_to t("admin.category"), admin_categories_path,
-            class: "smoothScroll animated fadeInLeft wow",
-            "data-wow-delay": "0.1s", method: :get %>
-        </li>
+          <li>
+            <%= link_to t("admin.category"), admin_categories_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
         <% end %>
         <% if can? :view, Dish %>
-        <li>
-          <%= link_to t("admin.dish"), admin_dishes_path,
-            class: "smoothScroll animated fadeInLeft wow",
-            "data-wow-delay": "0.1s", method: :get %>
-        </li>
+          <li>
+            <%= link_to t("admin.dish"), admin_dishes_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
         <% end %>
         <% if can? :view, Promo %>
-        <li>
-          <%= link_to t("admin.promo"), admin_promos_path,
-            class: "smoothScroll animated fadeInLeft wow",
-            "data-wow-delay": "0.1s", method: :get %>
-        </li>
+          <li>
+            <%= link_to t("admin.promo"), admin_promos_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
         <% end %>
         <% if can? :view, DiscountCode %>
-        <li>
-          <%= link_to t("admin.discount"), admin_discount_codes_path,
-            class: "smoothScroll animated fadeInLeft wow",
-            "data-wow-delay": "0.1s", method: :get %>
-        </li>
+          <li>
+            <%= link_to t("admin.discount"), admin_discount_codes_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
+        <% end %>
+        <% if can? :manage, :all %>
+          <li>
+            <%= link_to t("admin.customer"), admin_customers_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
         <% end %>
         <% if can? :manage, :all %>
         <li>

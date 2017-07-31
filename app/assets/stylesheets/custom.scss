@@ -4128,3 +4128,23 @@ a:visited {
   border-radius: 5px;
   height: 27px;
 }
+
+.is-black-list {
+  background: $black;
+  color: $white;
+  padding: 2px 15px;
+}
+
+.not-is-black-list {
+  background: $green;
+  color: $white;
+  padding: 2px 15px;
+}
+
+.form-customer {
+  overflow: auto;
+}
+
+.color-red {
+  color: $red;
+}

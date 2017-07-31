@@ -14,11 +14,13 @@
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
-      <div class="payment">
-        <button class="btn payment-btn">
-          <%= t "order.payment" %>
-        </button>
-      </div>
+      <% if @order.done? %>
+        <div class="payment">
+          <button class="btn payment-btn">
+            <%= t "order.payment" %>
+          </button>
+        </div>
+      <% end %>
     </div>
   </div>
   <%= render "modal", order: @order, discount: @discount %>
