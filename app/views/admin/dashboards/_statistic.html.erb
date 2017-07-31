@@ -1,0 +1,99 @@
+<div class="row content">
+  <div class="col-xs-3">
+    <%= link_to admin_dishes_path do %>
+      <div class="cardbox">
+        <div class="card">
+          <div class="bg-icon pull-left">
+            <i class="fa fa-cutlery fa-4x fa-va text-warning"
+            aria-hidden="true"></i>
+          </div>
+          <div class="text-right text">
+            <h2 class="text-va">
+              <%= pluralize data.dishes_count, t("dashboard.dish") %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-3">
+    <%= link_to admin_combos_path do %>
+      <div class="cardbox">
+        <div class="card">
+          <div class="bg-icon pull-left">
+            <i class="fa fa-cutlery fa-4x fa-va text-info"
+            aria-hidden="true"></i>
+          </div>
+          <div class="text-right text">
+            <h2 class="text-va">
+              <%= pluralize data.combos_count, t("dashboard.combo2") %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-3">
+    <%= link_to admin_staffs_path do %>
+      <div class="cardbox">
+        <div class="card">
+          <div class="bg-icon pull-left">
+            <i class="fa fa-user fa-4x fa-va text-success"
+            aria-hidden="true"></i>
+          </div>
+          <div class="text-right text">
+            <h2 class="text-va">
+              <%= pluralize data.staffs_count, t("dashboard.staff2") %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-3">
+    <%= link_to admin_categories_path do %>
+      <div class="cardbox">
+        <div class="card">
+          <div class="bg-icon pull-left">
+            <i class="fa fa-book fa-4x fa-va text-danger"
+            aria-hidden="true"></i>
+          </div>
+          <div class="text-right text">
+            <h2 class="text-va">
+              <%= pluralize data.categories_count, t("dashboard.cate") %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row content-border">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <%= link_to "#staff", id: "staff-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.staff" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#order", id: "order-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.order" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#combo", id: "combo-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.combo" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#income", id: "income-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.income" %>
+      <% end %>
+    </li>
+  </ul>
+
+  <div class="tab-content nav-padding">
+    <%= render "chart" %>
+  </div>
+</div>
