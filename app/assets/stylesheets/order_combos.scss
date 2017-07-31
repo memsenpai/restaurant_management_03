@@ -117,8 +117,8 @@ $black-overlay: rgba(0, 0, 0, .3);
 }
 
 .user-info {
+  float: left;
   width: 50%;
-  float:left;
 
   span {
     color: $red;
@@ -127,13 +127,13 @@ $black-overlay: rgba(0, 0, 0, .3);
 }
 
 .table-info {
-  float:left;
+  float: left;
   width: 50%;
 }
 
 .book-table {
   a {
-    color: white;
+    color: $white;
   }
 }
 

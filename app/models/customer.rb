@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   include Encode
+  ratyrate_rater
   has_many :orders, dependent: :destroy
   has_many :bills
   validates :name, presence: true, length: {maximum: 50}
