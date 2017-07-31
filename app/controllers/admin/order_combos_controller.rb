@@ -4,6 +4,7 @@ module Admin
     before_action :authenticate_staff!
     before_action :load_support_combos
     before_action :find_order_combo
+    after_action :change_status, only: :update
 
     load_and_authorize_resource
 
@@ -67,6 +68,14 @@ module Admin
         flash[:danger] = t "staff_order.something_wrong"
         redirect_to :back
       end
+    end
+
+    def change_status
+      order = Order.find_by id: order_combo.order_id
+      check = order.order_combos.map do |item|
+        return unless item.served? || item.cancel?
+      end
+      order.done!
     end
   end
 end

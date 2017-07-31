@@ -1,7 +1,12 @@
 class Order < ApplicationRecord
   include Encode
 
-  enum status: %i(uncheck approved serving done declined).freeze
+  enum status: %i(uncheck declined approved serving done).freeze
+  ORDER_ATTRIBUTES = [
+    :discount, :day, :time_in, :status,
+    customer_attributes: %i(id name).freeze,
+    table_attributes: %i(id capacity).freeze
+  ].freeze
 
   belongs_to :customer
   belongs_to :table, inverse_of: :orders
@@ -13,14 +18,14 @@ class Order < ApplicationRecord
 
   delegate :code, to: :customer, prefix: :customer
 
-  validate :validate_table
+  validate :validate_table, on: :create
 
   after_save :generate_code
 
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
 
-  after_update_commit{MessageBroadcastJob.perform_now self}
+  after_commit{MessageBroadcastJob.perform_now self}
 
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum

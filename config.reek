@@ -13,3 +13,4 @@ UtilityFunction:
 ControlParameter:
   exclude:
    - "Ability#initialize"
+   - "SessionHelper#load_info"

@@ -13,6 +13,18 @@ class OrderCombo < ApplicationRecord
 
   after_update_commit{MessageBroadcastJob.perform_now describe}
 
+  load_order_combos = lambda do |id|
+    order_combos = []
+    where("order_id=?", id).pluck(:combo_id, :quantity)
+      .map do |combo_id, quantity|
+        order_combo = {quantity: quantity.to_s, combo_id: combo_id.to_s}
+        order_combos.push order_combo
+      end
+    order_combos
+  end
+
+  scope :load_order_combos, load_order_combos
+
   def original_price
     combo.subtotal
   end
@@ -40,6 +52,6 @@ class OrderCombo < ApplicationRecord
     table = order.table
 
     return unless table
-    {dish: combo.name, table: table.code, status: status}
+    {combo: combo.name, table: table.code, status: status}
   end
 end

@@ -13,6 +13,18 @@ class OrderDish < ApplicationRecord
 
   after_update_commit{MessageBroadcastJob.perform_now describe}
 
+  load_order_dishes = lambda do |id|
+    order_dishes = []
+    where("order_id=?", id).pluck(:dish_id, :quantity)
+      .map do |dish_id, quantity|
+        order_dish = {quantity: quantity.to_s, dish_id: dish_id.to_s}
+        order_dishes.push order_dish
+      end
+    order_dishes
+  end
+
+  scope :load_order_dishes, load_order_dishes
+
   def find_discount
     DiscountDish.new(self).discount
   end
