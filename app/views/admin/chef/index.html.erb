@@ -4,43 +4,58 @@
     <h1><%= t "admin_role.chef" %></h1>
     <br>
     <div class="bloc col-xs-12" id="chef-home-page">
-      <div class="row" id="order-list-in-chef">
-        <div class="col-sm-5">
+      <div class="row container1" id="order-list-in-chef">
+        <div class="col-sm-3">
           <h3 class="text-center"><%= t "admin.needing" %></h3>
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th><%= t "admin.combos.new.name" %></th>
-              <th><%= t "staff_order.quantity" %></th>
-              <th><%= t "staff_order.type" %></th>
-              <th><%= t "admin.orders.order.action" %></th>
-            </tr>
-            </thead>
-            <tbody>
-              <%= render "form_dish_needing", needing_dishes: @needing_dishes %>
-              <%= render "form_combo_needing", needing_combos: @needing_combos %>
-            </tbody>
-          </table>
+          <div class="row chef-row">
+            <div class="col-xs-10"><%= t "admin.combos.new.name" %></div>
+            <div class="col-xs-2"><%= t "staff_order.quantity" %></div>
+          </div>
+          <ol class="simple_with_animation vertical list-group" status="needing">
+            <%= render "form_dish_needing",
+              needing_dishes: @order_dishes.needing_dishes %>
+            <%= render "form_combo_needing",
+              needing_combos: @order_combos.needing_combos %>
+          </ol>
         </div>
-        <div class="col-sm-2 text-center page-header">
-          <i class="fa fa-fw fa-arrow-right fa-3x"></i>
-        </div>
-        <div class="col-sm-5">
+        <div class="col-sm-3">
           <h3 class="text-center"><%= t "admin.cooking" %></h3>
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th><%= t "admin.combos.new.name" %></th>
-              <th><%= t "staff_order.quantity" %></th>
-              <th><%= t "staff_order.type" %></th>
-              <th><%= t "admin.orders.order.action" %></th>
-            </tr>
-            </thead>
-            <tbody>
-              <%= render "form_dish_cooking", cooking_dishes: cooking_dishes %>
-              <%= render "form_combo_cooking", cooking_combos: cooking_combos %>
-            </tbody>
-          </table>
+          <div class="row chef-row">
+            <div class="col-xs-10"><%= t "admin.combos.new.name" %></div>
+            <div class="col-xs-2"><%= t "staff_order.quantity" %></div>
+          </div>
+          <ol class="simple_with_animation vertical list-group" status="cooking">
+            <%= render "form_dish_cooking",
+              cooking_dishes: @order_dishes.cooking_dishes %>
+            <%= render "form_combo_cooking",
+              cooking_combos: @order_combos.cooking_combos %>
+          </ol>
+        </div>
+        <div class="col-sm-3">
+          <h3 class="text-center"><%= t "admin.done" %></h3>
+          <div class="row chef-row">
+            <div class="col-xs-10"><%= t "admin.combos.new.name" %></div>
+            <div class="col-xs-2"><%= t "staff_order.quantity" %></div>
+          </div>
+          <ol class="simple_with_animation vertical list-group" status="cooked">
+            <%= render "form_dish_done",
+              done_dishes: @order_dishes.done_dishes %>
+            <%= render "form_combo_done",
+              done_combos: @order_combos.done_combos %>
+          </ol>
+        </div>
+        <div class="col-sm-3">
+          <h3 class="text-center"><%= t "admin.cancel" %></h3>
+          <div class="row chef-row">
+            <div class="col-xs-10"><%= t "admin.combos.new.name" %></div>
+            <div class="col-xs-2"><%= t "staff_order.quantity" %></div>
+          </div>
+          <ol class="simple_with_animation vertical list-group" status="cancel">
+            <%= render "form_dish_cancel",
+              cancel_dishes: @order_dishes.cancel_dishes %>
+            <%= render "form_combo_cancel",
+              cancel_combos: @order_combos.cancel_combos %>
+          </ol>
         </div>
       </div>
     </div>

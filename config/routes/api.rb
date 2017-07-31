@@ -11,6 +11,10 @@ namespace :api, defaults: {format: "json"} do
       resources :order_combos
     end
   end
+  resources :orders, only: %i(index show) do
+    resources :order_dishes
+    resources :order_combos
+  end
   resources :dishes, only: %i(index show)
   resources :combos, only: %i(index show)
   get "/charts/income", to: "income_charts#index"
