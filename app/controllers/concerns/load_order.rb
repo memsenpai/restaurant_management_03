@@ -1,8 +1,4 @@
 module LoadOrder
-  def load_order
-    @order = current_order
-  end
-
   def find_combo
     @order_combo = order.order_combos.find_by id: params[:id]
 

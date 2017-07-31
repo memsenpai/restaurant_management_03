@@ -5,7 +5,8 @@ class Table < ApplicationRecord
     where(
       "capacity >= ? AND id NOT IN (?)", capacity, Order.where(
         "day = ? AND time(time_in) < time(?)
-        AND time(time_in) > time(?) AND (status = 1 OR status = 3)",
+        AND time(time_in) > time(?) AND
+        (status NOT IN ('approved', 'done', 'serving'))",
         day, hour_end, hour_start
       ).select("table_id")
     )

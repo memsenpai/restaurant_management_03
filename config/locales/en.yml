@@ -1,4 +1,5 @@
 en:
+  quote_rate: "You like this ?"
   new_order: "Has something change"
   time_in_email: "Time"
   name_promo: "Name"
@@ -67,6 +68,7 @@ en:
     button: Login
     lost_pass: Lost your password?
   flash:
+    search_fail: Combo not found.
     guest:
       find_fail: Guest not found.
     dish:
@@ -481,6 +483,7 @@ en:
     ready_to_order: "Ready to order."
     table_booked: "Table booked."
     awesomecity_approved: "Awesomecity approved."
+    awesomecity_done: "Awesomecity done."
     your_informations: "Your informations"
     name: "Name: "
     email: "Email: "

@@ -31,6 +31,7 @@ module Admin
     def edit; end
 
     def update
+      return unless order.uncheck? || order.approved?
       if order.update_attributes order_params
         change_status
         respond_to_any
@@ -64,9 +65,7 @@ module Admin
     end
 
     def order_params
-      params.require(:order).permit :discount, :day, :time_in, :status,
-        customer_attributes: %i(id name).freeze,
-        table_attributes: %i(id capacity).freeze
+      params.require(:order).permit Order::ORDER_ATTRIBUTES
     end
 
     def check_for_cancel
