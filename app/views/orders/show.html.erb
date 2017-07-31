@@ -126,8 +126,7 @@
           <span><%= current_order.customer.phone_num %></span>
         </p>
       </div>
-      <br>
-      <div class="text-center">
+      <div class="text-center table-info">
         <p class="description">
           <%= t "order.order_infomations" %>
         </p>
@@ -146,15 +145,6 @@
         </p>
       </div>
       <br>
-      <div class="text-center go-to-book">
-        <h4 class="inline">
-          <%= t "order.want_to_book" %>
-        </h4>
-        <%= form_tag({controller: "orders", action: "new"}, method: :get) do %>
-          <%= submit_tag t("order.create_new_order"),
-            class: "btn btn-info inline" %>
-        <% end %>
-      </div>
     <% end %>
     <br>
     <div class="text-center">
@@ -168,5 +158,18 @@
           order_combos: @order_combos %>
       </div>
     </div>
+    <div class="text-right">
+      <div class="book-table btn btn-info inline">
+        <%= link_to t("book_table"), tables_path %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center go-to-book">
+    <h4 class="inline">
+    </h4>
+    <%= form_tag({controller: "orders", action: "new"}, method: :get) do %>
+      <%= submit_tag t("order.create_new_order"),
+        class: "btn btn-info inline" %>
+    <% end %>
   </div>
 </section>

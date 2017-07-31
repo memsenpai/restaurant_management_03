@@ -70,13 +70,16 @@ module Admin
       end
     end
 
-    def change_status
-      order = Order.find_by id: order_combo.order_id
-      check = order.order_combos.map do |item|
+    def check_status_items_in_order? order
+      order.order_combos.map do |item|
         next if item.served? || item.cancel?
         break false
       end
-      return unless check
+    end
+
+    def change_status
+      order = Order.find_by id: order_combo.order_id
+      return unless check_status_items_in_order? order
       order.done!
     end
   end

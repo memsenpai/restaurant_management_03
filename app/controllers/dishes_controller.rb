@@ -16,7 +16,7 @@ class DishesController < ApplicationController
   def find_dish
     @dish = Dish.find_by id: params[:id]
 
-    return if dish
+    return session[:dish_id] = dish.id if dish
     redirect_to dishes_path
     flash[:danger] = t "flash.dish.find_fail"
   end

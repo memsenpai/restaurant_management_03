@@ -39,7 +39,7 @@
                 </div>
               </div>
             <% end %>
-              <%= render "rate", id: id, type: "Dish" %>
+              <%= render "rate", id: id, type: "Dish" if current_order.done? %>
           </div>
         </div>
       <% end %>

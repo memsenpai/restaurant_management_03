@@ -1,5 +1,6 @@
 class OrderCombosController < ApplicationController
   def create
+    return unless current_order.uncheck?
     if session[:order_combos]
       init_order_combo unless update_order_combo
     else
