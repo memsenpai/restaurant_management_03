@@ -16,7 +16,7 @@ class OrderDishesController < ApplicationController
     session[:order_dishes].delete_if do |order_dish|
       params[:id] == order_dish["dish_id"].to_s
     end
-    destroy_in_db?
+    destroy_in_db
   end
 
   private
