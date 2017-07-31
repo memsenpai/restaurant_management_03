@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803023951) do
+ActiveRecord::Schema.define(version: 20170803093422) do
 
   create_table "average_caches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rater_id"
@@ -76,10 +76,9 @@ ActiveRecord::Schema.define(version: 20170803023951) do
     t.string   "email"
     t.string   "phone_num"
     t.string   "code"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "warning_times", default: 0
-    t.integer  "money_paid",    default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "money_paid", default: 0
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -116,9 +115,10 @@ ActiveRecord::Schema.define(version: 20170803023951) do
     t.integer  "quantity"
     t.integer  "price"
     t.integer  "total_price"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "status",       default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.datetime "cooking_time"
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -128,9 +128,10 @@ ActiveRecord::Schema.define(version: 20170803023951) do
     t.integer  "quantity"
     t.integer  "price"
     t.integer  "total_price"
-    t.integer  "status",      default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "status",       default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.datetime "cooking_time"
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

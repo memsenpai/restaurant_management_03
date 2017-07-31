@@ -963,3 +963,12 @@ Order.all.map do |order|
     order.save
   end
 end
+
+Order.all.each do |order|
+  Bill.create! customer_id: order.customer_id,
+    order_id: order.id,
+    discount: order.discount,
+    created_at: Faker::Date.between(1.years.ago, Date.today)
+end
+
+FactoryGirl.create_list :order, 50

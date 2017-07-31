@@ -23,7 +23,21 @@ class OrderCombo < ApplicationRecord
     order_combos
   end
 
+  created_at_between = lambda do |datefrom, dateto|
+    where(created_at: datefrom..dateto)
+  end
+
+  order_by_total_quantity = lambda do |order_by|
+    select("combo_id, sum(quantity) as total_quantity")
+      .group(:combo_id)
+      .order("total_quantity #{order_by}")
+  end
+
+  scope :order_by_total_quantity, order_by_total_quantity
+
   scope :load_order_combos, load_order_combos
+
+  scope :created_at_between, created_at_between
 
   def original_price
     combo.subtotal

@@ -711,19 +711,49 @@ en:
     not_found: Promo not found
   book_table: "Book Table Now!"
   dashboard:
-    gbm: Group by month
-    gbw: Group by week
+    fd: "From date:"
+    td: "To date:"
     most: Most
     least: Least
     fetch: Fetch
+    analytics: Analytics
+    moneyincome: Money Income
+    topdish: Top order dishes
+    topcombo: Top order combos
+    toptime: Most ordered time
+    category: Category
+    dish: Dish
+    staff: Staff
+    dish2: dish
+    cate: category
+    combo: Combo
+    staff2: staff
+    combo2: combo
+    income: Income
+    timein: Time in
     orderchart:
+      series:
+        name: Dish
+        statistics: Statistics
       title:
-        text: Number of hired Staffs Monthly
+        text: Number of order dishes
       orderedtimes: Ordered times
       xaxistext: (Order) times
       pointformat: Ordered <b>%{point}</b> times
+    combochart:
       series:
-        name: Population
+        name: Order
+        statistics: Statistics
+      title:
+        text: Number of order combos
+      orderedtimes: Ordered times
+      xaxistext: (Order) times
+      pointformat: Ordered <b>%{point}</b> times
+    incomechart:
+      title:
+        text: Income
+      yaxis:
+        title: "Money($)"
   reject_order: "Your order is rejected!!!"
   reject_order_info: "Order information"
   adv_promo: "Dish %{dish} will have discount from %{from} to %{to}"

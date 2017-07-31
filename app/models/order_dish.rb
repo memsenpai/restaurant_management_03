@@ -23,7 +23,21 @@ class OrderDish < ApplicationRecord
     order_dishes
   end
 
+  created_at_between = lambda do |datefrom, dateto|
+    where(created_at: datefrom..dateto)
+  end
+
+  order_by_total_quantity = lambda do |order_by|
+    select("dish_id, sum(quantity) as total_quantity")
+      .group(:dish_id)
+      .order("total_quantity #{order_by}")
+  end
+
+  scope :order_by_total_quantity, order_by_total_quantity
+
   scope :load_order_dishes, load_order_dishes
+
+  scope :created_at_between, created_at_between
 
   def find_discount
     DiscountDish.new(self).discount

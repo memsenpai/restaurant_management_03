@@ -4038,3 +4038,93 @@ a:visited {
 .color-ff4b00 {
   color: $color-ff4b00;
 }
+
+.cardbox {
+  border: 1px solid $red;
+  border-radius: 5px;
+  height: 120px;
+  padding: 16px;
+  vertical-align: middle;
+
+  .card {
+    line-height: inherit;
+    margin: 0 auto;
+
+    .text {
+      height: 80px;
+
+      .text-va {
+        line-height: 80px;
+      }
+    }
+
+    .bg-icon {
+
+      height: 80px;
+      text-align: center;
+      width: 80px;
+
+      .fa-va {
+        line-height: 80px;
+      }
+    }
+  }
+}
+
+.header {
+  height: 60px;
+}
+
+.content {
+  padding: 0 30px;
+}
+
+.content-border {
+  border: 1px solid $orangered;
+  border-radius: 5px;
+  margin: 30px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.nav-padding {
+  margin-top: 15px;
+  padding: 0 15px;
+}
+
+.nav-sidebar {
+  li {
+    a {
+      color: $navbar-right;
+      font-family: "Khand";
+      font-size: 1.5vw;
+      font-weight: 400;
+    }
+  }
+}
+
+.nav-tabs {
+  li {
+    text-align: center;
+
+    a {
+      color: $navbar-right;
+      font-family: "Khand";
+      font-size: 1vw;
+      font-weight: 400;
+    }
+  }
+}
+
+.chart {
+  height: 500px;
+  min-height: 400px;
+}
+
+.selector {
+  background-color: $light-blue;
+  border-radius: 5px;
+  height: 27px;
+}

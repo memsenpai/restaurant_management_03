@@ -17,8 +17,7 @@
 //= require social-share-button
 //= require owl.carousel
 //= require jquery-ui
-//= require jquery.raty
-//= require ratyrate
+//= require highstocks.js
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
