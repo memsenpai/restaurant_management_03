@@ -1,4 +1,10 @@
 class Combo < ApplicationRecord
+  COMBO_ATTRIBUTES = [
+    :name, :discount,
+    :description, :image, :from, :to, dish_ids: []
+  ].freeze
+
+  ratyrate_rateable "nice"
   has_many :combo_dishes
   has_many :dishes, through: :combo_dishes, dependent: :destroy
   has_many :order_combos
