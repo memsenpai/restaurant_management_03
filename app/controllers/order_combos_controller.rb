@@ -38,6 +38,7 @@ class OrderCombosController < ApplicationController
       quantity =
         order_combo["quantity"].to_i + order_combo_params[:quantity].to_i
     update_in_db? quantity
+    true
   end
 
   def update_order_combo

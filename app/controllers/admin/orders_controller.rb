@@ -72,8 +72,14 @@ module Admin
       redirect_to admin_orders_path if params[:commit] == %w(Cancel)
     end
 
+    def send_mail_if_reject
+      return unless order.declined?
+      NotifierMailer.reject_order(order).deliver
+    end
+
     def change_status
-      return unless order.status == "serving"
+      send_mail_if_reject
+      return unless order.serving?
       order.order_dishes.map(&:needing!)
       order.order_combos.map(&:needing!)
     end

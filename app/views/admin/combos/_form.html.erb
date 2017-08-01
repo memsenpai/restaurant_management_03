@@ -7,6 +7,12 @@
   <%= f.number_field :discount, class: "form-control", min: 0 %>
   <%= f.label :image, t("admin.combos.edit.image"), class:"form-label" %>
   <%= f.text_area :image, class: "form-control" %>
+  <%= f.label :from, t("admin.combos.edit.from"), class: "form-label" %>
+  <%= f.date_field :from, class: "form-control",
+    min: Time.now.in_time_zone %>
+  <%= f.label :to, t("admin.combos.edit.to"), class: "form-label" %>
+  <%= f.date_field :to, class: "form-control",
+    min: Time.now.in_time_zone %>
   <%= f.label :dishes, t(".dishes"), class:"form-label" %>
   <div class="col-xs-12">
   <% dishes.each do |dish| %>

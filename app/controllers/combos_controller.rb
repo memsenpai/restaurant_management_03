@@ -16,7 +16,7 @@ class CombosController < ApplicationController
   def find_combo
     @combo = Combo.find_by id: params[:id]
 
-    return if combo
+    return session[:combo_id] = combo.id if combo
     flash[:danger] = t "flash.combo.find_fail"
     redirect_to combos_path
   end

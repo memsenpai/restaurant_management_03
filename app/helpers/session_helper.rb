@@ -20,7 +20,18 @@ module SessionHelper
     order.done? || order.declined? || order.serving?
   end
 
+  def check_item_in_order?
+    dish = Dish.find_by id: session[:dish_id]
+    combo = Combo.find_by id: session[:combo_id]
+    current_order.order_dishes.map(&:dish).include?(dish) ||
+      current_order.order_combos.map(&:combo).include?(combo)
+  end
+
   def current_user
+    unless params[:controller] == "orders" || params[:controller] == "rater"
+
+      return unless check_item_in_order?
+    end
     Customer.find_by id: session[:customer_id]
   end
 

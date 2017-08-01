@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<section class="section">
+<section class="section go-to-book">
   <br><br><br><br>
   <div class="col-md-10 col-md-offset-1">
     <div class="col-sm-7">
@@ -25,6 +25,7 @@
               </div>
             </div>
             <div class="info-support">
+              <%= render "orders/rate", id: @dish.id, type: "Dish" %>
               <%= @dish.description %>
             </div>
             <div class="info-support">

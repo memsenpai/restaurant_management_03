@@ -16,9 +16,19 @@ module Supports
     end
 
     def search
-      search = Promo.ransack param[:q]
+      search = dish_search.ransack
       search.sorts = %w(created_at desc name) if search.sorts.empty?
       search
     end
+
+    private
+
+    def dish_search
+      q = param[:q]
+      return Promo.all unless q
+      return Promo.all if q[:dish_id_eq] == ""
+      Promo.joins(:dish).where("name like ?", "%" + q[:dish_id_eq] + "%")
+    end
+
   end
 end

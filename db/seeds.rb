@@ -919,6 +919,15 @@ ComboDish.create!([
   },
 ])
 
+50.times do
+  Promo.create! dish_id: Faker::Number.between(1, Dish.all.count),
+    discount: Faker::Number.between(1, 100),
+    start_day: Faker::Time.backward(5, :morning),
+    end_day: Faker::Time.forward(100, :morning),
+    start_time: Faker::Time.backward(5, :morning),
+    end_time: Faker::Time.forward(100, :morning)
+end
+
 Staff.create! name: "admin", email: "admin1@123.com",
   password: "123123", encrypted_password: "123123", staff_role: 1,
   authentication_token: "supersecrettoken2"
@@ -928,28 +937,12 @@ Staff.create! name: "admin2", email: "admin2@123.com",
 Staff.create! name: "admin3", email: "admin3@123.com",
   password: "123123", encrypted_password: "123123", staff_role: 3,
   authentication_token: "supersecrettoken4"
-Customer.create! name: "guest", email: "guest@123.com",
-  phone_num: "01213218307", code: "guest1231"
-Customer.create! name: "Foo", email: "guest2@123.com",
-  phone_num: "01213218307"
-Customer.create! name: "Nhat", email: "nhat1@123.com",
-  phone_num: "01213210997"
-Customer.create! name: "Dep", email: "nhat2@123.com",
-  phone_num: "01213217537"
-Customer.create! name: "Trai", email: "nhat3@123.com",
-  phone_num: "01213218337"
-Customer.create! name: "Vo", email: "nhat4@123.com",
-  phone_num: "01213218317"
-Customer.create! name: "Dich", email: "nhat5@123.com",
-  phone_num: "01213218447"
-Customer.create! name: "Sieu", email: "nhat6@123.com",
-  phone_num: "01213211237"
-Customer.create! name: "Cap", email: "boring@as.fuk",
-  phone_num: "01213214447"
-Customer.create! name: "Vu", email: "fake@email.com",
-  phone_num: "01213212347"
-Customer.create! name: "Tru", email: "legin@as.hell",
-  phone_num: "01213211237"
+
+  100.times do
+    Customer.create! name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone_num: Faker::PhoneNumber.cell_phone
+  end
 
 Table.create! capacity: 8, code: "1"
 Table.create! capacity: 2, code: "2"
@@ -981,5 +974,48 @@ orders.each do |order|
     oc = FactoryGirl.create :order_combo
     order.order_dishes << od
     order.order_combos << oc
+  end
+end
+
+count_dish = Dish.all.count
+count_combo = Combo.all.count
+count_customer = Customer.all.count
+count_dish.times do |time|
+  Rate.create! rater_id: Faker::Number.between(1, count_customer),
+    rateable_type: "Dish",
+    rateable_id: time,
+    stars: Faker::Number.between(1, 5),
+    dimension: "nice"
+end
+
+count_combo.times do |time|
+  Rate.create! rater_id: Faker::Number.between(1, count_customer),
+    rateable_type: "Combo",
+    rateable_id: time,
+    stars: Faker::Number.between(1, 5),
+    dimension: "nice"
+end
+
+100.times do
+  Order.create! customer_id: Faker::Number.between(1, 100),
+    table_id: Faker::Number.between(1, 17),
+    day: Faker::Time.between(DateTime.now + 1, DateTime.now + 100),
+    time_in: Faker::Time.forward.hour.to_s << ":00",
+    status: Faker::Number.between(0, 4)
+end
+
+Order.all.map do |order|
+  Faker::Number.between(1, 3).times do
+    order.order_combos.new combo_id: Faker::Number.between(1, count_combo),
+      quantity: Faker::Number.between(1, 5),
+      status: Faker::Number.between(0, 5)
+    order.save
+  end
+
+  Faker::Number.between(1, 3).times do
+    order.order_dishes.new dish_id: Faker::Number.between(1, count_dish),
+      quantity: Faker::Number.between(1,5),
+      status: Faker::Number.between(0, 5)
+    order.save
   end
 end
