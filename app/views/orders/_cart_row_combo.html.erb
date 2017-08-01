@@ -38,7 +38,7 @@
                 </div>
               </div>
             <% end %>
-            <%= render "rate", id: id, type: "Combo" %>
+            <%= render "rate", id: id, type: "Combo" if current_order.done? %>
           </div>
         </div>
       <% end %>

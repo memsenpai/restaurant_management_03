@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    session.clear if current_order.code.present?
+    session.clear
     redirect_to :back
   end
 

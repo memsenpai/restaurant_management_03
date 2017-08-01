@@ -1,0 +1,7 @@
+<div class="<%= type + id.to_s %>">
+  <% if current_order.done? %>
+    <%= t "quote_rate" %>
+  <% end %>
+  <%= rating_for current_item(id, type), "nice",
+    disable_after_rate: false %>
+</div>
