@@ -5,7 +5,7 @@ FactoryGirl.define do
     code {Digest::MD5.base64digest Faker::Number.between(1, 10).to_s}
     day {Faker::Time.between DateTime.now + 1, DateTime.now + 3000}
     time_in {Faker::Time.forward.hour.to_s << ":00"}
-    status {Faker::Number.between 0, 2}
+    status {Faker::Number.between 0, 4}
     discount 0
   end
 end

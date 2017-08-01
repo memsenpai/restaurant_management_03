@@ -932,8 +932,24 @@ Customer.create! name: "guest", email: "guest@123.com",
   phone_num: "01213218307", code: "guest1231"
 Customer.create! name: "Foo", email: "guest2@123.com",
   phone_num: "01213218307"
-Customer.create! name: "Hien", email: "hienvu@123.com",
-  phone_num: "01213218307"
+Customer.create! name: "Nhat", email: "nhat1@123.com",
+  phone_num: "01213210997"
+Customer.create! name: "Dep", email: "nhat2@123.com",
+  phone_num: "01213217537"
+Customer.create! name: "Trai", email: "nhat3@123.com",
+  phone_num: "01213218337"
+Customer.create! name: "Vo", email: "nhat4@123.com",
+  phone_num: "01213218317"
+Customer.create! name: "Dich", email: "nhat5@123.com",
+  phone_num: "01213218447"
+Customer.create! name: "Sieu", email: "nhat6@123.com",
+  phone_num: "01213211237"
+Customer.create! name: "Cap", email: "boring@as.fuk",
+  phone_num: "01213214447"
+Customer.create! name: "Vu", email: "fake@email.com",
+  phone_num: "01213212347"
+Customer.create! name: "Tru", email: "legin@as.hell",
+  phone_num: "01213211237"
 
 Table.create! capacity: 8, code: "1"
 Table.create! capacity: 2, code: "2"
@@ -952,3 +968,18 @@ Table.create! capacity: 4, code: "14"
 Table.create! capacity: 12, code: "15"
 Table.create! capacity: 4, code: "16"
 Table.create! capacity: 16, code: "17"
+
+FactoryGirl.create_list :staff, 50
+
+FactoryGirl.create_list :order, 50
+
+orders = Order.all
+
+orders.each do |order|
+  5.times do
+    od = FactoryGirl.create :order_dish
+    oc = FactoryGirl.create :order_combo
+    order.order_dishes << od
+    order.order_combos << oc
+  end
+end

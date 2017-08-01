@@ -1,0 +1,38 @@
+<div id="staff" class="tab-pane fade in active">
+  <div id="staff-chart" class="chart"></div>
+</div>
+
+<div id="order" class="tab-pane fade in active">
+  <label>
+    <input id="month-radio" type="radio" value="month" name="my-radio">
+    <%= t "dashboard.gbm" %>
+  </label>
+  <label>
+    <input id="week-radio" type="radio" value="week"
+      name="my-radio" checked="checked">
+    <%= t "dashboard.gbw" %>
+  </label>
+  <select id="week-selector">
+  </select>
+  <select id="month-selector">
+    <%= (1..12).each do |i| %>
+      <option><%= i %></option>
+    <% end  %>
+  </select>
+  <select id="year-selector">
+    <option value="2016">2016</option>
+    <option value="2017" selected="selected">2017</option>
+  </select>
+  <select id="order-selector">
+    <option value="ASC">
+      <%= t "dashboard.least" %>
+    </option>
+    <option value="DESC" selected="selected">
+      <%= t "dashboard.most" %>
+    </option>
+  </select>
+  <button id='fetch-button' type="button" name="button">
+    <%= t "dashboard.fetch" %>
+  </button>
+  <div id="order-chart" class="chart"></div>
+</div

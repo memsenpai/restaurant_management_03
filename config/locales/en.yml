@@ -682,3 +682,17 @@ en:
     end_time: End Time
     not_found: Promo not found
   book_table: "Book Table Now!"
+  dashboard:
+    gbm: Group by month
+    gbw: Group by week
+    most: Most
+    least: Least
+    fetch: Fetch
+    orderchart:
+      title:
+        text: Number of hired Staffs Monthly
+      orderedtimes: Ordered times
+      xaxistext: (Order) times
+      pointformat: Ordered <b>%{point}</b> times
+      series:
+        name: Population

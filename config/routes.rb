@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     resources :bills
     resources :bill_details
     resources :xml
+    resources :dashboards, only: %i(index)
   end
 
 end

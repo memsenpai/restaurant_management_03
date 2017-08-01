@@ -31,6 +31,8 @@ gem "active_model_serializers"
 gem "prawn"
 gem "prawn-table"
 gem "ratyrate"
+gem "groupdate"
+gem "week_of_month"
 
 group :development, :test do
   gem "byebug", platform: :mri
