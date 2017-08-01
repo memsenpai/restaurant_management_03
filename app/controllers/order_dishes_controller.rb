@@ -1,5 +1,6 @@
 class OrderDishesController < ApplicationController
   def create
+    return unless current_order.uncheck?
     if session[:order_dishes]
       init_order_dish unless update_order_dish
     else

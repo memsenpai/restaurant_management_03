@@ -17,7 +17,8 @@ $(document).on('turbolinks:load', function(){
       setTimeout(function () {
         $('.alert-2').removeClass('show');
       }, 2500);
-    }else{
+    }
+    else {
       $('.next').removeAttr('disabled');
     }
   });

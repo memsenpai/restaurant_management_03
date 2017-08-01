@@ -117,9 +117,23 @@ $black-overlay: rgba(0, 0, 0, .3);
 }
 
 .user-info {
+  float: left;
+  width: 50%;
+
   span {
     color: $red;
     font-weight: bolder;
+  }
+}
+
+.table-info {
+  float: left;
+  width: 50%;
+}
+
+.book-table {
+  a {
+    color: $white;
   }
 }
 
@@ -298,7 +312,7 @@ p {
 }
 
 .go-to-book {
-  background: $spectra;
+  background-image: url("http://i.imgur.com/WVDh6N2.jpg");
   padding-bottom: 10px;
   padding-top: 10px;
 }
