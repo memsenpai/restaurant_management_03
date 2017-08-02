@@ -44,9 +44,10 @@ Rails.application.routes.draw do
     resources :promos
     resources :chef
     resources :bills
-    resources :bill_details
-    resources :xml
     resources :dashboards, only: %i(index)
+    resources :bill_details, except: %i(new edit show)
+    resources :xml, only: %i(show)
+    resources :membership_coupons, except: %i(new edit show)
   end
 
 end

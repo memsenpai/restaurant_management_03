@@ -17,7 +17,7 @@ describe SessionsController do
     it "test login success" do
       post :create, params:
         {staff: {email: "admin@123.com", password: "123123"}}
-      expect(response).to have_http_status :found
+      expect(response).to have_http_status :ok
     end
 
     it "test login failure" do

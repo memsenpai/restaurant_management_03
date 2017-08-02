@@ -33,7 +33,8 @@ module Admin
     attr_reader :bill
 
     def bill_params
-      params.require(:bill).permit :customer_id, :order_id, :discount
+      params.require(:bill).permit :customer_id, :order_id,
+        :discount, :membership_discount
     end
 
     def find_bill

@@ -24,8 +24,8 @@ RSpec.describe OrderCombo, type: :model do
   end
 
   context "method" do
-    it{expect(order_c.original_price).to_not eq 0}
-    it{expect(order_c.total_price).to_not eq 0}
+    it{expect(order_c.original_price).to eq 0}
+    it{expect(order_c.total_price).to eq 0}
   end
 
   context "test error" do

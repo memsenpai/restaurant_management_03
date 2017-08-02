@@ -9,4 +9,19 @@ class Customer < ApplicationRecord
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
   after_save :generate_code
+
+  def membership_money_paid
+    return 0 unless membership_current
+    membership_current.money_paid
+  end
+
+  def membership_discount
+    return 0 unless membership_current
+    membership_current.discount
+  end
+
+  def membership_current
+    money_paids = MembershipCoupon.coupon_max money_paid
+    MembershipCoupon.find_by money_paid: money_paids.max
+  end
 end

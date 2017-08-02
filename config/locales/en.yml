@@ -14,6 +14,7 @@ en:
   stoped: Stoped
   no_content: No content
   discount: Discount
+  discount_input: "Input code"
   hello: "Hello world"
   res: Restaurant
   brand: "Awesomecity"
@@ -120,7 +121,7 @@ en:
     orderr: Order
     manage: Manage
     order: Check Order
-    bill: Export bill
+    bill: Bills
     profile: Profile
     setting: Setting
     logout: Log out
@@ -152,6 +153,12 @@ en:
     current_role: Current role
     needing: Needing
     cooking: Cooking
+    membership_coupons:
+      name: Name
+      money_paid: Money paid
+      status: Status
+      index:
+        title: Membership Coupons
     bills:
       customer_info: Customer Info
       bill_info: Bill Info
@@ -169,11 +176,14 @@ en:
       total_price: Total price
       export_exel: Export Excel
       bill_code: "Bill code"
+      customer_infomation: "Customer Infomation"
+      order_infomation: "Order Infomation"
       customer_code: "Customer code"
       customer_name: "Customer name"
       time_created: "Time created"
       action: "Action"
       details: "Details"
+      btn_apply: "Apply"
       show:
         title: BILL
     dishes:
@@ -349,6 +359,7 @@ en:
         serving: Serving
         done: Done
       order:
+        table: Table
         search: Search
         input_keyword: Search for order code or customer name
         choose: "--- Choose ---"
@@ -356,6 +367,7 @@ en:
         check: "Status:"
         code: Code
         discount: Discount
+        time_in: Time in
         table: Table
         capacity: Capacity
         phone: Phone
@@ -374,6 +386,10 @@ en:
         code: Code
         customer_name: Customer Name
   button:
+    close: Close
+    new: New
+    create: Create
+    save: Save
     view: Details
     add: Add
     update: Update
@@ -594,6 +610,7 @@ en:
     guest_id: "Guest ID: "
     not_found: "Find not found!"
   staff_order:
+    membership_coupon: Membership Coupon
     edit_dish_of_order: Edit dish of order
     add_dish_to_order: Add dish to order
     search_by_code: Search by code
@@ -628,6 +645,7 @@ en:
     cooking: Cooking
   discounts:
     input_code: "Code"
+  discount:
     reenter: "Please re-enter correct code!"
     used_code: "This code has been used!"
     discount: "This voucher has"
