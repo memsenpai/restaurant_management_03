@@ -1,6 +1,7 @@
 class OrderDishesController < ApplicationController
   def create
     return unless current_order.uncheck?
+
     if session[:order_dishes]
       init_order_dish unless update_order_dish
     else
@@ -38,6 +39,7 @@ class OrderDishesController < ApplicationController
       quantity =
         order_dish["quantity"].to_i + order_dish_params[:quantity].to_i
     update_in_db? quantity
+    true
   end
 
   def update_order_dish
@@ -64,14 +66,19 @@ class OrderDishesController < ApplicationController
     dish_order =
       OrderDish.find_or_initialize_by order_id: session[:order_id],
         dish_id: dish_id
-    dish_order.update_attributes dish_id: dish_id,
-      quantity: quantity
+    dish_order.update_attributes dish_id: dish_id, quantity: quantity
+    HistoryOrder.create order_id: current_order.id, brand: "add_dish",
+      time: current_order.updated_at, item_id: dish_order.id,
+      describe: quantity
   end
 
   def destroy_in_db
     return unless order_save?
     dish_order = OrderDish.find_by dish_id: params[:order_dish][:id]
     dish_order.destroy if dish_order
+    HistoryOrder.create order_id: current_order.id, brand: "cancel_dish",
+      time: current_order.updated_at, item_id: dish_order.id,
+      describe: quantity
   end
 
   def order_dish_params

@@ -10,6 +10,7 @@ module Admin
 
     def new
       @order_combo = OrderCombo.new
+      respond_html
       link = "_order_combo_item"
       respond_to do |format|
         format.html{render link, layout: false, locals: {support: support}}
@@ -18,32 +19,40 @@ module Admin
 
     def create
       @order = support.load_data[:order]
-      order.order_combos.new order_combo_params
-      save_order
+      params_create = order_combo_params
+      order_combo = OrderCombo.find_by combo_id: params_create[:combo_id],
+        order_id: params[:order_id]
+      if order_combo
+        quantity = order_combo.quantity + params_create[:quantity].to_i
+        order_combo.update_attributes quantity: quantity
+        respond_html "admin/orders/_order_item"
+      else
+        order.order_combos.new params_create
+        save_order
+      end
     end
 
     def edit; end
 
     def update
-      params_update = order_combo_params
-      if order_combo.update_attributes params_update
-        flash[:success] = t "staff_order.success_update"
-      else
-        flash[:danger] = t "staff_order.something_wrong"
-      end
-      redirect_to :back
+      @order = support.load_data[:order]
+      combo_params = order_combo_params
+      return unless order_combo.update_attributes combo_params
+      change_status
+      flash[:success] = t "staff_order.success_update"
+      respond_html "admin/orders/_order_item"
+      HistoryOrder.create order_id: order.id, brand: "add_combo",
+        time: order.updated_at, item_id: order_combo.id,
+        describe: combo_params[:quantity]
     end
 
     def destroy
-      order = support.load_data[:order]
-      if order
-        if order.order_combos.delete order_combo
-          flash[:success] = t "staff_order.success_delete"
-        else
-          flash[:danger] = t "staff_order.something_wrong"
-        end
-      end
-      redirect_to :back
+      @order = support.load_data[:order]
+      order_combo.cancel!
+      respond_html "admin/orders/_order_item"
+      HistoryOrder.create order_id: order.id, brand: "cancel_combo",
+        time: Time.now.in_time_zone, item_id: order_combo.id,
+        describe: order_combo_params[:quantity]
     end
 
     private

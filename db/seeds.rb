@@ -928,19 +928,6 @@ Table.create! capacity: 16, code: "17"
 
 FactoryGirl.create_list :staff, 50
 
-FactoryGirl.create_list :order, 10
-
-orders = Order.all
-
-orders.each do |order|
-  5.times do
-    od = FactoryGirl.create :order_dish
-    oc = FactoryGirl.create :order_combo
-    order.order_dishes << od
-    order.order_combos << oc
-  end
-end
-
 count_dish = Dish.all.count
 count_combo = Combo.all.count
 count_customer = Customer.all.count
@@ -965,13 +952,14 @@ end
     table_id: Faker::Number.between(1, 17),
     day: Faker::Time.between(DateTime.now + 1, DateTime.now + 100),
     time_in: Faker::Time.forward.hour.to_s << ":00",
-    status: Faker::Number.between(0, 4)
+    status: Faker::Number.between(0, 2)
 end
 
+Order.all.map do |order|
   Faker::Number.between(1, 3).times do
     order.order_dishes.new dish_id: Faker::Number.between(1, count_dish),
       quantity: Faker::Number.between(1,5),
-      status: Faker::Number.between(0, 5)
+      status: 0
     order.save
   end
 end

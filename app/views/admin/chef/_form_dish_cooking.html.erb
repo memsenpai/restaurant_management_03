@@ -1,5 +1,5 @@
 <% cooking_dishes.each do |dish| %>
-  <tr>
+  <tr class="dish_<%= dish.id %>" draggable="true">
     <td><%= dish.dish.name %></td>
     <td><%= dish.quantity %></td>
     <td><%= dish.dish.class%></td>

@@ -1,4 +1,4 @@
-<table class="table-order table">
+<table class="table-order table default-dg-table">
   <thead>
     <tr>
       <th class="left width-90">
@@ -34,53 +34,7 @@
     <% if order.orders_search.any? %>
       <% order.orders_search.each do |order| %>
         <% if order.day %>
-          <tr>
-            <td><%= link_to order.code, admin_order_path(order) %></td>
-            <td><%= order.day.in_time_zone(
-              Settings.time_zone).strftime('%b %d %Y') %></td>
-            <td><%= order.time_in %></td>
-            <td><%= order.customer.name %></td>
-            <td class="text-center"><%= order.table_id %></td>
-            <td class="text-center"><%= order.capacity %></td>
-            <td class="text-center"><%= order.discount %>
-              <i class="fa fa-percent"></i></td>
-            <td class="text-center">
-            <% case order.status %>
-            <% when "uncheck"%>
-              <span class="label-red animated bounce">
-            <% when "declined"%>
-              <span class="label-red">
-            <% when "approved" %>
-              <span class="label-green">
-            <% when "serving"%>
-              <span class="label-blue animated bounce">
-            <% when "done" %>
-              <span class="label-blue">
-            <% end %>
-            <%= link_to admin_order_path(order,
-              order: {status: order.change_status}), remote:true,
-              method: :patch do %>
-                <%= order.status %>
-              <% end %>
-            </span>
-            </td>
-            <% if can? :manage, Order %>
-              <td class="width-20">
-                <%= link_to edit_admin_order_path(order) do %>
-                  <i class="fa fa-lg fa-pencil-square-o"></i>
-                <% end %>
-              </td>
-            <% end %>
-            <td class="width-20">
-            <% if order.uncheck? || order.approved? %>
-              <%= link_to admin_order_path(order,
-                order: {status: "declined"}), remote:true,
-                method: :patch do %>
-                <i class="fa fa-lg fa-times"></i>
-              <% end %>
-            <% end %>
-            </td>
-          </tr>
+          <%= render "order_index", order: order %>
         <% end %>
       <% end %>
     <% end %>

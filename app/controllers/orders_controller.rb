@@ -43,8 +43,9 @@ class OrdersController < ApplicationController
   end
 
   def order_save_success
-    flash[:success] = t "flash.order.create_success"
-    UserCreateOrderNotifierMailer.send_email(current_order).deliver
+    HistoryOrder.create order_id: current_order.id, brand: "create_order",
+      time: current_order.created_at, describe: "Create"
+    NotifierMailer.create_order(current_order).deliver
     render json: {path: cart_path}
   end
 

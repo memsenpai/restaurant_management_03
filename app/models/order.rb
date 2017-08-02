@@ -15,6 +15,7 @@ class Order < ApplicationRecord
   has_many :order_dishes, dependent: :destroy
   has_many :order_combos, dependent: :destroy
   has_one :bill, foreign_key: "code"
+  has_one :history_order, dependent: :destroy
 
   delegate :code, to: :customer, prefix: :customer
 
@@ -25,7 +26,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
 
-  after_commit{MessageBroadcastJob.perform_now self}
+  after_update_commit{MessageBroadcastJob.perform_now messages_data("update")}
+  after_create_commit{MessageBroadcastJob.perform_now messages_data("create")}
 
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum
@@ -55,24 +57,28 @@ class Order < ApplicationRecord
 
   def original_combos_map
     order_combos.map do |order_combo|
+      next 0 if order_combo.cancel?
       order_combo.valid? ? order_combo.quantity * order_combo.original_price : 0
     end
   end
 
   def original_dishes_map
     order_dishes.map do |order_dish|
+      next 0 if order_dish.cancel?
       order_dish.valid? ? order_dish.quantity * order_dish.price : 0
     end
   end
 
   def subtotal_combos_map
     order_combos.map do |order_combo|
+      next 0 if order_combo.cancel?
       order_combo.valid? ? order_combo.total_price : 0
     end
   end
 
   def subtotal_dishes_map
     order_dishes.map do |order_dish|
+      next 0 if order_dish.cancel?
       order_dish.valid? ? order_dish.total_price : 0
     end
   end
@@ -80,5 +86,14 @@ class Order < ApplicationRecord
   def validate_table
     datetime = DateTime.parse(day.to_s << " " << time_in.to_s).in_time_zone.utc
     errors.add :table unless Table.find_by(id: table_id).is_available? datetime
+  end
+
+  def messages_data action
+    {
+      action: action, name: customer.name, id: id, discount: discount,
+      table_id: table_id, capacity: capacity,
+      day: day.in_time_zone(Settings.time_zone).strftime('%b %d %Y'),
+      time_in: time_in, status: status
+    }
   end
 end

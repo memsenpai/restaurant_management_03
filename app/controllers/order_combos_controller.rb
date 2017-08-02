@@ -38,6 +38,7 @@ class OrderCombosController < ApplicationController
       quantity =
         order_combo["quantity"].to_i + order_combo_params[:quantity].to_i
     update_in_db? quantity
+    true
   end
 
   def update_order_combo
@@ -64,14 +65,19 @@ class OrderCombosController < ApplicationController
     combo_order =
       OrderCombo.find_or_initialize_by order_id: session[:order_id],
         combo_id: combo_id
-    combo_order.update_attributes combo_id: combo_id,
-      quantity: quantity
+    combo_order.update_attributes combo_id: combo_id, quantity: quantity
+    HistoryOrder.create order_id: current_order.id, type: "add_combo",
+      time: current_order.updated_at, item_id: combo_order.id,
+      describe: quantity
   end
 
   def destroy_in_db
     return unless order_save?
     combo_order = OrderCombo.find_by combo_id: params[:order_combo][:id]
     combo_order.destroy if combo_order
+    HistoryOrder.create order_id: current_order.id, type: "cancel_combo",
+      time: current_order.updated_at, item_id: combo_order.id,
+      describe: quantity
   end
 
   def order_combo_params

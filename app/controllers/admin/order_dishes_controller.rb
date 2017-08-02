@@ -18,27 +18,40 @@ module Admin
 
     def create
       @order = support.load_data[:order]
-      order.order_dishes.new order_dish_params
-      save_order
+      params_create = order_dish_params
+      order_dish = OrderDish.find_by dish_id: params_create[:dish_id],
+        order_id: params[:order_id]
+      if order_dish
+        quantity = order_dish.quantity + params_create[:quantity].to_i
+        order_dish.update_attributes quantity: quantity
+        respond_html "admin/orders/_order_item"
+      else
+        order.order_dishes.new params_create
+        save_order
+      end
     end
 
     def edit; end
 
     def update
-      params_update = order_dish_params
-      if order_dish.update_attributes params_update
-        flash[:success] = t "staff_order.success_update"
-        redirect_to :back
-      else
-        redirect_to edit_admin_order_order_dish_path
-      end
+      order = support.load_data[:order]
+      dish_params = order_dish_params
+      return unless order_dish.update_attributes dish_params
+      change_status
+      flash[:success] = t "staff_order.success_update"
+      redirect_to :back
+      HistoryOrder.create order_id: order.id, brand: "add_dish",
+        time: order.updated_at, item_id: order_dish.id,
+        describe: dish_params[:quantity]
     end
 
     def destroy
       order = support.load_data[:order]
-
-      return unless order
-      delete_order_dish
+      order_dish.cancel!
+      redirect_to :back
+      HistoryOrder.create order_id: order.id, brand: "cancel_dish",
+        time: Time.now.in_time_zone, item_id: order_dish.id,
+        describe: order_dish_params[:quantity]
     end
 
     private
@@ -79,12 +92,10 @@ module Admin
       order.done!
     end
 
-    def delete_order_dish
-      if order.order_dishes.delete order_dish
-        flash[:success] = t "staff_order.success_delete"
-        redirect_to admin_order_path order
-      else
-        flash[:danger] = t "staff_order.something_wrong"
+    def respond_to_html
+      link = "_order_dish_item"
+      respond_to do |format|
+        format.html{render link, layout: false, locals: {support: support}}
       end
     end
   end
