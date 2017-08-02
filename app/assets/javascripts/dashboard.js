@@ -245,7 +245,7 @@ function initComboChart(data) {
       enabled: false
     },
     tooltip: {
-      pointFormat: I18n.t('dashboard.combochart.pointformat', {point: '{point.y}'})
+      pointFormat: I18n.t('dashboard.orderchart.pointformat')
     },
     series: [{
       name: I18n.t('dashboard.combochart.series.name'),

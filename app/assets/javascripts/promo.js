@@ -20,4 +20,29 @@ $(document).on('turbolinks:load', function(){
       }
     });
   });
+
+  $('.txt-search-promo').keypress(function (e) {
+    if (e.which == 13) {
+      var html = '';
+      $.ajax({
+        type: 'GET',
+        url: '/dishes',
+        data: {name: $(this).val()},
+        dataType: 'JSON',
+        success: function (respond) {
+          $.each(respond, function(key, value){
+            html += '<div class="col-xs-6 col-sm-4 choose">';
+            html += '<label>';
+            html += '<input type="radio" name="promo[dish_id]" value="'+ value.id +'">';
+            html += value.name;
+            html += '</label></div>';
+          });
+        }
+      }).done(function() {
+        $('.contain-item').html(html);
+      });
+
+      return false;
+    }
+  });
 });

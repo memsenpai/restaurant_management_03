@@ -410,6 +410,7 @@ en:
         code: Code
         customer_name: Customer Name
   button:
+    search: Search
     close: Close
     new: New
     create: Create

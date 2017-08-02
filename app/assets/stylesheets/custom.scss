@@ -4040,7 +4040,6 @@ a:visited {
   color: $color-ff4b00;
 }
 
-<<<<<<< 927ba1675cc025e05d3f42331daad9fe45c91962
 .cardbox {
   border: 1px solid $red;
   border-radius: 5px;
@@ -4250,4 +4249,9 @@ $mute: #dfe3e4;
   height: 50px;
   margin-right: 10px;
   width: 50px;
+}
+
+.contain-item {
+  max-height: 300px;
+  overflow: auto;
 }
