@@ -3397,7 +3397,7 @@ a:visited {
   }
 
   .font-mont {
-    color: $white;
+    color: $black;
     font-family: Khand;
     font-size: 3em;
   }
@@ -3431,10 +3431,6 @@ a:visited {
     font-size: 13px;
     font-weight: normal;
     margin-bottom: 10px;
-  }
-
-  .heading-small {
-    margin-top: 50px;
   }
 
   #progressbar {
@@ -4133,7 +4129,7 @@ $mute: #dfe3e4;
   width: 80%;
 }
 
-.progress {
+.progress-book {
   background: transparent;
   color: darken($mute, 33%);
   display: table;
@@ -4144,6 +4140,7 @@ $mute: #dfe3e4;
   width: 70%;
 
   > li {
+    z-index: 10;
     display: table-cell;
     font-size: .8em;
     position: relative;

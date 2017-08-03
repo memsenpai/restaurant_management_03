@@ -1,0 +1,52 @@
+.map3.tables {
+  margin: 0;
+  width: 26vw;
+}
+
+.map2.tables {
+  margin: 0;
+}
+
+.table-section.tables {
+  padding-top: 0;
+  background: transparent;
+  min-height: 0;
+}
+
+.tracking-order-process.tables {
+  background-color: #fff;
+}
+
+.col-sm-4.col-sm-offset-4.box.tables {
+  margin-bottom: 0;
+  margin-top: -20px;
+}
+
+.table-section.heading-small.tables {
+  margin-top: 0;
+}
+
+.stylish-heading.h1style.font-mont.heading-small.tables {
+  color: #000;
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+.col-sm-6.box.col-sm-offset-3.tables {
+  margin-bottom: 0;
+  margin-top: -65px;
+  transform : scale(0.75);
+}
+
+.stylish-heading.h1style.font-mont.tables {
+  margin-top: -20px;
+  color: #000;
+}
+
+.text-color-white.tables {
+  color: #000;
+}
+
+.progress-book.progress-medium.tables {
+  padding: 0;
+}

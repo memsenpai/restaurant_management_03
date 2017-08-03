@@ -312,7 +312,8 @@ p {
 }
 
 .go-to-book {
-  background-image: url("http://i.imgur.com/WVDh6N2.jpg");
+  background: url("http://i.imgur.com/WVDh6N2.jpg") no-repeat center center fixed;
+  background-size: cover;
   padding-bottom: 10px;
   padding-top: 10px;
 }

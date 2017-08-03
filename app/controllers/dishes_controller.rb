@@ -26,7 +26,7 @@ class DishesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: Dish.where_like params[:name]
+        render json: Dish.where_like(params[:name])
       end
     end
   end

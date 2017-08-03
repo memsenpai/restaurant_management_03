@@ -1,27 +1,9 @@
 /*global WOW:true*/
 $(document).on('turbolinks:load', function(){
-  $('.datepicker2').datepicker({
-    dateFormat: 'yy-mm-dd',
-    defaultDate: 0,
-    firstDay: 1,
-    gotoCurrent: true,
-    minDate: 0
-  });
+  tables_book();
+});
 
-  $('.btn-table').click(function(){
-    $('.btn-table').removeClass('btn-choose');
-    $(this).addClass('btn-choose');
-    if($(this).hasClass('btn-batsu')){
-      $('.next').attr('disabled', 'true');
-      $('.alert-2').addClass('show');
-      setTimeout(function () {
-        $('.alert-2').removeClass('show');
-      }, 2500);
-    }
-    else {
-      $('.next').removeAttr('disabled');
-    }
-  });
+$(document).on('turbolinks:load', function(){
 
   $(document).on('click','.close', function(){
     $('#myModal').css('display','none');
@@ -92,7 +74,35 @@ $(document).on('click','#close-alert', function(){
   $('#popup1').addClass('hide');
 });
 
-$(document).ready(function(){
+function tables_book(){
+  $('.datepicker2').datepicker({
+    dateFormat: 'yy-mm-dd',
+    defaultDate: 0,
+    firstDay: 1,
+    gotoCurrent: true,
+    minDate: 0
+  });
+  $('input.timepicker').timepicker({
+    timeFormat: 'HH:mm',
+    minHour: 10,
+    maxHour: 20,
+    maxMinutes: 30,
+    interval: 15
+  });
+  $('.btn-table').click(function(){
+    $('.btn-table').removeClass('btn-choose');
+    $(this).addClass('btn-choose');
+    if($(this).hasClass('btn-batsu')){
+      $('.next').attr('disabled', 'true');
+      $('.alert-2').addClass('show');
+      setTimeout(function () {
+        $('.alert-2').removeClass('show');
+      }, 2500);
+    }
+    else {
+      $('.next').removeAttr('disabled');
+    }
+  });
   var current_fs, next_fs, previous_fs;
   var current, next, prev;
   var left, opacity, scale;
@@ -161,7 +171,6 @@ $(document).ready(function(){
       easing: 'easeInOutBack'
     });
   }
-
   $('.previous').click(function() {
     var step = $(this).attr('step');
     if (step == 3) {
@@ -175,7 +184,7 @@ $(document).ready(function(){
     }
   });
 
-  $('.next').click(function(){
+  $(document).on('click','.next', function(){
     var element = this;
     var step = $(this).attr('step');
     if(step == 1){
@@ -275,14 +284,14 @@ $(document).ready(function(){
     }
   });
 
-  $('.previous').click(function(){
+  $(document).on('click', '.previous', function(){
     prev_step(this);
   });
 
-  $('.submit').click(function(){
+  $(document).on('click', '.submit', function(){
     return false;
   });
-});
+}
 
 $(document).on('click','.btn-voucher',function(){
   $('#myModal2').show();
@@ -300,7 +309,7 @@ $(document).on('click','#check-discount-code', function(){
   }, 500);
 });
 
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
   $('time.timeago').timeago();
   $('input.timepicker').timepicker({
     timeFormat: 'HH:mm',
