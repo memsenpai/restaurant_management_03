@@ -38,6 +38,7 @@ class OrderCombosController < ApplicationController
       quantity =
         order_combo["quantity"].to_i + order_combo_params[:quantity].to_i
     update_in_db? quantity
+    true
   end
 
   def update_order_combo
@@ -64,8 +65,7 @@ class OrderCombosController < ApplicationController
     combo_order =
       OrderCombo.find_or_initialize_by order_id: session[:order_id],
         combo_id: combo_id
-    combo_order.update_attributes combo_id: combo_id,
-      quantity: quantity
+    combo_order.update_attributes combo_id: combo_id, quantity: quantity
   end
 
   def destroy_in_db

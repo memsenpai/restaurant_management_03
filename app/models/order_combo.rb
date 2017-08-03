@@ -4,6 +4,8 @@ class OrderCombo < ApplicationRecord
   belongs_to :order
   belongs_to :combo
 
+  has_many :history_items, dependent: :destroy, foreign_key: "item_id"
+
   validates :quantity, presence: true,
     numericality: {only_integer: true, greater_than: 0}
   validate :combo_present
@@ -12,6 +14,9 @@ class OrderCombo < ApplicationRecord
   before_save :finalize
 
   after_update_commit{MessageBroadcastJob.perform_now describe}
+  after_create_commit{save_history "create_new"}
+  after_update_commit{save_history "add"}
+  after_destroy_commit{save_history "remove"}
 
   load_order_combos = lambda do |id|
     order_combos = []
@@ -53,5 +58,11 @@ class OrderCombo < ApplicationRecord
 
     return unless table
     {combo: combo.name, table: table.code, status: status}
+  end
+
+  def save_history brand
+    brand = "cancel" if cancel?
+    HistoryItem.create item_id: id, brand: brand, describe: quantity,
+      time: created_at, class_name: self.class.name
   end
 end

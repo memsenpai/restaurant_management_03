@@ -1,0 +1,18 @@
+$('.order_cart').replaceWith('<%= j render template: "tables/index" %>');
+$('.table-section.go-to-book').removeClass('go-to-book');
+tables_book();
+$('.datepicker2').datepicker({
+  dateFormat: 'yy-mm-dd',
+  defaultDate: 0,
+  firstDay: 1,
+  gotoCurrent: true,
+  minDate: 0
+});
+$('input.timepicker').timepicker({
+  timeFormat: 'HH:mm',
+  minHour: 10,
+  maxHour: 20,
+  maxMinutes: 30,
+  interval: 15
+});
+$('.map2').css('height', '63vh');

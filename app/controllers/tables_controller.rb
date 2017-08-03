@@ -1,8 +1,11 @@
 class TablesController < ApplicationController
+  before_action :init_before_action
   def index
-    @customer = Customer.new
-    @tables = check_table
     respond_html_json
+  end
+
+  def new
+    render "orders/book"
   end
 
   private
@@ -12,6 +15,11 @@ class TablesController < ApplicationController
   def table_params
     params.require(:table).permit :orders_day_eq, :capacity_gteq,
       :orders_time_in_eq
+  end
+
+  def init_before_action
+    @customer = Customer.new
+    @tables = check_table
   end
 
   def load_info_table

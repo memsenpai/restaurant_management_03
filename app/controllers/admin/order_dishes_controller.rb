@@ -5,6 +5,7 @@ module Admin
     before_action :load_support_dishes
     before_action :find_order_dish
     after_action :change_status, only: :update
+    before_action :load_order, only: %i(create update destroy)
 
     load_and_authorize_resource
 
@@ -17,28 +18,28 @@ module Admin
     end
 
     def create
-      @order = support.load_data[:order]
-      order.order_dishes.new order_dish_params
-      save_order
+      order_dish = OrderDish.find_by dish_id: order_dish_params[:dish_id],
+        order_id: params[:order_id]
+      if order_dish && order_dish.no_need?
+        update_already order_dish
+      else
+        init_order order
+      end
     end
 
     def edit; end
 
     def update
-      params_update = order_dish_params
-      if order_dish.update_attributes params_update
-        flash[:success] = t "staff_order.success_update"
-        redirect_to :back
-      else
-        redirect_to edit_admin_order_order_dish_path
-      end
+      dish_params = order_dish_params
+      return unless order_dish.update_attributes dish_params
+      change_status
+      flash[:success] = t "staff_order.success_update"
+      respond_html "admin/orders/_order_item"
     end
 
     def destroy
-      order = support.load_data[:order]
-
       return unless order
-      delete_order_dish
+      delete_order_dish order
     end
 
     private
@@ -48,6 +49,10 @@ module Admin
     def order_dish_params
       params.require(:order_dish).permit :dish_id,
         :order_id, :quantity, :status
+    end
+
+    def load_order
+      @order = support.load_data[:order]
     end
 
     def respond_html layout
@@ -66,6 +71,17 @@ module Admin
       end
     end
 
+    def init_order order
+      order.order_dishes.new order_dish_params
+      save_order
+    end
+
+    def update_already order_dish
+      quantity = order_dish.quantity + order_dish_params[:quantity].to_i
+      order_dish.update_attributes quantity: quantity
+      respond_html "admin/orders/_order_item"
+    end
+
     def check_status_items_in_order? order
       order.order_dishes.map do |item|
         next if item.served? || item.cancel?
@@ -79,7 +95,7 @@ module Admin
       order.done!
     end
 
-    def delete_order_dish
+    def delete_order_dish order
       if order.order_dishes.delete order_dish
         flash[:success] = t "staff_order.success_delete"
         redirect_to admin_order_path order

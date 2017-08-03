@@ -27,6 +27,7 @@ class Order < ApplicationRecord
 
   after_update_commit{MessageBroadcastJob.perform_now messages_data("update")}
   after_create_commit{MessageBroadcastJob.perform_now messages_data("create")}
+  after_update_commit :change_status
 
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum
@@ -99,5 +100,15 @@ class Order < ApplicationRecord
       day: day.in_time_zone.strftime(I18n.t("date_default")),
       time_in: time_in, status: status
     }
+  end
+
+  def check_change arg
+    send(arg).map{|item| item.needing! unless item.cancel?}
+  end
+
+  def change_status
+    return unless serving?
+    check_change "order_dishes"
+    check_change "order_combos"
   end
 end

@@ -1,6 +1,7 @@
 class OrderDishesController < ApplicationController
   def create
     return unless current_order.uncheck?
+
     if session[:order_dishes]
       init_order_dish unless update_order_dish
     else
@@ -38,6 +39,7 @@ class OrderDishesController < ApplicationController
       quantity =
         order_dish["quantity"].to_i + order_dish_params[:quantity].to_i
     update_in_db? quantity
+    true
   end
 
   def update_order_dish
@@ -64,8 +66,7 @@ class OrderDishesController < ApplicationController
     dish_order =
       OrderDish.find_or_initialize_by order_id: session[:order_id],
         dish_id: dish_id
-    dish_order.update_attributes dish_id: dish_id,
-      quantity: quantity
+    dish_order.update_attributes dish_id: dish_id, quantity: quantity
   end
 
   def destroy_in_db

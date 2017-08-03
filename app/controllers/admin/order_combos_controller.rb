@@ -5,6 +5,7 @@ module Admin
     before_action :load_support_combos
     before_action :find_order_combo
     after_action :change_status, only: :update
+    before_action :load_order, only: %i(create update destroy)
 
     load_and_authorize_resource
 
@@ -17,25 +18,26 @@ module Admin
     end
 
     def create
-      @order = support.load_data[:order]
-      order.order_combos.new order_combo_params
-      save_order
+      order_combo = OrderCombo.find_by combo_id: order_combo_params[:combo_id],
+        order_id: params[:order_id]
+      if order_combo && order_combo.no_need?
+        update_already order_combo
+      else
+        init_order order
+      end
     end
 
     def edit; end
 
     def update
-      params_update = order_combo_params
-      if order_combo.update_attributes params_update
-        flash[:success] = t "staff_order.success_update"
-      else
-        flash[:danger] = t "staff_order.something_wrong"
-      end
-      redirect_to :back
+      combo_params = order_combo_params
+      return unless order_combo.update_attributes combo_params
+      change_status
+      flash[:success] = t "staff_order.success_update"
+      respond_html "admin/orders/_order_item"
     end
 
     def destroy
-      order = support.load_data[:order]
       if order
         if order.order_combos.delete order_combo
           flash[:success] = t "staff_order.success_delete"
@@ -54,6 +56,10 @@ module Admin
       params.require(:order_combo).permit :combo_id, :quantity, :status
     end
 
+    def load_order
+      @order = support.load_data[:order]
+    end
+
     def respond_html layout
       respond_to do |format|
         format.html{render layout, layout: false, locals: {order: order}}
@@ -68,6 +74,17 @@ module Admin
         flash[:danger] = t "staff_order.something_wrong"
         redirect_to :back
       end
+    end
+
+    def init_order order
+      order.order_combos.new order_combo_params
+      save_order
+    end
+
+    def update_already order_combo
+      quantity = order_combo.quantity + order_combo_params[:quantity].to_i
+      order_combo.update_attributes quantity: quantity
+      respond_html "admin/orders/_order_item"
     end
 
     def check_status_items_in_order? order

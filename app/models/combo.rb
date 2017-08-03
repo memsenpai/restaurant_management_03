@@ -1,7 +1,7 @@
 class Combo < ApplicationRecord
   COMBO_ATTRIBUTES = [
     :name, :discount,
-    :description, :image, :from, :to, dish_ids: []
+    :description, :image, dish_ids: []
   ].freeze
 
   ratyrate_rateable "nice"
