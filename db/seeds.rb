@@ -495,109 +495,75 @@ Combo.create!([
   {name: "Special Sushi set",
     description: "Have a festive time as you visit Golden King Buffet Restaurant with the advantage of this MetroDeal and save 30% off the regular price",
     image: "http://kenh14cdn.com/2017/fresh-west-indies-sushi-1487754807350-0-0-1055-1688-crop-1487754828923.jpg",
-    discount: 30,
-    from: DateTime.new(2017, 4, 7),
-    to: DateTime.new(2017, 4, 14)},
+    discount: 30},
   {name: "Worth of Drink",
     description: "Enjoy an outstanding selection of drink at Not Just Lemons in Sky Garden SM City North EDSA by taking advantage of today's MetroDeal",
     image: "https://d1sttufwfa12ee.cloudfront.net/uploads/deal/thumb/49029_3.jpg",
-    discount: 45,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 45},
   {name: "Delectable Whole dessert",
     description: "Choose from the following luscious 8-inch round cakes: Double Chocolate Cheesecake, Mocha/Fudge Cheesecake, Moist Chocolate Cake, Old Fashion Mocha, Red Velvet",
     image: "http://www.sakura-hostel.co.jp/blog/SP.jpg",
-    discount: 50,
-    from: DateTime.new(2017, 4, 11),
-    to: DateTime.new(2017, 4, 15)},
+    discount: 50},
   {name: "Shabu shabu with drink!!!",
     description: "Enjoy traditional Japanese hot pot dishes with P1000 worth of food and drinks at Ganso-Shabuway Japanese Style Hot Pot.",
     image: "http://daotaobeptruong.vn/images/daotaobeptruong/tin-tuc-hoc-nau-an/day-nau-an-lau-nhat-shabu-shabu.jpg",
-    discount: 45,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 45},
   {name: "Worth of Chinese food",
     description: "Flavorful Grilled Pork Belly, Yang Chow Fried Rice & More.",
     image: "https://d1sttufwfa12ee.cloudfront.net/uploads/deal/thumb/48451.jpg",
-    discount: 31,
-    from: DateTime.new(2017, 3, 31),
-    to: DateTime.new(2017, 4, 3)},
+    discount: 31},
   {name: "Worth of Delicious Burgers",
     description: "For the health conscious eaters, Big Better Burgers also has a line of fish and chicken fillet sandwiches and rice meals",
     image: "https://d1sttufwfa12ee.cloudfront.net/uploads/deal/thumb/45586_2.jpg",
-    discount: 41,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 41},
   {name: "Worth of Korean Food",
     description: "The craze for Korean-styled fried chicken has been continuously growing its patrons all over the world, but if you're one of those who still haven't tried this savory meal, no worries as with this MetroDeal exclusively from Gangnam Wings you'll surely have your chance.",
     image: "https://d1sttufwfa12ee.cloudfront.net/uploads/deal/thumb/48636.jpg",
-    discount: 35,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 35},
   {name: "1-for-1 Rice or Noodles",
     description: "Siam Kitchen is where old world meets new, as the restaurant brings authentic dishes of ancient Siam to young diners with a discerning palate. Let our bona fide chefs from Thailand, handpicked for their ability to whip up delicious home–styled Thai cuisine, thrill you with familiar favourites such as Tom Yum Goong, Green Curry and their crunchy Sesame Prawn Sticks.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/58787664e4b033c8ebf4a7ef/oo_20170321_9504.jpg",
-    discount: 31,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 5)},
+    discount: 31},
   {name: "Wine Appreciation Night with Torelló",
     description: "Prices are subjected to 10% service charge and prevailing government taxes. Please note that once this promotion has been selected and confirmed, requests for cancellation will not be accepted.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5822e0b2e4b09fe8968a538f/pan-seared-pink-salmon-img-0355_20170317_3158.jpg",
-    discount: 30,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 30},
   {name: "Bluefin Tuna Carving $88/pax",
     description: "Hanami Festival: Bluefine Tuna Carving @$88/pax with a choice of Wayu Rib or Mangalica Pork",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5850c23fe4b0d85dba877de9/promo_20170323_4217.jpg",
-    discount: 25,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 25},
   {name: "Set Lunch Gyu Niku Shogayaki Gozen",
     description: "Enjoy a variety of set lunch specials at Kyoaji Dining where the third set lunch order will be complimentary!",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5823c338e4b0de82c5479a52/dsc-2497-gyuniku-shogayaki-gozen_20170201_3952.jpg",
-    discount: 40,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 40},
   {name: "Set Lunch Shake To Udon Gozen",
     description: "Prices are subjected to 7% GST and 10% service charge. The Management reserves the right to amend the terms and conditions without prior notice.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5823c338e4b0de82c5479a52/dsc-2477-shake-to-udon-gozen_20170201_1344.jpg",
-    discount: 40,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 40},
   {name: "Set Lunch Tempura Gozen",
     description: "Prices are subjected to 7% GST and 10% service charge. The Management reserves the right to amend the terms and conditions without prior notice.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5823c338e4b0de82c5479a52/dsc-2524-tempura-gozen_20170201_6215.jpg",
-    discount: 35,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 35},
   {name: "Set Lunch Bento",
     description: "Prices are subjected to 7% GST and 10% service charge. The Management reserves the right to amend the terms and conditions without prior notice.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5823c338e4b0de82c5479a52/dsc-2527-bento_20170201_7955.jpg",
-    discount: 40,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 40},
   {name: "Set Lunch Kijiyaki Gozen",
     description: "Prices are subjected to 7% GST and 10% service charge. The Management reserves the right to amend the terms and conditions without prior notice.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/5823c338e4b0de82c5479a52/dsc-2493-kijiyaki-gozen_20170201_1880.jpg",
-    discount: 30,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 22)},
+    discount: 30},
   {name: "10% Off Lunch Total Bill",
     description: "1. Valid from Monday to Saturday, lunch only.
       2. Cannot be used in conjunction with other promotions, discounts or vouchers.
       3. The management reserves the right to amend the terms and conditions without prior notice.",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/58575902e4b0022b5af02172/2_20170208_2100.jpg",
-    discount: 10,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 30)},
+    discount: 10},
   {name: "Set Dinner Asian style",
     description: "• Image used is only for illustration purposes
     • No service charge
     • The Management reserves the right to amend the terms and conditions without prior notice",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/51aef040e4b0e4089c17219f/msc_20170223_7276.jpg",
-    discount: 15,
-    from: DateTime.new(2017, 3, 31),
-    to: DateTime.new(2017, 4, 30)},
+    discount: 15},
   {name: "Weekday Lunch Set Menu from $8++",
     description: "• Valid daily from Monday to Friday, 11.30 to 14:00
     • Cannot be used in conjunction with other promotions, discounts or vouchers
@@ -605,9 +571,7 @@ Combo.create!([
     • Promotion is not valid on Eve of, Public Holidays and Special Occasions
     • The management reserves the right to amend the terms and conditions without prior notice",
     image: "https://tabledb.s3.amazonaws.com/hgwlandingpage/promotion/57ea22f1e4b0ac725969a16b/15994772-1139956622768161-7755982885056234841-o_20170125_3958.jpg",
-    discount: 30,
-    from: DateTime.new(2017, 4, 1),
-    to: DateTime.new(2017, 4, 30)},
+    discount: 30},
 ])
 
 ComboDish.create!([
@@ -919,6 +883,15 @@ ComboDish.create!([
   },
 ])
 
+10.times do
+  Promo.create! dish_id: Faker::Number.between(1, Dish.all.count),
+    discount: Faker::Number.between(1, 100),
+    start_day: Faker::Time.backward(5, :morning),
+    end_day: Faker::Time.forward(100, :morning),
+    start_time: Faker::Time.backward(5, :morning),
+    end_time: Faker::Time.forward(100, :morning)
+end
+
 Staff.create! name: "admin", email: "admin1@123.com",
   password: "123123", encrypted_password: "123123", staff_role: 1,
   authentication_token: "supersecrettoken2"
@@ -928,28 +901,12 @@ Staff.create! name: "admin2", email: "admin2@123.com",
 Staff.create! name: "admin3", email: "admin3@123.com",
   password: "123123", encrypted_password: "123123", staff_role: 3,
   authentication_token: "supersecrettoken4"
-Customer.create! name: "guest", email: "guest@123.com",
-  phone_num: "01213218307", code: "guest1231"
-Customer.create! name: "Foo", email: "guest2@123.com",
-  phone_num: "01213218307"
-Customer.create! name: "Nhat", email: "nhat1@123.com",
-  phone_num: "01213210997"
-Customer.create! name: "Dep", email: "nhat2@123.com",
-  phone_num: "01213217537"
-Customer.create! name: "Trai", email: "nhat3@123.com",
-  phone_num: "01213218337"
-Customer.create! name: "Vo", email: "nhat4@123.com",
-  phone_num: "01213218317"
-Customer.create! name: "Dich", email: "nhat5@123.com",
-  phone_num: "01213218447"
-Customer.create! name: "Sieu", email: "nhat6@123.com",
-  phone_num: "01213211237"
-Customer.create! name: "Cap", email: "boring@as.fuk",
-  phone_num: "01213214447"
-Customer.create! name: "Vu", email: "fake@email.com",
-  phone_num: "01213212347"
-Customer.create! name: "Tru", email: "legin@as.hell",
-  phone_num: "01213211237"
+
+  10.times do
+    Customer.create! name: Faker::Name.name,
+      email: Faker::Internet.email,
+      phone_num: Faker::PhoneNumber.cell_phone
+  end
 
 Table.create! capacity: 8, code: "1"
 Table.create! capacity: 2, code: "2"
@@ -971,15 +928,38 @@ Table.create! capacity: 16, code: "17"
 
 FactoryGirl.create_list :staff, 50
 
-FactoryGirl.create_list :order, 50
+count_dish = Dish.all.count
+count_combo = Combo.all.count
+count_customer = Customer.all.count
+count_dish.times do |time|
+  Rate.create! rater_id: Faker::Number.between(1, count_customer),
+    rateable_type: "Dish",
+    rateable_id: time,
+    stars: Faker::Number.between(1, 5),
+    dimension: "nice"
+end
 
-orders = Order.all
+count_combo.times do |time|
+  Rate.create! rater_id: Faker::Number.between(1, count_customer),
+    rateable_type: "Combo",
+    rateable_id: time,
+    stars: Faker::Number.between(1, 5),
+    dimension: "nice"
+end
 
-orders.each do |order|
-  5.times do
-    od = FactoryGirl.create :order_dish
-    oc = FactoryGirl.create :order_combo
-    order.order_dishes << od
-    order.order_combos << oc
+10.times do
+  Order.create! customer_id: Faker::Number.between(1, 10),
+    table_id: Faker::Number.between(1, 17),
+    day: Faker::Time.between(DateTime.now + 1, DateTime.now + 100),
+    time_in: Faker::Time.forward.hour.to_s << ":00",
+    status: Faker::Number.between(0, 2)
+end
+
+Order.all.map do |order|
+  Faker::Number.between(1, 3).times do
+    order.order_dishes.new dish_id: Faker::Number.between(1, count_dish),
+      quantity: Faker::Number.between(1,5),
+      status: 0
+    order.save
   end
 end

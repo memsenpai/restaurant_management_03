@@ -1,0 +1,38 @@
+<h1><%= @customer.email %>:
+  <%= t "adv_promo", from: @promo.start_day.strftime(t "day_default"),
+    to: @promo.end_day.strftime(t "day_default"), dish: @promo.dish.name %>
+</h1>
+<h2><%= @promo.dish.name %></h2>
+<center><%= image_tag @promo.dish.image, size: 200 %></center>
+<table>
+  <tbody>
+    <tr>
+      <td><h4><%= t "dish_description" %></h4></td>
+    </tr>
+    <tr>
+      <td><%= @promo.dish.description %></td>
+    </tr>
+    <tr>
+      <td><%= t "dish_price_origin" %></td>
+      <td><%= @promo.dish.price %></td>
+    </tr>
+    <tr>
+      <td><%= t "dish_price_discount" %></td>
+      <td>
+        <h3><%= number_to_percentage @promo.discount, precision: 0 %></h3>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4>
+          <%= t "datetime_promo",
+            day_start: @promo.start_day.strftime(t "day_default"),
+            day_end: @promo.end_day.strftime(t "day_default"),
+            time_start: @promo.start_time.strftime(t "time_default"),
+            time_end: @promo.end_time.strftime(t "time_default") %>
+        </h4>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2><%= t "signature" %><h2>

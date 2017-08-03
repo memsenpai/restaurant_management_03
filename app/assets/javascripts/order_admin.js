@@ -77,6 +77,7 @@ function addDish(index, length) {
       setTimeout(function(){
         if(index + 1 < length) {addDish(index + 1, length);}
         if(index + 1 == length) {
+          $('.modal-item').remove();
           $('.items-table').replaceWith(d);
         }
       },500);

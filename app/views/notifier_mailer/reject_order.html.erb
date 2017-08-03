@@ -1,7 +1,7 @@
 <h1><%= @order.customer.email %>:
-  <%= t "admin.orders.order.success" %> #<%= @order.code %>
+  <%= t "reject_order" %> #<%= @order.code %>
 </h1>
-<h2><%= t "admin.orders.order.order_info" %></h2>
+<h2><%= t "reject_order_info" %></h2>
 <table>
   <tbody>
     <tr>
@@ -38,3 +38,4 @@
     </tr>
   </tbody>
 </table>
+<h2><%= t "signature" %><h2>

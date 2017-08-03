@@ -156,7 +156,7 @@ function initOrderChart(data){
       enabled: false
     },
     tooltip: {
-      pointFormat: I18n.t('dashboard.orderchart.pointformat', point: {point.y})
+      pointFormat: I18n.t('dashboard.orderchart.pointformat')
     },
     series: [{
       name: I18n.t('dashboard.orderchart.series.name'),

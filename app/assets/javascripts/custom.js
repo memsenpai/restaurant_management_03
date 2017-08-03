@@ -25,6 +25,7 @@ $(document).on('turbolinks:load', function(){
 
   $(document).on('click','.close', function(){
     $('#myModal').css('display','none');
+    $('.modal').css('display', 'none');
     $('#guest-popup').css('display','none');
   });
 

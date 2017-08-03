@@ -38,6 +38,9 @@ class Promo < ApplicationRecord
   private
 
   def check_between input
-    Time.zone.now.between? send("start_#{input}"), send("end_#{input}")
+    format_input = I18n.t "#{input}_default"
+    Time.zone.now.strftime(format_input)
+      .between? send("start_#{input}").strftime(format_input),
+        send("end_#{input}").strftime(format_input)
   end
 end

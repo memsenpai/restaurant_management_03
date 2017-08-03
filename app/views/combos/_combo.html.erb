@@ -26,15 +26,6 @@
             target: "_blank", class: "display" %>
         </h1>
         <span class="deal-new-deal"></span>
-        <div class="valid">
-          <p><%= t ".valid_from" %>
-            <%= combo.from.in_time_zone(Settings.time_zone)
-              .strftime t("date_default") %>
-            <%= t ".valid_to" %>
-            <%= combo.to.in_time_zone(Settings.time_zone)
-              .strftime t("date_default") %>
-          </p>
-        </div>
         <div class="description">
           <p>
             <%= truncate combo.description, length: Settings.max_length,
