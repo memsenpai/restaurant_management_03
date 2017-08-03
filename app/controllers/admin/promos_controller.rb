@@ -3,6 +3,8 @@ module Admin
     before_action :authenticate_staff!
     before_action :load_dishes, except: %i(index update destroy)
 
+    after_action :send_mail, only: %i(create)
+
     load_and_authorize_resource
     skip_load_resource only: %i(index new create)
 
@@ -75,6 +77,10 @@ module Admin
           render json: find_image.to_json
         end
       end
+    end
+
+    def send_mail
+      NotifierMailer.adv_promos(promo).deliver
     end
   end
 end

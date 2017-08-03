@@ -24,21 +24,6 @@
           </p>
         </div>
         <div class="combos-header-info">
-          <p class="combos-header-info-p">
-            <i class="fa fa-check-square-o"></i>
-            <%= t ".valid" %>
-            <span class="red">
-              <%= @combo.from.in_time_zone(Settings.time_zone)
-                .strftime t("date_default") %>
-            </span>
-            <%= t ".to" %>
-            <span class="red">
-              <%= @combo.to.in_time_zone(Settings.time_zone)
-                .strftime t("date_default") %>
-            </span>
-          </p>
-        </div>
-        <div class="combos-header-info">
           <%= form_for :order_combo, remote: true do |f| %>
             <%= f.number_field :quantity, value: 1,
               id: "quantity-combo-order-#{@combo.id}",

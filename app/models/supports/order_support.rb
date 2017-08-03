@@ -16,8 +16,12 @@ module Supports
     end
 
     def search
-      search = Order.ransack param[:q]
-      search.sorts = %w(status) if search.sorts.empty?
+      search =
+        if param[:type]
+          orders.ransack
+        else
+          Order.ransack param[:q]
+        end
       search
     end
 

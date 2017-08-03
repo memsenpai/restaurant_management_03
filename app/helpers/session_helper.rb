@@ -21,7 +21,6 @@ module SessionHelper
   end
 
   def check_item_in_order?
-    return true if params[:controller] == "orders"
     dish = Dish.find_by id: session[:dish_id]
     combo = Combo.find_by id: session[:combo_id]
     current_order.order_dishes.map(&:dish).include?(dish) ||
@@ -29,7 +28,11 @@ module SessionHelper
   end
 
   def current_user
-    return unless check_item_in_order?
+    controller = params[:controller]
+    unless %w(orders rater).include? controller
+
+      return unless check_item_in_order?
+    end
     Customer.find_by id: session[:customer_id]
   end
 
