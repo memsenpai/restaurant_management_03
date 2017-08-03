@@ -4,6 +4,8 @@ class OrderCombo < ApplicationRecord
   belongs_to :order
   belongs_to :combo
 
+  has_many :history_items, dependent: :destroy, foreign_key: :item_id
+
   validates :quantity, presence: true,
     numericality: {only_integer: true, greater_than: 0}
   validate :combo_present
@@ -12,6 +14,9 @@ class OrderCombo < ApplicationRecord
   before_save :finalize
 
   after_update_commit{MessageBroadcastJob.perform_now describe}
+  after_create_commit{save_history "create_new"}
+  after_update_commit{save_history "updated"}
+  after_destroy_commit{save_history "remove"}
 
   load_order_combos = lambda do |id|
     order_combos = []
@@ -33,11 +38,15 @@ class OrderCombo < ApplicationRecord
       .order("total_quantity #{order_by}")
   end
 
-  scope :order_by_total_quantity, order_by_total_quantity
+  first_order_combo = lambda do |combo_id, order_id|
+    where "combo_id = ? AND
+      order_id = ? AND status < 2", combo_id, order_id
+  end
 
   scope :load_order_combos, load_order_combos
-
+  scope :first_order_combo, first_order_combo
   scope :created_at_between, created_at_between
+  scope :order_by_total_quantity, order_by_total_quantity
 
   def original_price
     combo.subtotal
@@ -67,5 +76,15 @@ class OrderCombo < ApplicationRecord
 
     return unless table
     {combo: combo.name, table: table.code, status: status}
+  end
+
+  def save_history brand, describe = quantity
+    brand = "cancel" if cancel?
+    unless no_need?
+      describe = I18n.t "descripbe_history_item",
+        status: status, quantity: quantity
+    end
+    HistoryItem.create item_id: id, brand: brand, describe: describe,
+      time: Time.now.in_time_zone, class_name: self.class.name
   end
 end

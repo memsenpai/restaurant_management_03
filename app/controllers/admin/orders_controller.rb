@@ -35,10 +35,11 @@ module Admin
     def edit; end
 
     def update
-      return unless order.uncheck? || order.approved?
+      return render :index unless order.uncheck? || order.approved?
+
       if order.update_attributes order_params
-        change_status
-        respond_to_any
+        send_mail_if_reject
+        render "admin/orders/update_status", locals: {order: order}
       else
         render :edit
       end
@@ -59,6 +60,7 @@ module Admin
 
     def check_params
       type = params[:type]
+
       return Order.all unless type
       Order.send type.downcase
     end
@@ -81,13 +83,9 @@ module Admin
       redirect_to admin_orders_path if params[:commit] == %w(Cancel)
     end
 
-    def change_status
-      order.customer.increase_warning if order.declined?
-      return unless order.serving?
-      order.order_dishes.update_all(cooking_time: Time.now)
-      order.order_combos.update_all(cooking_time: Time.now)
-      order.order_dishes.map(&:needing!)
-      order.order_combos.map(&:needing!)
+    def send_mail_if_reject
+      return unless order.declined?
+      NotifierMailer.reject_order(order).deliver
     end
 
     def respond_to_any

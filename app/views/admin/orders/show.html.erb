@@ -11,6 +11,12 @@
         <%= t "order.order_items" %>
         <span></span>
       </h3>
+      <i class="fa fa-lg fa-ban pull-right">
+        <%= t "button_cancel_show_order" %>
+      </i>
+      <i class="fa fa-lg fa-times pull-right">
+        <%= t "button_delete_show_order" %>
+      </i>
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">

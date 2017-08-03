@@ -1,0 +1,41 @@
+<div class="modal modal-item <%= "#{item.class.name.downcase}_#{item.id}" %>">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+        <div class="text-center">
+          <div>
+            <span class="col-sm-4 list-group-item">
+              <%= t "brand_history" %>
+            </span>
+            <span class="col-sm-4 list-group-item">
+              <%= t "time_history" %>
+            </span>
+            <span class="col-sm-4 list-group-item">
+              <%= t "describe_history" %>
+            </span>
+          </div>
+          <% if item.history_items.present? %>
+            <% item.history_items.each do |history| %>
+              <div>
+                <span class="col-sm-4 list-group-item">
+                  <%= history.brand %>
+                </span>
+                <span class="col-sm-4 list-group-item">
+                  <%= history.time.strftime(t "fromat_default") %>
+                </span>
+                <span class="col-sm-4 list-group-item">
+                  <%= history.describe %>
+                </span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

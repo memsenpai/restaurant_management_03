@@ -4,6 +4,8 @@ class OrderDish < ApplicationRecord
   belongs_to :order
   belongs_to :dish
 
+  has_many :history_items, dependent: :destroy, foreign_key: :item_id
+
   validates :quantity, presence: true,
     numericality: {only_integer: true, greater_than: 0}
   validate :dish_present
@@ -12,6 +14,9 @@ class OrderDish < ApplicationRecord
   before_save :finalize
 
   after_update_commit{MessageBroadcastJob.perform_now describe}
+  after_create_commit{save_history "create_new"}
+  after_update_commit{save_history "updated"}
+  after_destroy_commit{save_history "remove"}
 
   load_order_dishes = lambda do |id|
     order_dishes = []
@@ -33,10 +38,13 @@ class OrderDish < ApplicationRecord
       .order("total_quantity #{order_by}")
   end
 
-  scope :order_by_total_quantity, order_by_total_quantity
-
+  first_order_dish = lambda do |dish_id, order_id|
+    where "dish_id = ? AND
+      order_id = ? AND status < 2", dish_id, order_id
+  end
   scope :load_order_dishes, load_order_dishes
-
+  scope :first_order_dish, first_order_dish
+  scope :order_by_total_quantity, order_by_total_quantity
   scope :created_at_between, created_at_between
 
   def find_discount
@@ -67,5 +75,15 @@ class OrderDish < ApplicationRecord
 
     return unless table
     {dish: dish.name, table: table.code, status: status}
+  end
+
+  def save_history brand, describe = quantity
+    brand = "cancel" if cancel?
+    unless no_need?
+      describe = I18n.t "descripbe_history_item",
+        status: status, quantity: quantity
+    end
+    HistoryItem.create item_id: id, brand: brand, describe: describe,
+      time: Time.now.in_time_zone, class_name: self.class.name
   end
 end
