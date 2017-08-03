@@ -44,7 +44,7 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
 
       }
     }
-    location.reload();
+    if (window.location.pathname == '/admin/chef') location.reload();
 
     $('.flash-push.success').remove();
     $('<div><div class="flash-push success">' + notice + '</div></div>')
