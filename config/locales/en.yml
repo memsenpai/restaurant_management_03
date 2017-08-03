@@ -1,4 +1,5 @@
 en:
+  currency: $
   quote_rate: "You like this ?"
   new_order: "Has something change"
   time_in_email: "Time"
@@ -8,6 +9,7 @@ en:
   time_default: "%H:%M:%S"
   day_default: "%Y/%m/%d"
   date_default: "%b %d %Y"
+  date_full: "%Y/%m/%d %H:%M:%S"
   opition: Opition
   available: Available
   running: Running
@@ -664,6 +666,10 @@ en:
     new_combo: Choose a combo
     save: Save
   status:
+    active_txt: Active
+    notactive_txt: Notactive
+    active: active
+    notactive: notactive
     uncheck: "Uncheck"
     approved: "Approved"
     declined: "Declined"

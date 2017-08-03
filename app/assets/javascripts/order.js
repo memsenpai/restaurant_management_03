@@ -160,3 +160,9 @@ $(document).on('click', '.btn-add-to-cart-combo', function() {
     $('#cart-text').load(document.URL + ' #order-card-text');
   });
 });
+
+$(document).ready(function() {
+  $('.orders-info-membership').on('click', '.select-membership-voucher', function() {
+    $(this).find('input').prop('checked',true);
+  });
+});

@@ -1,0 +1,126 @@
+<%= search_form_for [:admin, membership_coupons.search],
+  remote:true, method: :get do |f| %>
+  <div class="bills">
+    <div>
+      <button class="btn btn-success btn-create-membership-coupons">
+        <%= t "button.create" %>
+      </button>
+    </div>
+    <table class="default-dg-table">
+      <tr class="dg_tr bills-tr-head-style" id="di_row_">
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= sort_link membership_coupons.search, :id,
+            "#", {}, {remote: true, method: :get} %>
+        </th>
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= sort_link membership_coupons.search, :name,
+            t("admin.membership_coupons.name"), {}, {remote: true, method: :get} %>
+        </th>
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= sort_link membership_coupons.search, :money_paid,
+            t("admin.membership_coupons.money_paid"), {},
+            {remote: true, method: :get} %>
+            (<%= t "currency" %>)
+        </th>
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= sort_link membership_coupons.search, :discount,
+            t("admin.bills.discount"), {},
+            {remote: true, method: :get} %>(%)
+        </th>
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= sort_link membership_coupons.search, :status,
+            t("admin.membership_coupons.status"), {},
+            {remote: true, method: :get} %>(%)
+        </th>
+        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
+          <%= t "admin.bills.action" %>
+        </th>
+      </tr>
+      <tr class="dg_tr rows-item-create" style="">
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <span class="bills-type-combo" data-id=""></span>
+        </td>
+        <td class="bills-td-style default_dg_th
+          dg-left dg-nowrap dg1"
+          id="membership-coupon-name"
+          data-name="">
+          <input type="text">
+        </td>
+        <td class="bills-td-style default_dg_th
+          dg-left dg-nowrap dg1 centered"
+          id="membership-coupon-money-paid"
+          data-money-paid="">
+          <input type="text">
+        </td>
+        <td class="bills-td-style default_dg_th
+          dg-left dg-nowrap dg1"
+          id="membership-coupon-discount"
+          data-discount="">
+          <input type="text">
+        </td>
+        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+          <i class="fa fa-circle status-active" aria-hidden="true"></i>
+        </td>
+        <td class="bills-td-style default_dg_th dg-left
+          dg-nowrap dg1">
+          <button class="btn btn-success btn-create-membership">
+            <%= t "button.save" %>
+          </button>
+          <button class="btn btn-danger btn-close-membership">
+            <%= t "button.close" %>
+          </button>
+        </td>
+      </tr>
+      <% if membership_coupons.membership_coupons_search.any? %>
+        <% membership_coupons
+          .membership_coupons_search.each do |membership_coupon| %>
+          <tr class="dg_tr rows-item" id="di_row_">
+            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
+              <span class="bills-type-"
+                data-id="<%= membership_coupon.id %>">
+                #<%= membership_coupon.id %>
+              </span>
+            </td>
+            <td class="bills-td-style default_dg_th
+              dg-left dg-nowrap dg1"
+              id="membership-coupon-name"
+              data-name="<%= membership_coupon.name %>">
+              <%= membership_coupon.name %>
+            </td>
+            <td class="bills-td-style default_dg_th
+              dg-left dg-nowrap dg1 centered"
+              id="membership-coupon-money-paid"
+              data-money-paid="<%= membership_coupon.money_paid %>">
+              <%= membership_coupon.money_paid %>
+            </td>
+            <td class="bills-td-style default_dg_th
+              dg-left dg-nowrap dg1"
+              id="membership-coupon-discount"
+              data-discount="<%= membership_coupon.discount %>">
+              <%= membership_coupon.discount %>
+            </td>
+            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
+              id="membership-coupon-status"
+              data-status="<%= membership_coupon.status %>">
+              <% if membership_coupon.active? %>
+                <i class="fa fa-circle status-active"></i>
+              <% else %>
+                <i class="fa fa-circle status-notactive"></i>
+              <% end %>
+            </td>
+            <td class="bills-td-style default_dg_th dg-left
+              dg-nowrap dg1">
+              <button class="btn btn-success
+                btn-edit-membership"><%= t "button.edit" %></button>
+              <button class="btn btn-danger
+                btn-delete-membership"><%= t "button.delete" %></button>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <div id="pagination" class="apple-pagination">
+    <%= paginate membership_coupons.membership_coupons_search, remote: true %>
+  </div>
+<% end %>

@@ -3,6 +3,8 @@ $(document).on('turbolinks:load', function() {
     var order_id = $('.order-id').data('order-id');
     var customer_id = $('.customer-id').data('customer-id');
     var customer_discount = $('.customer-discount').data('customer-discount');
+    var membership_discount = $('#membership-discount').data('membership-discount');
+
     $.ajax({
       type:'POST',
       url: '/admin/bills',
@@ -10,7 +12,8 @@ $(document).on('turbolinks:load', function() {
         bill: {
           customer_id: customer_id,
           order_id: order_id,
-          discount: customer_discount
+          discount: customer_discount,
+          membership_discount: membership_discount
         }
       }
     }).done(function(data) {

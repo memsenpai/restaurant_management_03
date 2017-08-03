@@ -34,7 +34,8 @@ module Admin
     end
 
     def membership_coupon_params
-      params.require(:membership_coupon).permit :name, :money_paid, :discount
+      params.require(:membership_coupon).permit :name, :money_paid,
+        :discount, :status
     end
   end
 end

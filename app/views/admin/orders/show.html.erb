@@ -4,14 +4,20 @@
     <h1><%= t ".title" %></h1><br><br>
     <div class="bloc">
       <br>
-      <%= render "order_info", order: @order %>
+      <%= render "order_info", order: @order,
+        membership_coupons: @membership_coupons %>
       <br><br>
-      <h3 class="title order-item"><%= t "order.order_items" %><span></span></h3>
+      <h3 class="title order-item">
+        <%= t "order.order_items" %>
+        <span></span>
+      </h3>
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
       <div class="payment">
-        <button class="btn payment-btn"><%= t "order.payment" %></button>
+        <button class="btn payment-btn">
+          <%= t "order.payment" %>
+        </button>
       </div>
     </div>
   </div>
