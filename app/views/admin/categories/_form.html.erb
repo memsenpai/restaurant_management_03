@@ -3,12 +3,18 @@
   <%= f.text_field :name, class: "form-control" %>
   <%= f.label :description, t(".description"), class:"pull-left form-label" %>
   <%= f.text_field :description, class: "form-control" %>
-  <%= f.label :dishes, t("Dishes"), class:"form-label" %>
-  <div class="col-xs-12">
+  <br>
+  <%= label_tag :q, "Search", class: "pull-left form-label" %>
+  <%= text_field_tag :name, "", class: "form-control txt-search-category" %>
+
+  <div class="col-md-12 item-selected"></div>
+
+  <%= f.label :dishes, t("Dishes"), class:"form-label" %> <br>
+  <div class="col-xs-12 contain-item">
     <% dishes.each do |dish| %>
       <div class="col-xs-6 col-sm-4 choose">
         <%= check_box_tag "category[dish_ids][]", dish.id,
-          category.dishes.include?(dish) %>
+          category.dishes.include?(dish), class: "add-category" %>
         <%= label_tag :dish_ids, dish.name %>
       </div>
     <% end %>

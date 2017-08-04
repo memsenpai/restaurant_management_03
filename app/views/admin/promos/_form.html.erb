@@ -25,9 +25,12 @@
 
   <%= f.label :end_time, t("promo.end_time"), class: "pull-left form-label" %>
   <%= f.time_field :end_time, class: "form-control" %>
-
-  <%= render "dishes", dishes: dishes %>
-
+  <br>
+  <%= label_tag :q, t("button.search"), class: "pull-left form-label" %>
+  <%= text_field_tag :name, "", class: "form-control txt-search-promo" %>
+  <div class="form-dishes">
+    <%= render "dishes", dishes: dishes %>
+  </div>
   <div class="col-xs-12 text-center">
     <%= f.submit class: "btn btn-success" %>
     <%= f.submit t("button.clear"), type: :reset,
