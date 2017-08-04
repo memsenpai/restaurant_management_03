@@ -76,9 +76,10 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.string   "email"
     t.string   "phone_num"
     t.string   "code"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "money_paid", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "money_paid",    default: 0
+    t.integer  "warning_times", default: 0
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

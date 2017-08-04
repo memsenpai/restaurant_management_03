@@ -301,6 +301,7 @@ $(document).on('click','#check-discount-code', function(){
 });
 
 $(document).ready(function(){
+  $('time.timeago').timeago();
   $('input.timepicker').timepicker({
     timeFormat: 'HH:mm',
     minHour: 10,
@@ -374,7 +375,7 @@ $(document).ready(function(){
           }
         }
       }).success(function(){
-        
+
       });
       $(this).html(I18n.t('button.edit'));
     }
@@ -449,4 +450,61 @@ $(document).on('turbolinks:load', function(){
       $(this).html(html);
     });
   });
+});
+
+$(document).on('turbolinks:load', function(){
+  var adjustment;
+
+  $('ol.simple_with_animation').sortable({
+    group: 'simple_with_animation',
+    pullPlaceholder: false,
+    onDrop: function ($item, container, _super) {
+      changeStatus($item);
+
+      var $clonedItem = $('<li/>').css({height: 0});
+      $item.before($clonedItem);
+      $clonedItem.animate({'height': $item.height()});
+
+      $item.animate($clonedItem.position(), function  () {
+        $clonedItem.detach();
+        _super($item, container);
+      });
+    },
+
+    onDragStart: function ($item, container, _super) {
+      var offset = $item.offset(),
+        pointer = container.rootGroup.pointer;
+
+      adjustment = {
+        left: pointer.left - offset.left,
+        top: pointer.top - offset.top
+      };
+
+      _super($item, container);
+    },
+    onDrag: function ($item, position) {
+      $item.css({
+        left: position.left - adjustment.left,
+        top: position.top - adjustment.top
+      });
+    }
+  });
+
+  function changeStatus($item){
+    var nextstatus = $item[0].parentNode.getAttribute('status');
+    var order_id = $item[0].getAttribute('order-id');
+    var id = $item[0].id;
+    var type = $item[0].getAttribute('type');
+    $.ajax({
+      type: 'PUT',
+      headers: {'AUTHENTICATE-TOKEN': 'supersecrettoken1'},
+      url: '/api/orders/' + order_id + '/' + type + '/' + id,
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify({status: nextstatus}),
+      error: function() {
+        location.reload();
+      }
+    });
+  }
 });

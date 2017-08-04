@@ -9,7 +9,7 @@ module Supports
     end
 
     def timein_data
-      @timein = Order.all.timein_between datefrom, dateto
+      @timein = Order.all.timein_between(datefrom, dateto)
         .order_by_timein(param[:order_by]) - Order.declined
       respond_timein_data
     end

@@ -84,6 +84,8 @@ module Admin
     def change_status
       order.customer.increase_warning if order.declined?
       return unless order.serving?
+      order.order_dishes.update_all(cooking_time: Time.now)
+      order.order_combos.update_all(cooking_time: Time.now)
       order.order_dishes.map(&:needing!)
       order.order_combos.map(&:needing!)
     end

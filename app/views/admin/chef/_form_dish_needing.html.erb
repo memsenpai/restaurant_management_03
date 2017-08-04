@@ -1,17 +1,14 @@
 <% needing_dishes.each do |dish| %>
-  <tr>
-    <td><%= dish.dish.name %></td>
-    <td><%= dish.quantity %></td>
-    <td><%= dish.dish.class%></td>
-    <td>
-      <%= form_for dish,
-        url: admin_order_order_dish_path(dish.order_id, dish) do |f| %>
-        <%= f.hidden_field :dish_id, value: dish.dish_id %>
-        <%= f.hidden_field :status,
-          value: :cooking,
-          class: "btn btn-primary" %>
-        <%= f.button t "staff_order.cooking" %>
-      <% end %>
-    </td>
-  </tr>
+  <li class="list-group-item list-group-item-warning" type="order_dishes"
+    order-id="<%= dish.order_id %>" id="<%= dish.id %>">
+    <div class="row">
+      <div class="col-xs-10"><%= dish.dish.name %></div>
+      <div class="col-xs-2"><%= dish.quantity %></div>
+    </div>
+    <div class="timecounter">
+      <time class="timeago" datetime="<%= dish.cooking_time %>">
+        <%= dish.cooking_time %>
+      </time>
+    </div>
+  </li>
 <% end %>

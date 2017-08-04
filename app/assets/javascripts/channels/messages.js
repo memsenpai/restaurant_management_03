@@ -44,7 +44,8 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
 
       }
     }
-    $('#chef-home-page').load(document.URL + ' #order-list-in-chef');
+    location.reload();
+
     $('.flash-push.success').remove();
     $('<div><div class="flash-push success">' + notice + '</div></div>')
       .prependTo('.navbar.navbar-default.navbar-static-top.fadeInDownBig');

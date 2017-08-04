@@ -893,13 +893,13 @@ ComboDish.create!([
 end
 
 Staff.create! name: "admin", email: "admin1@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 1,
+  password: "123123", staff_role: 1,
   authentication_token: "supersecrettoken2"
 Staff.create! name: "admin2", email: "admin2@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 2,
+  password: "123123", staff_role: 2,
   authentication_token: "supersecrettoken3"
 Staff.create! name: "admin3", email: "admin3@123.com",
-  password: "123123", encrypted_password: "123123", staff_role: 3,
+  password: "123123", staff_role: 3,
   authentication_token: "supersecrettoken4"
 
   10.times do
@@ -964,11 +964,15 @@ Order.all.map do |order|
   end
 end
 
+FactoryGirl.create_list :order, 30
+
 Order.all.each do |order|
-  Bill.create! customer_id: order.customer_id,
-    order_id: order.id,
-    discount: order.discount,
-    created_at: Faker::Date.between(1.years.ago, Date.today)
+  5.times do
+    od = FactoryGirl.create :order_dish
+    oc = FactoryGirl.create :order_combo
+    order.order_dishes << od
+    order.order_combos << oc
+  end
 end
 
 FactoryGirl.create_list :order, 50

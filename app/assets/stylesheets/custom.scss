@@ -4255,3 +4255,20 @@ $mute: #dfe3e4;
   max-height: 300px;
   overflow: auto;
 }
+
+.chef-row {
+  margin: 0 15px;
+}
+
+.container1 {
+  display: flex;
+
+  ol {
+    flex: 1;
+    height: 100%;
+  }
+}
+
+.timecounter {
+  margin-top: 5px;
+}

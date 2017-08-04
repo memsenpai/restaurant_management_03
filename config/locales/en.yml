@@ -1,7 +1,5 @@
 en:
   currency: $
-  yes: YES
-  no: NO
   quote_rate: "You like this ?"
   are_you_sure_delete: Are you sure delete!
   new_order: "Has something change"
@@ -163,6 +161,8 @@ en:
     current_role: Current role
     needing: Needing
     cooking: Cooking
+    cancel: Cancel
+    done: Done
     membership_coupons:
       name: Name
       money_paid: Money paid
