@@ -31,9 +31,9 @@ class CustomersController < ApplicationController
 
   def find_customer code
     session[:customer] = Customer.find_by code: code
-
-    return if session[:customer]
-    flash[:danger] = t "customer.not_found"
-    redirect_to :back
+    session_customer = session[:customer]
+    return render json: {status: 0} unless session_customer
+    return render json: {status: -1} if session_customer.is_blacklist?
+    render json: {status: 1}
   end
 end

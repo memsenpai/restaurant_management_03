@@ -82,7 +82,8 @@ module Admin
     end
 
     def change_status
-      return unless order.status == "serving"
+      order.customer.increase_warning if order.declined?
+      return unless order.serving?
       order.order_dishes.map(&:needing!)
       order.order_combos.map(&:needing!)
     end

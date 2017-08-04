@@ -225,8 +225,14 @@ $(document).ready(function(){
             code: customer_code,
           }
         }
-      }).success(function(){
-        book_table();
+      }).success(function(result){
+        if (result.status == 0) {
+          alert(I18n.t('errors.customer_code_not_exists'));
+        } else if (result.status == -1) {
+          alert(I18n.t('errors.you_cant_booking'));
+        } else {
+          book_table();
+        }
       });
     }
     else if(step == 5){

@@ -1,6 +1,9 @@
 en:
   currency: $
+  yes: YES
+  no: NO
   quote_rate: "You like this ?"
+  are_you_sure_delete: Are you sure delete!
   new_order: "Has something change"
   time_in_email: "Time"
   name_promo: "Name"
@@ -20,6 +23,11 @@ en:
   hello: "Hello world"
   res: Restaurant
   brand: "Awesomecity"
+  errors:
+    update_customer: Update customer faild!
+    create_customer: Create customer faild!
+    customer_code_not_exists: Your code is not exists!
+    you_cant_booking: You can't booking!
   pages:
     book_table_online:
       book_table: "Book table"
@@ -161,7 +169,17 @@ en:
       status: Status
       index:
         title: Membership Coupons
+    customers:
+      membership_level: Membership Level
+      customer_name: Customer Name
+      customer_email: Customer Email
+      customer_phone: Customer Phone
+      customer_code: Customer Code
+      customer_blacklist: Black list
+      index:
+        title: Customer Manager
     bills:
+      money_paid: Money paid
       customer_info: Customer Info
       bill_info: Bill Info
       email: Email
@@ -396,6 +414,7 @@ en:
     new: New
     create: Create
     save: Save
+    detail: Detail
     view: Details
     add: Add
     update: Update
