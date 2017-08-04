@@ -56,8 +56,7 @@ module Admin
     attr_reader :combo
 
     def combo_params
-      params.require(:combo).permit :name, :discount,
-        :description, :image, dish_ids: []
+      params.require(:combo).permit Combo::COMBO_ATTRIBUTES
     end
 
     def load_dishes

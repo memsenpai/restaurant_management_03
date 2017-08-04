@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.string   "code"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "money_paid",    default: 0
     t.integer  "warning_times", default: 0
+    t.integer  "money_paid",    default: 0
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "history_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "item_id"
+    t.datetime "time"
+    t.integer  "brand"
+    t.text     "describe",   limit: 65535
+    t.string   "class_name"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "membership_coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "money_paid", default: 0
     t.string   "name"
@@ -117,9 +127,9 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "price"
     t.integer  "total_price"
     t.integer  "status",       default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.datetime "cooking_time"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.datetime "cooking_time", default: '2017-08-04 15:26:11'
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -130,9 +140,9 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "price"
     t.integer  "total_price"
     t.integer  "status",       default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.datetime "cooking_time"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.datetime "cooking_time", default: '2017-08-04 15:26:08'
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

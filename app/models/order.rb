@@ -27,6 +27,7 @@ class Order < ApplicationRecord
 
   after_update_commit{MessageBroadcastJob.perform_now messages_data("update")}
   after_create_commit{MessageBroadcastJob.perform_now messages_data("create")}
+  after_update_commit :change_status_item
 
   timein_between = lambda do |datefrom, dateto|
     where(day: datefrom..dateto)
@@ -113,5 +114,24 @@ class Order < ApplicationRecord
       day: day.in_time_zone.strftime(I18n.t("date_default")),
       time_in: time_in, status: status
     }
+  end
+
+  def check_change arg, arg2
+    arg2.constantize.transaction do
+      send(arg).map do |item|
+        item.cooking_time = Time.now.in_time_zone
+        item.save!
+      end
+    end
+    send(arg).map{|item| item.needing! unless item.cancel? || item.needing?}
+    rescue
+  end
+
+  def change_status_item
+    customer.increase_warning if declined?
+
+    return unless serving?
+    check_change "order_dishes", "OrderDish"
+    check_change "order_combos", "OrderCombo"
   end
 end

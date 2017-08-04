@@ -45,7 +45,7 @@ class OrderCombosController < ApplicationController
     order_combo = order_combos
       .find{|combo| combo["combo_id"] == order_combo_params[:combo_id]}
 
-    return unless order_combo
+    return false unless order_combo
     change_quantity order_combo
   end
 
@@ -58,14 +58,13 @@ class OrderCombosController < ApplicationController
   end
 
   def update_in_db? quantity = nil
-    return unless order_save?
+    return true unless order_save?
     quantity ||= order_combo_params[:quantity]
     combo_id = order_combo_params[:combo_id]
     combo_order =
       OrderCombo.find_or_initialize_by order_id: session[:order_id],
         combo_id: combo_id
-    combo_order.update_attributes combo_id: combo_id,
-      quantity: quantity
+    combo_order.update_attributes combo_id: combo_id, quantity: quantity
   end
 
   def destroy_in_db

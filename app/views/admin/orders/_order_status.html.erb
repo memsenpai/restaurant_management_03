@@ -1,0 +1,20 @@
+<td class="text-center order_status_<%= order.id %>">
+  <% case order.status %>
+  <% when "uncheck"%>
+    <span class="label-red animated bounce">
+  <% when "declined"%>
+    <span class="label-red">
+  <% when "approved" %>
+    <span class="label-green">
+  <% when "serving"%>
+    <span class="label-blue animated bounce">
+  <% when "done" %>
+    <span class="label-blue">
+  <% end %>
+  <%= link_to admin_order_path(order,
+    order: {status: order.change_status}), remote: true,
+    method: :patch do %>
+      <%= order.status %>
+    <% end %>
+  </span>
+</td>

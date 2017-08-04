@@ -1,5 +1,5 @@
 <%= search_form_for [:admin, order.search], remote: true, method: :get do |f| %>
-  <div class="apple-pagination">
+  <div id="pagination" class="apple-pagination">
     <%= paginate order.orders_search, remote: true %>
   </div>
   <br>
@@ -83,9 +83,6 @@
       </div>
       <br class="clear_both">
     </div>
-  </div>
-  <div class="apple-pagination">
-    <%= paginate order.orders_search, remote: true %>
   </div>
   <br>
   <%= render "order_content", order: order %>
