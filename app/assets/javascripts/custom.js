@@ -162,6 +162,19 @@ $(document).ready(function(){
     });
   }
 
+  $('.previous').click(function() {
+    var step = $(this).attr('step');
+    if (step == 3) {
+      $('#booking-step-2').removeClass('is-complete');
+      $('#booking-step-2').addClass('is-active');
+      $('#booking-step-3').removeClass('is-active');
+    } else if (step == 2) {
+      $('#booking-step-1').removeClass('is-complete');
+      $('#booking-step-1').addClass('is-active');
+      $('#booking-step-2').removeClass('is-active');
+    }
+  });
+
   $('.next').click(function(){
     var element = this;
     var step = $(this).attr('step');
@@ -178,6 +191,9 @@ $(document).ready(function(){
         }, 2500);
         return;
       }
+      $('#booking-step-1').removeClass('is-active');
+      $('#booking-step-1').addClass('is-complete');
+      $('#booking-step-2').addClass('is-active');
 
       $('#btn-summit-table').css('display','inline-block');
       $.ajax({
@@ -205,6 +221,9 @@ $(document).ready(function(){
     else if(step == 2){
       if($('.btn-table').hasClass('btn-choose')){
         next_step(element);
+        $('#booking-step-2').removeClass('is-active');
+        $('#booking-step-2').addClass('is-complete');
+        $('#booking-step-3').addClass('is-active');
       }
       else{
         $('.alert-2').addClass('show');

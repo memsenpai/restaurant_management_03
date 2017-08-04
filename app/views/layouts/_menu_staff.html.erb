@@ -10,7 +10,7 @@
       </ul>
     </li>
   <% end  %>
-  <% if can? :view, Combo, Dish, Promo, DiscountCode, Category %>
+  <% if can? :manage, :all %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.manage" %>

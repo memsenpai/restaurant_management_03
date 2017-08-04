@@ -20,7 +20,7 @@
               <span class="info-name"><%= @dish.name %></span>
               <div class="info-price heading size-xxl">
                 <b class="t-currency">
-                  <span class="icon">$</span><%= @dish.price %>
+                  <%= number_to_currency @dish.price %>
                 </b>
               </div>
             </div>

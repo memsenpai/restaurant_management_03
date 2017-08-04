@@ -30,11 +30,10 @@
             <span class="icon icon-bar"></span>
             <span class="icon icon-bar"></span>
           </button>
-          <%= link_to root_path, id: "brand",
-            class: "navbar-brand faded", method: :get do %>
+          <%= link_to root_path, method: :get do %>
             <div class="parallax-div">
               <h1 class="parallax-text">
-                <%= t("brand") %>
+                <%= t "brand" %>
               </h1>
             </div>
           <% end %>

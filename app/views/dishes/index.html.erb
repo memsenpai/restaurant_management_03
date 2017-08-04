@@ -1,21 +1,29 @@
-<link href="//fonts.googleapis.com/css?family=Khand" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Varela" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+
 <section class="section">
-  <br><br><br>
-  <section class="uk-grid">
-    <div class="uk-width-1-1">
-      <div class="uk-panel uk-text-left tm-overlay-secondary tm-header-height">
-        <div class="uk-overlay"></div>
-        <div class="uk-cover-background uk-flex uk-flex-middle"></div>
-        <div class="uk-container">
-          <h1 class="uk-module-title-alt"><%= t ".title" %></h1>
-          <h5><%= t ".slogan" %></h5>
+  <br><br><br><br>
+  <div class="owl-carousel">
+    <% @dishes_support.dishes_data.each do |dish_data| %>
+        <div class="slide">
+          <span class="hot"></span>
+          <%= link_to dish_path(dish_data.dish),
+            title: dish_data.dish.name, target:"_self" do %>
+            <%= image_tag dish_data.dish.image %>
+          <% end %>
+          <%= link_to dish_path(dish_data.dish),
+            class:"link", target:"_self" do %>
+            <%= dish_data.dish.name %> <i class="fa fa-angle-double-right"></i>
+          <% end %>
+          <p>
+            <%= t ".from" %>
+            <span class="valid">
+            </span>
+            <%= t ".to" %>
+            <span class="valid">
+            </span>
+          </p>
         </div>
-      </div>
-    </div>
-  </section>
-  <br>
+    <% end %>
+  </div>
   <div id="dishes" class="wrapper main-content">
     <%= render "dish", dishes_support: @dishes_support %>
   </div>
