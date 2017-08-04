@@ -1,0 +1,8 @@
+<div class="row">
+  <% if food.class.name == "OrderDish" %>
+    <div class="col-xs-10"><%= food.dish.name %></div>
+  <% else %>
+    <div class="col-xs-10"><%= food.combo.name %></div>
+  <% end %>
+  <div class="col-xs-2"><%= food.quantity %></div>
+</div>
