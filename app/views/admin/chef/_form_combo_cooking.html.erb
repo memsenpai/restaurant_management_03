@@ -1,14 +1,7 @@
 <% cooking_combos.each do |combo| %>
   <li class="list-group-item list-group-item-info" type="order_combos"
     order-id="<%= combo.order_id %>" id="<%= combo.id %>">
-    <div class="row">
-      <div class="col-xs-10"><%= combo.combo.name %></div>
-      <div class="col-xs-2"><%= combo.quantity %></div>
-    </div>
-    <div class="timecounter">
-      <time class="timeago" datetime="<%= combo.cooking_time %>">
-        <%= combo.cooking_time %>
-      </time>
-    </div>
+    <%= render "data", food: combo %>
+    <%= render "time_counter", type: combo %>
   </li>
 <% end %>

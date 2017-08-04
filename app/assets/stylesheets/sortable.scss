@@ -1,0 +1,31 @@
+.dragging {
+  body {
+    * {
+      cursor: move !important;
+    }
+  }
+}
+
+.dragged {
+  opacity: .5;
+  position: absolute;
+  z-index: 2000;
+}
+
+ol {
+  list-style-type: none;
+}
+
+.example {
+  ol {
+    .placeholder {
+      li {
+        position: relative;
+
+        &::before {
+          position: absolute;
+        }
+      }
+    }
+  }
+}

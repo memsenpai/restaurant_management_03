@@ -1,0 +1,6 @@
+<% done_dishes.each do |dish| %>
+  <li class="list-group-item list-group-item-success" type="order_dishes"
+    order-id="<%= dish.order_id %>" id="<%= dish.id %>">
+    <%= render "data", food: dish %>
+  </li>
+<% end %>

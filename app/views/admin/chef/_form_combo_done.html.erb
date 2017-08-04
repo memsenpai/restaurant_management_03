@@ -1,0 +1,6 @@
+<% done_combos.each do |combo| %>
+  <li class="list-group-item list-group-item-success" type="order_combos"
+    order-id="<%= combo.order_id %>" id="<%= combo.id %>">
+    <%= render "data", food: combo %>
+  </li>
+<% end %>

@@ -1,14 +1,7 @@
 <% needing_dishes.each do |dish| %>
   <li class="list-group-item list-group-item-warning" type="order_dishes"
     order-id="<%= dish.order_id %>" id="<%= dish.id %>">
-    <div class="row">
-      <div class="col-xs-10"><%= dish.dish.name %></div>
-      <div class="col-xs-2"><%= dish.quantity %></div>
-    </div>
-    <div class="timecounter">
-      <time class="timeago" datetime="<%= dish.cooking_time %>">
-        <%= dish.cooking_time %>
-      </time>
-    </div>
+    <%= render "data", food: dish %>
+    <%= render "time_counter", type: dish %>
   </li>
 <% end %>
