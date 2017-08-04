@@ -3,7 +3,7 @@ module Api
     before_action :find_order, only: %i(show update destroy)
 
     def index
-      render json: Order.done.first
+      render json: Order.serving.first
     end
 
     def show

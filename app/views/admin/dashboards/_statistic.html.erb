@@ -72,13 +72,13 @@
 <div class="row content-border">
   <ul class="nav nav-tabs">
     <li class="active">
-      <%= link_to "#staff", id: "staff-trigger", data:{toggle: "tab"} do %>
-        <%= t "dashboard.staff" %>
+      <%= link_to "#income", id: "income-trigger", data:{toggle: "tab"} do %>
+      <%= t "dashboard.income" %>
       <% end %>
     </li>
     <li>
-      <%= link_to "#order", id: "order-trigger", data:{toggle: "tab"} do %>
-        <%= t "dashboard.order" %>
+      <%= link_to "#dish", id: "dish-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.dish" %>
       <% end %>
     </li>
     <li>
@@ -87,13 +87,14 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "#income", id: "income-trigger", data:{toggle: "tab"} do %>
-        <%= t "dashboard.income" %>
+      <%= link_to "#timein", id: "timein-trigger", data:{toggle: "tab"} do %>
+        <%= t "dashboard.timein" %>
       <% end %>
     </li>
   </ul>
 
   <div class="tab-content nav-padding">
+    <%= render "filter" %>
     <%= render "chart" %>
   </div>
 </div>

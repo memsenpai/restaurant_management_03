@@ -1,0 +1,18 @@
+<div id="filter" class="form-group">
+  <div class="col-xs-2">
+    <p><%= t "dashboard.fd" %> <input type="text" id="from"></p>
+  </div>
+  <div class="col-xs-2">
+    <p><%= t "dashboard.td" %> <input type="text" id="to"></p>
+  </div>
+  <div class="col-xs-1">
+    <select id="order-selector" class="selector">
+      <option value="ASC">
+        <%= t "dashboard.least" %>
+      </option>
+      <option value="DESC" selected="selected">
+        <%= t "dashboard.most" %>
+      </option>
+    </select>
+  </div>
+</div>

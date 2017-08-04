@@ -28,6 +28,20 @@ class Order < ApplicationRecord
   after_update_commit{MessageBroadcastJob.perform_now messages_data("update")}
   after_create_commit{MessageBroadcastJob.perform_now messages_data("create")}
 
+  timein_between = lambda do |datefrom, dateto|
+    where(day: datefrom..dateto)
+  end
+
+  order_by_timein = lambda do |order_by|
+    select("time_in, count(time_in) as times")
+      .group(:time_in)
+      .order("time_in, times #{order_by}")
+  end
+
+  scope :timein_between, timein_between
+
+  scope :order_by_timein, order_by_timein
+
   def subtotal
     subtotal_combos_map.sum + subtotal_dishes_map.sum
   end

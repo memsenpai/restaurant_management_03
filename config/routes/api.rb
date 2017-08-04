@@ -11,6 +11,10 @@ namespace :api, defaults: {format: "json"} do
       resources :order_combos
     end
   end
-  get "/charts/staffs", to: "staff_charts#index"
-  get "/charts/orders", to: "order_charts#index"
+  resources :dishes, only: %i(index show)
+  resources :combos, only: %i(index show)
+  get "/charts/income", to: "income_charts#index"
+  get "/charts/dish_orders", to: "order_dish_charts#index"
+  get "/charts/combo_orders", to: "order_combo_charts#index"
+  get "/charts/timein", to: "timein_charts#index"
 end
