@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('body').on('click', '.btn-edit-customer', function() {
     var button = $(this);
     var id = $(this).parent().parent()

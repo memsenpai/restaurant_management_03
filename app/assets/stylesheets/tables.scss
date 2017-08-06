@@ -1,0 +1,90 @@
+@import "color";
+
+.map3 {
+  .tables {
+    margin: 0;
+    width: 26vw;
+  }
+}
+
+.map2 {
+
+  .tables {
+    margin: 0;
+  }
+}
+
+.table-section {
+  .tables {
+    background: transparent;
+    min-height: 0;
+    padding-top: 0;
+  }
+}
+
+.tracking-order-process {
+  .tables {
+    background-color: $white;
+  }
+}
+
+.col-sm-6 {
+  .box {
+    .col-sm-offset-3 {
+      .tables {
+        margin-bottom: 0;
+      }
+
+      .step2 {
+        .tables {
+          margin-bottom: 0;
+          margin-top: -65px;
+          transform: scale(.8);
+        }
+      }
+    }
+  }
+}
+
+.table-section {
+  .heading-small {
+    .tables {
+      margin-top: 0;
+    }
+  }
+}
+
+.stylish-heading {
+  .h1style {
+    .font-mont {
+      .heading-small {
+        .tables {
+          color: $black;
+          margin-bottom: 0;
+          margin-top: -20px;
+        }
+      }
+    }
+
+    .font-mont {
+      .tables {
+        color: $black;
+        margin-top: -20px;
+      }
+    }
+  }
+}
+
+.text-color-white {
+  .tables {
+    color: $black;
+  }
+}
+
+.progress-book {
+  .progress-medium {
+    .tables {
+      padding: 0;
+    }
+  }
+}

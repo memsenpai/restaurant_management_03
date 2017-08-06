@@ -926,8 +926,6 @@ Table.create! capacity: 12, code: "15"
 Table.create! capacity: 4, code: "16"
 Table.create! capacity: 16, code: "17"
 
-FactoryGirl.create_list :staff, 50
-
 count_dish = Dish.all.count
 count_combo = Combo.all.count
 count_customer = Customer.all.count
@@ -963,16 +961,3 @@ Order.all.map do |order|
     order.save
   end
 end
-
-FactoryGirl.create_list :order, 30
-
-Order.all.each do |order|
-  5.times do
-    od = FactoryGirl.create :order_dish
-    oc = FactoryGirl.create :order_combo
-    order.order_dishes << od
-    order.order_combos << oc
-  end
-end
-
-FactoryGirl.create_list :order, 50

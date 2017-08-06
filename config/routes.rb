@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :orders, except: %i(edit update destroy)
   get "/cart", to: "orders#show"
   resources :order_dishes, only: %i(create update destroy)
-  resources :tables, only: %i(index)
+  resources :tables, only: %i(index new)
   resources :customers, only: %i(new create index)
   resources :order_combos, only: %i(create update destroy)
   resources :combos, only: %i(index show)
