@@ -120,21 +120,11 @@ body {
 }
 
 .navbar {
-  background: $white;
-  box-shadow: 0 4px 6px $bitter;
-  margin-bottom: 1px;
-  min-height: 7vh !important;
-  position: fixed;
-  width: 100%;
+  margin: 0;
 }
 
 .fit {
   max-width: 100%;
-}
-
-.center {
-  display: block;
-  margin: auto;
 }
 
 @keyframes bounceIn {
@@ -2695,52 +2685,136 @@ a:visited {
 
 .map2 {
   background: $outside-ground;
-  display: inline-block;
-  height: 62vh;
-  margin: .5vh .5vh .5vh 1.5vw;
-  width: 12vw;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  height: 100%;
+  justify-content: space-around;
+  margin-right: 1%;
+
+  .map2-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 7%;
+
+    .map2-row-left {
+      flex-grow: 1;
+      margin-right: 5%;
+
+      .btn-table {
+        height: 100%;
+      }
+    }
+
+    .map2-row-right {
+      flex-grow: 1;
+      margin-left: 5%;
+
+      .btn-table {
+        height: 100%;
+      }
+    }
+  }
 }
 
 .map3 {
   background: $inside-ground;
-  display: inline-block;
-  height: 62vh;
-  margin: .5vh;
-  padding-left: 1.5vw;
-  position: absolute;
-  width: 32vw;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 7;
+  height: 100%;
+  margin-left: 1%;
+
+  .map3-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+
+    .map3-row-tbl {
+      display: flex;
+      flex-grow: 1;
+      margin: 3%;
+
+      .btn-table {
+        flex-grow: 1;
+        justify-content: space-around;
+      }
+    }
+
+    .map3-mid-row {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 5;
+    }
+  }
+
+  .map3-mid-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 3;
+    justify-content: space-around;
+
+    .map3-mid-row-left {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      justify-content: space-around;
+      margin: 3%;
+
+      .btn-table {
+        border-radius: 40px;
+        height: 70%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
+
+    .map3-mid-row-center {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 3;
+      justify-content: center;
+
+      .btn-table {
+        border-radius: 50px;
+        height: 70%;
+        width: 100%;
+      }
+    }
+
+    .map3-mid-row-right {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      justify-content: space-around;
+      margin: 3%;
+
+      .btn-table {
+        border-radius: 40px;
+        height: 70%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.table-status {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  margin-left: 2%;
 }
 
 .btn-oval-huge {
   border-radius: 50px;
-  height: 16vh;
-  width: 12vw;
-}
-
-.btn-rough-huge {
-  height: 12vh;
-  width: 12vw;
-}
-
-.btn-rough-big {
-  height: 9vh;
-  margin: 3vh 1.5vw;
-  width: 9vw;
-}
-
-.btn-rough-md {
-  height: 8vh;
-  width: 4vw;
-}
-
-.btn-rough-sm {
-  height: 7vh;
-  margin: 1vh 1vw;
-  width: 3.5vw;
-}
-
-.row2 {
-  margin-left: .5vw;
+  width: 100%;
 }
 
 .row3 {
@@ -2749,76 +2823,61 @@ a:visited {
   font-size: 2em;
   font-style: italic;
   font-variant: small-caps;
-  height: 14vh;
-  padding-top: 4vh;
   text-align: center;
   vertical-align: middle;
 }
 
 .btn-right {
-  position: absolute;
   right: 5%;
 }
 
 .btn-left {
   left: 5%;
-  position: absolute;
 }
 
 .btn-right2 {
-  position: absolute;
   right: 12%;
 }
 
 .btn-left2 {
   left: 12%;
-  position: absolute;
 }
 
 .btn-top {
-  position: absolute;
   top: 5%;
 }
 
 .btn-top2 {
-  position: absolute;
   top: 7%;
 }
 
 .btn-center {
   left: 30%;
-  position: absolute;
 }
 
 .btn-midtop {
-  position: absolute;
   top: 30%;
 }
 
 .btn-midbot {
   bottom: 30%;
-  position: absolute;
 }
 
 .btn-midcen {
   left: 30%;
-  position: absolute;
   top: 38%;
 }
 
 .btn-bottom {
   bottom: 5%;
-  position: absolute;
 }
 
 .btn-bottom2 {
   bottom: 7%;
-  position: absolute;
 }
 
 .btn-bottom3 {
   bottom: 2%;
-  position: absolute;
 }
 
 .btn-guide {
@@ -3356,9 +3415,8 @@ a:visited {
 }
 
 .table-section {
+  background: linear-gradient($table-color-1, $table-color-2);
   font-family: montserrat, arial, verdana, serif;
-  min-height: 100vh;
-  padding-top: 60px;
 
   .msform {
     margin: 20px auto;
@@ -4124,7 +4182,6 @@ $active: #3498db;
 $mute: #dfe3e4;
 
 #progress-order {
-  margin-bottom: 15px;
   width: 80%;
 }
 
@@ -4134,9 +4191,8 @@ $mute: #dfe3e4;
   display: table;
   list-style: none;
   margin: auto;
-  padding-top: 70px;
+  padding: 0;
   table-layout: fixed;
-  width: 70%;
 
   > li {
     display: table-cell;
@@ -4308,4 +4364,49 @@ $mute: #dfe3e4;
 .value-range {
   font-size: 30px;
   padding-left: 50px;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.table-choosing-step {
+  background-color: $white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  height: 62vh;
+  margin: 0 auto;
+  padding: 10px;
+  width: 70%;
+}
+
+.btn-table {
+  border-radius: 10px;
+}
+
+.center {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.avai-tbl {
+  background: linear-gradient(to bottom, $golden, $golden-dark);
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+.unavai-tbl {
+  background: linear-gradient(to bottom, $gray, $dark-silver);
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+.choosed-tbl {
+  background: linear-gradient(to bottom, $orangered, $red);
+  float: left;
+  height: 40px;
+  width: 40px;
 }

@@ -219,10 +219,11 @@ function tables_book(){
         }
       }).done(function(data) {
         for(var i=0;i<19;i++) {
-          $('#btn-'+ i).removeClass('btn-maru').removeClass('btn-choose').addClass('btn-batsu');
+          $('.btn-'+ i).removeClass('btn-maru').removeClass('btn-choose').addClass('btn-batsu');
         }
         $.each(data, function (index, element) {
-          $('#btn-' + element.code).addClass('btn-maru').removeClass('btn-batsu');
+          console.log(element.code);
+          $('.btn-' + element.code).addClass('btn-maru').removeClass('btn-batsu');
         });
         next_step(element);
       });
