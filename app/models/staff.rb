@@ -18,7 +18,11 @@ class Staff < ApplicationRecord
     staff = Staff.find_by email: email
 
     return false unless staff
-    staff.valid_password? pass
+    begin
+      staff.valid_password? pass
+    rescue BCrypt::Errors::InvalidHash
+      false
+    end
   end
 
   def role
