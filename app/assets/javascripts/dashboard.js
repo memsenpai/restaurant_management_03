@@ -1,9 +1,10 @@
 $(document).on('turbolinks:load', function(){
-  var df = new Date();
-  df.setDate(df.getDate() - 30);
+  var df = new Date(2016, 1, 1);
   var dt = new Date();
 
-  fetchIncomeData(df.toString(), dt, 'DESC');
+  if (window.location.pathname == '/admin/dashboards') {
+    fetchIncomeData(df.toString(), dt, 'DESC');
+  }
 
   $('#filter').hide();
 

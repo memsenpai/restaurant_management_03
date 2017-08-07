@@ -163,6 +163,7 @@ en:
     cooking: Cooking
     cancel: Cancel
     done: Done
+    dashboard: Dashboard
     membership_coupons:
       name: Name
       money_paid: Money paid
@@ -613,23 +614,23 @@ en:
     new_customer: I'm a new customer
     input_your_guest_code: Input your guest code
     register_guest_code: Register guest code
-    tab1: 1
-    tab2: 2
-    tab3: 3
-    tab4: 4
-    tab5: 5
-    tab6: 6
-    tab7: 7
-    tab8: 8
-    tab9: 9
-    tab10: 10
-    tab11: 11
-    tab12: 12
-    tab13: 13
-    tab14: 14
-    tab15: 15
-    tab16: 16
-    tab17: 17
+    table1: 1
+    table2: 2
+    table3: 3
+    table4: 4
+    table5: 5
+    table6: 6
+    table7: 7
+    table8: 8
+    table9: 9
+    table10: 10
+    table11: 11
+    table12: 12
+    table13: 13
+    table14: 14
+    table15: 15
+    table16: 16
+    table17: 17
   customer:
     fail_create: "Create Guest Failed!!"
     success_create: "Create Guest Success"
@@ -793,3 +794,7 @@ en:
   quantity_chef: "Quantity:"
   status_chef: "Status:"
   submit_chef: "Submit"
+  booking:
+    tableisavailable: is available table
+    tableisunavailable: is unavailable table
+    tableischoosed: is the table you choosed

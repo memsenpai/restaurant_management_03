@@ -86,14 +86,7 @@
   <% if can? :manage, :all %>
   <li class="dpdwn">
     <%= link_to t("admin.dashboard"), admin_dashboards_path,
-    class: "smoothScroll animated wow",
-      "data-wow-delay": "0.1s", method: :get %>
-    <ul class="nav">
-      <li><%= link_to t("dashboard.statistics"),
-        admin_dashboards_path(type: "statistic"),method: :get %></li>
-      <li><%= link_to t("dashboard.analytics"),
-        admin_dashboards_path(type: "analytics"),method: :get %></li>
-    </ul>
+      method: :get %>
   </li>
   <li><%= link_to t("admin.user"), admin_staffs_path,
     class: "smoothScroll animated fadeInLeft wow",

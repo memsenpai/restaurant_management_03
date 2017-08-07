@@ -7,7 +7,6 @@ class Ability
     alias_action :update, to: :change
 
     can :manage, [Staff]
-    can :manage, [Order]
 
     case_role
   end

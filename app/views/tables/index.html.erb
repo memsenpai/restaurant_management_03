@@ -1,4 +1,4 @@
-<section class="table-section go-to-book">
+<section class="table-section full-height go-to-book">
   <ol class="progress-book progress-medium" id="progress-order">
     <li id="booking-step-1" class="is-active" data-step="1">
       <span class="text-color-white"><%= t "table.pick_time" %></span>
@@ -12,37 +12,42 @@
   </ol>
   <div class="container-fluid vertical-center">
     <div class="row block reservation" id="block-0">
-      <div class="col-sm-12">
+      <div class="row">
         <h2 class="stylish-heading h1style font-mont heading-small">
           <%= t "table.reservation" %>
         </h2>
         <br>
       </div>
-      <div class="col-sm-6 col-sm-offset-3 box">
+      <div class="col-sm-4 col-sm-offset-4 box">
         <%= render "reservation" %>
       </div>
     </div>
     <div class="row block" id="block-1">
       <div class="col-sm-12">
         <h2 class="stylish-heading h1style font-mont">
-          <%= t "table.available_table" %>
+          <%= t "table.table_list" %>
         </h2>
       </div>
-      <div class="col-sm-6 box col-sm-offset-3 step2">
-        <div class="alert alert-danger alert-dismissable fade in alert-2 hide">
-          <%= t "table.alert2" %>
-        </div>
-        <%= render "tables/map" %>
+
+      <div class="col-sm-12">
+          <div class="alert alert-danger alert-dismissable fade in alert-2 hide">
+            <%= t "table.alert2" %>
+          </div>
+          <div class="col-sm-12">
+            <%= render "tables/map" %>
+          </div>
       </div>
     </div>
     <div class="row block" id="block-2">
-      <div class="col-sm-12">
+      <div class="row">
         <h2 class="stylish-heading h1style font-mont heading-small">
           <%= t "table.confirm" %>
         </h2>
       </div>
-      <div class="col-sm-6 box col-sm-offset-3">
-        <%= render "tables/confirm", customer: @customer %>
+      <div class="row">
+        <div class="row center box">
+          <%= render "tables/confirm", customer: @customer %>
+        </div>
       </div>
     </div>
   </div>

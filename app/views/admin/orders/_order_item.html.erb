@@ -18,14 +18,16 @@
     <tr>
       <td class="btn-add-dish-row">
         <% if can? :manage, :order %>
-          <h4 class="dp-inline">
-            <div class="btn btn-add-dish" id="btn-add-dish">
-              <%= t "staff_order.add_dish" %></div>
-          </h4>
-          <h4 class="dp-inline">
-            <div class="btn btn-add-dish" id="btn-add-combo">
-              <%= t "staff_order.add_combo" %></div>
-          </h4>
+          <% unless order.done? %>
+            <h4 class="dp-inline">
+              <div class="btn btn-add-dish" id="btn-add-dish">
+                <%= t "staff_order.add_dish" %></div>
+            </h4>
+            <h4 class="dp-inline">
+              <div class="btn btn-add-dish" id="btn-add-combo">
+                <%= t "staff_order.add_combo" %></div>
+            </h4>
+          <% end  %>
           <td colspan="6"></td>
           <td>
             <h4 class="dp-inline">
