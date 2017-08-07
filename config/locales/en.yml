@@ -790,3 +790,6 @@ en:
   descripbe_history_item: "%{status} quantity:%{quantity}"
   button_delete_show_order: "Delete"
   button_cancel_show_order: "Cancel"
+  quantity_chef: "Quantity:"
+  status_chef: "Status:"
+  submit_chef: "Submit"

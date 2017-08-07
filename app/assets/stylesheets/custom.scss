@@ -2872,7 +2872,7 @@ a:visited {
 .close {
   color: $white;
   float: right;
-  font-size: 28px;
+  font-size: 2em !important;
   font-weight: bold;
 }
 
@@ -4267,4 +4267,45 @@ $mute: #dfe3e4;
 
 .timecounter {
   margin-top: 5px;
+}
+
+.input-field-chef {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.row {
+  .row-chef {
+    font-size: x-large;
+  }
+}
+
+.fa.fa-paper-plane.chef {
+  position: absolute;
+  right: -200%;
+  top: -200%;
+}
+
+.fa.fa-circle-o-notch {
+  position: absolute;
+  right: -200%;
+  top: -200%;
+}
+
+.btn.btn-check.chef {
+  background: transparent;
+  position: absolute;
+}
+
+.col-sm-10.col-sm-offset-1.chef {
+  display: flex;
+}
+
+.range-field-rails {
+  width: 80%;
+}
+
+.value-range {
+  font-size: 30px;
+  padding-left: 50px;
 }
