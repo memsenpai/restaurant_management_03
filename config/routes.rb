@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :order_dishes, except: %i(show index)
       resources :order_combos, except: %i(show index)
     end
+    resources :update_items
     resources :discount_codes
     resources :staffs, except: %i(show)
     resources :promos
