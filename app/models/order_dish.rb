@@ -17,6 +17,7 @@ class OrderDish < ApplicationRecord
   after_create_commit{save_history "create_new"}
   after_update_commit{save_history "updated"}
   after_destroy_commit{save_history "remove"}
+  after_commit :merge_duplication
 
   load_order_dishes = lambda do |id|
     order_dishes = []
@@ -42,10 +43,17 @@ class OrderDish < ApplicationRecord
     where "dish_id = ? AND
       order_id = ? AND status < 2", dish_id, order_id
   end
+
+  duplication_obj = lambda do |order_dish|
+    where order_id: order_dish.order_id, dish_id: order_dish.dish_id,
+      status: order_dish.status
+  end
+
   scope :load_order_dishes, load_order_dishes
   scope :first_order_dish, first_order_dish
   scope :order_by_total_quantity, order_by_total_quantity
   scope :created_at_between, created_at_between
+  scope :duplication_obj, duplication_obj
 
   def find_discount
     DiscountDish.new(self).discount
@@ -85,5 +93,14 @@ class OrderDish < ApplicationRecord
     end
     HistoryItem.create item_id: id, brand: brand, describe: describe,
       time: Time.now.in_time_zone, class_name: self.class.name
+  end
+
+  def merge_duplication
+    OrderDish.duplication_obj(self).map do |item|
+      next if item.id == id
+      quantity = self.quantity + item.quantity
+      OrderDish.delete self
+      item.update_attributes quantity: quantity
+    end
   end
 end

@@ -13,9 +13,9 @@
           </div>
           <ol class="simple_with_animation vertical list-group" status="needing">
             <%= render "form_dish_needing",
-              needing_dishes: @order_dishes.needing_dishes %>
+              needing_dishes: @order_dishes.dishes("needing") %>
             <%= render "form_combo_needing",
-              needing_combos: @order_combos.needing_combos %>
+              needing_combos: @order_combos.combos("needing") %>
           </ol>
         </div>
         <div class="col-sm-3">
@@ -26,9 +26,9 @@
           </div>
           <ol class="simple_with_animation vertical list-group" status="cooking">
             <%= render "form_dish_cooking",
-              cooking_dishes: @order_dishes.cooking_dishes %>
+              cooking_dishes: @order_dishes.dishes("cooking") %>
             <%= render "form_combo_cooking",
-              cooking_combos: @order_combos.cooking_combos %>
+              cooking_combos: @order_combos.combos("cooking") %>
           </ol>
         </div>
         <div class="col-sm-3">
@@ -39,9 +39,9 @@
           </div>
           <ol class="simple_with_animation vertical list-group" status="cooked">
             <%= render "form_dish_done",
-              done_dishes: @order_dishes.done_dishes %>
+              done_dishes: @order_dishes.dishes("cooked") %>
             <%= render "form_combo_done",
-              done_combos: @order_combos.done_combos %>
+              done_combos: @order_combos.combos("cooked") %>
           </ol>
         </div>
         <div class="col-sm-3">
@@ -52,9 +52,9 @@
           </div>
           <ol class="simple_with_animation vertical list-group" status="cancel">
             <%= render "form_dish_cancel",
-              cancel_dishes: @order_dishes.cancel_dishes %>
+              cancel_dishes: @order_dishes.dishes("cancel") %>
             <%= render "form_combo_cancel",
-              cancel_combos: @order_combos.cancel_combos %>
+              cancel_combos: @order_combos.combos("cooked") %>
           </ol>
         </div>
       </div>

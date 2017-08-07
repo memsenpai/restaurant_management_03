@@ -18,9 +18,8 @@ module Admin
     end
 
     def update
-      if customer.update_attributes customer_params
-        return render json: {status: 1}
-      end
+      return render json: {status: 1} if customer
+          .update_attributes customer_params
       render json: {status: 0}
     end
 

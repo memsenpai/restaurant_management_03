@@ -4,13 +4,13 @@
     <%= t "staff_order.original_price" %>
   </td>
   <td colspan="1" class="head">
-    <%= number_to_currency order.original_price %>
+    <%= number_to_currency order_services(order).original_price %>
   </td>
   <td colspan="3" class="foot">
     <%= t "staff_order.total_notdiscount" %>
   </td>
   <td class="foot uk-text-left foot" colspan="3">
-    <%= number_to_currency order.subtotal %>
+    <%= number_to_currency order_services(order).subtotal %>
   </td>
 </tr>
 <tr>
@@ -42,7 +42,7 @@
   </td>
   <td class="total-price" colspan="3" id="order-total" align="right">
     <strong>
-      <%= number_to_currency order.price_final %>
+      <%= number_to_currency order_services(order).price_final %>
     </strong>
   </td>
 </tr>

@@ -1,6 +1,15 @@
 Staff.delete_all
 Staff.create! name: "admin", email: "admin@123.com",
   password: "123123", authentication_token: "supersecrettoken1"
+Staff.create! name: "admin", email: "admin1@123.com",
+  password: "123123", staff_role: 1,
+  authentication_token: "supersecrettoken2"
+Staff.create! name: "admin2", email: "admin2@123.com",
+  password: "123123", staff_role: 2,
+  authentication_token: "supersecrettoken3"
+Staff.create! name: "admin3", email: "admin3@123.com",
+  password: "123123", staff_role: 3,
+  authentication_token: "supersecrettoken4"
 
 Category.create! ([
   {name: "Main",
@@ -892,21 +901,11 @@ ComboDish.create!([
     end_time: Faker::Time.forward(100, :morning)
 end
 
-Staff.create! name: "admin", email: "admin1@123.com",
-  password: "123123", staff_role: 1,
-  authentication_token: "supersecrettoken2"
-Staff.create! name: "admin2", email: "admin2@123.com",
-  password: "123123", staff_role: 2,
-  authentication_token: "supersecrettoken3"
-Staff.create! name: "admin3", email: "admin3@123.com",
-  password: "123123", staff_role: 3,
-  authentication_token: "supersecrettoken4"
-
-  10.times do
-    Customer.create! name: Faker::Name.name,
-      email: Faker::Internet.email,
-      phone_num: Faker::PhoneNumber.cell_phone
-  end
+10.times do
+  Customer.create! name: Faker::Name.name,
+    email: Faker::Internet.email,
+    phone_num: Faker::PhoneNumber.cell_phone
+end
 
 Table.create! capacity: 8, code: "1"
 Table.create! capacity: 2, code: "2"

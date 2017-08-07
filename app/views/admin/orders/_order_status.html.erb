@@ -12,7 +12,7 @@
     <span class="label-blue">
   <% end %>
   <%= link_to admin_order_path(order,
-    order: {status: order.change_status}), remote: true,
+    order: {status: change_status(order)}), remote: true,
     method: :patch do %>
       <%= order.status %>
     <% end %>

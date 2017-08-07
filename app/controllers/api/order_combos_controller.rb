@@ -12,7 +12,10 @@ module Api
     end
 
     def update
-      if order_combos.update_attributes status: params[:order_combo][:status]
+      combos = OrderCombo.where combo_id: order_combos.combo_id,
+        status: order_combos.status
+      if combos
+        update_combo combos
         render json: nil, status: :ok
       else
         render json: nil, status: :not_found
@@ -31,10 +34,31 @@ module Api
     end
 
     def find_order_combos
-      @order_combos = order.order_combos.find_by id: params[:id]
+      @order_combos = OrderCombo.find_by id: params[:id]
 
       return if order_combos
       render json: Array.new, status: :not_found
+    end
+
+    def check_status_items_in_order? order
+      order.order_combos.map do |item|
+        next if item.served? || item.cancel?
+        break false
+      end
+    end
+
+    def change_status order_combo
+      order = Order.find_by id: order_combo.order_id
+
+      return unless check_status_items_in_order? order
+      order.done!
+    end
+
+    def update_combo combos
+      combos.map do |combo|
+        combo.update_attributes status: params[:order_combo][:status]
+        change_status combo
+      end
     end
   end
 end

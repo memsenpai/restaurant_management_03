@@ -1,14 +1,7 @@
 <ul class="nav navbar-nav navbar-right animated wow"
   data-wow-delay="0.1s">
   <% if can? :view, :chef %>
-    <li class="dpdwn">
-      <a class="" href="#">
-        <%= t "admin.cooking" %>
-        <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><%= link_to t("admin.cookingstt"), admin_chef_index_path %></li>
-      </ul>
-    </li>
+   <li><%= link_to t("admin.cookingstt"), admin_chef_index_path %></li>
   <% end  %>
   <% if can? :manage, :all %>
     <li class="dropdown smoothScroll animated fadeInLeft wow">

@@ -26,7 +26,7 @@
       <% end %>
     </td>
   <% end %>
-  <td class="width-20">
+  <td class="width-20 declined_order_<%= order.id %>">
     <% if order.uncheck? || order.approved? %>
       <%= link_to admin_order_path(order,
         order: {status: "declined"}), remote:true,

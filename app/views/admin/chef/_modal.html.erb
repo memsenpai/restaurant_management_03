@@ -1,0 +1,46 @@
+<div class="modal modal-item modal_item_<%= item.id %>">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+      <%= form_for :update_item, {url: admin_update_item_path(item_id), method: :patch} do |f| %>
+        <div class="col-sm-8 text-center modal-part modal-left">
+          <p class="discount-code-input">
+              <%= t "quantity_chef" %></p>
+          <div class="row row-chef">
+            <div class="col-sm-10 col-sm-offset-1 chef">
+              <%= f.range_field :quantity, value: 0, step: 1, in: 0..quantity,
+                class: "range-field-rails", data: item.id %>
+              <span class="value-range value_quantity_<%= item.id %>">0</span>
+              <%= f.hidden_field :item_id, value: item_id %>
+              <%= f.hidden_field :type, value: item.class.name  %>
+              <%= f.hidden_field :status_current, value: item.status %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 text-center modal-part modal-left">
+          <p class="discount-code-input">
+              <%= t "status_chef" %></p>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+            <%= f.select :status, OrderDish.statuses, {include_blank: false,
+              selected: :status}, class: "input-form form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 text-center modal-part modal-left">
+          <div class="btn-check">
+            <%= f.button type: "submit", class: "btn btn-check chef" do %>
+              <i id="check-discount-code" class="fa fa-paper-plane chef"></i>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
