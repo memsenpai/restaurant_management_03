@@ -123,9 +123,14 @@ class Order < ApplicationRecord
 
   def change_status_item
     customer.increase_warning if declined?
-
+    chang_status_done
     return unless serving?
     check_change "order_dishes"
     check_change "order_combos"
+  end
+
+  def chang_status_done
+    return unless done?
+    BillService.new(self).create_bill_info
   end
 end

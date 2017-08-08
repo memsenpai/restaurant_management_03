@@ -1,0 +1,3 @@
+$('.form-bill').html('<%= j render "bill", bills: @bills %>');
+$('#pagination').html('<%= j paginate(@bills.bills_search,
+  remote: true) %>');

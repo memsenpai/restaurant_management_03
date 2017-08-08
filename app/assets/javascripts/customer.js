@@ -60,8 +60,8 @@ $(document).on('turbolinks:load', function() {
           email.html(email_html);
           phone.html(phone_html);
           code.html(code_html);
-          var yes = I18n.t('yes');
-          var no = I18n.t('no');
+          var yes = I18n.t('confirm.txt_yes');
+          var no = I18n.t('confirm.txt_no');
           if (blacklist_html > 2) {
             blacklist.html('<span class="is-black-list">'+ yes +'</span>');
           } else {
@@ -143,7 +143,7 @@ $(document).on('turbolinks:load', function() {
 
     var id = $(this).parent().parent()
       .find('#customer-id').attr('data-id');
-    var check = false;
+
     $.ajax({
       type:'DELETE',
       url: '/admin/customers/' + id,
@@ -151,17 +151,6 @@ $(document).on('turbolinks:load', function() {
       data: {
         id: id
       }
-    }).done(function(result){
-      if (result) {
-        $('.rows-item-create').hide();
-        check = true;
-      } else {
-        alert(I18n.t('errors.create_customer'));
-      }
     });
-
-    if (!check) {
-      return false;
-    }
   });
 });

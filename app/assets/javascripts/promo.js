@@ -26,7 +26,7 @@ $(document).on('turbolinks:load', function(){
       var html = '';
       $.ajax({
         type: 'GET',
-        url: '/dishes',
+        url: '/dishes?type=search',
         data: {name: $(this).val()},
         dataType: 'JSON',
         success: function (respond) {

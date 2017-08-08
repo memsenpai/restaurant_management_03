@@ -29,4 +29,10 @@ $(document).on('turbolinks:load', function(){
       data: {'order_combo': {'status': 'cancel'}}
     });
   });
+
+  $(document).on('click', '.btn-show-customer', function() {
+    var id = $(this).parent().parent().find('#customer-id').data('id');
+    $('.show-info-customer-' + id).show();
+    return false;
+  });
 });

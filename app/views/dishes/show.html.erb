@@ -27,6 +27,31 @@
               <%= render "orders/rate", id: @dish.id, type: "Dish" %>
               <%= @dish.description %>
             </div>
+            <% if @dish.promos.any? %>
+              <% @dish.promos.each do |promo| %>
+                <% if promo.is_available? %>
+                  <div class="info-support">
+                    <b>-<%= promo.discount %>%</b>
+                    <%= t "txt_in" %>
+                    <span>
+                      <%= promo.start_time.strftime(t "time_default") %>
+                    </span>
+                    <%= t "txt_to" %>
+                    <span>
+                      <%= promo.end_time.strftime(t "time_default") %>
+                    </span>,
+                    <%= t "txt_from" %>
+                    <span>
+                      <%= promo.start_day.strftime(t "day_default") %>
+                    </span>
+                    <%= t "txt_to" %>
+                    <span>
+                      <%= promo.end_day.strftime(t "day_default") %>
+                    </span>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
             <div class="info-support">
               <% if @dish.is_available? %>
                 <div class="check">
@@ -39,7 +64,7 @@
                 <%= form_for :order_dish, remote: true do |f| %>
                   <div class="input-group">
                     <%= f.number_field :quantity, value: 1, class: "form-control",
-                       id: "quantity-dish-order-#{@dish.id}", min: 1 %>
+                      id: "quantity-dish-order-#{@dish.id}", min: 1 %>
                     <%= f.hidden_field :dish_id, value: @dish.id, class: "dish-id" %>
                     <div class="input-group-btn">
                       <div class="btn btn-primary button-style add-dish-to-cart">

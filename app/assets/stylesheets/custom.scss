@@ -380,8 +380,10 @@ body {
   }
 }
 
+$color-c1810c: #c1810c;
+
 .select-membership-voucher {
-  color: $color-c10c0c;
+  color: $color-c1810c;
 
   &-disabled {
     color: $black;
@@ -3676,8 +3678,9 @@ a:visited {
   color: $white;
   text-align: right;
 
-  &-btn {
+  &-btn-style {
     background: $color-1eb353;
+    color: $white;
     padding: 7px 40px;
 
     &:hover {
@@ -4409,4 +4412,23 @@ $mute: #dfe3e4;
   float: left;
   height: 40px;
   width: 40px;
+}
+
+.info-support {
+  font-family: Khand !important;
+  font-size: 20px;
+
+  b {
+    color: $red;
+    font-size: 30px;
+  }
+
+  span {
+    color: $color-c10c0c;
+    font-size: 25px;
+  }
+}
+
+.color-c1810c {
+  color: $color-c1810c;
 }
