@@ -21,9 +21,12 @@ class Ability
       can :manage, :all
     when "receptionist"
       can :change, [Order, OrderDish, OrderCombo]
-      can :view, [Combo, Dish, DiscountCode, Category, Promo]
+      can :view, [Customer, Bill]
+      can :modify, [Order]
     when "chef"
       can :view, :chef
+      can :modify, [Order, OrderDish, OrderCombo]
+    when "waiter"
       can :modify, [Order, OrderDish, OrderCombo]
     end
   end
