@@ -1,6 +1,7 @@
 /*global WOW:true*/
 $(document).on('turbolinks:load', function(){
-  tables_book();
+  if(window.location.pathname == '/tables')
+    tables_book();
 });
 
 $(document).on('turbolinks:load', function(){
@@ -222,7 +223,6 @@ function tables_book(){
           $('.btn-'+ i).removeClass('btn-maru').removeClass('btn-choose').addClass('btn-batsu');
         }
         $.each(data, function (index, element) {
-          console.log(element.code);
           $('.btn-' + element.code).addClass('btn-maru').removeClass('btn-batsu');
         });
         next_step(element);

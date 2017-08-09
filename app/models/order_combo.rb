@@ -17,7 +17,7 @@ class OrderCombo < ApplicationRecord
   after_create_commit{save_history "create_new"}
   after_update_commit{save_history "updated"}
   after_destroy_commit{save_history "remove"}
-
+  after_commit :merge_duplication
   load_order_combos = lambda do |id|
     order_combos = []
     where("order_id=?", id).pluck(:combo_id, :quantity)
@@ -43,11 +43,16 @@ class OrderCombo < ApplicationRecord
       order_id = ? AND status < 2", combo_id, order_id
   end
 
+  duplication_obj = lambda do |order_combo|
+    where order_id: order_combo.order_id, combo_id: order_combo.combo_id,
+      status: order_combo.status
+  end
+
   scope :load_order_combos, load_order_combos
   scope :first_order_combo, first_order_combo
   scope :created_at_between, created_at_between
   scope :order_by_total_quantity, order_by_total_quantity
-
+  scope :duplication_obj, duplication_obj
   def original_price
     combo.subtotal
   end
@@ -86,5 +91,14 @@ class OrderCombo < ApplicationRecord
     end
     HistoryItem.create item_id: id, brand: brand, describe: describe,
       time: Time.now.in_time_zone, class_name: self.class.name
+  end
+
+  def merge_duplication
+    OrderCombo.duplication_obj(self).map do |item|
+      next if item.id == id
+      quantity = self.quantity + item.quantity
+      OrderCombo.delete self
+      item.update_attributes quantity: quantity
+    end
   end
 end

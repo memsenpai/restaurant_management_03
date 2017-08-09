@@ -12,7 +12,10 @@ module Api
     end
 
     def update
-      if order_dishes.update_attributes status: params[:order_dish][:status]
+      dishes = OrderDish.where dish_id: order_dishes.dish_id,
+        status: order_dishes.status
+      if dishes
+        update_dish dishes
         render json: nil, status: :ok
       else
         render json: nil, status: :not_found
@@ -31,10 +34,31 @@ module Api
     end
 
     def find_order_dishes
-      @order_dishes = order.order_dishes.find_by id: params[:id]
+      @order_dishes = OrderDish.find_by id: params[:id]
 
       return if order_dishes
       render json: Array.new, status: :not_found
+    end
+
+    def check_status_items_in_order? order
+      order.order_dishes.map do |item|
+        next if item.served? || item.cancel?
+        break false
+      end
+    end
+
+    def change_status order_dish
+      order = Order.find_by id: order_dish.order_id
+
+      return unless check_status_items_in_order? order
+      order.done!
+    end
+
+    def update_dish dishes
+      dishes.map do |dish|
+        dish.update_attributes status: params[:order_dish][:status]
+        change_status dish
+      end
     end
   end
 end

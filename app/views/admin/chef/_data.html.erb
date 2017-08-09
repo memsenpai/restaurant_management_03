@@ -1,8 +1,12 @@
 <div class="row">
   <% if food.class.name == "OrderDish" %>
-    <div class="col-xs-10"><%= food.dish.name %></div>
+    <div class="col-xs-10 name-item" id="<%= food.id %>"><%= food.dish.name %></div>
+    <%= render "modal", item: food, item_id: food.dish_id,
+      quantity: food.quantity %>
   <% else %>
-    <div class="col-xs-10"><%= food.combo.name %></div>
+    <div class="col-xs-10 name-item" id="<%= food.id %>"><%= food.combo.name %></div>
+    <%= render "modal", item: food, item_id: food.combo_id,
+      quantity: food.quantity %>
   <% end %>
   <div class="col-xs-2"><%= food.quantity %></div>
 </div>

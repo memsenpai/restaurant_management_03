@@ -1,19 +1,27 @@
 module Supports
   class AdminOrderDishSupport
-    def needing_dishes
-      OrderDish.needing.sort_by(&:cooking_time)
+    def dishes status
+      order_dishes = OrderDish.send(status).sort_by(&:cooking_time)
+      merge_duplication order_dishes
     end
 
-    def cooking_dishes
-      OrderDish.cooking.sort_by(&:cooking_time)
+    private
+
+    def delete_duplication dish, order_dishes
+      order_dishes.map do |dish_delete|
+        id = dish_delete.id
+        if dish.dish_id == dish_delete.dish_id && dish.id != id
+          dish.quantity += dish_delete.quantity
+          order_dishes.delete_if{|item| item.id == id}
+        end
+      end
     end
 
-    def done_dishes
-      OrderDish.cooked
-    end
-
-    def cancel_dishes
-      OrderDish.cancel
+    def merge_duplication order_dishes
+      order_dishes.map do |dish|
+        delete_duplication dish, order_dishes
+      end
+      order_dishes
     end
   end
 end

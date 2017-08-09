@@ -49,9 +49,9 @@ module SessionHelper
 
   def load_info id, *arg
     item = arg[0].constantize.find_by id: id
-    price = item.price
 
     return unless item
+    price = item.price
     check_arg item, price, arg
   end
 

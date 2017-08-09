@@ -39,6 +39,11 @@ if (window.location.pathname == '/admin/orders') {
             .removeClass('animated bounce');
         }
 
+        if (respond.status == 'done' || respond.status == 'declined') {
+          $('.declined_order_' + respond.id)
+            .replaceWith('<div class="width-20"></div>');
+        }
+
       }
       $('.flash-push.success').remove();
       $('<div><div class="flash-push success">' + notice + '</div></div>')
