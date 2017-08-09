@@ -1,0 +1,25 @@
+<div class="row row-padding">
+  <div class="text-center">
+    <div>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.orders.order.code" %></b>
+      </span>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.orders.order.day" %></b>
+      </span>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.orders.order.time_in" %></b>
+      </span>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.orders.order.table" %></b>
+      </span>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.membership_coupons.status" %></b>
+      </span>
+      <span class="col-sm-2 list-group-item">
+        <b><%= t "admin.bills.cost" %></b>
+      </span>
+    </div>
+    <%= render "customer_order_content", orders_support: orders_support %>
+  </div>
+</div>

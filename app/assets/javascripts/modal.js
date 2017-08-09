@@ -35,4 +35,17 @@ $(document).on('turbolinks:load', function(){
     $('.show-info-customer-' + id).show();
     return false;
   });
+
+  $(document).on('click', '.btn-edit-customer-2', function() {
+    $('.show-edit-customer').show();
+  });
+
+  $(document).on('click', '.btn-cancel-customer', function () {
+    var url = '/admin/customers/' + $(this).attr('data-id');
+    $.ajax({
+      url: url,
+      type: 'PATCH',
+      data: {'customer': {'status': 'cancel'}}
+    });
+  });
 });

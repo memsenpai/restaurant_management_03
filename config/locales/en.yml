@@ -170,7 +170,7 @@ en:
       index:
         title: Membership Coupons
     customers:
-      membership_level: Membership Level
+      membership_level: Membership
       customer_name: Customer Name
       customer_email: Customer Email
       customer_phone: Customer Phone
@@ -178,6 +178,22 @@ en:
       customer_blacklist: Black list
       index:
         title: Customer Manager
+      show:
+        title: Customer Details
+        name: Name
+        email: Email
+        phone: Phone
+        code: Code
+        money_paid: Money Paid
+        black_list: Black List
+        membership: Membership Level
+        order_list: Order List
+      customer:
+        search: Search
+        code: Code
+        phone: Phone
+        name: Name
+        email: Email
     bills:
       money_paid: Money paid
       customer_info: Customer Info
@@ -204,6 +220,7 @@ en:
       action: "Action"
       details: "Details"
       btn_apply: "Apply"
+      cost: Cost
       show:
         title: Bill detail
       index:
@@ -411,6 +428,7 @@ en:
         order_info: Order information
         code: Code
         customer_name: Customer Name
+        day: Day
   button:
     search: Search
     close: Close

@@ -12,8 +12,12 @@ module Supports
     end
 
     def search
-      search = Customer.ransack param[:q]
-      search.sorts = "id desc" if search.sorts.empty?
+      search =
+        if param[:type]
+          customers.ransack
+        else
+          customers.ransack param[:q]
+        end
       search
     end
   end

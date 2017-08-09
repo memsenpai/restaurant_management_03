@@ -1,3 +1,3 @@
-$('.form-customer').html('<%= j render "customer", customers: @customers %>');
+$('.customer-content').html('<%= j render "customers_content", customers: @customers %>');
 $('#pagination').html('<%= j paginate(@customers.customers_search,
   remote: true) %>');

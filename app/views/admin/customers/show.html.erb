@@ -1,0 +1,90 @@
+<section class="section admin-site">
+  <br><br>
+  <div class="col-sm-12 col-xs-12 show-customer">
+    <h1><%= t ".title" %></h1>
+    <br>
+    <div class="bloc col-xs-12 admin-show-customer" id="show-customer">
+      <div class="pj-form-filter-advanced col-sm-12">
+        <h1><%= @customer.name %></h1>
+        <table dir="ltr" class="default-dg-table ">
+          <tbody>
+            <tr class="dg_tr" id="di_row_0">
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".email" %></b>
+              </td>
+              <td class="default_dg_td dg-left col-xs-3"
+                id="customer-email" data-name="<%= @customer.email %>">
+                <%= @customer.email %>
+              </td>
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".membership" %></b>
+              </td>
+              <td class="default_dg_td dg-left col-xs-3"
+                id="customer-membership" data-name="<%= @customer.membership_current %>">
+                <% if @customer.membership_current %>
+                  <span class="color-c1810c">
+                    <b>
+                      <i class="fa fa-diamond" aria-hidden="true"></i>
+                      <%= @customer.membership_current.name %>
+                      (-<%= @customer.membership_current.discount %>%)
+                    </b>
+                  </span>
+                <% else %>
+                  <i class="fa fa-diamond" aria-hidden="true"></i> (0)
+                <% end %>
+              </td>
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".money_paid" %></b>
+              </td>
+              <td class="default_dg_td dg-left col-xs-3"
+                id="customer-money-paid" data-name="<%= @customer.money_paid %>">
+                <%= t "currency" %><%= @customer.money_paid %>
+              </td>
+            </tr>
+            <tr class="dg_tr" id="di_row_0">
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".phone" %></b>
+              </td>
+              <td class="default_dg_td dg-left col-xs-3"
+                id="customer-phone-num" data-name="<%= @customer.phone_num %>">
+                <%= @customer.phone_num %>
+              </td>
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".code" %></b>
+              </td>
+              <td class="default_dg_td dg-left col-xs-3"
+                id="customer-code" data-name="<%= @customer.code %>">
+                <%= @customer.code %>
+              </td>
+              <td class="default_dg_td dg-left dg-nowrap col-xs-1">
+                <b><%= t ".black_list" %></b>
+              </td>
+              <td class="default_dg_th dg-left dg-nowrap col-xs-3"
+                id="customer-blacklist"
+                data-blacklist="<%= @customer.warning_times %>">
+                <% if @customer.is_blacklist? %>
+                  <span class="is-black-list"><%= t "confirm.txt_yes" %></span>
+                <% else %>
+                  <span class="not-is-black-list">
+                    <%= t "confirm.txt_no" %>
+                  </span>
+                <% end %>
+              </td>
+            </tr>
+          </div>
+        </tbody>
+      </table>
+      <div class="btns-edit-customer">
+        <button class="btn btn-success btn-edit-customer-2">
+          <%= t "button.edit" %>
+        </button>
+        <button class="btn btn-danger">
+          <%= t "button.delete" %>
+        </button>
+        <%= render "modal_edit", customer: @customer %>
+      </div>
+    </div>
+    <h2><%= t ".order_list" %></h2>
+    <%= render "customer_order", orders_support: @orders_support %>
+  </div>
+</section>
