@@ -2023,6 +2023,7 @@ $color-c1810c: #c1810c;
   background: url("https://s-media-cache-ak0.pinimg.com/originals/0c/00/bf/0c00bf7579cd612681ca19684d4d8a68.jpg") 98% 50% no-repeat;
   background-size: 26px 26px;
   font-size: 18px !important;
+  margin-right: 10px;
   padding-right: 40px;
 }
 
@@ -3135,6 +3136,9 @@ a:visited {
 
 .navbar-default {
   padding: 5px 5px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
   .fa-shopping-cart {
     font-size: 1.5em;
@@ -4431,4 +4435,8 @@ $mute: #dfe3e4;
 
 .color-c1810c {
   color: $color-c1810c;
+}
+
+.text-color-black {
+  color: $black;
 }

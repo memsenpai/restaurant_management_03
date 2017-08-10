@@ -32,11 +32,10 @@ en:
     slogan:
       view_menu: "View menu"
   home:
-    home: Home
     menu: Menu
     combo: Combo
     book: Booking
-    contact: Check order
+    contact: Your order
     staff: Staff Only
     great_food: Great food. Tastes good.
     host_combo: "__ HOTTEST COMBO __"
@@ -163,7 +162,7 @@ en:
     cooking: Cooking
     cancel: Cancel
     done: Done
-    dashboard: Dashboard
+    dashboard: Statistics
     membership_coupons:
       name: Name
       money_paid: Money paid
@@ -538,7 +537,7 @@ en:
     table_number: "Table number: "
     date: "Date: "
     want_to_book: "Want to book another table?"
-    create_new_order: "Create new order"
+    create_new_order: "Clear Cart"
     order_items: "Order items"
     order_status: "Order status:"
     your_email: "Your email"

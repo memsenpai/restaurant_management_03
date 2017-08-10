@@ -1,17 +1,21 @@
 <ul class="nav navbar-nav navbar-right animated wow"
   data-wow-delay="0.1s">
-  <% if can? :view, :chef %>
-   <li><%= link_to t("admin.cookingstt"), admin_chef_index_path %></li>
-  <% end  %>
-  <% if can? :manage, :all %>
-    <li class="dropdown smoothScroll animated fadeInLeft wow">
+  <% if can? :view, Customer %>
+    <li class="dpdwn smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.manage" %>
         <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <% if can? :view, Combo %>
+        <% if can? :view, Customer %>
           <li>
-            <%= link_to t("admin.combo"), admin_combos_path,
+            <%= link_to t("admin.customer"), admin_customers_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
+        <% end %>
+        <% if can? :manage, :all %>
+          <li>
+            <%= link_to t("admin.membership"), admin_membership_coupons_path,
               class: "smoothScroll animated fadeInLeft wow",
               "data-wow-delay": "0.1s", method: :get %>
           </li>
@@ -26,6 +30,13 @@
         <% if can? :view, Dish %>
           <li>
             <%= link_to t("admin.dish"), admin_dishes_path,
+              class: "smoothScroll animated fadeInLeft wow",
+              "data-wow-delay": "0.1s", method: :get %>
+          </li>
+        <% end %>
+        <% if can? :view, Combo %>
+          <li>
+            <%= link_to t("admin.combo"), admin_combos_path,
               class: "smoothScroll animated fadeInLeft wow",
               "data-wow-delay": "0.1s", method: :get %>
           </li>
@@ -45,30 +56,22 @@
           </li>
         <% end %>
         <% if can? :manage, :all %>
-          <li>
-            <%= link_to t("admin.customer"), admin_customers_path,
-              class: "smoothScroll animated fadeInLeft wow",
-              "data-wow-delay": "0.1s", method: :get %>
-          </li>
-        <% end %>
-        <% if can? :manage, :all %>
-        <li>
-          <%= link_to t("admin.membership"), admin_membership_coupons_path,
+          <li><%= link_to t("admin.staff"), admin_staffs_path,
             class: "smoothScroll animated fadeInLeft wow",
             "data-wow-delay": "0.1s", method: :get %>
-        </li>
+          </li>
         <% end %>
       </ul>
     </li>
-  <% end  %>
+  <% end %>
   <% if can? :update, Order %>
-    <li class="dropdown smoothScroll animated fadeInLeft wow">
+    <li class="dpdwn smoothScroll animated fadeInLeft wow">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <%= t "admin.orderr" %>
         <span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><%= link_to t("admin.order"), admin_orders_path,
-          class: "smoothScroll animated wow",
+          class: "smoothScroll animated fadeInLeft wow",
           "data-wow-delay": "0.1s", method: :get %></li>
         <li><%= link_to t("admin.bill"), admin_bills_path,
           class: "smoothScroll animated fadeInLeft wow",
@@ -77,26 +80,21 @@
     </li>
   <% end %>
   <% if can? :manage, :all %>
-  <li class="dpdwn">
-    <%= link_to t("admin.dashboard"), admin_dashboards_path,
-      method: :get %>
-  </li>
-  <li><%= link_to t("admin.user"), admin_staffs_path,
-    class: "smoothScroll animated fadeInLeft wow",
-    "data-wow-delay": "0.1s", method: :get %>
-  </li>
-  <% end %>
-  <li class="dpdwn">
-    <%= link_to t("admin.profile"), staffs_path,
-      class: "smoothScroll animated wow",
+    <li>
+      <%= link_to t("admin.dashboard"), admin_dashboards_path,
+      class: "smoothScroll animated fadeInLeft wow",
       "data-wow-delay": "0.1s", method: :get %>
-    <ul class="nav">
-      <li><%= link_to t("admin.setting"), edit_staffs_path,
-        class: "smoothScroll animated wow",
-        "data-wow-delay": ".1s", method: :get %></li>
-      <li><%= link_to t("admin.logout"), logout_path,
-        class: "smoothScroll animated wow",
-        "data-wow-delay": ".1s", method: :delete %></li>
-    </ul>
+    </li>
+  <% end %>
+  <li class="nav">
+    <%= link_to t("admin.profile"), edit_staffs_path,
+      class: "smoothScroll animated fadeInLeft wow",
+      "data-wow-delay": "0.1s", method: :get %>
+  </li>
+  <li>
+    <%= link_to logout_path, class: "smoothScroll animated fadeInLeft wow",
+      "data-wow-delay": "0.1s", method: :delete  do %>
+      <i class="fa fa-lg fa-sign-out fa-lg"></i>
+    <% end %>
   </li>
 </ul>
