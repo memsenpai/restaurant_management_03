@@ -505,13 +505,40 @@ $(document).on('turbolinks:load', function(){
     var order_id = $item[0].getAttribute('order-id');
     var id = $item[0].id;
     var type = $item[0].getAttribute('type');
+    var data =  JSON.stringify({status: nextstatus});
+    var name = $item.find('div.col-xs-10[id='+ id +']').text();
+    var staff_id = $('#staff_id').val();
+
+    $(document).on('click', '.submit-cancel-chef', function () {
+      var describe = $('.cancel').find('select').val();
+      if(type == 'order_dishes'){
+        data = JSON.stringify({'order_dish': {'status': 'cancel',
+          'reasons_attributes': {'0': {'describe': describe,
+            'staff_id': staff_id}}}});
+      } else {
+        data = JSON.stringify({'order_combo': {'status': 'cancel',
+          'reasons_attributes': {'0': {'describe': describe,
+            'staff_id': staff_id}}}});
+      }
+      push_to_sever(order_id, type, id, data);
+    });
+
+    if(nextstatus == 'cancel'){
+      $('.cancel').show();
+      $('.cancel').find('h2.text-center').text(name);
+      return;
+    }
+    push_to_sever(order_id, type, id, data);
+  }
+
+  function push_to_sever(order_id, type, id, data) {
     $.ajax({
       type: 'PUT',
       headers: {'AUTHENTICATE-TOKEN': 'supersecrettoken1'},
       url: '/api/orders/' + order_id + '/' + type + '/' + id,
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
-      data: JSON.stringify({status: nextstatus}),
+      data: data,
       error: function() {
         location.reload();
       }

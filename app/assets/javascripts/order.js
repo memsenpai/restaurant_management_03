@@ -161,8 +161,42 @@ $(document).on('click', '.btn-add-to-cart-combo', function() {
   });
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('.orders-info-membership').on('click', '.select-membership-voucher', function() {
     $(this).find('input').prop('checked',true);
+  });
+});
+
+$(document).on('click', '.order_status', function(){
+  var id = $(this).attr('data-id');
+  $('.confirm[data-id=' + id + ']').show();
+});
+
+$(document).on('click', '.modal-declined', function() {
+  var id  = $(this).attr('data-id');
+  $('.declined[data-id=' + id + ']').show();
+});
+
+$(document).on('click', '.submit-declined-order', function(){
+  var id = $(this).attr('data-id');
+  var url = '/admin/orders/' + id;
+  var staff_id = $('#staff_id').val();
+  var describe = $('input[order-id=' + id + ']').val();
+  var data = {'order': {'status': 'declined',
+    'reasons_attributes': {'0': {'describe': describe,
+      'staff_id': staff_id}}}};
+  $.ajax({
+    url: url,
+    type: 'put',
+    data: data,
+    success: function(){
+      $('.declined[data-id=' + id + ']').css('display', 'none');
+    }
+  });
+});
+$(document).on('turbolinks:load', function(){
+  $('a[data-toggle="tooltip"]').tooltip({
+    animated: 'fade',
+    placement: 'bottom',
   });
 });

@@ -2,6 +2,8 @@ class Staff < ApplicationRecord
   devise :custom_authenticatable, :database_authenticatable, :rememberable
   enum staff_role: %i(administrator chef waiter receptionist).freeze
 
+  has_many :reasons, as: :staff
+
   after_initialize :set_default_staff_role, if: :new_record?
 
   acts_as_token_authenticatable

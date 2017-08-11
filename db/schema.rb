@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803093422) do
+ActiveRecord::Schema.define(version: 20170808092137) do
 
   create_table "average_caches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rater_id"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:46'
+    t.datetime "cooking_time", default: '2017-08-11 09:41:59'
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:45'
+    t.datetime "cooking_time", default: '2017-08-11 09:41:58'
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -197,6 +197,15 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+  end
+
+  create_table "reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.text     "describe",   limit: 65535
+    t.integer  "staff_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "staffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

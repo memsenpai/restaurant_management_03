@@ -2916,7 +2916,7 @@ a:visited {
   padding: 0;
   position: relative;
   transition: all ease 1s;
-  width: 70%;
+  width: 50%;
 }
 
 @keyframes animatetop {
@@ -4439,4 +4439,28 @@ $mute: #dfe3e4;
 
 .text-color-black {
   color: $black;
+}
+
+.btn-confirm-modal {
+  margin-right: 15px;
+}
+
+.color-red {
+  background-color: $cardinal;
+  color: $white;
+
+  &:hover {
+    background-color: $red;
+  }
+}
+
+.text-cross-line {
+  text-decoration: line-through;
+}
+
+.text-center {
+  .modal-status,
+  .modal-code {
+    font-size: 32px;
+  }
 }

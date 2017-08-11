@@ -1,10 +1,17 @@
 class OrderCombo < ApplicationRecord
   enum status: %i(no_need needing cooking cooked served cancel).freeze
+  ATTRIBUTES = [
+    :combo_id, :quantity, :status, :order_id,
+    reasons_attributes: %i(describe staff_id).freeze
+  ].freeze
 
   belongs_to :order
   belongs_to :combo
 
   has_many :history_items, dependent: :destroy, foreign_key: :item_id
+  has_many :reasons, as: :item
+
+  accepts_nested_attributes_for :reasons
 
   validates :quantity, presence: true,
     numericality: {only_integer: true, greater_than: 0}
@@ -18,6 +25,7 @@ class OrderCombo < ApplicationRecord
   after_update_commit{save_history "updated"}
   after_destroy_commit{save_history "remove"}
   after_commit :merge_duplication
+
   load_order_combos = lambda do |id|
     order_combos = []
     where("order_id=?", id).pluck(:combo_id, :quantity)
@@ -61,6 +69,15 @@ class OrderCombo < ApplicationRecord
     price * quantity
   end
 
+  def filter_reasons
+    describe = ""
+    reasons.map do |reason|
+      describe << I18n.t("cancel_tooltip", time: reason.created_at.utc.to_s,
+        describe: reason.describe, staff: reason.staff.name)
+    end
+    describe
+  end
+
   private
 
   def combo_present
@@ -95,7 +112,7 @@ class OrderCombo < ApplicationRecord
 
   def merge_duplication
     OrderCombo.duplication_obj(self).map do |item|
-      next if item.id == id
+      next if item.id == id || item.reasons
       quantity = self.quantity + item.quantity
       OrderCombo.delete self
       item.update_attributes quantity: quantity

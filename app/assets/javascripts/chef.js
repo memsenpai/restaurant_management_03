@@ -1,7 +1,6 @@
 $(document).on('turbolinks:load', function () {
   $(document).on('click', '.name-item', function () {
-    var id = $(this).attr('id');
-    $('.modal_item_' + id).show();
+    $(this).next().show();
   });
 
   $(document).on('click', '.fa-chevron-down', function () {
@@ -26,5 +25,14 @@ $(document).on('turbolinks:load', function () {
   $(document).on('change', '.range-field-rails', function () {
     var id = $(this).attr('data');
     $('.value_quantity_' + id).text($(this).val());
+  });
+
+  $(document).on('change', '.status-select', function () {
+    var id = $(this).attr('data');
+    if($('.status-select[data=' + id + ']').val() == '5'){
+      $('.reason-select[data=' + id + ']').removeAttr('disabled');
+    } else {
+      $('.reason-select[data=' + id + ']').attr('disabled', 'true');
+    }
   });
 });

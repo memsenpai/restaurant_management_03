@@ -14,3 +14,7 @@ ControlParameter:
   exclude:
    - "Ability#initialize"
    - "SessionHelper#load_info"
+
+NestedIterators:
+  exclude:
+  - "delete_duplication"
