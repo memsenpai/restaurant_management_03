@@ -513,12 +513,14 @@ $(document).on('turbolinks:load', function(){
       var describe = $('.cancel').find('select').val();
       if(type == 'order_dishes'){
         data = JSON.stringify({'order_dish': {'status': 'cancel',
-          'reasons_attributes': {'0': {'describe': describe,
-            'staff_id': staff_id}}}});
+          'reasons_attributes': {
+            '0': {'describe': describe, 'staff_id': staff_id}
+          }}});
       } else {
         data = JSON.stringify({'order_combo': {'status': 'cancel',
-          'reasons_attributes': {'0': {'describe': describe,
-            'staff_id': staff_id}}}});
+          'reasons_attributes': {
+            '0': {'describe': describe, 'staff_id': staff_id}
+          }}});
       }
       push_to_sever(order_id, type, id, data);
     });

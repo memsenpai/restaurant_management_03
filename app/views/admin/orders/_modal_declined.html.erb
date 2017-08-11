@@ -1,0 +1,35 @@
+<div class="modal declined" data-id="<%= order.id %>">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="text-center">
+        <%= t "modal_code" %>
+        <span class="modal-code"><%= order.code %></span>
+      </h2>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+          <div class="col-sm-8 text-center modal-part modal-left">
+            </br>
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+                <input placeholder="<%= t "modal_declined_because" %>"
+                  class="input-form form-control" order-id ="<%= order.id %>">
+                </input>
+                <%= hidden_field_tag :staff_id, value: current_staff.id %>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 text-center modal-part modal-left">
+            <div class="btn-check">
+              <i class="fa fa-paper-plane submit-declined-order"
+                data-id ="<%= order.id %>">
+              </i>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

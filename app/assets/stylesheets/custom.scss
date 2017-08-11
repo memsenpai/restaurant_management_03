@@ -1771,7 +1771,8 @@ $color-c1810c: #c1810c;
 
   .label-green,
   .label-red,
-  .label-blue {
+  .label-blue,
+  .label-done {
     border-radius: 9px;
     display: inline-block;
     font-weight: normal;
@@ -1793,6 +1794,10 @@ $color-c1810c: #c1810c;
 
   .label-blue {
     background-color: $label-blue;
+  }
+
+  .label-done {
+    background-color: $label-done;
   }
 
   .animated {
@@ -4453,9 +4458,22 @@ $mute: #dfe3e4;
     background-color: $red;
   }
 }
+table {
+    border-collapse: collapse;
+}
 
-.text-cross-line {
-  text-decoration: line-through;
+td {
+    position: relative;
+    padding: 5px 10px;
+}
+
+tr.text-cross-line td:before {
+    content: " ";
+    position: absolute;
+    top: 45%;
+    left: 0;
+    border-bottom: 1px solid #111;
+    width: 100%;
 }
 
 .text-center {
@@ -4463,4 +4481,12 @@ $mute: #dfe3e4;
   .modal-code {
     font-size: 32px;
   }
+}
+
+.space-right {
+  margin-right: 10px;
+}
+
+.btn.btn-primary {
+  opacity: 1;
 }

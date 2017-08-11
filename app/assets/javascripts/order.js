@@ -169,6 +169,8 @@ $(document).on('turbolinks:load', function() {
 
 $(document).on('click', '.order_status', function(){
   var id = $(this).attr('data-id');
+  var text = $(this).find('span').text().trim();
+  if(text == "declined" || text == "done") return false;
   $('.confirm[data-id=' + id + ']').show();
 });
 
@@ -178,18 +180,25 @@ $(document).on('click', '.modal-declined', function() {
 });
 
 $(document).on('click', '.submit-declined-order', function(){
+  $(this).attr('disabled', 'disabled');
+  $('.submit-declined-order').removeClass('fa-paper-plane');
+  $('.submit-declined-order').addClass('fa-spin fa-circle-o-notch');
   var id = $(this).attr('data-id');
   var url = '/admin/orders/' + id;
   var staff_id = $('#staff_id').val();
   var describe = $('input[order-id=' + id + ']').val();
   var data = {'order': {'status': 'declined',
-    'reasons_attributes': {'0': {'describe': describe,
-      'staff_id': staff_id}}}};
+    'reasons_attributes': {
+      '0': {'describe': describe, 'staff_id': staff_id}
+    }}};
   $.ajax({
     url: url,
     type: 'put',
     data: data,
     success: function(){
+      $('.submit-declined-order').addClass('fa-paper-plane');
+      $('.submit-declined-order').removeClass('fa-spin fa-circle-o-notch');
+      $('.submit-declined-order').removeAttr('disabled');
       $('.declined[data-id=' + id + ']').css('display', 'none');
     }
   });
@@ -199,4 +208,8 @@ $(document).on('turbolinks:load', function(){
     animated: 'fade',
     placement: 'bottom',
   });
+});
+
+$(document).on('click', '.modal-edit-order', function(){
+  $(this).next().show();
 });

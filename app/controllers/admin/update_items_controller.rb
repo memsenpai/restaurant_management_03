@@ -19,6 +19,11 @@ module Admin
         :status_current
     end
 
+    def reason_params
+      return unless params[:reasons_attributes]
+      params.require(:reasons_attributes).permit :describe
+    end
+
     def check_quantity item
       if item.quantity <= data.quantity
         return true if data.quantity_less item
@@ -35,7 +40,7 @@ module Admin
     end
 
     def load_params
-      @data = Supports::AdminUpdateItemSupport.new update_params
+      @data = Supports::AdminUpdateItemSupport.new update_params, reason_params
       @list_items = data.type.constantize
         .where(data.item_id.to_sym => data.id, status: data.status_current)
         .order(cooking_time: :asc)

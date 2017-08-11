@@ -49,8 +49,7 @@ module Admin
     attr_reader :order_dish, :support, :order
 
     def order_dish_params
-      params.require(:order_dish).permit :dish_id,
-        :order_id, :quantity, :status
+      params.require(:order_dish).permit OrderDish::ATTRIBUTES
     end
 
     def load_order

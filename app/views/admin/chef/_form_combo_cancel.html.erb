@@ -1,6 +1,9 @@
 <% cancel_combos.each do |combo| %>
   <li class="list-group-item list-group-item-danger" type="order_combos"
-    order-id="<%= combo.order_id %>" id="<%= combo.id %>">
+    order-id="<%= combo.order_id %>" id="<%= combo.id %>" data-toggle="tooltip"
+      title=
+      "<%= combo.filter_reasons if combo.cancel? &&
+      combo.reasons.present? %>">
     <%= render "data", food: combo %>
   </li>
 <% end %>

@@ -24,5 +24,9 @@ module Admin
         t("opition_select_chef_modal_4")
       ]
     end
+
+    def array_select_order_status
+      Order.statuses.keys.reject {|item| item == "declined"}
+    end
   end
 end

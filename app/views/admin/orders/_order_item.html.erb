@@ -16,29 +16,32 @@
   <tbody id="new-dish-row">
   </tbody>
   <tbody>
-    <tr>
-      <td class="btn-add-dish-row">
-        <% if can? :manage, :order %>
-          <% unless order.done? %>
+    <% if can? :manage, :order %>
+      <% unless order.done? || order.declined? %>
+        <tr>
+          <td class="btn-add-dish-row">
             <h4 class="dp-inline">
               <div class="btn btn-add-dish" id="btn-add-dish">
-                <%= t "staff_order.add_dish" %></div>
+                <%= t "staff_order.add_dish" %>
+              </div>
             </h4>
             <h4 class="dp-inline">
               <div class="btn btn-add-dish" id="btn-add-combo">
-                <%= t "staff_order.add_combo" %></div>
+                <%= t "staff_order.add_combo" %>
+              </div>
             </h4>
-          <% end  %>
-          <td colspan="6"></td>
-          <td>
-            <h4 class="dp-inline">
-              <div class="btn btn-add-dish" id="btn-save-order">
-                <%= t "order_detail.save" %></div>
-            </h4>
+            <td colspan="6"></td>
+            <td>
+              <h4 class="dp-inline">
+                <div class="btn btn-add-dish" id="btn-save-order">
+                  <%= t "order_detail.save" %>
+                </div>
+              </h4>
+            </td>
           </td>
-        <% end %>
-      </td>
-    </tr>
+        </tr>
+        <%= render "admin/orders/order_item_footer", order: order %>
+      <% end  %>
+    <% end %>
   </tbody>
-  <%= render "admin/orders/order_item_footer", order: order %>
 </table>

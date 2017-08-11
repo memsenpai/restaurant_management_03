@@ -26,6 +26,10 @@ module Api
 
     attr_reader :order, :order_combos
 
+    def order_combo_params
+      params.require(:order_combo).permit OrderCombo::ATTRIBUTES
+    end
+
     def find_order
       @order = Order.find_by id: params[:order_id]
 
@@ -56,7 +60,7 @@ module Api
 
     def update_combo combos
       combos.map do |combo|
-        combo.update_attributes status: params[:order_combo][:status]
+        combo.update_attributes order_combo_params
         change_status combo
       end
     end

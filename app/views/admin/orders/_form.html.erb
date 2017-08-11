@@ -27,8 +27,7 @@
   <%= f.label :is_confirm, t(".status"), class:"form-label-3" %>
   <%= f.select :status, statuses,
     {include_blank: t("order.status")}, id: "status_field",
-    class: "form-control", required: true,
-    disabled: disable_status?(order) %>
+    class: "form-control", required: true%>
 
   <br><br><br>
   <%= f.submit t("button.clear"), type: :reset,

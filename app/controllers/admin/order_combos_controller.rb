@@ -55,7 +55,7 @@ module Admin
     attr_reader :order_combo, :support, :order
 
     def order_combo_params
-      params.require(:order_combo).permit :combo_id, :quantity, :status
+      params.require(:order_combo).permit OrderCombo::ATTRIBUTES
     end
 
     def load_order
