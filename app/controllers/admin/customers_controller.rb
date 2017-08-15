@@ -33,7 +33,7 @@ module Admin
     attr_reader :customer
 
     def customer_params
-      params.require(:customer).permit :name, :email, :phone_num
+      params.require(:customer).permit Customer::ATTRIBUTES
     end
 
     def find_customer

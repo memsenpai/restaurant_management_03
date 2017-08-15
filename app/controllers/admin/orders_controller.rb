@@ -11,9 +11,6 @@ module Admin
     def index; end
 
     def show
-      @membership_coupons = Supports::MembershipCouponSupport
-        .new(membership_coupons: MembershipCoupon.all, param: params)
-        .filter_active
       @support = Supports::DiscountCodeSupport.new discount: params[:discount]
     end
 
@@ -35,8 +32,6 @@ module Admin
     def edit; end
 
     def update
-      return render :index unless order.uncheck? || order.approved?
-
       if order.update_attributes order_params
         send_mail_if_reject
         render "admin/orders/update_status", locals: {order: order}

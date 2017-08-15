@@ -4,7 +4,6 @@ module Admin
     before_action :authenticate_staff!
     before_action :load_support_combos
     before_action :find_order_combo
-    after_action :change_status, only: :update
     before_action :load_order, only: %i(create update destroy)
 
     load_and_authorize_resource
@@ -87,20 +86,6 @@ module Admin
       quantity = order_combo.quantity + order_combo_params[:quantity].to_i
       order_combo.update_attributes quantity: quantity
       respond_html "admin/orders/_order_item"
-    end
-
-    def check_status_items_in_order? order
-      order.order_combos.map do |item|
-        next if item.served? || item.cancel?
-        break false
-      end
-    end
-
-    def change_status
-      order = Order.find_by id: order_combo.order_id
-
-      return unless check_status_items_in_order? order
-      order.done!
     end
   end
 end

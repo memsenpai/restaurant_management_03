@@ -34,8 +34,7 @@ class OrderServices
   end
 
   def price_final
-    (subtotal * (100 - order.discount -
-      order.customer.membership_discount)) / 100
+    (subtotal * (100 - order.discount)) / 100 - order.point
   end
 
   private
