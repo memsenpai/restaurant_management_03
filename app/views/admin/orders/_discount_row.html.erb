@@ -1,9 +1,9 @@
 <div id="discount-render">
   <div id="discount-row">
-    <% if find_discount(params[:discount]).present? %>
+    <% if (params[:discount]).present? %>
       <% if find_discount(params[:discount]) == true %>
         <p class="discount-result">
-          <%= t "discount.reenter" %>
+          <%= t "discount_reenter" %>
         </p>
       <% elsif find_discount(params[:discount]).status == "Used" %>
         <p class="discount-result">

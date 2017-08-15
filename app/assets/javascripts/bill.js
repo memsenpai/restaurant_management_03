@@ -3,7 +3,7 @@ $(document).on('turbolinks:load', function() {
     var order_id = $('.order-id').data('order-id');
     var customer_id = $('.customer-id').data('customer-id');
     var customer_discount = $('.customer-discount').data('customer-discount');
-    var membership_discount = $('#membership-discount').data('membership-discount');
+    var membership_point = parseInt($('.membership-point').text().split(' ')[0]);
 
     $.ajax({
       type:'POST',
@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
           customer_id: customer_id,
           order_id: order_id,
           discount: customer_discount,
-          membership_discount: membership_discount
+          membership_point: membership_point
         }
       }
     }).done(function(data) {

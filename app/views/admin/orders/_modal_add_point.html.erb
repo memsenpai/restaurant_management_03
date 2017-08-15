@@ -1,29 +1,31 @@
-<div id="myModal2" class="modal">
+<div id="myModal3" class="modal">
   <div class="modal-content modal-sm">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2 class="text-center"><%= t "order_point" %></h2>
+      <h2 class="text-center">
+        <%= t "membership_point_have", point: membership.point %>
+      </h2>
     </div>
     <div class="modal-body">
       <div class="row row-padding">
         <div class="col-sm-8 text-center modal-part modal-left">
           <p class="discount-code-input">
-            <%= t "staff_order.discount_code" %></p>
+            <%= t "memberhsip_input_field" %></p>
           <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-              <input placeholder="<%= t "staff_order.your_code" %>"
-                class="input-form form-control" id="discount-code-input">
+              <input placeholder="<%= t "membership_point_placeholer" %>"
+                class="input-form form-control membership-point-input">
               </input>
             </div>
           </div>
         </div>
         <div class="col-sm-4 text-center modal-part modal-left">
-          <div class="btn-check">
-            <i id="check-discount-code" class="fa fa-paper-plane"></i>
+          <div class="btn-check btn-membership-check">
+            <i class="fa fa-paper-plane"></i>
           </div>
         </div>
       </div>
-      <%= render "discount_row", discount: discount %>
+      <%= render "point_row", point: membership.point, order: order %>
     </div>
     <div class="modal-footer">
     </div>

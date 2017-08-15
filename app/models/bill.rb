@@ -1,4 +1,6 @@
 class Bill < ApplicationRecord
+  ATTRIBUTES = %i(customer_id order_id discount membership_point).freeze
+
   has_many :bill_details
 
   belongs_to :customer
@@ -16,8 +18,10 @@ class Bill < ApplicationRecord
 
   scope :in_month, ->(month){where("month(created_at) = (?)", month)}
 
+  after_create_commit :order_done
+
   def total
-    total_price_bill_details * (100 - discount - membership_discount) / 100
+    (total_price_bill_details * (100 - discount) / 100) - membership_point
   end
 
   def total_price_bill_details
@@ -26,5 +30,15 @@ class Bill < ApplicationRecord
       total += bill_detail.total_price
     end
     total
+  end
+
+  private
+
+  def order_done
+    order = Order.find_by id: order_id
+
+    return unless order
+    order.done!
+    BillService.new(order).create_bill_info
   end
 end

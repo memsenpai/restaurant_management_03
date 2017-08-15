@@ -1,0 +1,21 @@
+<div class="point-render">
+  <div class="point-row">
+    <% unless params[:point].blank? %>
+      <% unless validate_point? params[:point].to_i, point,
+        order_services(order).price_final %>
+        <p class="discount-result">
+          <%= t "over_point" %>
+        </p>
+      <% else %>
+        <p class="discount-result">
+          <%= t "confirm_add_point", point: params[:point] %>
+        </p>
+        <div class="confirm-add-point-btn discount-result">
+          <p class="text-background">
+            <%= t "add_to_order" %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

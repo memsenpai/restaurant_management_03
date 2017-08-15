@@ -21,13 +21,22 @@
       <br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
-      <% if @order.done? && @order.bill.present? %>
+      <% if @order.bill.present? %>
         <div class="payment">
           <%= link_to t("order.payment"), admin_bill_path(@order.bill),
           class:"btn payment-btn-style" %>
+        </div>
+      <% else %>
+        <div class="payment">
+          <%= link_to t("confirm_order_done"), admin_bills_path(bill: {customer_id: @order.customer.id,
+            order_id: @order.id, discount: @order.discount, membership_point: @order.point}),
+            method: :post,
+            class:"btn payment-btn-style" %>
         </div>
       <% end %>
     </div>
   </div>
   <%= render "modal", order: @order, discount: @discount %>
+  <%= render "modal_add_point", membership: @order.customer.membership,
+    order: @order %>
 </section>

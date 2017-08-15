@@ -43,7 +43,7 @@ class Pdf < Prawn::Document
     text "\n\n"
     text I18n.t("admin.bills.total_price"),
       size: 25, style: :bold, color: "ff0000", align: :right
-    text "$#{bill.total_price_bill_details}\t\t",
+    text "$#{bill.total}\t\t",
       size: 25, style: :bold, color: "ff0000", align: :right
   end
 
@@ -93,7 +93,7 @@ class Pdf < Prawn::Document
   def membership
     attribute = %w()
     attribute << I18n.t("admin.bills.membership")
-    attribute << {content: "-0%", colspan: 5}
+    attribute << {content: "- #{bill.membership_point} Point", colspan: 5}
   end
 
   def total_price

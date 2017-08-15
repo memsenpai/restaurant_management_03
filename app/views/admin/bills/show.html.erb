@@ -90,7 +90,7 @@
           </p>
           <p class="bills-footer-membership">
             <span><%= t "admin.bills.membership" %>: </span>
-            -<%= @bill.membership_discount %>%
+            <%= @bill.membership_point %> <%= t "order_point" %>
           </p>
           <p class="bills-total-price">
            <span><%= t "admin.bills.total" %>: </span>

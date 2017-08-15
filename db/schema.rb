@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803093422) do
+ActiveRecord::Schema.define(version: 20170813074101) do
 
   create_table "average_caches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rater_id"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 20170803093422) do
   create_table "bills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "customer_id"
     t.integer  "order_id"
-    t.integer  "discount",            default: 0
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "membership_discount", default: 0
+    t.integer  "discount",         default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "membership_point", default: 0
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "warning_times", default: 0
-    t.integer  "money_paid",    default: 0
   end
 
   create_table "discount_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -110,13 +109,20 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "membership_coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "money_paid", default: 0
-    t.string   "name"
-    t.integer  "discount"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "membership_levels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "ratio",      limit: 24, default: 1.0
+    t.integer  "point",                 default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "memberships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "customer_id"
+    t.integer  "point",       default: 0
+    t.integer  "total_point", default: 0
+    t.integer  "vip",         default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "order_combos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -129,7 +135,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:46'
+    t.datetime "cooking_time", default: '2017-08-12 19:04:01'
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,7 +148,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:45'
+    t.datetime "cooking_time", default: '2017-08-12 19:04:01'
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -155,6 +161,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "status",      default: 0
+    t.integer  "point",       default: 0
   end
 
   create_table "overall_averages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

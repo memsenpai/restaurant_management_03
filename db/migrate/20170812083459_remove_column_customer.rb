@@ -1,0 +1,5 @@
+class RemoveColumnCustomer < ActiveRecord::Migration[5.0]
+  def change
+    remove_column :customers, :money_paid
+  end
+end

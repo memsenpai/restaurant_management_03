@@ -1,5 +1,6 @@
 <div class="col-md-12">
-  <div class="col-md-4 orders-info orders-info-customer">
+  <div class="col-md-4 orders-info orders-info-customer"
+    id="<%= order.customer.id %>">
     <div class="orders-header">
       <div class="orders-header-title">
         <i class="fa fa-info-circle"></i>
@@ -87,52 +88,33 @@
     </div>
   </div>
   <div class="col-md-3 orders-info orders-info-membership pull-right">
-    <div class="orders-header">
-      <div class="orders-header-title">
-        <i class="fa fa-info-circle"></i>
-        <%= t "admin.bills.membership" %>
-      </div>
-    </div>
-    <% if membership_coupons.any? %>
-      <div class="orders-content">
-        <div class="orders-content-list-info">
-          <% membership_coupons.each do |membership_coupon| %>
-            <% if membership_coupon.money_paid < order
-              .customer.membership_money_paid %>
-              <div class="orders-content-info
-                select-membership-voucher-actived">
-                <b>
-                  <i class="fa fa-diamond"></i>
-                    <%= number_to_currency membership_coupon.money_paid %>
-                  <span>(-<%= membership_coupon.discount %>%)</span>
-                </b>
-              </div>
-            <% elsif membership_coupon == order.customer.membership_current %>
-              <div class="orders-content-info select-membership-voucher">
-                <b>
-                  <i class="fa fa-diamond"></i>
-                    <%= number_to_currency membership_coupon.money_paid %>
-                  <span>(-<%= membership_coupon.discount %>%)</span>
-                </b>
-                <span class="pull-right">
-                  <i class="fa fa-check"></i>
-                </span>
-              </div>
-            <% else %>
-              <div class="orders-content-info
-                elect-membership-voucher-disabled">
-                <b>
-                  <s>
-                    <i class="fa fa-diamond"></i>
-                      <%= number_to_currency membership_coupon.money_paid %>
-                    <span>(-<%= membership_coupon.discount %>%)</span>
-                  </s>
-                </b>
-              </div>
-            <% end %>
-          <% end %>
+    <div class="membership-content">
+      <div class="orders-header">
+        <div class="orders-header-title">
+          <i class="fa fa-info-circle"></i>
+          <%= t "admin.bills.membership" %>
         </div>
       </div>
-    <% end %>
+      <div class="orders-content">
+        <div class="orders-content-list-info">
+          <div class="orders-content-info point-membership"
+            data="<%= order.customer.membership.point %>">
+          Point: <%= order.customer.membership.point %>
+          </div>
+        </div>
+        <div class="orders-content-list-info total-point-membership"
+          data="<%= order.customer.membership.total_point %>">
+          <div class="orders-content-info">
+          Total Point: <%= order.customer.membership.total_point %>
+          </div>
+        </div>
+        <div class="orders-content-list-info">
+          <div class="orders-content-info modal-membership-levels">
+          Conversion ratio: (x<%= ratio order.customer.membership %>)
+          </div>
+          <%= render "modal_membership_levels" %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

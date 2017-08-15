@@ -8,7 +8,7 @@ module Admin
     end
 
     def create
-      @bill = Bill.find_by order_id: params[:bill][:order_id]
+      @bill = Bill.find_by order_id: bill_params[:order_id]
 
       return render_bill if bill
       @bill = Bill.new bill_params
@@ -33,8 +33,7 @@ module Admin
     attr_reader :bill
 
     def bill_params
-      params.require(:bill).permit :customer_id, :order_id,
-        :discount, :membership_discount
+      params.require(:bill).permit Bill::ATTRIBUTES
     end
 
     def find_bill
@@ -45,8 +44,7 @@ module Admin
 
     def render_bill
       bill.update_attributes discount: params[:bill][:discount]
-      bill.bill_details.destroy_all
-      render json: {bill_id: bill.id}
+      redirect_to admin_bill_path(bill)
     end
   end
 end

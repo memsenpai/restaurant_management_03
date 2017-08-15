@@ -161,8 +161,62 @@ $(document).on('click', '.btn-add-to-cart-combo', function() {
   });
 });
 
-$(document).ready(function() {
-  $('.orders-info-membership').on('click', '.select-membership-voucher', function() {
-    $(this).find('input').prop('checked',true);
+$(document).on('click', '.modal-membership-levels', function(){
+  $(this).next().show();
+});
+
+$(document).on('click', '.btn-point', function(){
+  $('#myModal3').show();
+});
+$(document).on('click','.btn-membership-check', function(){
+  $('#check-discount-code').removeClass('fa-paper-plane');
+  $('#check-discount-code').addClass('fa-spin fa-circle-o-notch');
+  var data = $('.membership-point-input').val();
+  $('.point-render').load(document.URL + '?point=' + data +
+    ' .point-row');
+  setTimeout(function(){
+    $('#check-discount-code').addClass('fa-paper-plane');
+    $('#check-discount-code').removeClass('fa-spin fa-circle-o-notch');
+  }, 500);
+});
+
+$(document).on('click','.confirm-add-point-btn', function(){
+  var id = $('.order-id').attr('data-order-id');
+  var link ='/admin/orders/' + id;
+  var current_point = parseInt($('.membership-point').text().split(' ')[0]);
+  var point_used = parseInt($('.membership-point-input').val());
+  var new_point = point_used + current_point;
+  $('.modal').hide();
+  $.ajax({
+    type:'PUT',
+    url: link,
+    data: {
+      order: {
+        point: new_point,
+      }
+    }
+  }).success(function(){
+    $('.membership-point').text(new_point + ' ' + I18n.t('order_point'));
+    var customer_id = $('.orders-info-customer').attr('id');
+    var link = '/admin/customers/' + customer_id;
+    var point = parseInt($('.point-membership').attr('data')) - point_used;
+    $.ajax({
+      type:'PATCH',
+      url: link,
+      data: {
+        customer: {
+          membership_attributes: {
+            customer_id: customer_id,
+            point: point
+          }
+        }
+      },
+      success: function(){
+        $('.orders-info-membership')
+          .load(document.URL + ' .membership-content');
+        $('#order-total').load(document.URL + ' .total-price-content');
+        $('.payment').load(document.URL + ' .payment-btn-style');
+      }
+    });
   });
 });

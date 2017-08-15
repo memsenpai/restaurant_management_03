@@ -4,7 +4,6 @@ module Admin
     before_action :authenticate_staff!
     before_action :load_support_dishes
     before_action :find_order_dish
-    after_action :change_status, only: :update
     before_action :load_order, only: %i(create update destroy)
 
     load_and_authorize_resource
@@ -82,20 +81,6 @@ module Admin
       quantity = order_dish.quantity + order_dish_params[:quantity].to_i
       order_dish.update_attributes quantity: quantity
       respond_html "admin/orders/_order_item"
-    end
-
-    def check_status_items_in_order? order
-      order.order_dishes.map do |item|
-        next if item.served? || item.cancel?
-        break false
-      end
-    end
-
-    def change_status
-      order = Order.find_by id: order_dish.order_id
-
-      return unless check_status_items_in_order? order
-      order.done!
     end
 
     def delete_order_dish order

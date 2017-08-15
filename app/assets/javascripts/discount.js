@@ -56,7 +56,7 @@ $(document).on('click','#btn-generate-code', function(){
 });
 
 $(document).on('click','.choose-code-btn', function(){
-  var id = $('.order-id').text();
+  var id = $('.order-id').attr('data-order-id');
   var link ='/admin/orders/' + id;
   var discount = $('#code-true strong').text();
   $('.modal').hide();
