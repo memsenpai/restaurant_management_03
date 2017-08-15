@@ -961,11 +961,9 @@ Order.all.map do |order|
   end
 end
 
-MembershipCoupon.create! name: "Level1", money_paid: "100",
-  discount: 3, status: 1
-MembershipCoupon.create! name: "Level2", money_paid: "200",
-  discount: 4, status: 1
-MembershipCoupon.create! name: "Level3", money_paid: "1000",
-  discount: 5, status: 1
-MembershipCoupon.create! name: "Level4", money_paid: "5000",
-  discount: 6, status: 1
+
+MembershipLevel.create! ratio: 1, point: 0
+MembershipLevel.create! ratio: 1.2, point: 500
+MembershipLevel.create! ratio: 1.5, point: 1000
+MembershipLevel.create! ratio: 2, point: 2000
+MembershipLevel.create! ratio: 2.5, point: 5000

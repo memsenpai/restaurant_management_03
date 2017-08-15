@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   include Encode
   enum status: %i(uncheck declined approved serving done).freeze
   ORDER_ATTRIBUTES = [
-    :discount, :day, :time_in, :status,
+    :discount, :day, :time_in, :status, :point,
     customer_attributes: %i(id name).freeze,
     table_attributes: %i(id capacity).freeze
   ].freeze
@@ -68,15 +68,9 @@ class Order < ApplicationRecord
 
   def change_status_item
     customer.increase_warning if declined?
-    chang_status_done
 
     return unless serving?
     check_change "order_dishes"
     check_change "order_combos"
-  end
-
-  def chang_status_done
-    return unless done?
-    BillService.new(self).create_bill_info
   end
 end
