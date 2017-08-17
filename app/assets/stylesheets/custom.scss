@@ -3121,15 +3121,15 @@ a:visited {
 }
 
 .flash-push {
-  animation: fadeInOut 5s ease 1s forwards;
+  animation: fadeInOut 1s ease 1s forwards;
   background: $white;
   border-radius: 5px;
-  bottom: 8%;
   box-shadow: 2px 6px 11px $flash-shadow;
-  left: 3%;
   opacity: 0;
   padding: 20px;
   position: fixed;
+  right: 3%;
+  top: 8%;
   width: 19.5%;
   z-index: 9999;
 }

@@ -1,41 +1,24 @@
 <section class="section admin-site">
   <div class="col-sm-12 col-xs-12">
-    <h1><%= t "admin.admin_management" %></h1>
+    <h1><%= t "admin.staff_management" %></h1>
     <br>
     <div class="bloc col-xs-8 col-xs-offset-2">
       <h3>
-        <%= link_to new_admin_staff_path do %>
+        <div class="button-new-staff btn btn-primary">
           <i class="fa fa-fw fa-plus"></i><%= t "admin_users.new_admin" %>
-        <% end %>
+        </div>
       </h3>
       <table class="table table-hover">
         <thead>
           <tr>
             <th><%= t "admin.email" %></th>
-            <th><%= t "admin.date_created" %></th>
+            <th><%= t "admin.name_field" %></th>
             <th><%= t "admin.role" %></th>
             <th><%= t "admin.orders.order.action" %></th>
           </tr>
         </thead>
         <tbody>
-        <% @list_staff.each do |staff| %>
-          <tr>
-            <td><%= staff.email %></td>
-            <td><%= staff.created_at %></td>
-            <td>
-            <%= select_tag :staff_role_update,
-              options_for_select(@roles_select, staff.staff_role),
-              id: staff.id, class: "staff_role_update" %>
-            </td>
-            <td>
-              <button class="btn-update-user"><%= t("button.update") %></button>
-              <%= link_to t("button.delete"), admin_staff_path(staff),
-                method: :delete, data: {confirm: t("button.delete_warning")},
-                class: "text-danger" %>
-            </td>
-            <td></td>
-          </tr>
-        <% end %>
+          <%= render "staffs_list", list_staff: @list_staff %>
         </tbody>
       </table>
       <%= paginate @list_staff %>

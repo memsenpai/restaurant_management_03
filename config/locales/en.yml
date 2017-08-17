@@ -111,6 +111,7 @@ en:
       cant_find_order: Can't find any order with this infomation!
       find_order: Found order successfully!
   admin:
+    name_field: "Name"
     promo: Promo
     error_not_administrator: "You are not Administrator"
     cooking: "Cooking"
@@ -806,3 +807,10 @@ en:
   txt_in: "IN"
   txt_to: "TO"
   txt_from: "FROM"
+  add_success: "Updated Success"
+  button_edit_staff: "Edit"
+  name_tag: "Name:"
+  email_tag: "Email:"
+  new_staff: "New Staff"
+  edit_staff: "Edit Staff:"
+  check_box_password_change: "Change password"

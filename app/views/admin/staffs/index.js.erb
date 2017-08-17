@@ -1,0 +1,7 @@
+$('tbody').html('<%= j render "staffs_list", list_staff: list_staff %>')
+$('.modal-new-staff').hide();
+$('.modal-edit-staff').hide();
+$('.flash-push.success').remove();
+$('<div><div class="flash-push success">'
+  + I18n.t("add_success") + '</div></div>')
+  .prependTo('.navbar.navbar-default.navbar-static-top.fadeInDownBig');

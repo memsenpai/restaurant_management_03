@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803093422) do
+ActiveRecord::Schema.define(version: 20170817023329) do
 
   create_table "average_caches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rater_id"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:46'
+    t.datetime "cooking_time", default: '2017-08-16 08:19:45'
   end
 
   create_table "order_dishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.integer  "status",       default: 0
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.datetime "cooking_time", default: '2017-08-04 16:38:45'
+    t.datetime "cooking_time", default: '2017-08-16 08:19:44'
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -199,22 +199,32 @@ ActiveRecord::Schema.define(version: 20170803093422) do
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
   end
 
+  create_table "reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.text     "describe",   limit: 65535
+    t.integer  "staff_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "staffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "email",                             default: "", null: false
-    t.string   "encrypted_password",                default: "", null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: "",    null: false
     t.integer  "staff_role"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "authentication_token",   limit: 30
+    t.boolean  "deleted",                           default: false
     t.index ["authentication_token"], name: "index_staffs_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_staffs_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true, using: :btree
