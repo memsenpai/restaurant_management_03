@@ -2,9 +2,10 @@ class Order < ApplicationRecord
   include Encode
   enum status: %i(uncheck declined approved serving done).freeze
   ORDER_ATTRIBUTES = [
-    :discount, :day, :time_in, :status,
+    :discount, :day, :time_in, :status, :declined_because,
     customer_attributes: %i(id name).freeze,
-    table_attributes: %i(id capacity).freeze
+    table_attributes: %i(id capacity).freeze,
+    reasons_attributes: %i(describe staff_id).freeze
   ].freeze
 
   belongs_to :customer
@@ -13,9 +14,11 @@ class Order < ApplicationRecord
 
   has_many :order_dishes, dependent: :destroy
   has_many :order_combos, dependent: :destroy
+  has_many :reasons, as: :item
   has_one :bill
 
   delegate :code, to: :customer, prefix: :customer
+  delegate :code, to: :table, prefix: true
 
   validate :validate_table, on: :create
 
@@ -23,6 +26,7 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :customer
   accepts_nested_attributes_for :table
+  accepts_nested_attributes_for :reasons
 
   after_update_commit{OrderBroadcastJob.perform_now messages_data("update")}
   after_create_commit{OrderBroadcastJob.perform_now messages_data("create")}
@@ -42,6 +46,15 @@ class Order < ApplicationRecord
 
   scope :order_by_timein, order_by_timein
 
+  def filter_reasons
+    describe = ""
+    reasons.map do |reason|
+      describe << I18n.t("cancel_tooltip", time: reason.created_at.to_s,
+        describe: reason.describe, staff: reason.staff.name)
+    end
+    describe
+  end
+
   private
 
   def validate_table
@@ -50,11 +63,13 @@ class Order < ApplicationRecord
   end
 
   def messages_data action
+    describe = filter_reasons if reasons
     {
       action: action, name: customer.name, id: id, discount: discount,
       table_id: table_id, capacity: capacity,
       day: day.in_time_zone.strftime(I18n.t("date_default")),
-      time_in: time_in, status: status
+      time_in: time_in, status: status,
+      reasons: describe
     }
   end
 

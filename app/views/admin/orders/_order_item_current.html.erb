@@ -1,6 +1,10 @@
 <tbody class="default-dg-table">
   <% order.order_dishes.each do |order_dish| %>
-    <tr class="order_item">
+    <tr class="order_item <%="text-cross-line" if order_dish.cancel? %>"
+      data-toggle="tooltip"
+      title=
+      "<%= order_dish.filter_reasons if order_dish.cancel? &&
+      order_dish.reasons.any? %>">
       <td class="total dish-item-id" data-id="<%= order_dish.id %>">
         <strong><%= order_dish.dish.name %></strong>
       </td>
@@ -36,9 +40,15 @@
       </td>
     </tr>
     <%= render "admin/orders/modal_history_item", item: order_dish %>
+    <%= render "admin/orders/modal_cancel", item: order_dish,
+      name: order_dish.dish.name, item_type: "OrderDish" %>
   <% end %>
   <% order.order_combos.each do |order_combo| %>
-    <tr class="order_item">
+    <tr class="order_item <%="text-cross-line" if order_combo.cancel? %>"
+      data-toggle="tooltip"
+      title=
+      "<%= order_combo.filter_reasons if order_combo.cancel? &&
+      order_combo.reasons.any? %>">
       <td class="total combo-item-id" data-id="<%= order_combo.id %>">
         <strong><%= order_combo.combo.name %></strong>
       </td>
@@ -73,5 +83,7 @@
       </td>
     </tr>
     <%= render "admin/orders/modal_history_item", item: order_combo %>
+    <%= render "admin/orders/modal_cancel", item: order_combo,
+      name: order_combo.combo.name, item_type: "OrderCombo" %>
   <% end %>
 </tbody>

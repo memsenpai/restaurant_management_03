@@ -1,10 +1,17 @@
 class OrderDish < ApplicationRecord
   enum status: %i(no_need needing cooking cooked served cancel).freeze
+  ATTRIBUTES = [
+    :dish_id, :order_id, :quantity, :status,
+    reasons_attributes: %i(describe staff_id).freeze
+  ].freeze
 
   belongs_to :order
   belongs_to :dish
 
   has_many :history_items, dependent: :destroy, foreign_key: :item_id
+  has_many :reasons, as: :item
+
+  accepts_nested_attributes_for :reasons
 
   validates :quantity, presence: true,
     numericality: {only_integer: true, greater_than: 0}
@@ -63,6 +70,15 @@ class OrderDish < ApplicationRecord
     price * quantity * (100 - find_discount) / 100
   end
 
+  def filter_reasons
+    describe = ""
+    reasons.map do |reason|
+      describe << I18n.t("cancel_tooltip", time: reason.created_at.utc.to_s,
+        describe: reason.describe, staff: reason.staff.name)
+    end
+    describe
+  end
+
   private
 
   def dish_present
@@ -97,7 +113,7 @@ class OrderDish < ApplicationRecord
 
   def merge_duplication
     OrderDish.duplication_obj(self).map do |item|
-      next if item.id == id
+      next if item.id == id || item.reasons
       quantity = self.quantity + item.quantity
       OrderDish.delete self
       item.update_attributes quantity: quantity

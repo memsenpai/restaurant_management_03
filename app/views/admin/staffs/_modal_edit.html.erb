@@ -1,0 +1,58 @@
+<div class="modal modal-edit-staff">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="text-center title"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+        <hr>
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <%= form_for admin, url: admin_staff_path(1), method: :patch,
+              remote: true do |f| %>
+              <div class="col-sm-12">
+                <%= f.label :email, class: "form-label" %>
+                <%= f.email_field :email,
+                  class: "form-control form-group", required: true %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.label :name, class: "form-label" %>
+                <%= f.text_field :name,
+                  class: "form-control form-group", required: true %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.label :role, class: "form-label" %>
+                <%= f.select :staff_role, Staff.roles_select,
+                  {include_blank: t("admin.roles")}, id:"role_field",
+                  class: "form-control", required: true %>
+              </div>
+              <div class="col-sm-12">
+                <%= label_tag :change_password do %>
+                  <%= check_box_tag :change_password %>
+                  <%= t "check_box_password_change" %>
+                <% end %>
+              </div>
+              <div class="col-sm-12 password hide">
+                <%= f.label :password, class: "form-label" %>
+                <%= f.password_field :password,
+                  class: "form-control form-group" %>
+              </div>
+              <div class="col-sm-12 password hide">
+                <%= f.label :password_confirmation, class: "form-label" %>
+                <%= f.password_field :password_confirmation,
+                  class: "form-control form-group" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-sm-12">
+          <%= f.button t("button_edit_staff"),
+            class: "btn btn-primary center-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

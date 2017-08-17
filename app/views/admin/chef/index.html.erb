@@ -53,10 +53,11 @@
             <%= render "form_dish_cancel",
               cancel_dishes: @order_dishes.dishes("cancel") %>
             <%= render "form_combo_cancel",
-              cancel_combos: @order_combos.combos("cooked") %>
+              cancel_combos: @order_combos.combos("cancel") %>
           </ol>
         </div>
       </div>
     </div>
   </div>
 </section>
+<%= render "modal_cancel" %>

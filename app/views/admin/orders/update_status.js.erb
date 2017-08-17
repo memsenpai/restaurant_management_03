@@ -1,2 +1,7 @@
-$('.order_status_<%= order.id %>')
-  .replaceWith('<%= j render "order_status", order: order %>')
+if (window.location.pathname == '/admin/orders') {
+  $('.order_status_<%= order.id %>')
+    .replaceWith('<%= j render "order_status", order: order %>')
+} else {
+  location.reload();
+}
+

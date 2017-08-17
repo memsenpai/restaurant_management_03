@@ -1,0 +1,18 @@
+<% list_staff.each do |staff| %>
+  <tr>
+    <td class="staff-email-<%= staff.id %>"><%= staff.email %></td>
+    <td class="staff-name-<%= staff.id %>"><%= staff.name %></td>
+    <td class="staff-role-<%= staff.id %>"><%= staff.staff_role %></td>
+    <td>
+      <button class="btn-update-user" data-id="<%= staff.id %>">
+        <%= t("button_edit_staff") %>
+      </button>
+      <%= link_to t("button.delete"), admin_staff_path(staff),
+        method: :delete, data: {confirm: t("button.delete_warning")},
+        remote: true, class: "text-danger" %>
+    </td>
+    <td></td>
+  </tr>
+<% end %>
+<%= render "modal_new", admin: Staff.new %>
+<%= render "modal_edit", admin: Staff.new %>

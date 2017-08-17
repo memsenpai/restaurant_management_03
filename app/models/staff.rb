@@ -1,6 +1,10 @@
 class Staff < ApplicationRecord
+  ATTRIBUTES = %i(email password password_confirmation name staff_role).freeze
+
   devise :custom_authenticatable, :database_authenticatable, :rememberable
   enum staff_role: %i(administrator chef waiter receptionist).freeze
+
+  has_many :reasons, as: :staff
 
   after_initialize :set_default_staff_role, if: :new_record?
 

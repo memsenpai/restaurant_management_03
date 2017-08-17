@@ -35,13 +35,11 @@ module Admin
     def edit; end
 
     def update
-      return render :index unless order.uncheck? || order.approved?
-
       if order.update_attributes order_params
         send_mail_if_reject
-        render "admin/orders/update_status", locals: {order: order}
+        render "admin/orders/update_status.js.erb", locals: {order: order}
       else
-        render :edit
+        render :show
       end
     end
 

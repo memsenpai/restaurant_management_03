@@ -31,6 +31,10 @@ $(document).on('click','#btn-save-order',function(){
 });
 
 function addCombo(index, length) {
+  if($('#new_order_combo').val() == ''){
+    flash_mess(I18n.t('choose_combo_please'));
+    return false;
+  }
   if(index < length){
     var element = $('#new-dish-row .new-combo-row')[index];
     var combo_id = $(element).find('#new_order_combo :selected').val();
@@ -57,7 +61,17 @@ function addCombo(index, length) {
   }
 }
 
+function flash_mess(message) {
+  $('.flash-push.success').remove();
+  $('<div><div class="flash-push success">' + message + '</div></div>')
+    .prependTo('.navbar.navbar-default.navbar-static-top.fadeInDownBig');
+}
+
 function addDish(index, length) {
+  if($('#new_order_dish').val() == ''){
+    flash_mess(I18n.t('choose_dish_please'));
+    return false;
+  }
   if(index < length){
     var element = $('#new-dish-row .new-dish-row')[index];
     var dish_id = $(element).find('#new_order_dish :selected').val();

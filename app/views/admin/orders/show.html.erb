@@ -10,24 +10,28 @@
         <%= t "order.order_items" %>
         <span></span>
       </h3>
-      <button class="btn btn-default pull-right">
-        <i class="fa fa-lg fa-ban"></i>
-        <%= t "button_cancel_show_order" %>
-      </button><br />
-      <button class="btn btn-default pull-right">
-        <i class="fa fa-times"></i>
-        <%= t "button_delete_show_order" %>
-      </button><br />
-      <br><br>
+      <div class="btn-primary btn pull-right modal-edit-order">
+        <%= t "button_edit_order" %>
+      </div>
+      <%= render "modal_edit_order", order: @order %>
+      <% unless @order.declined? %>
+        <div class="btn btn-primary color-red modal-declined pull-right
+          space-right"
+          data-id="<%= @order.id %>">
+          <%= t "modal_declined" %>
+        </div>
+      <% end %>
+      <br><br><br>
       <%= render "order_item", order: @order %>
       <div class="text-right">
       <% if @order.done? && @order.bill.present? %>
         <div class="payment">
           <%= link_to t("order.payment"), admin_bill_path(@order.bill),
-          class:"btn payment-btn-style" %>
+          class: "btn payment-btn-style" %>
         </div>
       <% end %>
     </div>
   </div>
   <%= render "modal", order: @order, discount: @discount %>
+  <%= render "modal_declined", order: @order %>
 </section>

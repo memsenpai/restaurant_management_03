@@ -1,0 +1,28 @@
+<div class="modal cancel">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="text-center"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+          <div class="col-sm-8 text-center modal-part modal-left">
+            </br>
+            <div class="row">
+              <%= select_tag :describe,
+                options_for_select(array_opition_chef_reason_cancel),
+                class: "input-form form-control" %>
+              <%= hidden_field_tag :staff_id, current_staff.id %>
+            </div>
+          </div>
+          <div class="col-sm-4 text-center modal-part modal-left">
+            <div class="btn-check">
+              <i class="fa fa-paper-plane submit-cancel-chef"></i>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

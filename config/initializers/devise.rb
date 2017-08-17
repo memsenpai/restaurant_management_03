@@ -12,7 +12,7 @@ Devise.setup do |config|
   # config.ldap_use_admin_to_bind = false
   # config.ldap_ad_group_check = false
 
-
+config.secret_key = '6a66ad9666c9e709e0bdc0d37aa3111abf1d9894db77968e37d147ec2be84b0c28dd04a4a65376deb1504e1672f8696e56a4c8f2563470e9a43b556aa850019d'
   Warden::Manager.after_set_user do |user,auth,opts|
     auth.cookies.signed[:staff_id] = user.id
   end

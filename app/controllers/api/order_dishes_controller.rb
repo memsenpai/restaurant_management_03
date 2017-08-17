@@ -26,6 +26,10 @@ module Api
 
     attr_reader :order, :order_dishes
 
+    def order_dish_params
+      params.require(:order_dish).permit OrderDish::ATTRIBUTES
+    end
+
     def find_order
       @order = Order.find_by id: params[:order_id]
 
@@ -56,7 +60,7 @@ module Api
 
     def update_dish dishes
       dishes.map do |dish|
-        dish.update_attributes status: params[:order_dish][:status]
+        dish.update_attributes order_dish_params
         change_status dish
       end
     end

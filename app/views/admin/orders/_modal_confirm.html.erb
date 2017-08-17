@@ -1,0 +1,45 @@
+<div data-id="<%= order.id %>" class="modal confirm">
+  <div class="modal-content modal-sm">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2 class="text-center">
+        <%= t "modal_change_status_to" %>
+        <span class="modal-status"><%= change_status order %></span>
+      </h2>
+    </div>
+    <div class="modal-body">
+      <div class="row row-padding">
+        <div class="col-sm-12 modal-part modal-left">
+          <div class="list-group">
+            <div class="list-group-item">
+              <%= t "modal_order_code" %>
+              <%= order.code %>
+            </div>
+            <div class="list-group-item">
+              <%= t "modal_customer_name" %>
+              <%= order.customer.name %>
+            </div>
+            <div class="list-group-item">
+              <%= t "modal_created_at" %>
+              <%= order.created_at.strftime(t "day_default") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="row row-padding btn-confirm-modal">
+        <%= link_to admin_order_path(order,
+          order: {status: change_status(order)}), remote: true,
+          method: :patch do %>
+          <div class="col-sm-4 btn btn-primary col-sm-offset-3 close">
+            <%= t "modal_yes" %>
+          </div>
+        <% end %>
+        <div class="col-sm-4 btn btn-primary close">
+          <%= t "modal_no" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

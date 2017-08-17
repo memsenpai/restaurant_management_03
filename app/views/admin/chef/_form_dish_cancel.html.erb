@@ -1,6 +1,9 @@
 <% cancel_dishes.each do |dish| %>
   <li class="list-group-item list-group-item-danger" type="order_dishes"
-    order-id="<%= dish.order_id %>" id="<%= dish.id %>">
+    order-id="<%= dish.order_id %>" id="<%= dish.id %>" data-toggle="tooltip"
+      title=
+      "<%= dish.filter_reasons if dish.cancel? &&
+      dish.reasons.present? %>">
     <%= render "data", food: dish %>
   </li>
 <% end %>
