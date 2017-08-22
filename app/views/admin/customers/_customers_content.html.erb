@@ -1,0 +1,75 @@
+<div class="customer-content bills">
+  <button class="btn btn-success btn-create-customer-coupons">
+    <%= t "button.create" %>
+  </button>
+  <table class="default-dg-table">
+    <tr class="dg_tr bills-tr-head-style" id="di_row_">
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= t "admin.customers.membership_level" %>
+      </th>
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= sort_link customers.search, :name,
+          t("admin.customers.customer_name"),
+          {}, {remote: true, method: :get} %>
+      </th>
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= sort_link customers.search, :email,
+          t("admin.customers.customer_email"),
+          {}, {remote: true, method: :get} %>
+      </th>
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= sort_link customers.search, :code,
+          t("admin.customers.customer_code"),
+          {}, {remote: true, method: :get} %>
+      </th>
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= sort_link customers.search, :phone_num,
+          t("admin.customers.customer_phone"),
+          {}, {remote: true, method: :get} %>
+      </th>
+      <th class="bills-th-style default_dg_th dg-left dg1">
+        <%= t "admin.bills.money_paid" %>
+      </th>
+    </tr>
+    <% if customers.customers_search.any? %>
+      <% customers.customers_search.each do |customer| %>
+        <tr class="dg_tr clickable-row-customer" id="di_row_"
+          data-id="<%= customer.id %>">
+          <td class="bills-td-style default_dg_th dg-left dg1"
+            id="customer-id" data-id="<%= customer.id %>">
+            <% if customer.membership_current %>
+              <span class="color-c1810c">
+                <b>
+                  <i class="fa fa-diamond" aria-hidden="true"></i>
+                  <%= customer.membership_current.name %>
+                  (-<%= customer.membership_current.discount %>%)
+                </b>
+              </span>
+            <% else %>
+              <i class="fa fa-diamond" aria-hidden="true"></i> (0)
+            <% end %>
+          </td>
+          <td class="bills-td-style default_dg_th dg-left dg1"
+            id="customer-name" data-name="<%= customer.name %>">
+            <%= customer.name %>
+          </td>
+          <td class="bills-td-style default_dg_th dg-left dg1"
+            id="customer-email" data-email="<%= customer.email %>">
+            <%= customer.email %>
+          </td>
+          <td class="bills-td-style default_dg_th dg-left dg1"
+            id="customer-code" data-code="<%= customer.code %>">
+            <%= customer.code %>
+          </td>
+          <td class="bills-td-style default_dg_th dg-left dg1"
+            id="customer-phone" data-phone="<%= customer.phone_num %>">
+            <%= customer.phone_num %>
+          </td>
+          <td class="bills-td-style default_dg_th dg-left dg1">
+            <b><%= t "currency" %><%= customer.money_paid %></b>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

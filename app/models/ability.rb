@@ -20,14 +20,25 @@ class Ability
     when "administrator"
       can :manage, :all
     when "receptionist"
-      can :change, [Order, OrderDish, OrderCombo]
-      can :view, [Customer, Bill]
-      can :modify, [Order]
+      receptionist_role
     when "chef"
-      can :view, :chef
-      can :modify, [Order, OrderDish, OrderCombo]
+      chef_role
     when "waiter"
-      can :modify, [Order, OrderDish, OrderCombo]
+      waiter_role
     end
+  end
+
+  def waiter_role
+    can :modify, [Order, OrderDish, OrderCombo]
+  end
+
+  def receptionist_role
+    waiter_role
+    can :view, [Customer, Bill]
+  end
+
+  def chef_role
+    waiter_role
+    can :view, :chef
   end
 end

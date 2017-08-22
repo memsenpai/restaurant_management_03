@@ -49,6 +49,6 @@ Rails.application.routes.draw do
     resources :bill_details, except: %i(new edit show)
     resources :xml, only: %i(show)
     resources :membership_coupons, except: %i(new edit show)
-    resources :customers, except: %i(new edit show)
+    resources :customers, except: %i(new edit)
   end
 end

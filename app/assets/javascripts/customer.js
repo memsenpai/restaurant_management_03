@@ -153,4 +153,12 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
+  $(document).on('click', '.clickable-row-customer', function() {
+    window.location = '/admin/customers/' + $(this).attr('data-id');
+  });
+
+  $(document).on('click', '.clickable-row-customer-order', function() {
+    window.location = '/admin/orders/' + $(this).attr('data-id');
+  });
 });

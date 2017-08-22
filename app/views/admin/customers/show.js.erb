@@ -1,0 +1,4 @@
+$('.btn-edit-customer-2').html('<%= j render "modal_edit", customer: @customer %>');
+$('.show-customer-order').html('<%= j render "customer_order_content", orders_support: @orders_support %>');
+$('#pagination').html('<%= j paginate(@orders_support.customer_orders_search,
+  remote: true) %>');

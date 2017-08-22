@@ -1,153 +1,53 @@
 <%= search_form_for [:admin, customers.search],
   remote: true, method: :get do |f| %>
-  <div class="bills">
-    <button class="btn btn-success btn-create-customer-coupons">
-      <%= t "button.create" %>
-    </button>
-    <table class="default-dg-table">
-      <tr class="dg_tr bills-tr-head-style" id="di_row_">
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= t "admin.customers.membership_level" %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= sort_link customers.search, :name,
-            t("admin.customers.customer_name"),
-            {}, {remote: true, method: :get} %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= sort_link customers.search, :email,
-            t("admin.customers.customer_email"),
-            {}, {remote: true, method: :get} %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= sort_link customers.search, :code,
-            t("admin.customers.customer_code"),
-            {}, {remote: true, method: :get} %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= sort_link customers.search, :phone_num,
-            t("admin.customers.customer_phone"),
-            {}, {remote: true, method: :get} %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= sort_link customers.search, :warning_times,
-            t("admin.customers.customer_blacklist"),
-            {}, {remote: true, method: :get} %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= t "admin.bills.money_paid" %>
-        </th>
-        <th class="bills-th-style default_dg_th dg-left dg-nowrap dg1">
-          <%= t "admin.bills.action" %>
-        </th>
-      </tr>
-      <tr class="dg_tr rows-item-create">
-        <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
-          <span data-id=""></span>
-        </td>
-        <td class="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1"
-          id="customer-name" data-name="">
-          <input type="text">
-        </td>
-        <td class="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1 centered"
-          id="customer-email" data-email="">
-          <input type="text">
-        </td>
-        <td class="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1"
-          id="customer-code" data-code="">
-          <input type="text">
-        </td>
-        <td class="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1"
-          id="customer-phone" data-phone="">
-          <input type="text">
-        </td>
-        <td class="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1"
-          id="customer-blacklist" data-blacklist="">
-          <span class="not-is-black-list">
-            <%= t "no" %>
+  <div class="pj-form-filter-advanced col-sm-12">
+    <span class="pj-menu-list-arrow"></span>
+    <div class="pj-form pj-form-search">
+      <div class="customer-search">
+        <p>
+          <%= f.label :code_cont, t("admin.customers.customer.code"),
+            class: "customer-search-title" %>
+          <span class="inline-block">
+            <%= f.text_field :code_cont,
+              class: "pj-form-field customer-search-field" %>
           </span>
-        </td>
-        <td lass="bills-td-style default_dg_th
-          dg-left dg-nowrap dg1"></td>
-        <td class="bills-td-style default_dg_th dg-left
-          dg-nowrap dg1">
-          <button class="btn btn-success btn-create-customer">
-            <%= t "button.save" %>
-          </button>
-          <button class="btn btn-danger btn-close-customer">
-            <%= t "button.close" %>
-          </button>
-        </td>
-      </tr>
-      <% if customers.customers_search.any? %>
-        <% customers.customers_search.each do |customer| %>
-          <tr class="dg_tr" id="di_row_">
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-id" data-id="<%= customer.id %>">
-              <% if customer.membership_current %>
-                <span class="color-c1810c">
-                  <b>
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
-                    <%= customer.membership_current.name %>
-                    (-<%= customer.membership_current.discount %>%)
-                  </b>
-                </span>
-              <% else %>
-                <i class="fa fa-diamond" aria-hidden="true"></i> (0)
-              <% end %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-name" data-name="<%= customer.name %>">
-              <%= customer.name %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-email" data-email="<%= customer.email %>">
-              <%= customer.email %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-code" data-code="<%= customer.code %>">
-              <%= customer.code %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-phone" data-phone="<%= customer.phone_num %>">
-              <%= customer.phone_num %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1"
-              id="customer-blacklist"
-              data-blacklist="<%= customer.warning_times %>">
-              <% if customer.is_blacklist? %>
-                <span class="is-black-list"><%= t "confirm.txt_yes" %></span>
-              <% else %>
-                <span class="not-is-black-list">
-                  <%= t "confirm.txt_no" %>
-                </span>
-              <% end %>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
-              <b><%= t "currency" %><%= customer.money_paid %></b>
-            </td>
-            <td class="bills-td-style default_dg_th dg-left dg-nowrap dg1">
-              <button class="btn btn-default btn-show-customer">
-                <%= t "button.detail" %>
-              </button>
-              <button class="btn btn-success btn-edit-customer">
-                <%= t "button.edit" %>
-              </button>
-              <button class="btn btn-danger btn-delete-customer">
-                <%= t "button.delete" %>
-              </button>
-            </td>
-          </tr>
-          <%= render "modal_customer", customer: customer %>
-        <% end %>
-      <% end %>
-    </table>
+        </p>
+        <p>
+          <%= f.label :name_cont, t("admin.customers.customer.name"),
+            class: "customer-search-title" %>
+          <span class="inline-block">
+            <%= f.text_field :name_cont,
+              class: "pj-form-field customer-search-field" %>
+          </span>
+        </p>
+      </div>
+      <div class="customer-search">
+        <p>
+          <%= f.label :phone_num_cont, t("admin.customers.customer.phone"),
+            class: "customer-search-title" %>
+          <span class="inline-block">
+            <%= f.number_field :phone_num_cont,
+              class: "pj-form-field customer-search-field" %>
+          </span>
+        </p>
+        <p>
+          <%= f.label :email_cont, t("admin.customers.customer.email"),
+            class: "customer-search-title" %>
+          <span class="inline-block">
+            <%= f.text_field :email_cont,
+              class: "pj-form-field customer-search-field" %>
+          </span>
+        </p>
+        <br>
+      </div>
+      <center class="actions">
+        <%= f.submit  t(".search"), class: "btn btn-success customers-search-button" %>
+        <%= link_to t("staff_order.cancel"), {remote: true},
+          class: "btn btn-default customers-search-button", id: "clear" %>
+      </center>
+    </div>
   </div>
+  <%= render "customers_content", customers: customers %>
   <div id="pagination" class="apple-pagination">
     <%= paginate customers.customers_search, remote: true %>
   </div>

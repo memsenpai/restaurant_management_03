@@ -1,0 +1,40 @@
+<div class="show-customer-order">
+  <% if orders_support.customer_orders_search.any? %>
+    <table dir="ltr" class="default-dg-table customer-orders">
+    <% orders_support.customer_orders_search.order(day: :desc).each do |order| %>
+       <tr class="dg_tr clickable-row-customer-order" id="di_row_0"
+          data-id="<%= order.id %>">
+        <td class="default_dg_td dg-left col-sm-2">
+          <center><%= order.code %></center>
+        </td>
+        <td class="default_dg_td dg-left col-sm-2">
+          <center><%= order.day %></center>
+        </td>
+        <td class="default_dg_td dg-left col-sm-2">
+          <center><%= order.time_in %></center>
+        </td>
+        <td class="default_dg_td dg-left col-sm-2">
+          <center><%= order.table.code %></center>
+        </td>
+        <td class="default_dg_td dg-left col-sm-2">
+          <center><%= order.status %></center>
+        </td>
+        <td class="default_dg_td dg-left col-sm-2">
+          <center>
+            <%= number_to_currency order_services(order).price_final %>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+    <div id="pagination" class="apple-pagination">
+      <%= paginate orders_support.customer_orders_search, remote: true %>
+    </div>
+  <% else %>
+    <div>
+      <span class="col-sm-12 list-group-item">
+        <%= t "not_exist_items" %>
+      </span>
+    </div>
+  <% end %>
+</div>
